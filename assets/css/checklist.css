@@ -1,0 +1,85 @@
+/* ══════════════════════════════
+   PROGRESS BAR
+══════════════════════════════ */
+.progress-wrap {
+  padding: .8rem 1.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: .4rem;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  color: var(--ink-soft);
+  margin-bottom: .4rem;
+}
+.progress-label strong { color: var(--green-dark); }
+.progress-bar { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--green-dark), var(--green)); border-radius: 99px; transition: width .3s; width: 0%; }
+
+/* ══════════════════════════════
+   SECTION COUNT & TOC PROGRESS
+══════════════════════════════ */
+.section-count { font-size: .75rem; color: var(--ink-soft); }
+.section-count strong { color: var(--green-dark); }
+
+.toc-nav a .sec-progress {
+  margin-left: auto;
+  font-size: .65rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-soft);
+}
+.toc-nav a.sec-done .sec-progress { color: var(--green-dark); }
+
+/* ══════════════════════════════
+   CHECKLIST ITEMS
+══════════════════════════════ */
+ul.check-list { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+
+ul.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  font-size: .84rem;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: .55rem .9rem;
+  cursor: pointer;
+  transition: background .12s, border-color .12s;
+  user-select: none;
+}
+
+ul.check-list li:hover { background: #f9fbff; border-color: #c5cfe0; }
+ul.check-list li.checked { background: var(--green-pale); border-color: #c8dfa0; color: var(--ink-soft); }
+ul.check-list li.checked .item-text { text-decoration: line-through; opacity: .7; }
+
+.cb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: .18rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .7rem;
+  color: transparent;
+  background: var(--white);
+  transition: all .12s;
+}
+
+ul.check-list li.checked .cb { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+.item-text { flex: 1; }
+
+/* ══════════════════════════════
+   VARIANT GROUPS
+══════════════════════════════ */
+.variant-group { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: .5rem; overflow: hidden; }
+.variant-label { font-size: .78rem; font-weight: 600; color: var(--ink); background: var(--bg); padding: .5rem .9rem; border-bottom: 1px solid var(--border); }
+.variant-group .check-list { padding: .4rem .5rem .5rem; gap: .25rem; }
+.variant-group .check-list li { border-radius: 5px; font-size: .82rem; }

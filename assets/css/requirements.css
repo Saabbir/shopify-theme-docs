@@ -1,0 +1,107 @@
+/* ══════════════════════════════
+   REQUIREMENTS LIST
+══════════════════════════════ */
+ul.req-list { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+
+ul.req-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  font-size: .84rem;
+  line-height: 1.6;
+  color: var(--ink-mid);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: .6rem .9rem;
+}
+
+ul.req-list li::before {
+  content: '✓';
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-pale);
+  border-radius: 50%;
+  width: 1.3rem;
+  height: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+
+ul.req-list li strong { color: var(--ink); flex-shrink: 0; width: 200px; }
+ul.req-list li > div { flex: 1; }
+ul.req-list li .tags-wrapper { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .2rem; }
+ul.req-list li.warn { border-color: #f0c6c6; background: var(--warn-pale); }
+ul.req-list li.warn::before { content: '✕'; color: var(--warn); background: #fde8e8; }
+
+/* ══════════════════════════════
+   SCORE CARDS
+══════════════════════════════ */
+.score-cards { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-bottom: 1rem; }
+.score-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.3rem; text-align: center; }
+.score-card .val { font-size: 2.2rem; font-weight: 800; color: var(--green-dark); line-height: 1; margin-bottom: .2rem; }
+.score-card .lbl { font-size: .75rem; color: var(--ink-soft); font-weight: 500; }
+
+/* ══════════════════════════════
+   TABLES
+══════════════════════════════ */
+.compat-table, .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: .8rem;
+}
+.compat-table th, .data-table th {
+  background: var(--ink);
+  color: #E8EDF5;
+  font-weight: 600;
+  padding: .7rem 1rem;
+  text-align: left;
+  font-size: .75rem;
+  letter-spacing: .04em;
+}
+.compat-table td, .data-table td {
+  padding: .6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-mid);
+  vertical-align: top;
+}
+.compat-table tr:last-child td, .data-table tr:last-child td { border-bottom: none; }
+.compat-table tr:nth-child(even) td, .data-table tr:nth-child(even) td { background: var(--bg); }
+.check { color: var(--green-dark); font-weight: 700; }
+.data-table td:first-child { color: var(--green-dark); font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: .78rem; }
+.data-table td.plain { font-family: inherit; font-weight: 500; color: var(--ink); font-size: .82rem; }
+.data-table td.cross { color: var(--warn); text-decoration: line-through; font-family: inherit; font-weight: 400; font-size: .82rem; }
+
+/* ══════════════════════════════
+   TL;DR BOX
+══════════════════════════════ */
+.tldr-box {
+  background: var(--ink);
+  color: #E8EDF5;
+  border-radius: var(--radius);
+  padding: 1.8rem 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.tldr-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green) 0%, #c8f06a 100%); }
+.tldr-box .tldr-head { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem; }
+.tldr-box .tldr-head .pill { background: var(--green); color: #fff; font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 4px; }
+.tldr-box .tldr-head h2 { font-size: 1rem; font-weight: 600; color: #fff; }
+.tldr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 1.4rem; }
+.tldr-item { display: flex; align-items: flex-start; gap: .5rem; font-size: .82rem; line-height: 1.5; color: #C5CDD9; }
+.tldr-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: .5rem; }
+
+@media (max-width: 900px) {
+  .tldr-grid { grid-template-columns: 1fr; }
+  .score-cards { grid-template-columns: 1fr 1fr; }
+}
