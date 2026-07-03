@@ -60,7 +60,7 @@ ul.req-list li.warn::before { content: '✕'; color: var(--warn); background: #f
   margin-bottom: .8rem;
 }
 .compat-table th, .data-table th {
-  background: var(--ink);
+  background: var(--code-bg);
   color: #E8EDF5;
   font-weight: 600;
   padding: .7rem 1rem;
@@ -85,7 +85,7 @@ ul.req-list li.warn::before { content: '✕'; color: var(--warn); background: #f
    TL;DR BOX
 ══════════════════════════════ */
 .tldr-box {
-  background: var(--ink);
+  background: var(--code-bg);
   color: #E8EDF5;
   border-radius: var(--radius);
   padding: 1.8rem 2rem;
