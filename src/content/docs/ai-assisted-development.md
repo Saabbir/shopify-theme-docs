@@ -7,11 +7,13 @@ Most of this team's day-to-day theme code is written with an AI coding assistant
 
 ## What's on this page group
 
-- [5a. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) — one source of truth, generated into every tool's format.
-- [5b. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — giving Cursor/Claude Code structured design data, not just a screenshot.
-- [5c. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — a repeatable, tool-specific process: plan → build → check → fix → report.
-- [5d. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — turning that process into a single `/figma-to-section` command.
-- [5e. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/) — prompt patterns that consistently produce Theme-Store-compliant code.
+- [8a. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) — one source of truth, generated into every tool's format.
+- [8b. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/) — the guideline for changing AGENTS.md over time: order, format, sourcing, testing.
+- [8c. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — giving Cursor/Claude Code structured design data, not just a screenshot.
+- [8d. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — a repeatable, tool-specific process: plan → build → check → fix → report.
+- [8e. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — turning that process into a single `/figma-to-section` command.
+- [8f. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) — Shopify's own search-and-validate plugin, and why to use it alongside AGENTS.md.
+- [8g. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/) — prompt patterns that consistently produce Theme-Store-compliant code.
 
 ## Why AI-assisted development needs its own section
 
@@ -20,11 +22,11 @@ AI tools are genuinely useful for Shopify theme work, but they carry two specifi
 1. **They default to whatever's most common in their training data**, which is often older Dawn-era patterns (`{% include %}`, inline section blocks) rather than the current architecture this handbook teaches. Left unguided, an AI tool will happily generate code that looks correct but uses patterns we don't want.
 2. **They can reproduce recognizable patterns from public theme source code** — including Horizon and Dawn, which we specifically can't derive from (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/)). This is a real risk, not a theoretical one, and it's why AI output needs review with this specific concern in mind.
 
-The three pages in this section exist to manage both risks: rules that steer the tool toward our actual conventions, and a review habit that catches it when steering isn't enough.
+The pages in this section exist to manage both risks: rules that steer the tool toward our actual conventions (including Shopify's own official AI Toolkit, which grounds generated Liquid in real platform documentation rather than training-data guesses), and a review habit that catches it when steering isn't enough.
 
 ## Best practices
 
-- Set up your AI tool's rule files (section 5a) before writing your first line of Solis code with it — retrofitting rules after a tool has already established bad habits in a session is much less effective than starting with them in place.
+- Set up your AI tool's rule files (section 8a) before writing your first line of Solis code with it — retrofitting rules after a tool has already established bad habits in a session is much less effective than starting with them in place.
 - Treat every AI suggestion as a first draft from a fast, inexperienced-with-our-conventions teammate — useful, but never merged without review.
 - When an AI tool's output looks unusually close to a known reference theme's pattern, treat that as a specific, real risk to check, not paranoia.
 

@@ -27,6 +27,7 @@ If you're coming from a normal component-based frontend project, the closest men
 - [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) — the headline architecture change: blocks that contain blocks.
 - [Sections & Section Groups](/codebase-structure/sections-and-section-groups/) — how the header/footer areas stay merchant-editable.
 - [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) — reusable Liquid, and how we name files.
+- [Modern Shopify Features to Utilize](/codebase-structure/modern-shopify-features/) — current platform capabilities worth building on beyond the baseline.
 
 ## Best practices
 

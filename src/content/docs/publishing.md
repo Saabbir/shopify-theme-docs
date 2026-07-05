@@ -8,6 +8,7 @@ This is the last section — everything before it builds the theme, this section
 ## What's on this page group
 
 - [Partner Dashboard Setup](/publishing/partner-dashboard-setup/) — accounts and access you need before you can submit.
+- [Store Setup for Submission](/publishing/store-setup-for-submission/) — the operational checklist for configuring a demo store correctly.
 - [Packaging & Submitting](/publishing/packaging-and-submitting/) — building the theme ZIP and the actual submission form.
 - [Review Process & Rejections](/publishing/review-process-and-rejections/) — Shopify's 5-stage review, and what to do if rejected.
 - [After Approval](/publishing/after-approval/) — versioning, release notes, and ongoing update rules.

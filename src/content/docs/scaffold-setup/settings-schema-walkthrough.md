@@ -164,5 +164,7 @@ If you find yourself adding a third or fourth CSS variable to control what's rea
 
 ## Further Reading
 
+- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) — the full deep dive on both files, including how they interact and what breaks a merchant's data
+- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) — mapping a design system onto exactly the settings this page describes
 - [Settings schema](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) — shopify.dev
 - [Settings (concept overview)](https://shopify.dev/docs/storefronts/themes/architecture/settings) — shopify.dev

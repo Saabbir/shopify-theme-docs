@@ -1,5 +1,5 @@
 ---
-title: 5a. Setting Up AI Rules (AGENTS.md)
+title: 8a. Setting Up AI Rules (AGENTS.md)
 description: One source of truth for Cursor, Claude Code, and GitHub Copilot — generated, not hand-duplicated.
 ---
 

@@ -81,5 +81,7 @@ Run a Lighthouse audit against Shopify's benchmark dataset before submitting —
 
 ## Further Reading
 
+- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/) — a full plan and roadmap for hitting this bar deliberately
+- [Media Optimization: Images, Video & 3D](/performance-and-accessibility/media-optimization/) — the media-specific half of that strategy
 - [Lighthouse performance and accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#6-lighthouse-performance-and-accessibility) — shopify.dev
 - [Performance best practices](https://shopify.dev/docs/storefronts/themes/best-practices/performance) — shopify.dev

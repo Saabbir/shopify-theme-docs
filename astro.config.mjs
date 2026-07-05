@@ -50,6 +50,7 @@ export default defineConfig({
             { label: 'Theme Blocks & Nesting', slug: 'codebase-structure/theme-blocks' },
             { label: 'Sections & Section Groups', slug: 'codebase-structure/sections-and-section-groups' },
             { label: 'Snippets & Naming Conventions', slug: 'codebase-structure/snippets-and-naming' },
+            { label: 'Modern Shopify Features to Utilize', slug: 'codebase-structure/modern-shopify-features' },
           ],
         },
         {
@@ -62,18 +63,52 @@ export default defineConfig({
           ],
         },
         {
-          label: '5. AI-Assisted Development',
+          label: '5. Design System & Configuration',
           items: [
-            { label: 'Overview', slug: 'ai-assisted-development' },
-            { label: '5a. Setting Up AI Rules (AGENTS.md)', slug: 'ai-assisted-development/setting-up-ai-rules' },
-            { label: '5b. Figma MCP & Dev Mode', slug: 'ai-assisted-development/figma-mcp-and-dev-mode' },
-            { label: '5c. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
-            { label: '5d. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
-            { label: '5e. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
+            { label: 'Overview', slug: 'design-system' },
+            { label: 'Figma Tokens → Theme Settings', slug: 'design-system/figma-tokens-to-theme' },
+            { label: 'Design Tokens, Color & Type System', slug: 'design-system/design-tokens-color-type-system' },
+            { label: 'settings_schema.json & settings_data.json', slug: 'design-system/settings-schema-and-data' },
+            { label: 'Managing Presets (Sections & Themes)', slug: 'design-system/managing-presets' },
+            { label: 'Icon Management', slug: 'design-system/icon-management' },
           ],
         },
         {
-          label: '6. GitHub Workflow',
+          label: '6. Style Guides',
+          items: [
+            { label: 'Overview', slug: 'style-guides' },
+            { label: 'CSS Style Guide', slug: 'style-guides/css' },
+            { label: 'JavaScript & Web Components', slug: 'style-guides/javascript-and-web-components' },
+            { label: 'Liquid Style Guide', slug: 'style-guides/liquid' },
+            { label: 'Clean Code Principles', slug: 'style-guides/clean-code-principles' },
+            { label: 'Third-Party Libraries', slug: 'style-guides/third-party-libraries' },
+            { label: 'Theme Editor & Storefront Events', slug: 'style-guides/theme-editor-events' },
+          ],
+        },
+        {
+          label: '7. Performance & Accessibility',
+          items: [
+            { label: 'Overview', slug: 'performance-and-accessibility' },
+            { label: 'Accessibility Deep Dive', slug: 'performance-and-accessibility/accessibility-deep-dive' },
+            { label: 'Performance Strategy & Critical Rendering Path', slug: 'performance-and-accessibility/performance-strategy' },
+            { label: 'Media Optimization: Images, Video & 3D', slug: 'performance-and-accessibility/media-optimization' },
+          ],
+        },
+        {
+          label: '8. AI-Assisted Development',
+          items: [
+            { label: 'Overview', slug: 'ai-assisted-development' },
+            { label: '8a. Setting Up AI Rules (AGENTS.md)', slug: 'ai-assisted-development/setting-up-ai-rules' },
+            { label: '8b. Managing & Amending AI Rules', slug: 'ai-assisted-development/managing-ai-rules' },
+            { label: '8c. Figma MCP & Dev Mode', slug: 'ai-assisted-development/figma-mcp-and-dev-mode' },
+            { label: '8d. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
+            { label: '8e. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
+            { label: "8f. Shopify's Official AI Toolkit", slug: 'ai-assisted-development/shopify-ai-toolkit' },
+            { label: '8g. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
+          ],
+        },
+        {
+          label: '9. GitHub Workflow',
           items: [
             { label: 'Overview', slug: 'github-workflow' },
             { label: 'Branching & Commits', slug: 'github-workflow/branching-and-commits' },
@@ -82,7 +117,7 @@ export default defineConfig({
           ],
         },
         {
-          label: '7. Quality & Validation',
+          label: '10. Quality & Validation',
           items: [
             { label: 'Overview', slug: 'quality-validation' },
             { label: 'Theme Check & Linting', slug: 'quality-validation/theme-check-and-linting' },
@@ -91,26 +126,18 @@ export default defineConfig({
           ],
         },
         {
-          label: '8. Publishing to Theme Store',
+          label: '11. Publishing to Theme Store',
           items: [
             { label: 'Overview', slug: 'publishing' },
             { label: 'Partner Dashboard Setup', slug: 'publishing/partner-dashboard-setup' },
+            { label: 'Store Setup for Submission', slug: 'publishing/store-setup-for-submission' },
             { label: 'Packaging & Submitting', slug: 'publishing/packaging-and-submitting' },
             { label: 'Review Process & Rejections', slug: 'publishing/review-process-and-rejections' },
             { label: 'After Approval', slug: 'publishing/after-approval' },
           ],
         },
         {
-          label: '9. Style Guides',
-          items: [
-            { label: 'Overview', slug: 'style-guides' },
-            { label: 'CSS Style Guide', slug: 'style-guides/css' },
-            { label: 'JavaScript & Web Components', slug: 'style-guides/javascript-and-web-components' },
-            { label: 'Liquid Style Guide', slug: 'style-guides/liquid' },
-          ],
-        },
-        {
-          label: '10. Tooling & Config',
+          label: '12. Tooling & Config',
           items: [
             { label: 'Overview', slug: 'tooling-config' },
             { label: 'Project Files Explained', slug: 'tooling-config/project-files' },
@@ -119,7 +146,7 @@ export default defineConfig({
           ],
         },
         {
-          label: '11. Learning Articles',
+          label: '13. Learning Articles',
           items: [
             { label: 'Overview', slug: 'learning-articles' },
             { label: 'CSS Deep Dive', slug: 'learning-articles/css-deep-dive' },
@@ -130,7 +157,7 @@ export default defineConfig({
           ],
         },
         {
-          label: '12. Reference',
+          label: '14. Reference',
           items: [
             { label: 'Overview', slug: 'reference' },
             { label: 'Cheatsheet', slug: 'reference/cheatsheet' },

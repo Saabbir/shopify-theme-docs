@@ -1,5 +1,5 @@
 ---
-title: 5d. Claude Code Custom Commands
+title: 8e. Claude Code Custom Commands
 description: Turning repetitive prompts (like the Figma-to-code loop) into a single slash command.
 ---
 

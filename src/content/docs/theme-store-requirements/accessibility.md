@@ -3,7 +3,7 @@ title: Accessibility (WCAG 2.1 AA)
 description: Shopify's concrete, checkable accessibility requirements.
 ---
 
-Shopify's accessibility bar is concrete and testable — not a vague "be inclusive" statement. Here's every checkable item, with the right and wrong way to implement each one.
+Shopify's accessibility bar is concrete and testable — not a vague "be inclusive" statement. Here's every checkable item, with the right and wrong way to implement each one. For the process behind consistently meeting this bar — not just the checklist — see [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/).
 
 ## The checklist
 
@@ -104,5 +104,6 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 
 ## Further Reading
 
+- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) — the process behind this checklist
 - [Accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#12-accessibility) — shopify.dev
 - [Accessibility best practices](https://shopify.dev/docs/storefronts/themes/best-practices/accessibility) — shopify.dev

@@ -10,6 +10,16 @@ A few tool-specific files still exist alongside this one — `.cursor/rules/*.md
 A Shopify theme built for submission to the Shopify Theme Store. Scaffolded from Shopify's **Skeleton Theme** — not Dawn, not Horizon, since neither is Theme-Store-eligible (see the handbook's Scaffold Setup Guide). We follow **Horizon's architecture** as a conceptual reference: nested theme blocks, `@theme`/`@app` block targeting, `{% stylesheet %}`/`{% javascript %}` tags. The actual codebase starts from Skeleton Theme, not a Horizon fork.
 
 <!-- scope: core -->
+## Source of truth & certainty requirements
+
+These rules govern *how* every other rule in this file gets applied — read this section as load-bearing, not optional context.
+
+- **Official Shopify documentation is the only acceptable source for a factual claim about Shopify's platform, APIs, Liquid, or Theme Store policy.** Acceptable sources: `shopify.dev` (architecture, Liquid reference, Theme Store requirements), `help.shopify.com`, and Shopify's own official repos (e.g. `github.com/Shopify/*`). A third-party blog post, forum answer, or tutorial is not an acceptable source for a factual claim, even if it's convenient or seems plausible — it may be outdated, subtly wrong, or describe a deprecated pattern.
+- **Do not guess about anything checkable.** If a Liquid object's properties, a filter's exact behavior, a schema field's valid values, or a Theme Store policy detail isn't something you're certain of, say so explicitly and check the official source before proceeding — do not present a guess as a fact. Use the [Shopify AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)'s doc search when available; otherwise state the uncertainty and ask.
+- **Plan before acting, for anything non-trivial.** State what you're about to build/change and why, before writing code — not as a formality, but so a wrong assumption gets caught as a one-line correction instead of a rewrite. This is the same discipline the [Figma-to-code workflow](#figma-to-code-workflow) below applies specifically to design-to-code tasks; it applies more generally to any non-trivial change.
+- If a plan or a claim turns out to be wrong once you check the real documentation or the real codebase, say so and correct course — don't quietly proceed on a premise you've already found reason to doubt.
+
+<!-- scope: core -->
 ## Commands
 
 ```bash
@@ -75,4 +85,4 @@ When given a Figma frame/screenshot and asked to build a section or block: **pla
 <!-- scope: core -->
 ## When uncertain
 
-Flag a conflict with a Theme Store requirement instead of silently working around it. Ask a clarifying question instead of guessing when a request is ambiguous — this codebase would rather wait five minutes for an answer than ship a guess that fails Theme Store review.
+Flag a conflict with a Theme Store requirement instead of silently working around it. Ask a clarifying question instead of guessing when a request is ambiguous — this codebase would rather wait five minutes for an answer than ship a guess that fails Theme Store review. See "Source of truth & certainty requirements" above — the same no-guessing standard applies to factual claims about the platform itself, not just ambiguous requests.

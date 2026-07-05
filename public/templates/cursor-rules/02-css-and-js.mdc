@@ -10,12 +10,13 @@ alwaysApply: false
   Regenerate with: node scripts/generate-ai-rules.mjs
 -->
 
-# CSS & JavaScript rules
+## CSS & JavaScript conventions
 
 - Scope CSS/JS to the component that needs it using `{% stylesheet %}` and `{% javascript %}` tags inside the section/block file — don't add everything to one global bundle.
 - A setting that maps to one CSS property → expose it as a CSS custom property (`style="--gap: {{ block.settings.gap }}px"`). A setting that changes several properties together → expose it as a class (`select` setting mapping to `.variant--name`), not several separate variables.
 - Use CSS logical properties (`margin-inline-start`, `padding-inline-end`) instead of physical ones (`margin-left`, `padding-right`) so layout works correctly in RTL languages.
-- Ship JS as native ES modules. No bundler magic at runtime — the browser resolves the module graph.
+- Ship JS as native ES modules, built as Web Components for anything stateful/interactive. No bundler magic at runtime — the browser resolves the module graph.
 - Don't add a dependency for something under ~50 lines of vanilla JS or native CSS can do (a carousel via `scroll-snap`, a modal via `<dialog>`).
 - Never introduce React/Vue/Svelte component syntax for storefront-facing markup.
 - Every interactive element must be keyboard operable with a visible focus state — this is a Theme Store requirement, not optional polish.
+- Full detail: [CSS Style Guide](/style-guides/css/) and [JavaScript & Web Components](/style-guides/javascript-and-web-components/) in the handbook.

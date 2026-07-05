@@ -10,6 +10,9 @@ The rest of this handbook teaches Shopify-specific architecture — folders, blo
 - [CSS Style Guide](/style-guides/css/) — global CSS, `{% stylesheet %}`, custom properties, logical properties, naming.
 - [JavaScript & Web Components](/style-guides/javascript-and-web-components/) — `{% javascript %}`, native Web Components, state, events.
 - [Liquid Style Guide](/style-guides/liquid/) — objects, filters, whitespace control, performance, formatting.
+- [Clean Code Principles](/style-guides/clean-code-principles/) — a complete worked example, messy vs. clean.
+- [Third-Party Libraries](/style-guides/third-party-libraries/) — the decision framework for whether (and how) to add a dependency.
+- [Theme Editor & Storefront Events](/style-guides/theme-editor-events/) — `shopify:section:load` and the rest of the theme editor's JS events.
 
 ## Why a separate style guide from the architecture sections
 
@@ -28,7 +31,7 @@ The rest of this handbook teaches Shopify-specific architecture — folders, blo
 
 ## Quick Reference
 
-- [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/) · [Liquid Style Guide](/style-guides/liquid/)
+- [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/) · [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/) · [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)
 - This section covers *how* to write code; [Codebase Structure](/codebase-structure/) covers *where* it goes.
 
 ## Further Reading

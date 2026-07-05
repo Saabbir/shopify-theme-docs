@@ -10,7 +10,7 @@ alwaysApply: false
   Regenerate with: node scripts/generate-ai-rules.mjs
 -->
 
-# Liquid & schema rules
+## Liquid & schema conventions
 
 - A section either defines blocks locally in its own schema, OR accepts theme blocks via `"blocks": [{ "type": "@theme" }]` — never both.
 - Every theme block needs at least one entry in `"presets"`, or it will never appear in the editor's block picker.
@@ -22,3 +22,4 @@ alwaysApply: false
 - Use `image_url` + explicit `width`/`height` + `loading="lazy"` (except above-the-fold) for every image — never a bare `<img src>`.
 - Reference `metaobject`/`metaobject_list` settings only with standard Shopify definitions — never a custom or app-owned `metaobject_type`.
 - `settings_data.json` defaults must reference resources that exist on every fresh store install — never a resource that only exists in the demo store.
+- Full detail: [Liquid Style Guide](/style-guides/liquid/) in the handbook.
