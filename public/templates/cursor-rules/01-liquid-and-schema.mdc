@@ -1,0 +1,18 @@
+---
+description: Liquid, section, and block schema conventions
+globs: ["**/*.liquid"]
+alwaysApply: false
+---
+
+# Liquid & schema rules
+
+- A section either defines blocks locally in its own schema, OR accepts theme blocks via `"blocks": [{ "type": "@theme" }]` — never both.
+- Every theme block needs at least one entry in `"presets"`, or it will never appear in the editor's block picker.
+- Restrict a section's accepted blocks to specific types when the section has one clear purpose; use `"@theme"` only for genuinely general-purpose containers (e.g. a Group block).
+- Always include `{ "type": "@app" }` alongside `{ "type": "@theme" }` in the main product section and featured product section — required for Theme Store review.
+- Use `{% render %}` for snippets (they receive explicit variables); use a theme block when the content needs merchant-editable settings and reordering. Never use `{% include %}` (deprecated).
+- Write a `{%- doc -%}` block on every snippet describing its parameters, in [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) format.
+- Use the `routes` object for all internal links (`{{ routes.root_url }}`), never hardcoded paths like `/` or `/products/`.
+- Use `image_url` + explicit `width`/`height` + `loading="lazy"` (except above-the-fold) for every image — never a bare `<img src>`.
+- Reference `metaobject`/`metaobject_list` settings only with standard Shopify definitions — never a custom or app-owned `metaobject_type`.
+- `settings_data.json` defaults must reference resources that exist on every fresh store install — never a resource that only exists in the demo store.

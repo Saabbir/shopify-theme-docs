@@ -1,0 +1,43 @@
+# Legacy single-file format (.cursorrules)
+#
+# Cursor still reads this file, but the current recommended approach is a
+# directory of .mdc files under .cursor/rules/ (see the three files in
+# /templates/cursor-rules/). Use this single-file version only if you're on
+# an older Cursor version, or want one file to also share with tools that
+# don't support the .mdc directory format.
+#
+# To use: save this content as .cursorrules at the root of your theme repo.
+
+PROJECT CONTEXT
+- This is a Shopify theme built for Theme Store submission, scaffolded from
+  Shopify's Skeleton Theme (not Dawn, not Horizon — neither is eligible).
+- We follow Horizon's architecture: nested theme blocks, @theme/@app block
+  targeting, {% stylesheet %}/{% javascript %} tags.
+- No UI framework renders storefront markup. Liquid only.
+- No Sass/SCSS. Native CSS with custom properties only.
+
+LIQUID & SCHEMA
+- A section either defines blocks locally OR accepts theme blocks via
+  "blocks": [{ "type": "@theme" }] — never both.
+- Every theme block needs a "presets" entry or it won't appear in the editor.
+- Main product section and featured product section must accept @app blocks.
+- Use {% render %} for snippets; never the deprecated {% include %}.
+- Use the routes object for links, never hardcoded paths.
+- Every image needs image_url + explicit width/height + loading="lazy"
+  (except above-the-fold images).
+- metaobject/metaobject_list settings: standard definitions only, never
+  custom or app-owned metaobject_type.
+
+CSS & JAVASCRIPT
+- Scope CSS/JS with {% stylesheet %}/{% javascript %} tags per component.
+- One CSS property changing → CSS variable. Multiple properties together →
+  a CSS class via a select setting.
+- Use CSS logical properties (margin-inline-start) not physical ones
+  (margin-left), for RTL support.
+- Ship JS as native ES modules. Don't add a dependency for ~50 lines of
+  vanilla JS.
+
+WHEN UNSURE
+- If a request conflicts with a Theme Store requirement, flag it — don't
+  silently comply.
+- If a request is ambiguous, ask a clarifying question rather than guessing.

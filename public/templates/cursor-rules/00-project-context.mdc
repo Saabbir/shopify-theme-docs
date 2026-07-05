@@ -1,0 +1,16 @@
+---
+description: Project context and non-negotiable constraints for this Shopify theme
+alwaysApply: true
+---
+
+# Solis — project context
+
+This is a Shopify theme built for Shopify Theme Store submission.
+
+- Scaffolded from Shopify's **Skeleton Theme**, not Dawn or Horizon (neither is Theme-Store-eligible). We follow Horizon's *architecture* only: nested theme blocks, `@theme`/`@app` block targeting, `{% stylesheet %}`/`{% javascript %}` tags.
+- No UI framework (React, Vue, Svelte) renders storefront markup. Liquid is the templating layer, full stop.
+- No Sass/SCSS. Native CSS with custom properties only.
+- Every theme setting label must go through `locales/*.schema.json` (`t:` prefix) — never hardcode English in a schema file.
+- Before generating code, check whether an equivalent section/block/snippet already exists — reuse over duplication.
+- If a request conflicts with a Shopify Theme Store requirement (see /theme-store-requirements/ in the handbook), flag the conflict instead of silently complying.
+- If a request is ambiguous, ask a clarifying question rather than guessing an implementation.

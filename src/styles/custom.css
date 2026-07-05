@@ -1,0 +1,11 @@
+/* Brand accent — swap this hex to match your actual theme/brand color. */
+:root {
+  --sl-color-accent-low: #ecf6e3;
+  --sl-color-accent: #4a7c1f;
+  --sl-color-accent-high: #2c4a12;
+}
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #1f2c14;
+  --sl-color-accent: #8bc84a;
+  --sl-color-accent-high: #c8f06a;
+}
