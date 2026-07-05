@@ -13,25 +13,74 @@ In a client project, you'd happily create a custom metaobject definition (say, `
 
 ## What this means in practice
 
-- Use **standard Shopify metaobject types** (the built-in ones Shopify ships, like standard product/variant metafields) in your `metaobject`/`metaobject_list` settings — not custom ones you defined for your own demo store.
-- If a feature really needs custom structured data, expose it as a **theme setting** the merchant fills in themselves, not a metaobject reference baked into your schema defaults.
-- Never ship a default value in `settings_data.json` that points at a resource (product, metaobject, page) that only exists in your demo store — it won't exist on a fresh install and will show as broken.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use standard Shopify metaobject types in `metaobject`/`metaobject_list` settings | Reference a custom or app-owned `metaobject_type` you defined for your own demo store |
+| Expose custom-data needs as a merchant-facing theme setting | Hardcode a metaobject reference into a schema default |
+| Confirm every `settings_data.json` default resource exists on a fresh install | Default a setting to a product, page, or metaobject that only exists in your demo store |
+| Use standard product/variant metafields where Shopify provides them | Invent a custom metafield namespace and assume every merchant will populate it |
 
 ```json
-// WRONG — references a metaobject type this merchant may not have
+// ❌ WRONG — references a metaobject type this merchant may not have
 {
   "type": "metaobject",
   "id": "brand_story",
   "metaobject_type": "custom_brand_story"
 }
 
-// RIGHT — uses a standard type every store has
+// ✅ RIGHT — uses a standard type every store has
 {
   "type": "metaobject",
   "id": "featured_review",
   "metaobject_type": "shopify--reviews--reviews"
 }
 ```
+
+### A worked example: a "material" field on a Solis product page
+
+Say Solis wants to show a product's material (cotton, leather, etc.) on the product page. There are two ways to build this — one that works for every merchant, one that only works for stores that happen to have your exact custom setup:
+
+```liquid
+{% comment %} ❌ WRONG — assumes every merchant has defined a custom
+   product metafield namespace exactly matching yours. A fresh install
+   with no such metafield just renders nothing, with no clear reason why. {% endcomment %}
+{{ product.metafields.custom.material_type.value }}
+
+{% comment %} ✅ RIGHT — a real theme setting merchants can see, understand,
+   and fill in via the theme editor. Works identically for every merchant,
+   regardless of their own metafield setup. {% endcomment %}
+{% if block.settings.show_material and block.settings.material_text != blank %}
+  <p class="material">{{ block.settings.material_text }}</p>
+{% endif %}
+```
+
+```json
+{
+  "type": "checkbox",
+  "id": "show_material",
+  "label": "t:settings.show_material.label",
+  "default": true
+},
+{
+  "type": "text",
+  "id": "material_text",
+  "label": "t:settings.material_text.label"
+}
+```
+
+If you genuinely want to pull from Shopify's own **standard** product metafields (not a custom namespace), that's fine — the restriction is specifically about *custom or app-owned* definitions, not metafields in general.
+
+## Best practices
+
+- Default to a plain theme setting for merchant-facing custom data, and only reach for a standard metaobject reference when Shopify already ships the exact standard type you need.
+- Audit every `settings_data.json` default before submission — a reference to a demo-store-only resource is one of the more common late-stage rejection reasons.
+- If you're unsure whether a metaobject type counts as "standard," check [Shopify's standard metaobject definitions](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) rather than assuming.
+
+## Common mistakes
+
+- **Defining a custom metaobject type for your own demo store, then referencing it directly in schema** — this works perfectly on your store and breaks on every merchant's fresh install.
+- **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store** — the same failure mode, just for a different setting type.
+- **Assuming any metafield use is off-limits.** The restriction is specifically about custom/app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings — standard metafields elsewhere are fine.
 
 ## Quick Reference
 

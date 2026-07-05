@@ -29,3 +29,5 @@ hero:
 | [8. Publishing](/publishing/) | Partner Dashboard, packaging, review, life after approval |
 
 New here? Read sections 1–4 in order, then use search (**⌘K**) for everything after that.
+
+Examples throughout use **Solis**, our current Theme Store project, but this handbook applies to any Shopify theme we build.

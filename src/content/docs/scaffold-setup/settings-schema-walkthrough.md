@@ -13,6 +13,28 @@ Shopify has three separate places settings can live. Mixing them up is a common 
 | Section | Inside the section's own `{% schema %}` | That section instance only | A banner's heading text |
 | Block | Inside the block's own `{% schema %}` | That block instance only | One quote's author name |
 
+### Choosing the right level
+
+| Ask | If yes → |
+|---|---|
+| Should every page share this value with no per-instance variation? | Theme setting |
+| Does this vary per section instance, but every block within it shares the same value? | Section setting |
+| Does this vary per individual block instance? | Block setting |
+
+```json
+// ❌ WRONG — a brand color defined per-section means every banner,
+// every testimonial, every footer independently "chooses" a brand color,
+// creating inconsistency and a maintenance nightmare across dozens of sections
+// sections/image-banner.liquid schema (excerpt)
+{ "type": "color", "id": "brand_color", "label": "Brand color", "default": "#1a1a1a" }
+```
+
+```json
+// ✅ RIGHT — one theme-wide setting, referenced everywhere via {{ settings.color_primary }}
+// config/settings_schema.json (excerpt)
+{ "type": "color", "id": "color_primary", "label": "t:settings_schema.colors.settings.primary.label", "default": "#1a1a1a" }
+```
+
 ## Theme settings
 
 ```json
@@ -39,6 +61,29 @@ Shopify has three separate places settings can live. Mixing them up is a common 
 Access it anywhere in Liquid via the `settings` object: `{{ settings.color_primary }}`. The `theme_info` block is required by Theme Store review (see [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/)).
 
 Notice the `t:` prefixed strings — those pull from `locales/en.default.schema.json` instead of hardcoding English text, so the theme editor UI itself can be translated. Use this for every label and content string in schema, not just some of them.
+
+```json
+// ❌ WRONG — hardcoded English, can't be localized for the theme editor UI
+{ "type": "header", "content": "Colors" }
+
+// ✅ RIGHT — pulls from locales/en.default.schema.json
+{ "type": "header", "content": "t:settings_schema.colors.settings.header.content" }
+```
+
+```json
+// locales/en.default.schema.json (excerpt)
+{
+  "settings_schema": {
+    "colors": {
+      "name": "Colors",
+      "settings": {
+        "header": { "content": "Color palette" },
+        "primary": { "label": "Primary color" }
+      }
+    }
+  }
+}
+```
 
 ## Single-property vs. multi-property settings
 
@@ -73,6 +118,43 @@ Skeleton Theme's own conventions (worth following) draw a clear line:
 ] }] }
 {% endschema %}
 ```
+
+### Why mixing these two up is a common mistake
+
+```css
+/* ❌ WRONG — using several individual CSS variables for what is really
+   one cohesive "layout mode" choice. Easy for the variables to drift
+   out of sync with each other as the theme evolves. */
+.collection {
+  display: var(--collection-display);
+  gap: var(--collection-gap);
+  grid-template-columns: var(--collection-columns);
+}
+```
+
+```css
+/* ✅ RIGHT — one class encapsulates the whole layout mode as a single,
+   internally consistent unit */
+.collection--full-width {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+```
+
+If you find yourself adding a third or fourth CSS variable to control what's really one visual "mode," that's usually a sign it should collapse into a single `select` setting mapped to a CSS class instead.
+
+## Best practices
+
+- Ask "does this vary per instance, or is it shared everywhere?" before adding any new setting — it's a fast check that prevents most misplaced-setting bugs.
+- Localize every schema string with `t:` from the moment you write it, not as a batch cleanup later.
+- When a section/block accumulates more than 3–4 related CSS custom properties controlling what's really one visual mode, consider collapsing them into a `select` + CSS classes instead.
+
+## Common mistakes
+
+- **Defining the same conceptual setting (like a brand color) independently in multiple sections** instead of once at the theme level — this creates inconsistency and makes global rebrand changes painful.
+- **Hardcoding schema label/content strings "temporarily"** and never circling back to localize them.
+- **Overusing CSS custom properties for what should be a class-based variant setting**, leading to a tangle of variables that can be set in inconsistent combinations.
 
 ## Quick Reference
 

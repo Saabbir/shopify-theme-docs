@@ -12,6 +12,21 @@ A Figma frame shows one possible content state — not a spec. This process exis
 - Check Figma for mobile/tablet/desktop variants. If they're missing, ask design for them — don't guess a responsive behavior.
 - Decide the block breakdown: which pieces should be independent, reorderable blocks vs. fixed parts of the section.
 
+### A worked decomposition example
+
+Say design hands you a "Featured Collection" frame: a heading, a short intro paragraph, and a row of 4 product cards.
+
+| Element | Merchant content or chrome? | Becomes |
+|---|---|---|
+| Heading text | Content, varies per use | Section setting (`text`) |
+| Intro paragraph | Content, optional | Section setting (`richtext`), with a blank check around it |
+| Number of products shown | Content, merchant choice | Section setting (`range`, 2–8) |
+| Which collection to pull from | Content | Section setting (`collection`) |
+| Product card layout (image, title, price) | Chrome — same every time | Fixed markup, reused via a `product-card` snippet |
+| Grid gap/columns | Chrome, but responsive | Fixed CSS with a container query, not a setting |
+
+Notice not everything becomes a setting — the product card's internal layout is chrome, reused via a snippet, not something merchants configure per use.
+
 ## Step 2: Extract design tokens
 
 Pull exact values out of Figma (or the design system's Figma variables, if your team uses them) before writing any CSS:
@@ -24,6 +39,18 @@ Pull exact values out of Figma (or the design system's Figma variables, if your 
 | Radii/shadows | CSS custom properties |
 
 Don't hardcode a hex value or a pixel spacing number directly in a section's CSS if the same value is reused elsewhere — extract it as a token first.
+
+```css
+/* ❌ WRONG — a hardcoded value copied from Figma's inspector panel,
+   repeated in every section that happens to need similar spacing */
+.featured-collection { padding: 64px 24px; }
+.testimonials { padding: 64px 24px; }
+
+/* ✅ RIGHT — one token, referenced everywhere, easy to adjust globally later */
+:root { --space-section-y: 4rem; --space-section-x: 1.5rem; }
+.featured-collection { padding: var(--space-section-y) var(--space-section-x); }
+.testimonials { padding: var(--space-section-y) var(--space-section-x); }
+```
 
 ## Step 3: Prompt your AI tool with the decomposition, not the screenshot alone
 
@@ -49,6 +76,14 @@ very long text) — see /theme-store-requirements/store-and-design/.
 
 This gives the AI tool the same three things a human developer needs: what's merchant-editable, what's fixed, and how it behaves when content varies.
 
+### The screenshot-only prompt, and what typically comes back
+
+```text
+❌ "Build this section" [attaches a Figma screenshot]
+```
+
+An AI tool given only this will typically produce: hardcoded text instead of settings, a layout with no consideration for a different number of blocks, and often the Dawn-era inline-block pattern (since that's more common in training data than nested theme blocks). None of this is a fabricated worst case — it's the predictable result of an underspecified prompt, which is exactly why Step 1's decomposition matters more than the prompt wording itself.
+
 ## Step 4: Implement, then stress-test with unlikely content
 
 Once the AI tool produces the section, test it with:
@@ -62,7 +97,24 @@ If any of these break the layout, that's a bug to fix before moving on — not a
 
 ## Step 5: Review like any other AI output
 
-Treat AI-generated Liquid/CSS/JS exactly like a human's first draft — see [AI Code Review Checklist](/github-workflow/pull-requests-and-review/) in GitHub Workflow. Don't skip review because "the AI probably got it right."
+Treat AI-generated Liquid/CSS/JS exactly like a human's first draft — see [AI Code Review Checklist](/github-workflow/pull-requests-and-review/) in GitHub Workflow. Don't skip review because "the AI probably got it right." Specifically check for:
+
+- Dawn-era patterns (inline section blocks, `{% include %}`) instead of our current conventions
+- Hardcoded English strings instead of `t:` locale keys
+- Missing blank-value guards around optional content
+- Code that looks suspiciously close to a public Horizon/Dawn section (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/))
+
+## Best practices
+
+- Do the decomposition (Step 1) on paper or in a doc before opening your AI tool at all — rushing straight to a prompt almost always produces a worse first draft than five minutes of upfront thinking.
+- Extract design tokens once per design system update, not per section — a section that hardcodes a value "just this once" is how token drift starts.
+- Keep a short list of your team's 3–4 most common stress tests (empty state, long text, many blocks, zero blocks) somewhere visible, and run all of them on every new AI-generated section without exception.
+
+## Common mistakes
+
+- **Prompting from a screenshot alone**, skipping the decomposition step, then spending more time fixing the result than the decomposition would have taken.
+- **Accepting a pixel-perfect-looking section without testing content variability** — it often looks done because the demo data happens to fit well, not because the section actually handles variation.
+- **Not extracting design tokens**, leading to the same spacing/color value hardcoded independently in several places, which then drift apart over time as one gets tweaked and the others don't.
 
 ## Quick Reference
 

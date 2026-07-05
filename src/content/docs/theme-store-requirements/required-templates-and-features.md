@@ -25,37 +25,109 @@ description: Every template, page requirement, feature, browser, and SEO rule Sh
 
 Every template except Customer Account, Gift Card, and Checkout must support sections.
 
-## Per-page must-haves
+## Product page
 
-- **Product page**: untruncated title, price, unit price, compare-at price, description, option names/values, all images viewable, variant images swap on selection, quantity selector, Add to cart button, first-available-variant loads by default, swatches for options, plus product recommendations, rich media, accelerated checkout (on by default), pickup availability, and Shop Pay Installments.
-- **Collection page**: untruncated title, description, image, product grid that doesn't break with varying image ratios, Sale badge when relevant, sort control, empty-collection message, pagination or lazy loading.
-- **Cart page**: line item details (title, unit price, image, final price, quantity, options), visible total, checkout button, quantity editing that refreshes the total, empty-cart message, cart notes, selling plans, automatic discount codes, accelerated checkout (on by default).
-- **Search page**: no-results message, distinguishes result types (product/blog/page) via `object_type`, pagination or lazy loading.
-- **404 page**: a clear "not found" message plus a way forward (search or a homepage link).
+| ✅ Must include | ❌ Common gaps |
+|---|---|
+| Untruncated `product.title` | Titles cut off with `truncate` or fixed-height CSS clipping |
+| `variant.price`, `variant.unit_price`, compare-at price | Only the current price shown, no compare-at for sale items |
+| `product.description` | Description omitted on a "simplified" alternate layout |
+| Option names and values | Options collapsed into an unlabeled dropdown with no visible name |
+| All product images viewable | A gallery that hides images beyond the first 3–4 with no way to see the rest |
+| Variant images that swap on selection | A static gallery that ignores which variant is selected |
+| Quantity selector | Only an "Add to cart" with an implicit quantity of 1 |
+| Add to cart button (disabled/replaced when unavailable) | A button that stays clickable and silently fails on sold-out variants |
+| First available variant loads by default | The page defaults to the first *listed* variant even if sold out |
+| Swatches for product options (`swatch.image`/`swatch.color`) | Plain text option buttons when the product actually has color/pattern swatches configured |
+| Product recommendations | Omitted entirely, or only shown on some product types |
+| Rich product media (3D, video) | Only static images supported, even when a product has video/3D assets |
+| Accelerated checkout buttons, on by default | Present but disabled by default, or missing on some product templates |
+| Pickup availability | Omitted, or only shown when a merchant has zero pickup locations (should degrade gracefully, not disappear) |
+| Shop Pay Installments banner | Missing on the product template |
+
+```liquid
+{% comment %} ❌ WRONG — silently allows checkout attempts on a sold-out variant {% endcomment %}
+<button type="submit">Add to cart</button>
+
+{% comment %} ✅ RIGHT — reflects real availability state {% endcomment %}
+<button
+  type="submit"
+  {% unless current_variant.available %}disabled{% endunless %}
+>
+  {%- if current_variant.available -%}
+    {{ 'products.product.add_to_cart' | t }}
+  {%- else -%}
+    {{ 'products.product.sold_out' | t }}
+  {%- endif -%}
+</button>
+```
+
+## Collection page
+
+| ✅ Must include | ❌ Common gaps |
+|---|---|
+| Untruncated `collection.title`, description, image | Title truncated by a fixed-width heading with `text-overflow: ellipsis` and no full-text fallback |
+| Product grid resilient to varying image aspect ratios | Grid that breaks or misaligns when products mix portrait/landscape/square images |
+| Sale badge or `product.compare_at_price_max` shown when relevant | No visual indication a product is discounted |
+| Sort control | Products shown in a fixed order with no way to sort |
+| Empty-collection message | A blank grid with no explanation when a collection has 0 products |
+| Pagination or lazy loading | An unbounded grid that tries to render an entire large catalog at once |
+| `product.price_varies` used to show a price range | A single price shown even when variants range widely in price |
+
+## Cart page
+
+| ✅ Must include | ❌ Common gaps |
+|---|---|
+| Line item details: title, unit price, image, final price, quantity, options | A simplified cart missing unit price or selected option values |
+| Visible `cart.total_price` | Total only shown at checkout, not on the cart page itself |
+| Checkout button that submits the cart form | A "Continue" button that doesn't actually submit to checkout |
+| Quantity editing that refreshes the total immediately | Quantity changes that require a full page reload to reflect in the total |
+| Empty-cart message | A blank page with no explanation when the cart has 0 items |
+| Cart notes | Omitted entirely |
+| Selling plans shown in the cart | Subscription selections silently dropped once added to cart |
+| Automatic discount codes reflected | Discounts applied at checkout but invisible in the cart summary |
+| Accelerated checkout buttons, on by default | Missing or disabled by default on the cart page |
+
+## Search page
+
+| ✅ Must include | ❌ Common gaps |
+|---|---|
+| A clear "no results" message | A blank page with no explanation for a query with no matches |
+| Distinguishes result types via `object_type` (product/blog/page) | All results rendered identically regardless of type, confusing customers |
+| Pagination or lazy loading | An unbounded results list |
+
+## 404 page
+
+| ✅ Must include | ❌ Common gaps |
+|---|---|
+| A clear "page not found" message | A generic blank error page |
+| A way forward — search bar or homepage link | A dead end with no navigation options |
 
 ## Feature checklist
 
 All of these must work somewhere in the theme:
 
-- Sections on every template (Online Store 2.0 compatibility)
-- Discount display on line items and order totals
-- Accelerated checkout buttons (product + cart pages)
-- Faceted search filtering (collection + search pages)
-- Gift cards, with recipient support
-- Image focal points
-- Social sharing image (`page_image`)
-- Country and language selectors (if selling in multiple regions/languages)
-- Multi-level (nested) menus
-- Newsletter signup
-- Pickup availability (product page)
-- Related + complementary product recommendations
-- Rich product media (3D models, video)
-- Search box with predictive search
-- Selling plans / subscriptions (cart + customer pages)
-- Shop Pay Installments banner (product page)
-- Unit pricing (collection, product, cart, customer pages)
-- Variant images
-- Follow on Shop button (colors must stay unmodified)
+| Feature | Where it must work |
+|---|---|
+| Sections on every template (OS 2.0) | Every page-supporting template |
+| Discount display | Line items and order totals |
+| Accelerated checkout buttons | Product page, cart page |
+| Faceted search filtering | Collection page, search page |
+| Gift cards, with recipient support | Gift card template |
+| Image focal points | Anywhere `image_picker` settings are used |
+| Social sharing image (`page_image`) | Any shareable page |
+| Country and language selectors | Storefront-wide, if selling multi-region/language |
+| Multi-level (nested) menus | Header navigation |
+| Newsletter signup | Footer or a dedicated section |
+| Pickup availability | Product page |
+| Related + complementary product recommendations | Product page |
+| Rich product media (3D, video) | Product page, featured product section, quick view if present |
+| Search box with predictive search | Header/search template |
+| Selling plans / subscriptions | Cart page, customer page |
+| Shop Pay Installments banner | Product page |
+| Unit pricing | Collection, product, cart, customer pages |
+| Variant images | Product page |
+| Follow on Shop button (colors unmodified) | Wherever social/follow actions are surfaced |
 
 ## Browser support
 
@@ -65,24 +137,47 @@ All of these must work somewhere in the theme:
 | Mobile | Mobile Safari (latest 2), Chrome Mobile (latest 3), Samsung Internet (latest 2) |
 | Webviews | Instagram, Facebook, Pinterest (latest release, iOS + Android) |
 
+Test in an actual webview, not just the desktop version of the same browser engine — webview environments frequently behave differently for things like `<video>` autoplay policies and viewport sizing.
+
 ## Assets
 
-No Sass, no `.scss` files — native CSS only. No pre-minified `.css`/`.js` (Shopify minifies for you); the exception is ES6+ and approved third-party libraries.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Write or compile stylesheets into `.css`/`.css.liquid` files | Commit `.scss`/`.scss.liquid` files |
+| Let Shopify auto-minify your CSS/JS | Commit pre-minified `.css`/`.js` (except ES6+ and approved third-party libraries) |
 
 ## SEO
 
-Theme SEO metadata snippet (title, meta description, canonical URL), Google rich product snippets, no `robots.txt.liquid`.
+| ✅ Must include | ❌ Don't |
+|---|---|
+| Theme SEO metadata (title, meta description, canonical URL) | Missing or duplicate canonical URLs across pages |
+| Google rich product snippets | No structured data on product pages |
+| — | A `robots.txt.liquid` template (not allowed at all) |
 
 ## Documentation & support
 
-- Public theme documentation + a public contact form, both linked from your Theme Store listing, ready before launch.
-- Reply to merchant support requests within **2 business days**.
-- Fix critical bugs immediately, or your theme can be pulled from the Theme Store.
+| ✅ Required | ❌ Don't |
+|---|---|
+| Public theme documentation + contact form, linked from your listing, ready before launch | Launching before documentation/support are in place |
+| Reply to merchant support requests within 2 business days | Multi-day or multi-week response times |
+| Fix critical bugs immediately | Letting a critical bug sit through your normal release cadence |
+
+## Best practices
+
+- Build the full per-page checklist into your section development process from day one — retrofitting a missing feature (like unit pricing) across an already-built product/collection/cart/customer flow is expensive.
+- Test every page type with genuinely awkward data early: a sold-out variant, an empty cart, a zero-result search, a collection with mixed image aspect ratios.
+- Treat browser/webview testing as part of your regular QA loop, not a one-time pre-submission check — a regression introduced mid-project is much cheaper to catch immediately.
+
+## Common mistakes
+
+- **Building the "happy path" for each page and skipping the edge-case states** (empty cart, no search results, sold-out variant) until QA finds them later.
+- **Testing only in desktop Chrome** and discovering webview-specific bugs (autoplay, viewport quirks) only during review.
+- **Treating documentation and support setup as a launch-day task** instead of something to have ready before you need it.
 
 ## Quick Reference
 
 - 14 required templates — see the table above.
-- Product/collection/cart/search/404 pages each have their own must-have field list.
+- Product/collection/cart/search/404 pages each have their own must-have field list — see the tables above for the full ✅/❌ breakdown.
 - Browser support spans 4 desktop browsers, 3 mobile browsers, 3 webview apps.
 - No Sass, no pre-minified assets.
 - 2-business-day support SLA once your theme is live.

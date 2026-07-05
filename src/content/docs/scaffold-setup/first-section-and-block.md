@@ -105,11 +105,66 @@ shopify theme dev --store your-dev-store.myshopify.com
 
 Open the page in the theme editor, and you should see "Testimonials" available in the section picker, with an "Add block" option offering "Quote."
 
+## 5. Stress-test it before calling it done
+
+This is the step most likely to get skipped under time pressure, and it's the one Theme Store review actually checks (see [Store & Design Requirements](/theme-store-requirements/store-and-design/)):
+
+| Test case | What to check |
+|---|---|
+| Zero quote blocks added | `.testimonials__grid` shouldn't show an awkward empty box — either hide the section or show a sensible fallback |
+| One quote block | Grid layout shouldn't look broken with just one item (check `auto-fit` behavior at different widths) |
+| 10+ quote blocks | Confirm the grid still reads well and doesn't create odd row gaps |
+| A quote with a very long text (300+ characters) | Confirm the card grows to fit rather than clipping or overflowing |
+| No `author` set on a quote | Confirm the `{% if block.settings.author != blank %}` guard actually prevents an empty `<figcaption>` |
+
+```liquid
+{% comment %} ❌ WRONG — this renders an empty, awkward <figcaption></figcaption>
+   when no author is set, because there's no blank check {% endcomment %}
+<figcaption>{{ block.settings.author }}</figcaption>
+
+{% comment %} ✅ RIGHT — only renders the figcaption when there's real content {% endcomment %}
+{%- if block.settings.author != blank -%}
+  <figcaption>{{ block.settings.author }}</figcaption>
+{%- endif -%}
+```
+
+## A common variation: what if a merchant adds zero blocks at all?
+
+```liquid
+{% comment %} ✅ Consider hiding the whole section rather than showing
+   an empty heading with nothing beneath it {% endcomment %}
+{%- if section.blocks.size > 0 -%}
+  <div class="testimonials color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      <div class="testimonials__grid">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+```
+
+## Best practices
+
+- Build the empty/one-item/many-item test into your normal workflow for every new section, not just this example — it catches the majority of layout bugs Theme Store review would otherwise flag.
+- Add a blank-value guard (`{% if x != blank %}`) around any conditionally-rendered piece of markup by default, rather than adding it reactively after noticing an empty tag in the DOM.
+- Use `"blocks": [{ "type": "quote" }, { "type": "@app" }]` (not `@theme`) whenever a section has one specific purpose — it keeps merchants from accidentally dropping in unrelated blocks that break the intended layout.
+
+## Common mistakes
+
+- **Building the happy path only** (a handful of nicely-sized quotes) and never testing zero, one, or many blocks.
+- **Forgetting blank checks around optional settings**, leaving empty tags in the rendered HTML that a real accessibility/HTML validator would flag.
+- **Using `@theme` on a purpose-built section "just in case"** instead of restricting it to the block types it's actually designed for.
+
 ## Quick Reference
 
 - Block file → `{% schema %}` with settings + presets → done.
 - Section file → `{% content_for 'blocks' %}` + a `"blocks"` array in its schema → hosts the block.
 - Restrict a section to specific block types instead of `@theme` when it has one clear purpose.
+- Always test zero/one/many blocks and blank optional settings before calling a section finished.
 
 ## Further Reading
 
