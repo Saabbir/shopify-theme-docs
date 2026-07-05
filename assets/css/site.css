@@ -158,6 +158,12 @@ html[data-theme="dark"] #theme-toggle .sun { display: block; }
 .sidebar-logo p { margin-top: .55rem; font-size: .95rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
 .sidebar-logo .sub { font-size: .72rem; color: var(--ink-soft); font-weight: 500; margin-top: .2rem; }
 
+/* Site-wide page nav (Submission Requirements / Development Checklist / Engineering
+   Portal). Lives in the topnav on desktop; on mobile the topnav hides those links to
+   fit the screen, so this mirror copy inside the sidebar is what keeps them reachable
+   from the hamburger menu. Hidden on desktop to avoid showing the same links twice. */
+.sidebar-site-links { display: none; }
+
 .progress-wrap { padding: .6rem .5rem 1rem; border-bottom: 1px solid var(--border); margin-bottom: .75rem; }
 .progress-label { display: flex; justify-content: space-between; font-size: .7rem; color: var(--ink-soft); margin-bottom: .35rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
 .progress-label strong { color: var(--green-dark); }
@@ -395,14 +401,28 @@ mark { background: var(--green-pale); color: var(--green-dark); border-radius: 3
   }
   #sidebar.open { transform: translateX(0); }
   .mobile-menu-btn { display: flex; }
-  .topnav-search-btn { min-width: 0; }
-  .topnav-search-btn span.label { display: none; }
+  .sidebar-site-links { display: flex; flex-direction: column; gap: .15rem; padding: 0 .5rem .85rem; margin-bottom: .85rem; border-bottom: 1px solid var(--border); }
+  .sidebar-site-links a { display: flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 600; color: var(--ink-mid); padding: .5rem .55rem; border-radius: 7px; }
+  .sidebar-site-links a:hover { background: var(--surface); color: var(--ink); }
+  .sidebar-site-links a.active { background: var(--green-pale); color: var(--green-dark); }
+  /* The page links live in the sidebar on mobile instead (see .sidebar-site-links);
+     there isn't room for a full nav bar on small screens. */
+  .topnav-links { display: none; }
+  .topnav-brand { margin-right: 0; }
+  .topnav-search-btn { min-width: 0; padding: .4rem; }
+  .topnav-search-btn span.label, .topnav-search-btn kbd { display: none; }
+  .topnav-inner { gap: .4rem; padding: 0 .75rem; }
   #main { padding: 1.5rem 1.25rem 5rem; border-right: none; }
   #site-footer { padding: 1.5rem 1.25rem 2.5rem; }
   .page-header h1 { font-size: 1.7rem; }
   .stat-grid { grid-template-columns: repeat(2,1fr); }
   .code-compare { grid-template-columns: 1fr; }
   .philosophy-strip { grid-template-columns: 1fr; }
+}
+@media (max-width: 400px) {
+  /* Smallest phones (iPhone SE, older Android ~360-375px): drop the "Theme Docs"
+     wordmark and keep just the green badge so the bar never overflows. */
+  .topnav-brand .brand-text { display: none; }
 }
 
 /* ══════════════════════════════ PRINT ══════════════════════════════ */
