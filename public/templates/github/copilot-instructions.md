@@ -2,6 +2,12 @@
 applyTo: "**/*.liquid,**/*.css,**/*.js,**/*.json"
 ---
 
+<!--
+  GENERATED FILE — DO NOT EDIT DIRECTLY.
+  Source of truth: AGENTS.md
+  Regenerate with: node scripts/generate-ai-rules.mjs
+-->
+
 # GitHub Copilot instructions for this repository
 
 Save this file as `.github/copilot-instructions.md` in the theme repository.

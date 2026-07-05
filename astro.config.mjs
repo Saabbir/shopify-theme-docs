@@ -65,9 +65,11 @@ export default defineConfig({
           label: '5. AI-Assisted Development',
           items: [
             { label: 'Overview', slug: 'ai-assisted-development' },
-            { label: '5a. Setting Up AI Rules', slug: 'ai-assisted-development/setting-up-ai-rules' },
-            { label: '5b. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
-            { label: '5c. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
+            { label: '5a. Setting Up AI Rules (AGENTS.md)', slug: 'ai-assisted-development/setting-up-ai-rules' },
+            { label: '5b. Figma MCP & Dev Mode', slug: 'ai-assisted-development/figma-mcp-and-dev-mode' },
+            { label: '5c. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
+            { label: '5d. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
+            { label: '5e. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
           ],
         },
         {
@@ -96,6 +98,44 @@ export default defineConfig({
             { label: 'Packaging & Submitting', slug: 'publishing/packaging-and-submitting' },
             { label: 'Review Process & Rejections', slug: 'publishing/review-process-and-rejections' },
             { label: 'After Approval', slug: 'publishing/after-approval' },
+          ],
+        },
+        {
+          label: '9. Style Guides',
+          items: [
+            { label: 'Overview', slug: 'style-guides' },
+            { label: 'CSS Style Guide', slug: 'style-guides/css' },
+            { label: 'JavaScript & Web Components', slug: 'style-guides/javascript-and-web-components' },
+            { label: 'Liquid Style Guide', slug: 'style-guides/liquid' },
+          ],
+        },
+        {
+          label: '10. Tooling & Config',
+          items: [
+            { label: 'Overview', slug: 'tooling-config' },
+            { label: 'Project Files Explained', slug: 'tooling-config/project-files' },
+            { label: 'Packaging: Theme Store-Only Directories', slug: 'tooling-config/packaging-exclusions' },
+            { label: 'Tailwind CSS & Alpine.js Build Setup', slug: 'tooling-config/tailwind-and-alpine-build-setup' },
+          ],
+        },
+        {
+          label: '11. Learning Articles',
+          items: [
+            { label: 'Overview', slug: 'learning-articles' },
+            { label: 'CSS Deep Dive', slug: 'learning-articles/css-deep-dive' },
+            { label: 'JavaScript & Web Components Deep Dive', slug: 'learning-articles/javascript-and-web-components-deep-dive' },
+            { label: 'Liquid Global Objects Reference', slug: 'learning-articles/liquid-global-objects' },
+            { label: 'Managing Locale Files', slug: 'learning-articles/managing-locale-files' },
+            { label: 'Writing Maintainable Code at Scale', slug: 'learning-articles/writing-maintainable-code-at-scale' },
+          ],
+        },
+        {
+          label: '12. Reference',
+          items: [
+            { label: 'Overview', slug: 'reference' },
+            { label: 'Cheatsheet', slug: 'reference/cheatsheet' },
+            { label: 'Glossary', slug: 'reference/glossary' },
+            { label: 'Tools Directory', slug: 'reference/tools-directory' },
           ],
         },
       ],

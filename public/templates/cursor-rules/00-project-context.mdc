@@ -1,7 +1,13 @@
 ---
-description: Project context and non-negotiable constraints for this Shopify theme
+description: Project context and non-negotiable constraints (generated from AGENTS.md)
 alwaysApply: true
 ---
+
+<!--
+  GENERATED FILE — DO NOT EDIT DIRECTLY.
+  Source of truth: AGENTS.md
+  Regenerate with: node scripts/generate-ai-rules.mjs
+-->
 
 # Solis — project context
 

@@ -1,8 +1,14 @@
 ---
-description: Liquid, section, and block schema conventions
+description: Liquid, section, and block schema conventions (generated from AGENTS.md)
 globs: ["**/*.liquid"]
 alwaysApply: false
 ---
+
+<!--
+  GENERATED FILE — DO NOT EDIT DIRECTLY.
+  Source of truth: AGENTS.md
+  Regenerate with: node scripts/generate-ai-rules.mjs
+-->
 
 # Liquid & schema rules
 

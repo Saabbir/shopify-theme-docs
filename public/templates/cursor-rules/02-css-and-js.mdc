@@ -1,8 +1,14 @@
 ---
-description: CSS and JavaScript conventions
+description: CSS and JavaScript conventions (generated from AGENTS.md)
 globs: ["**/*.css", "**/*.js", "**/*.liquid"]
 alwaysApply: false
 ---
+
+<!--
+  GENERATED FILE — DO NOT EDIT DIRECTLY.
+  Source of truth: AGENTS.md
+  Regenerate with: node scripts/generate-ai-rules.mjs
+-->
 
 # CSS & JavaScript rules
 

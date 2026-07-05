@@ -27,6 +27,10 @@ hero:
 | [6. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
 | [7. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
 | [8. Publishing](/publishing/) | Partner Dashboard, packaging, review, life after approval |
+| [9. Style Guides](/style-guides/) | Standalone CSS, JavaScript & Web Components, and Liquid conventions |
+| [10. Tooling & Config](/tooling-config/) | Project files, Theme-Store-only packaging, optional Tailwind/Alpine setup |
+| [11. Learning Articles](/learning-articles/) | Step-by-step deep dives: CSS, JS/Web Components, Liquid objects, locale files, maintainable code |
+| [12. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
 
 New here? Read sections 1–4 in order, then use search (**⌘K**) for everything after that.
 

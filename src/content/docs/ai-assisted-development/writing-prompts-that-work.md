@@ -1,5 +1,5 @@
 ---
-title: 5c. Writing Prompts That Work
+title: 5e. Writing Prompts That Work
 description: Prompt patterns that consistently produce Theme-Store-compliant code.
 ---
 
