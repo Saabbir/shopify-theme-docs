@@ -10,13 +10,7 @@ export default defineConfig({
       title: 'Shopify Theme Handbook',
       description:
         'The internal handbook for scaffolding, developing, and publishing Shopify Theme Store themes — built for Horizon.',
-      social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com' },
-      ],
       customCss: ['./src/styles/custom.css'],
-      editLink: {
-        baseUrl: 'https://github.com/your-org/shopify-theme-handbook/edit/main/',
-      },
       lastUpdated: true,
       sidebar: [
         {
