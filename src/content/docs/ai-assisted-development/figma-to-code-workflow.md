@@ -1,5 +1,5 @@
 ---
-title: 8d. Figma to Code Workflow
+title: 8f. Figma to Code Workflow
 description: A repeatable process for turning a Figma frame into a working section, with Cursor or Claude Code.
 ---
 

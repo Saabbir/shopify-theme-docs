@@ -75,7 +75,7 @@ Anything you currently rely on "someone remembering to check" (a locale key exis
 | Tribal knowledge | Converted into |
 |---|---|
 | "Remember to add a locale key for every new setting" | A `theme-check` rule that flags hardcoded schema strings (see [Theme Check & Linting](/quality-validation/theme-check-and-linting/)) |
-| "Remember AI rule files need regenerating after an AGENTS.md edit" | A CI check that fails if generated files are stale (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) |
+| "Remember not to hand-edit Shopify's generated AGENTS.md content" | `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks, so there's no separate copy to accidentally drift — and a clear `## Custom rules` boundary marking the only section anyone should touch (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) |
 | "Remember to test a section with zero blocks" | A documented, repeatable stress-test checklist (see [Manual QA Checklist](/quality-validation/manual-qa-checklist/)) |
 
 This is the same principle behind why this handbook has a [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) instead of relying on someone remembering every Theme Store requirement from memory before every submission.

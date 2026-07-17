@@ -3,17 +3,19 @@ title: AI-Assisted Development
 description: How we use Cursor / Claude Code, and how we go from Figma to shipped code.
 ---
 
-Most of this team's day-to-day theme code is written with an AI coding assistant (Cursor, Claude Code, or GitHub Copilot) in the loop. This section covers keeping every tool's rules consistent from one source, working with Figma design data directly, turning a Figma design into working sections, automating that process as a reusable command, and writing prompts that get useful output on the first try.
+Most of this team's day-to-day theme code is written with an AI coding assistant (Cursor, Claude Code, or GitHub Copilot) in the loop. This section starts with the vocabulary (agents, MCP, skills, commands, subagents, plugins) if any of that is new, then covers keeping every tool's rules consistent from one source, grounding generated Liquid in real platform facts, working with Figma design data directly, turning a Figma design into working sections, automating that process, isolating its noisy sub-steps, and writing prompts that get useful output on the first try.
 
 ## What's on this page group
 
-- [8a. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) — one source of truth, generated into every tool's format.
-- [8b. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/) — the guideline for changing AGENTS.md over time: order, format, sourcing, testing.
-- [8c. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — giving Cursor/Claude Code structured design data, not just a screenshot.
-- [8d. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — a repeatable, tool-specific process: plan → build → check → fix → report.
-- [8e. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — turning that process into a single `/figma-to-section` command.
-- [8f. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) — Shopify's own search-and-validate plugin, and why to use it alongside AGENTS.md.
-- [8g. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/) — prompt patterns that consistently produce Theme-Store-compliant code.
+- [8a. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/) — the vocabulary the rest of this section assumes. Start here if any of it is new.
+- [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) — one source of truth, generated into every tool's format.
+- [8c. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/) — the guideline for changing AGENTS.md over time: order, format, sourcing, testing.
+- [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) — Shopify's own skill that grounds generated Liquid in real platform facts, not guesses.
+- [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — giving Cursor/Claude Code structured design data, not just a screenshot.
+- [8f. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — a repeatable, tool-specific process: plan → build → check → fix → report.
+- [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — turning that process into a single `/figma-to-section` command.
+- [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) — our `theme-check-fixer` subagent, for isolating that process's noisy sub-steps.
+- [8i. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/) — prompt patterns that consistently produce Theme-Store-compliant code.
 
 ## Why AI-assisted development needs its own section
 
@@ -26,7 +28,7 @@ The pages in this section exist to manage both risks: rules that steer the tool 
 
 ## Best practices
 
-- Set up your AI tool's rule files (section 8a) before writing your first line of Solis code with it — retrofitting rules after a tool has already established bad habits in a session is much less effective than starting with them in place.
+- Set up your AI tool's rule files (section 8b) before writing your first line of Solis code with it — retrofitting rules after a tool has already established bad habits in a session is much less effective than starting with them in place.
 - Treat every AI suggestion as a first draft from a fast, inexperienced-with-our-conventions teammate — useful, but never merged without review.
 - When an AI tool's output looks unusually close to a known reference theme's pattern, treat that as a specific, real risk to check, not paranoia.
 

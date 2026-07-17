@@ -1,12 +1,15 @@
 ---
-description: Project context and non-negotiable constraints (generated from AGENTS.md)
+description: Project context and non-negotiable constraints (optional, legacy — mirrors AGENTS.md's "## Custom rules")
 alwaysApply: true
 ---
 
 <!--
-  GENERATED FILE — DO NOT EDIT DIRECTLY.
-  Source of truth: AGENTS.md
-  Regenerate with: node scripts/generate-ai-rules.mjs
+  OPTIONAL, LEGACY FILE — hand-maintained, not a symlink and not auto-generated.
+  Source of truth: AGENTS.md's "## Custom rules" section.
+  Current Cursor versions read AGENTS.md natively — you likely don't need this file at all.
+  Only use this if you specifically want per-file-type scoped auto-attach (see
+  Setting Up AI Rules: /ai-assisted-development/setting-up-ai-rules/). If you do,
+  keep it in sync with AGENTS.md's "## Custom rules" by hand whenever that section changes.
 -->
 
 ## Project overview
@@ -29,7 +32,7 @@ shopify theme dev --store <dev-store>.myshopify.com   # local preview, hot reloa
 shopify theme check                                     # lint Liquid against Theme Check rules
 shopify theme push --unpublished                        # push to a new unpublished theme
 shopify theme package                                    # build the submission-ready zip
-node scripts/generate-ai-rules.mjs                       # regenerate .cursor/rules + copilot-instructions.md from this file
+node scripts/generate-ai-rules.mjs                       # (re)creates CLAUDE.md + .github/copilot-instructions.md as symlinks to AGENTS.md — does not touch this file
 ```
 
 ## Hard constraints

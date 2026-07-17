@@ -61,10 +61,10 @@ Shopify's `color_scheme_group` setting type is the standard mechanism for mercha
   "type": "color_scheme_group",
   "id": "color_schemes",
   "definition": [
-    { "type": "color", "id": "background", "label": "t:settings_schema.colors.background.label" },
-    { "type": "color", "id": "text", "label": "t:settings_schema.colors.text.label" },
-    { "type": "color", "id": "primary", "label": "t:settings_schema.colors.primary.label" },
-    { "type": "color", "id": "primary_text", "label": "t:settings_schema.colors.primary_text.label" }
+    { "type": "color", "id": "background", "label": "t:labels.color_background" },
+    { "type": "color", "id": "text", "label": "t:labels.color_text" },
+    { "type": "color", "id": "primary", "label": "t:labels.color_primary" },
+    { "type": "color", "id": "primary_text", "label": "t:labels.color_primary_text" }
   ]
 }
 ```

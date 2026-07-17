@@ -27,20 +27,22 @@ Think of `settings_schema.json` as a form's field definitions, and `settings_dat
     "theme_support_url": "https://example.com/support"
   },
   {
-    "name": "t:settings_schema.colors.name",
+    "name": "t:general.colors",
     "settings": [
-      { "type": "header", "content": "t:settings_schema.colors.settings.header.content" },
-      { "type": "color", "id": "color_primary", "label": "t:settings_schema.colors.settings.primary.label", "default": "#1a5f4f" }
+      { "type": "header", "content": "t:labels.colors_heading" },
+      { "type": "color", "id": "color_primary", "label": "t:labels.color_primary", "default": "#1a5f4f" }
     ]
   },
   {
-    "name": "t:settings_schema.typography.name",
+    "name": "t:general.typography",
     "settings": [
-      { "type": "font_picker", "id": "type_heading_font", "label": "t:settings_schema.typography.settings.heading_font.label", "default": "assistant_n4" }
+      { "type": "font_picker", "id": "type_heading_font", "label": "t:labels.heading_font", "default": "assistant_n4" }
     ]
   }
 ]
 ```
+
+Notice the flat, shared `t:general.*` (group names) and `t:labels.*` (setting/content labels) namespaces here — this is the same convention verified against Skeleton Theme's actual shipped `settings_schema.json` (`t:general.typography`, `t:labels.page_width`, `t:options.page_width.narrow`) and demonstrated in full in the [Complete Worked Example](/codebase-structure/complete-worked-example/). Not `t:settings_schema.colors.settings.primary.label` — that nested-per-group style isn't what real Shopify themes ship.
 
 The `theme_info` object (always first) is required by Theme Store review — see [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/). Every other object is a named settings group that appears as a section in the theme editor's "Theme settings" panel.
 

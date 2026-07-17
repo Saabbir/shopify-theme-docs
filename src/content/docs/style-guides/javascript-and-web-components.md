@@ -5,6 +5,8 @@ description: The {% javascript %} tag, native Web Components, state and events, 
 
 JavaScript is native ES modules, shipped as **Web Components** for anything stateful or interactive. No bundler required at runtime, no framework — the browser resolves the module graph and Custom Elements do the componentization a framework would otherwise provide.
 
+This page covers the baseline rules. For the two concrete internal patterns a component can follow (and Shopify's own Horizon theme's more advanced `refs`/declarative-event pattern, verified against its actual shipped source), see [Web Components Guideline](/style-guides/web-components/).
+
 ## Global JS vs. component-scoped JS
 
 Same split as CSS:
@@ -172,6 +174,7 @@ Reach for native HTML/CSS first — see [CSS Style Guide](/style-guides/css/) fo
 
 ## Further Reading
 
+- [Web Components Guideline](/style-guides/web-components/) — the simple pattern here vs. Horizon's advanced `refs`/declarative-event pattern, and how to choose
 - [Theme Editor & Storefront Events](/style-guides/theme-editor-events/) — the `shopify:section:load` events a well-built component often needs no special handling for, and the cases where it still does
 - [`{% javascript %}` tag](https://shopify.dev/docs/api/liquid/tags/javascript) — shopify.dev
 - [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) — MDN

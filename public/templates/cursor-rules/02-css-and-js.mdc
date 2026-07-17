@@ -1,13 +1,16 @@
 ---
-description: CSS and JavaScript conventions (generated from AGENTS.md)
+description: CSS and JavaScript conventions (optional, legacy — mirrors AGENTS.md's "## Custom rules")
 globs: ["**/*.css", "**/*.js", "**/*.liquid"]
 alwaysApply: false
 ---
 
 <!--
-  GENERATED FILE — DO NOT EDIT DIRECTLY.
-  Source of truth: AGENTS.md
-  Regenerate with: node scripts/generate-ai-rules.mjs
+  OPTIONAL, LEGACY FILE — hand-maintained, not a symlink and not auto-generated.
+  Source of truth: AGENTS.md's "## Custom rules" section.
+  Current Cursor versions read AGENTS.md natively — you likely don't need this file at all.
+  Only use this if you specifically want per-file-type scoped auto-attach (see
+  Setting Up AI Rules: /ai-assisted-development/setting-up-ai-rules/). If you do,
+  keep it in sync with AGENTS.md's "## Custom rules" by hand whenever that section changes.
 -->
 
 ## CSS & JavaScript conventions

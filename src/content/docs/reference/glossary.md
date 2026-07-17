@@ -51,11 +51,11 @@ description: Every term this handbook uses, defined once, grouped by topic.
 
 ## AI-assisted development
 
-**AGENTS.md** — The open, cross-tool convention for a single-source-of-truth AI rules file, read natively by Cursor, Copilot, Claude Code, and many other tools.
+**AGENTS.md** — The open, cross-tool convention for a single-source-of-truth AI rules file. `shopify theme init` generates it automatically (with AI agent support selected), read natively by Cursor; Claude Code and Copilot read it via symlinked `CLAUDE.md`/`.github/copilot-instructions.md`.
 
-**`.cursor/rules/*.mdc`** — Cursor's rule file format; supports `globs`-based auto-attach (a rule only loads when editing matching files).
+**`.cursor/rules/*.mdc`** — Cursor's rule file format; supports `globs`-based auto-attach (a rule only loads when editing matching files). Optional/legacy now that Cursor reads `AGENTS.md` natively.
 
-**`CLAUDE.md`** — Claude Code's native rules file, read automatically at repo root; supports `@file` imports.
+**`CLAUDE.md`** — Claude Code's rules file, read automatically at repo root. In this project, it's a symlink to `AGENTS.md`, not separate content — see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/).
 
 **Custom slash command** — A Markdown file at `.claude/commands/<name>.md` invokable as `/<name>` in Claude Code.
 

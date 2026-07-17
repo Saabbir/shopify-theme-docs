@@ -15,10 +15,10 @@ locales/
   fr.schema.json           ← theme editor labels, French
 ```
 
-| File | Read by | Contains |
-|---|---|---|
-| `<lang>.json` | The storefront, via `{{ 'key' \| t }}` | Customer-facing strings — "Add to cart," "Sold out," error messages |
-| `<lang>.schema.json` | The theme editor only | Setting labels, section names, block names — merchant-facing, not customer-facing |
+| File | Read by | Contains | Key structure |
+|---|---|---|---|
+| `<lang>.json` | The storefront, via `{{ 'key' \| t }}` | Customer-facing strings — "Add to cart," "Sold out," error messages | Nested by feature (see Step 2 below) |
+| `<lang>.schema.json` | The theme editor only | Setting labels, section names, block names — merchant-facing, not customer-facing | **Flat, shared, purpose-based** — see the callout below, this file follows a different convention than Step 2 |
 
 **Exactly one** language file pair is marked `.default.` — this is the fallback used when a key is missing from another language's file, so it must always be complete.
 

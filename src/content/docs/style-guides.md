@@ -9,6 +9,7 @@ The rest of this handbook teaches Shopify-specific architecture — folders, blo
 
 - [CSS Style Guide](/style-guides/css/) — global CSS, `{% stylesheet %}`, custom properties, logical properties, naming.
 - [JavaScript & Web Components](/style-guides/javascript-and-web-components/) — `{% javascript %}`, native Web Components, state, events.
+- [Web Components Guideline](/style-guides/web-components/) — the simple pattern vs. Horizon's advanced `refs`/declarative-event pattern, and how to choose.
 - [Liquid Style Guide](/style-guides/liquid/) — objects, filters, whitespace control, performance, formatting.
 - [Clean Code Principles](/style-guides/clean-code-principles/) — a complete worked example, messy vs. clean.
 - [Third-Party Libraries](/style-guides/third-party-libraries/) — the decision framework for whether (and how) to add a dependency.
@@ -31,7 +32,7 @@ The rest of this handbook teaches Shopify-specific architecture — folders, blo
 
 ## Quick Reference
 
-- [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/) · [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/) · [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)
+- [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/) · [Web Components Guideline](/style-guides/web-components/) · [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/) · [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)
 - This section covers *how* to write code; [Codebase Structure](/codebase-structure/) covers *where* it goes.
 
 ## Further Reading

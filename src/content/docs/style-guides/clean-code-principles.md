@@ -71,9 +71,9 @@ document.querySelectorAll('.card').forEach(function(c) {
 ### The clean version
 
 ```liquid
-{% doc %}
+{%- doc -%}
   Renders a responsive grid of products from a chosen collection.
-{% enddoc %}
+{%- enddoc -%}
 
 <div class="featured-collection">
   {%- if section.settings.heading != blank -%}
@@ -105,21 +105,21 @@ document.querySelectorAll('.card').forEach(function(c) {
 
 {% schema %}
 {
-  "name": "t:sections.featured_collection.name",
+  "name": "t:names.featured_collection",
   "settings": [
-    { "type": "text", "id": "heading", "label": "t:sections.featured_collection.settings.heading.label" },
-    { "type": "collection", "id": "collection", "label": "t:sections.featured_collection.settings.collection.label" }
+    { "type": "text", "id": "heading", "label": "t:settings.heading" },
+    { "type": "collection", "id": "collection", "label": "t:settings.collection" }
   ],
-  "presets": [{ "name": "t:sections.featured_collection.presets.default.name" }]
+  "presets": [{ "name": "t:names.featured_collection" }]
 }
 {% endschema %}
 ```
 
 ```liquid
-{% doc %}
+{%- doc -%}
   Renders one product card: image, title, price, sale badge.
   @param {object} product - The product to render.
-{% enddoc %}
+{%- enddoc -%}
 
 <a href="{{ product.url }}" class="product-card">
   {%- if product.featured_image -%}

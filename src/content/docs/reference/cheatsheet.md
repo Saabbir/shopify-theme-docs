@@ -19,11 +19,12 @@ description: Day-to-day commands, objects, filters, and syntax — the quick-loo
 | `shopify theme open` | Opens the theme in the browser editor |
 | `shopify theme share` | Uploads and returns a preview link (unpublished theme) |
 
-## AI rule generation
+## AI rules setup
 
 | Command | Does |
 |---|---|
-| `node scripts/generate-ai-rules.mjs` | Regenerates `.cursor/rules/*.mdc`, `.cursorrules`, `.github/copilot-instructions.md` from `AGENTS.md` |
+| `shopify theme init` (select AI agent support) | Scaffolds `AGENTS.md` + `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks to it |
+| `node scripts/generate-ai-rules.mjs` | Creates those same symlinks by hand, for a repo not scaffolded with AI agent support |
 
 ## Common Liquid objects (quick syntax)
 
@@ -69,24 +70,26 @@ Full detail: [Liquid Global Objects Reference](/learning-articles/liquid-global-
 
 ```json
 {
-  "name": "t:sections.testimonials.name",
+  "name": "t:names.testimonials",
   "settings": [
-    { "type": "text", "id": "heading", "label": "t:sections.testimonials.settings.heading.label" }
+    { "type": "text", "id": "heading", "label": "t:settings.heading" }
   ],
   "blocks": [
     {
       "type": "quote",
-      "name": "t:sections.testimonials.blocks.quote.name",
+      "name": "t:names.quote",
       "settings": [
-        { "type": "richtext", "id": "quote", "label": "t:sections.testimonials.blocks.quote.settings.quote.label" }
+        { "type": "richtext", "id": "quote", "label": "t:settings.quote_text" }
       ]
     }
   ],
   "presets": [
-    { "name": "t:sections.testimonials.presets.default.name" }
+    { "name": "t:names.testimonials" }
   ]
 }
 ```
+
+Locale keys are flat, shared, purpose-based namespaces (`names.*`, `settings.*`, `options.*`, `categories.*`) — not nested per-section like `t:sections.testimonials.settings.heading.label`. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full convention.
 
 ## Theme block targeting
 

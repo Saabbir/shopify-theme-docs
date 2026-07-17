@@ -17,7 +17,7 @@ Metaobjects (custom structured data types a merchant defines — e.g. a "Brand" 
 ```
 
 ```json
-{ "type": "text", "id": "content", "label": "t:blocks.brand_story.settings.content.label" }
+{ "type": "text", "id": "content", "label": "t:settings.content" }
 ```
 
 When a setting is written generically enough (a `text`/`richtext`/`image_picker` setting, without assuming a specific hardcoded metaobject type), a merchant can connect it to *any* compatible metaobject field via dynamic source selection in the editor — meaning the same block can pull from a "Brand," a "Size Guide," or any other metaobject definition without you writing separate code for each. This is a meaningfully more flexible pattern than a section hardcoded to read one specific metaobject type, and worth reaching for whenever a block's content is conceptually "some structured data a merchant defines," rather than something inherently theme-specific.

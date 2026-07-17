@@ -8,10 +8,10 @@ Icons show up in more places than almost any other visual element — nav, cart,
 ## The recommended pattern: inline SVG snippets
 
 ```liquid
-{% doc %}
+{%- doc -%}
   Renders the "cart" icon.
   @param {string} [class] - Additional classes to add to the SVG.
-{% enddoc %}
+{%- enddoc -%}
 
 {%- assign class = class | default: '' -%}
 <svg class="icon icon-cart {{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
@@ -108,12 +108,14 @@ Some sections legitimately let a merchant pick from a small set of icons (e.g. a
 ```
 
 ```json
-{ "type": "select", "id": "icon", "label": "t:sections.features.blocks.feature.settings.icon.label", "options": [
-  { "value": "shipping", "label": "t:sections.features.blocks.feature.settings.icon.options.shipping" },
-  { "value": "returns", "label": "t:sections.features.blocks.feature.settings.icon.options.returns" },
-  { "value": "support", "label": "t:sections.features.blocks.feature.settings.icon.options.support" }
+{ "type": "select", "id": "icon", "label": "t:settings.icon", "options": [
+  { "value": "shipping", "label": "t:options.shipping" },
+  { "value": "returns", "label": "t:options.returns" },
+  { "value": "support", "label": "t:options.support" }
 ] }
 ```
+
+Flat, shared `t:settings.*`/`t:options.*` namespaces — not nested per-block. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full convention verified against Horizon/Skeleton.
 
 Keep this list intentionally small and curated — a merchant-facing icon picker with 40 options is harder to use well than one with 6 well-chosen, on-brand icons.
 

@@ -21,23 +21,23 @@ A `"presets"` array in a section or block's schema defines the default settings/
 ```liquid
 {% schema %}
 {
-  "name": "t:sections.testimonials.name",
+  "name": "t:names.testimonials",
   "settings": [
-    { "type": "text", "id": "heading", "label": "t:sections.testimonials.settings.heading.label", "default": "What people are saying" }
+    { "type": "text", "id": "heading", "label": "t:settings.heading", "default": "What people are saying" }
   ],
   "blocks": [
     {
       "type": "quote",
-      "name": "t:sections.testimonials.blocks.quote.name",
+      "name": "t:names.quote",
       "settings": [
-        { "type": "richtext", "id": "quote", "label": "t:sections.testimonials.blocks.quote.settings.quote.label" },
-        { "type": "text", "id": "author", "label": "t:sections.testimonials.blocks.quote.settings.author.label" }
+        { "type": "richtext", "id": "quote", "label": "t:settings.quote_text" },
+        { "type": "text", "id": "author", "label": "t:settings.author" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.testimonials.presets.default.name",
+      "name": "t:names.testimonials",
       "blocks": [
         { "type": "quote", "settings": { "quote": "Great service!", "author": "A. Merchant" } },
         { "type": "quote", "settings": { "quote": "Fast shipping.", "author": "B. Customer" } }
@@ -47,6 +47,8 @@ A `"presets"` array in a section or block's schema defines the default settings/
 }
 {% endschema %}
 ```
+
+Locale keys use the flat, shared `names.*`/`settings.*` namespaces, not nested per-section keys like `t:sections.testimonials.settings.heading.label` — see the [Complete Worked Example](/codebase-structure/complete-worked-example/) for this convention verified against Horizon/Skeleton's real shipped source.
 
 ### Rules that are easy to miss
 

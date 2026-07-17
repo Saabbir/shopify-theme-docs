@@ -111,6 +111,26 @@ Use logical properties everywhere a physical property has a logical equivalent �
 }
 ```
 
+## Native CSS nesting: fine for a component's own scope
+
+Browsers support native CSS nesting now, no preprocessor required — Horizon's own stylesheets use it for exactly the case it's good at: styling a component's states/children without repeating the parent selector:
+
+```css
+/* ✅ RIGHT — nesting scoped to one component's own rule,
+   matches how Horizon's shipped CSS actually uses it */
+.resource-list:not(.hidden--desktop) {
+  .collection-card__image {
+    aspect-ratio: 1;
+  }
+
+  &:not(.collection-card--image-bg) .collection-card__content {
+    height: auto;
+  }
+}
+```
+
+Keep nesting shallow (one or two levels) and scoped to a single component's own selectors — it's a readability tool for "this lives inside that," not a replacement for BEM's flat naming discipline. Don't nest three or four levels deep chasing specificity; that's the exact problem BEM's flat class names exist to avoid.
+
 ## Naming: BEM-ish, kebab-case
 
 We don't require strict BEM, but the same shape — block, element, modifier — keeps class names predictable and greppable:
@@ -158,6 +178,7 @@ Prefer CSS for anything CSS can do without a script:
 - One property varies → custom property. Several vary together → a class.
 - Logical properties everywhere a physical/logical pair exists — this is what makes RTL work.
 - Naming: kebab-case, BEM-shaped (`block__element--modifier`).
+- Native CSS nesting is fine, kept shallow and scoped to one component's own selectors — not a substitute for BEM's flat naming.
 - Prefer modern CSS (grid, scroll-snap, container queries, `:has()`) over JS for anything CSS can do alone.
 
 ## Further Reading

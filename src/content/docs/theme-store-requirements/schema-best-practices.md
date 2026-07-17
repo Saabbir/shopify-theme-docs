@@ -85,31 +85,31 @@ Other rules: sentence case for section/preset names (only capitalize the first w
 
 ```json
 {
-  "name": "t:settings_schema.colors.name",
+  "name": "t:general.colors",
   "settings": [
     {
       "type": "header",
-      "content": "t:settings_schema.colors.settings.header.content"
+      "content": "t:labels.colors_heading"
     },
     {
       "type": "color",
       "id": "color_background",
-      "label": "t:settings_schema.colors.settings.background.label",
+      "label": "t:labels.color_background",
       "default": "#FFFFFF"
     },
     {
       "type": "color",
       "id": "color_foreground",
-      "label": "t:settings_schema.colors.settings.foreground.label",
+      "label": "t:labels.color_foreground",
       "default": "#1A1A1A"
     },
     {
       "type": "select",
       "id": "logo_position",
-      "label": "t:settings_schema.header.settings.logo_position.label",
+      "label": "t:labels.logo_position",
       "options": [
-        { "value": "left", "label": "t:settings_schema.header.settings.logo_position.options.left" },
-        { "value": "center", "label": "t:settings_schema.header.settings.logo_position.options.center" }
+        { "value": "left", "label": "t:options.left" },
+        { "value": "center", "label": "t:options.center" }
       ],
       "default": "left"
     }

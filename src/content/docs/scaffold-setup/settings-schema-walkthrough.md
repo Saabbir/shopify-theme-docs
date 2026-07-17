@@ -32,7 +32,7 @@ Shopify has three separate places settings can live. Mixing them up is a common 
 ```json
 // ✅ RIGHT — one theme-wide setting, referenced everywhere via {{ settings.color_primary }}
 // config/settings_schema.json (excerpt)
-{ "type": "color", "id": "color_primary", "label": "t:settings_schema.colors.settings.primary.label", "default": "#1a1a1a" }
+{ "type": "color", "id": "color_primary", "label": "t:labels.color_primary", "default": "#1a1a1a" }
 ```
 
 ## Theme settings
@@ -49,10 +49,10 @@ Shopify has three separate places settings can live. Mixing them up is a common 
     "theme_support_url": "https://example.com/support"
   },
   {
-    "name": "t:settings_schema.colors.name",
+    "name": "t:general.colors",
     "settings": [
-      { "type": "header", "content": "t:settings_schema.colors.settings.header.content" },
-      { "type": "color", "id": "color_primary", "label": "t:settings_schema.colors.settings.primary.label", "default": "#1a1a1a" }
+      { "type": "header", "content": "t:labels.colors_heading" },
+      { "type": "color", "id": "color_primary", "label": "t:labels.color_primary", "default": "#1a1a1a" }
     ]
   }
 ]
@@ -67,23 +67,25 @@ Notice the `t:` prefixed strings — those pull from `locales/en.default.schema.
 { "type": "header", "content": "Colors" }
 
 // ✅ RIGHT — pulls from locales/en.default.schema.json
-{ "type": "header", "content": "t:settings_schema.colors.settings.header.content" }
+{ "type": "header", "content": "t:labels.colors_heading" }
 ```
 
 ```json
 // locales/en.default.schema.json (excerpt)
 {
-  "settings_schema": {
-    "colors": {
-      "name": "Colors",
-      "settings": {
-        "header": { "content": "Color palette" },
-        "primary": { "label": "Primary color" }
-      }
-    }
+  "general": {
+    "colors": "Colors"
+  },
+  "labels": {
+    "colors_heading": "Color palette",
+    "color_primary": "Primary color"
   }
 }
 ```
+
+:::note[Flat, not nested]
+This is a **flat, shared** namespace (`general.*`, `labels.*`), not nested per-group like `settings_schema.colors.settings.primary`. This is the same convention verified against Skeleton Theme's actual shipped `settings_schema.json` and `en.default.schema.json` — see the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full reasoning (a label like "Heading" or "Primary color" gets reused across dozens of unrelated settings groups, so nesting it per-group would mean translating the same word over and over).
+:::
 
 ## Single-property vs. multi-property settings
 

@@ -35,13 +35,13 @@ Say Figma has a "Colors" collection with these variables: `brand/primary` (#1a5f
 ```json
 // config/settings_schema.json (excerpt)
 {
-  "name": "t:settings_schema.colors.name",
+  "name": "t:general.colors",
   "settings": [
-    { "type": "header", "content": "t:settings_schema.colors.settings.header.content" },
-    { "type": "color", "id": "color_primary", "label": "t:settings_schema.colors.settings.primary.label", "default": "#1a5f4f" },
-    { "type": "color", "id": "color_secondary", "label": "t:settings_schema.colors.settings.secondary.label", "default": "#e8b04b" },
-    { "type": "color", "id": "color_text", "label": "t:settings_schema.colors.settings.text.label", "default": "#1a1a1a" },
-    { "type": "color", "id": "color_background", "label": "t:settings_schema.colors.settings.background.label", "default": "#ffffff" }
+    { "type": "header", "content": "t:labels.colors_heading" },
+    { "type": "color", "id": "color_primary", "label": "t:labels.color_primary", "default": "#1a5f4f" },
+    { "type": "color", "id": "color_secondary", "label": "t:labels.color_secondary", "default": "#e8b04b" },
+    { "type": "color", "id": "color_text", "label": "t:labels.color_text", "default": "#1a1a1a" },
+    { "type": "color", "id": "color_background", "label": "t:labels.color_background", "default": "#ffffff" }
   ]
 }
 ```

@@ -1,5 +1,5 @@
 ---
-title: 8e. Claude Code Custom Commands
+title: 8g. Claude Code Custom Commands
 description: Turning repetitive prompts (like the Figma-to-code loop) into a single slash command.
 ---
 
@@ -93,6 +93,11 @@ Not every repeated prompt is worth turning into a command. A rough test:
 - `$ARGUMENTS` inserts whatever follows the command name when invoked.
 - Commands and Skills are the same underlying mechanism — a single-file command is the simpler option; use a full `skills/<name>/SKILL.md` when supporting files are needed.
 
+## Commands vs. subagents
+
+A command runs its instructions **inline**, in your main conversation — good for a process you want to watch step by step. When the job is noisy (many files, many iterations) or should run with deliberately restricted tool access, a **subagent** is the better fit — it runs in its own isolated context window and returns only a summary. See [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) for our `theme-check-fixer` subagent and the full comparison.
+
 ## Further Reading
 
 - [Extend Claude with skills](https://code.claude.com/docs/en/slash-commands) — code.claude.com
+- [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) — the isolated-context alternative to a command, and how the two work together

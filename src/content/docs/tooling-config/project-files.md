@@ -76,13 +76,13 @@ Three things typically live here:
 |---|---|
 | `.github/workflows/theme-check.yml` | Runs `Shopify/theme-check-action` on every PR — see [CI Automation](/github-workflow/ci-automation/) |
 | `.github/PULL_REQUEST_TEMPLATE.md` | The checklist every PR description starts from — see [Pull Requests & Review](/github-workflow/pull-requests-and-review/) |
-| `.github/copilot-instructions.md` | Copilot's rule file, generated from `AGENTS.md` — see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) |
+| `.github/copilot-instructions.md` | Copilot's rule file — a symlink to `AGENTS.md`, not a separate copy — see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) |
 
 None of this affects the storefront. All of it should be excluded from a Theme Store submission (see `.shopifyignore` above).
 
 ## `AGENTS.md` / `CLAUDE.md` / `.cursor/` / `.claude/` — AI tooling config
 
-Covered in full in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) and [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/). The short version: `AGENTS.md` is the single source of truth, everything else either imports it (`CLAUDE.md`) or is generated from it (`.cursor/rules/*.mdc`, `.cursorrules`, `.github/copilot-instructions.md`). `.claude/commands/` holds custom slash commands.
+Covered in full in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) and [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/). The short version: `AGENTS.md` is the single source of truth. `CLAUDE.md` and `.github/copilot-instructions.md` are **symlinks** to it (created by `shopify theme init` or `scripts/generate-ai-rules.mjs`) — literally the same file, not separate content. Cursor reads `AGENTS.md` directly; `.cursor/rules/*.mdc` and `.cursorrules` are optional, hand-maintained legacy alternatives for teams wanting scoped auto-attach. `.claude/commands/` holds custom slash commands.
 
 ## `README.md` — orientation for a new developer
 
@@ -114,7 +114,7 @@ Not read by any tool — purely for humans. A good theme repo README covers, bri
 
 - `.gitignore` → Git history. `.shopifyignore` → CLI push/pull/package operations. Different scopes, both needed.
 - `.theme-check.yml` configures the linter's rules and ignored paths.
-- `.github/` holds CI, PR template, and Copilot's generated rules.
+- `.github/` holds CI, PR template, and Copilot's rule file (a symlink to `AGENTS.md`).
 - `AGENTS.md` is the AI-rules source of truth (see Setting Up AI Rules).
 - `README.md` is a human quick-start, not a duplicate of this handbook.
 
