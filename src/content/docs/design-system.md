@@ -9,6 +9,7 @@ Every theme has two customers for its design decisions: the developer writing CS
 
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) — mapping a Figma variable collection onto `settings_schema.json` and CSS custom properties.
 - [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) — the token architecture itself: naming, structure, and what "maintainable long-term" actually requires.
+- [Color Palettes](/design-system/color-palettes/) — Shopify's newer `color_palette` setting: one shared, merchant-editable grid of brand colors other settings can reference.
 - [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) — what each file is for, how they interact, and how to manage them without corrupting merchant data.
 - [Managing Presets (Sections & Themes)](/design-system/managing-presets/) — section presets, theme presets, and multi-preset Theme Store submissions.
 - [Icon Management](/design-system/icon-management/) — SVG sprites vs. inline snippets, theming icons with `currentColor`, and settings-driven icon pickers.
@@ -30,7 +31,7 @@ Every theme has two customers for its design decisions: the developer writing CS
 
 ## Quick Reference
 
-- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) · [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) · [Managing Presets](/design-system/managing-presets/) · [Icon Management](/design-system/icon-management/)
+- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) · [Color Palettes](/design-system/color-palettes/) · [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) · [Managing Presets](/design-system/managing-presets/) · [Icon Management](/design-system/icon-management/)
 
 ## Further Reading
 

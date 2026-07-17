@@ -53,7 +53,9 @@ A color named after its current hex value or a generic color word becomes active
 
 ## The color system: a Theme Store-ready structure
 
-Shopify's `color_scheme_group` setting type is the standard mechanism for merchant-selectable color schemes (e.g. "Scheme 1," "Scheme 2," dark variants) applied per-section. Structure your semantic tier to map cleanly onto a color scheme's roles:
+Two Shopify mechanisms model color at the settings level, and they solve different problems: **`color_palette`** — a newer, single shared grid of the theme's actual brand colors, which other `color`/`color_background` settings can reference as their default — and **`color_scheme_group`**, the standard mechanism for merchant-selectable color *schemes* (e.g. "Scheme 1," "Scheme 2," dark variants) applied per-section. See [Color Palettes](/design-system/color-palettes/) for the full treatment of the newer mechanism, including exactly how it complements (not replaces) `color_scheme_group`. This page's semantic-tier naming discipline applies to both equally — the rest of this section focuses on `color_scheme_group`, since that's the piece that maps most directly onto the three-tier model above.
+
+Structure your semantic tier to map cleanly onto a color scheme's roles:
 
 ```json
 // config/settings_schema.json (excerpt) — a color_scheme_group definition
@@ -124,7 +126,7 @@ A one-off size isn't wrong because 1.6rem is a bad value — it's wrong because 
 
 | Token | Lives in (always) | Also merchant-editable via |
 |---|---|---|
-| Semantic colors | CSS custom properties, computed from settings | `color`/`color_scheme_group` settings in `settings_schema.json` |
+| Semantic colors | CSS custom properties, computed from settings | `color_palette` (shared brand colors) and/or `color_scheme_group` (swappable schemes) in `settings_schema.json` — see [Color Palettes](/design-system/color-palettes/) |
 | Spacing scale | CSS custom properties | Usually fixed — see [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/#step-3-decide-merchant-editable-vs-fixed-per-token) on why spacing is rarely exposed |
 | Type scale | CSS custom properties | A `font_picker` for the family; sizes are usually fixed to preserve scale integrity |
 | Radii/shadows | CSS custom properties | Rarely merchant-editable — a fixed brand decision |
@@ -152,6 +154,7 @@ A one-off size isn't wrong because 1.6rem is a bad value — it's wrong because 
 
 ## Further Reading
 
+- [Color Palettes](/design-system/color-palettes/) — the newer `color_palette` setting, and exactly how it complements `color_scheme_group`
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) — pulling these tokens from Figma
 - [CSS Style Guide](/style-guides/css/) — day-to-day custom property conventions
 - [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes) — shopify.dev

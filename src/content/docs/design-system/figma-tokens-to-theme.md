@@ -23,25 +23,30 @@ Figma organizes variables into **collections** (e.g. "Colors," "Spacing," "Type"
 
 | Figma structure | Theme equivalent |
 |---|---|
-| Collection: "Colors," Variable: `brand/primary` | A `color` setting: `id: "color_primary"` in a "Colors" schema group |
+| Collection: "Colors," Variable: `brand/primary` | A key (`primary`) in a `color_palette` setting — see the worked example below and [Color Palettes](/design-system/color-palettes/) |
 | Collection: "Colors," Mode: "Dark" | A `color_scheme_group` / `color_scheme` setting, or a merchant-facing dark-mode toggle, depending on whether dark mode is a Theme Store color scheme or a persistent site mode |
 | Collection: "Spacing," Variable: `space/md` | Either a fixed CSS custom property (if not merchant-editable) or a `range` setting, per the single-vs-multi-property rule below |
 | Collection: "Type," Variable: `heading/size-lg` | A `font_picker` + `range` size setting, or a fixed CSS custom property if the type scale isn't meant to be merchant-adjustable |
 
 ### A worked example: mapping a Figma color collection
 
-Say Figma has a "Colors" collection with these variables: `brand/primary` (#1a5f4f), `brand/secondary` (#e8b04b), `text/body` (#1a1a1a), `surface/background` (#ffffff).
+Say Figma has a "Colors" collection with these variables: `brand/primary` (#1a5f4f), `brand/secondary` (#e8b04b), `text/body` (#1a1a1a), `surface/background` (#ffffff). Map the whole collection onto **one `color_palette` setting** — this is the current recommended pattern (see [Color Palettes](/design-system/color-palettes/) for the full mechanism), rather than a separate `color` setting per variable:
 
 ```json
 // config/settings_schema.json (excerpt)
 {
   "name": "t:general.colors",
   "settings": [
-    { "type": "header", "content": "t:labels.colors_heading" },
-    { "type": "color", "id": "color_primary", "label": "t:labels.color_primary", "default": "#1a5f4f" },
-    { "type": "color", "id": "color_secondary", "label": "t:labels.color_secondary", "default": "#e8b04b" },
-    { "type": "color", "id": "color_text", "label": "t:labels.color_text", "default": "#1a1a1a" },
-    { "type": "color", "id": "color_background", "label": "t:labels.color_background", "default": "#ffffff" }
+    {
+      "type": "color_palette",
+      "id": "colors",
+      "default": {
+        "primary": "#1a5f4f",
+        "secondary": "#e8b04b",
+        "text": "#1a1a1a",
+        "background": "#ffffff"
+      }
+    }
   ]
 }
 ```
@@ -49,14 +54,18 @@ Say Figma has a "Colors" collection with these variables: `brand/primary` (#1a5f
 ```css
 /* assets/base.css — generated once from settings, referenced everywhere */
 :root {
-  --color-primary: {{ settings.color_primary }};
-  --color-secondary: {{ settings.color_secondary }};
-  --color-text: {{ settings.color_text }};
-  --color-background: {{ settings.color_background }};
+  --color-primary: {{ settings.colors.primary }};
+  --color-secondary: {{ settings.colors.secondary }};
+  --color-text: {{ settings.colors.text }};
+  --color-background: {{ settings.colors.background }};
 }
 ```
 
-Name the setting `id` after the token's *role* (`color_primary`), matching Figma's variable name (`brand/primary`) conceptually — not after its current hex value. See [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) for the full naming discipline.
+Name each palette key after the token's *role* (`primary`), matching Figma's variable name (`brand/primary`) conceptually — not after its current hex value. See [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) for the full naming discipline, and [Color Palettes](/design-system/color-palettes/) for `color_palette`'s constraints (one per theme, 2–20 hex colors, no `label`/`info`/`visible_if`) and how individual section/block `color` settings can default to a palette entry instead of a hardcoded hex value.
+
+:::note[If you're on an older schema]
+A theme that already shipped brand colors as separate `color` settings (`color_primary`, `color_secondary`, etc.) doesn't need to migrate immediately — that pattern still works. Treat a migration to `color_palette` as its own deliberate, reviewed change, not a drive-by edit — see [Color Palettes](/design-system/color-palettes/#should-solis-adopt-this-now) for why.
+:::
 
 ## Step 3: decide merchant-editable vs. fixed, per token
 
@@ -78,18 +87,20 @@ Shopify's Liquid color filters compute derived colors (a hover state, a tint, a 
 {% comment %} ❌ WRONG — a separate setting for the hover state,
    which can drift out of sync with the base color if a merchant
    updates one but not the other {% endcomment %}
-{{ settings.color_primary }}
+{{ settings.colors.primary }}
 {{ settings.color_primary_hover }}
 
-{% comment %} ✅ RIGHT — one setting, computed derived values {% endcomment %}
-{%- assign color_primary_hover = settings.color_primary | color_darken: 10 -%}
+{% comment %} ✅ RIGHT — one setting, computed derived values. Works
+   identically whether the base color comes from a color_palette
+   entry (shown here) or a plain color setting {% endcomment %}
+{%- assign color_primary_hover = settings.colors.primary | color_darken: 10 -%}
 ```
 
 ```css
 :root {
-  --color-primary: {{ settings.color_primary }};
-  --color-primary-hover: {{ settings.color_primary | color_darken: 10 }};
-  --color-primary-tint: {{ settings.color_primary | color_lighten: 40 }};
+  --color-primary: {{ settings.colors.primary }};
+  --color-primary-hover: {{ settings.colors.primary | color_darken: 10 }};
+  --color-primary-tint: {{ settings.colors.primary | color_lighten: 40 }};
 }
 ```
 
@@ -124,6 +135,7 @@ Design tokens drift from implementation the moment someone updates a Figma varia
 
 ## Further Reading
 
+- [Color Palettes](/design-system/color-palettes/) — the full `color_palette` mechanism used in this page's worked example
 - [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — pulling this same design data directly into an AI coding tool
 - [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) — the token architecture and naming discipline this article assumes
 - [Liquid color filters](https://shopify.dev/docs/api/liquid/filters/color-filters) — shopify.dev

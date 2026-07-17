@@ -7,7 +7,7 @@ Shopify has its own GitHub integration built specifically for themes — it's no
 
 ## What's on this page group
 
-- [Branching & Commits](/github-workflow/branching-and-commits/) — how branches map to Shopify themes, and commit conventions.
+- [Branching & Commits](/github-workflow/branching-and-commits/) — how branches map to Shopify themes, branch naming (`namespace/branch-name/collaborator-id`), and commit conventions.
 - [Pull Requests & Review](/github-workflow/pull-requests-and-review/) — our PR template and the AI code review checklist.
 - [CI Automation](/github-workflow/ci-automation/) — what runs automatically on every push.
 

@@ -63,6 +63,7 @@ export default defineConfig({
             { label: 'Overview', slug: 'design-system' },
             { label: 'Figma Tokens → Theme Settings', slug: 'design-system/figma-tokens-to-theme' },
             { label: 'Design Tokens, Color & Type System', slug: 'design-system/design-tokens-color-type-system' },
+            { label: 'Color Palettes', slug: 'design-system/color-palettes' },
             { label: 'settings_schema.json & settings_data.json', slug: 'design-system/settings-schema-and-data' },
             { label: 'Managing Presets (Sections & Themes)', slug: 'design-system/managing-presets' },
             { label: 'Icon Management', slug: 'design-system/icon-management' },
