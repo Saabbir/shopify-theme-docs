@@ -1,10 +1,10 @@
 ---
-description: Build a theme section/block from a Figma frame — plan, build, theme check, fix, report
+description: Build a theme section/block from a Figma frame — plan, build, theme check, fix, document, report
 argument-hint: [figma-link-or-node-id] [section-name]
-allowed-tools: Read, Write, Edit, Bash(shopify theme check:*), Grep, Glob
+allowed-tools: Read, Write, Edit, Bash(shopify theme check:*), Bash(mkdir:*), Grep, Glob, Task
 ---
 
-You're building a Shopify theme section or block from a Figma design for the Solis project. Follow this loop in order — do not skip or reorder stages.
+You're building a Shopify theme section or block from a Figma design for the Solis project. Follow this loop in order — do not skip or reorder stages. The actual coding rules live in `AGENTS.md`, not in this command — this command is the repeatable *process*, `AGENTS.md` is the source of truth for *what correct code looks like*. Don't restate or fork conventions here; reference the file.
 
 Input: $ARGUMENTS (a Figma link/node-id, and the section name to build)
 
@@ -17,7 +17,7 @@ Input: $ARGUMENTS (a Figma link/node-id, and the section name to build)
 
 ## Stage 2: Build
 
-5. Generate the section/block/snippet files per the stated plan, following this repo's conventions in `AGENTS.md`:
+5. Generate the section/block/snippet files per the stated plan, following this repo's conventions in `AGENTS.md` — do not skip reading it if it hasn't already loaded as project context. Key rules it defines (non-exhaustive — `AGENTS.md` is authoritative, this is a reminder, not a substitute):
    - A section either defines blocks locally OR accepts `@theme` blocks — never both.
    - Main product / featured product sections must also accept `@app` blocks.
    - Every block needs at least one `presets` entry.
@@ -29,10 +29,21 @@ Input: $ARGUMENTS (a Figma link/node-id, and the section name to build)
 
 6. Run `shopify theme check` against the new/changed files.
 
-## Stage 4: Fix
+## Stage 4: Fix (delegate — don't fix inline)
 
-7. Resolve every offense — errors and warnings both. Don't stop at "zero errors" if warnings remain unaddressed; note explicitly if a warning is being deliberately left (and why).
+7. If `theme check` reported any offense, **delegate to the `theme-check-fixer` subagent** rather than resolving offenses in this conversation — it runs isolated, with tool access scoped to `Read, Edit, Bash(shopify theme check:*)`, and returns a fix log instead of flooding this session with every offense's file content. Wait for it to report a clean run (zero errors, and every warning either resolved or explicitly justified) before continuing to Stage 5.
 
-## Stage 5: Report
+## Stage 5: Document
 
-8. Give a short summary: what was built, the settings/blocks list, any assumption made where the Figma frame was ambiguous, and confirmation that `shopify theme check` is clean. Do not paste full file contents in the summary — the reviewer can read the diff.
+8. Create `docs/sections/<section-name>.md` (use kebab-case matching the section's file name; create the `docs/sections/` directory if it doesn't exist yet) recording, for future maintainers and reviewers:
+   - The Figma source (link/node-id) and the date built.
+   - The final settings and block-type list, with a one-line purpose for each.
+   - Any assumption made where the Figma frame was ambiguous, and why that call was made.
+   - Confirmation that `shopify theme check` is clean, and the fix log from Stage 4 if any offenses were found and resolved.
+   - Any stress-test results (empty state, very long content, many blocks) if you ran them.
+
+   This file is dev documentation, not theme code — it must be excluded from any Theme Store submission zip via `.shopifyignore` (see the handbook's Packaging: Theme Store-Only Directories page). Don't skip this stage because the section feels self-explanatory; the point is a record for someone without this conversation's context, not a restatement of the diff.
+
+## Stage 6: Report
+
+9. Give a short summary in this conversation: what was built, the settings/blocks list, any assumption made where the Figma frame was ambiguous, confirmation that `shopify theme check` is clean, and the path to the doc file written in Stage 5. Do not paste full file contents in the summary — the reviewer can read the diff and the doc file.

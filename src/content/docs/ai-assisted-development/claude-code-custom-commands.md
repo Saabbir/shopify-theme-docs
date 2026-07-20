@@ -5,6 +5,18 @@ description: Turning repetitive prompts (like the Figma-to-code loop) into a sin
 
 If you find yourself typing out the same multi-step instructions repeatedly — "build this from Figma, then check, then fix, then summarize" — that's a sign it belongs in a **custom slash command**, not a prompt you retype (or copy from an old chat) every time.
 
+## Rules vs. process: what goes in `AGENTS.md` vs. a command
+
+These are two different kinds of thing, and mixing them up is the most common mistake when writing a command:
+
+| | `AGENTS.md` | A command (`.claude/commands/<name>.md`) |
+|---|---|---|
+| Holds | **Rules** — what correct code looks like: naming, schema conventions, architecture constraints (`@theme`/`@app` targeting, `t:` locale keys, logical properties) | **Process** — the repeatable *sequence of stages* a task goes through (plan → build → check → fix → report) |
+| Loaded | Always, every session, automatically | Only when you type `/command-name` |
+| Changes when... | A coding convention changes | The *workflow itself* gains/loses a stage, or you want it to delegate differently |
+
+A command should **reference** `AGENTS.md`, not restate or fork it. [`/figma-to-section`](#the-three-commands-in-this-handbooks-templates)'s Stage 2 lists a handful of the highest-stakes rules inline as a quick reminder, but says explicitly that `AGENTS.md` is authoritative — the command isn't a second copy of the rules that can quietly drift out of sync with the real one. If you ever find a command file growing its own detailed coding rules that aren't in `AGENTS.md`, that's a sign those rules belong in `AGENTS.md`'s `## Custom rules` section instead (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)), where every other task benefits from them too — not just whichever command happened to mention them.
+
 ## What a custom command actually is
 
 A Claude Code custom command is a Markdown file with optional YAML frontmatter. Save one at `.claude/commands/<name>.md` and it becomes available as `/<name>` in any Claude Code session in this repo.
@@ -49,7 +61,7 @@ Reference $ARGUMENTS to insert whatever the user typed after the command name.
 
 | Command | Use it for | Download |
 |---|---|---|
-| `/figma-to-section` | The full plan → build → check → fix → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/), given a Figma link and a section name | [figma-to-section.md](/templates/claude-commands/figma-to-section.md) |
+| `/figma-to-section` | The full plan → build → check → fix → document → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/), given a Figma link and a section name | [figma-to-section.md](/templates/claude-commands/figma-to-section.md) |
 | `/theme-check-fix` | Run `shopify theme check` and resolve every offense it reports, one by one, with a fix log | [theme-check-fix.md](/templates/claude-commands/theme-check-fix.md) |
 | `/pr-prep` | Check the current branch's diff against our conventions and draft a PR description before opening a pull request | [pr-prep.md](/templates/claude-commands/pr-prep.md) |
 
@@ -75,6 +87,7 @@ Not every repeated prompt is worth turning into a command. A rough test:
 
 ## Best practices
 
+- Keep rules in `AGENTS.md` and process in the command — reference the file for "what correct code looks like," never fork a second copy of those rules into a command's instructions.
 - Keep each command focused on one repeatable job — a command that tries to do five unrelated things is harder to trust and harder to fix when one stage needs adjusting.
 - Restrict `allowed-tools` on anything read-only in intent (a review/check command) so it can't accidentally start editing files.
 - Commit commands to `.claude/commands/` so the whole team benefits, not just personal `~/.claude/commands/` for anything Solis-specific.
@@ -82,12 +95,14 @@ Not every repeated prompt is worth turning into a command. A rough test:
 
 ## Common mistakes
 
+- **Restating or forking coding rules inside a command** instead of referencing `AGENTS.md` — the copy inside the command silently drifts out of sync the next time `AGENTS.md` is updated, and now two sources disagree.
 - **Writing a command as a vague summary** ("build a section from Figma properly") instead of the actual explicit stages — this produces the same inconsistent results as a vague chat prompt would.
 - **Not restricting `allowed-tools`** on a command that's meant to be read-only (like `/pr-prep`), leaving room for it to make unintended edits.
 - **Keeping a useful command personal** (`~/.claude/commands/`) when it's actually project-specific and the rest of the team would benefit from it being committed to the repo.
 
 ## Quick Reference
 
+- Rules go in `AGENTS.md` (always loaded, "what correct code looks like"). Process goes in a command (manual `/trigger`, "what order to do things in"). A command references `AGENTS.md`, never forks its own copy of the rules.
 - `.claude/commands/<name>.md` → `/<name>`. Project-level = committed, team-shared. Personal (`~/.claude/commands/`) = yours only.
 - Frontmatter: `description`, `argument-hint`, `allowed-tools`, `model` — all optional.
 - `$ARGUMENTS` inserts whatever follows the command name when invoked.

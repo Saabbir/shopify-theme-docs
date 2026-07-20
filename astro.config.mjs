@@ -10,6 +10,28 @@ export default defineConfig({
       title: 'Shopify Theme Handbook',
       description:
         'The internal handbook for scaffolding, developing, and publishing Shopify Theme Store themes — built for Horizon.',
+      favicon: '/favicon.svg',
+      head: [
+        // ICO fallback for browsers that don't support SVG favicons (e.g. Safari).
+        {
+          tag: 'link',
+          attrs: { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        },
+        // Explicit PNG fallbacks.
+        {
+          tag: 'link',
+          attrs: { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
+        },
+        {
+          tag: 'link',
+          attrs: { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
+        },
+        // iOS/iPadOS home screen bookmark icon.
+        {
+          tag: 'link',
+          attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+        },
+      ],
       customCss: ['./src/styles/custom.css'],
       lastUpdated: true,
       sidebar: [

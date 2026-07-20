@@ -47,7 +47,7 @@ Why both this subagent *and* the `/theme-check-fix` command exist, rather than p
 |---|---|---|
 | Runs in | Your main conversation | Its own isolated context window |
 | Invoked | Manually, by typing `/theme-check-fix` | Automatically (Claude notices a matching task) or by name ("use the theme-check-fixer agent") |
-| Best for | A quick, interactive pass you want to watch | A noisy job (many offenses) at the end of a longer task — e.g. the last stage of `/figma-to-section`, without spamming your main context with every offense's file content |
+| Best for | A quick, interactive pass you want to watch | A noisy job (many offenses) at the end of a longer task — e.g. Stage 4 of [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/), which explicitly delegates its check → fix stage here instead of resolving offenses inline, without spamming your main context with every offense's file content |
 | Tool access | Whatever your session already has | Explicitly scoped to `Read, Edit, Bash(shopify theme check:*)` — can't touch anything else, even if your session has broader access |
 
 Both read `AGENTS.md` automatically (subagents load the project's `CLAUDE.md`/`AGENTS.md` and git status at startup, same as the main session), so neither needs Solis's conventions repeated in its own instructions beyond referencing the file.
@@ -59,7 +59,7 @@ Here's how a typical task actually flows once all three mechanisms are set up:
 1. **You describe what you want** — "build a testimonials section from this Figma frame," or just start editing a `.liquid` file directly.
 2. **Skills activate automatically**, no action from you. If the AI Toolkit is installed (see [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)), `shopify-liquid` recognizes theme-related work and runs its search-before-code, validate-before-return loop in the background. You don't invoke a skill; it just applies.
 3. **You reach for a command when the process is a known, repeatable sequence** — `/figma-to-section <link> <name>` runs the full plan → build → check → fix → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) as one step instead of retyping the stages.
-4. **A subagent picks up the noisy sub-step.** Inside that command's "check → fix" stage (or at the end of any task), Claude can delegate to `theme-check-fixer` instead of walking through every offense inline — you get a clean fix log back, not a wall of intermediate output.
+4. **A subagent picks up the noisy sub-step.** `/figma-to-section`'s Stage 4 explicitly delegates its check → fix work to `theme-check-fixer` instead of walking through every offense inline — you get a clean fix log back, not a wall of intermediate output. The same delegation applies at the end of any other task where `theme check` turns up more than a couple of offenses.
 5. **You review the result** like any other AI-generated change — see [GitHub Workflow](/github-workflow/). None of skills, commands, or subagents replace review; they just make getting to a reviewable state faster and less repetitive to ask for.
 
 The mental model: **skills are Shopify's, automatic, and about correctness** (don't guess at Liquid syntax). **Commands are ours, manual, and about repeatability** (don't retype the same multi-stage prompt). **Subagents are ours, automatic-or-named, and about context hygiene** (don't let a noisy sub-task pollute the main conversation, and let it run with deliberately restricted tool access).

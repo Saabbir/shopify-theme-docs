@@ -5,19 +5,20 @@ description: A repeatable process for turning a Figma frame into a working secti
 
 A Figma frame shows one possible content state — not a spec. This process exists so a 200-character product title, an empty collection, or a merchant who deletes every block but one doesn't break the section the moment real data touches it.
 
-## The end-to-end loop: plan → build → check → fix → report
+## The end-to-end loop: plan → build → check → fix → document → report
 
-When you hand Cursor or Claude Code a Figma frame (link, selection, or screenshot — see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)) plus a structured prompt, the tool should work through five stages, in order, every time:
+When you hand Cursor or Claude Code a Figma frame (link, selection, or screenshot — see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)) plus a structured prompt, the tool should work through six stages, in order, every time:
 
 | Stage | What happens | Why it's a separate stage |
 |---|---|---|
 | **1. Plan** | Decompose the frame (Step 1 below): content vs. chrome, block breakdown, tokens to extract. State the plan back before writing code — settings list, block types, responsive behavior. | Catches a wrong assumption (e.g. "this should be one setting, not three") while it's a one-line fix, not a rewrite. |
-| **2. Build** | Generate the section/block/snippet files against the stated plan. | — |
+| **2. Build** | Generate the section/block/snippet files against the stated plan, following `AGENTS.md`'s conventions — the command references that file rather than restating its own copy of the rules. | — |
 | **3. Check** | Run `shopify theme check` against the new/changed files. | Catches schema mistakes, deprecated patterns, and accessibility offenses mechanically, before a human reviewer has to catch them by eye. |
-| **4. Fix** | Resolve every offense `theme check` reported. Don't stop at "no more errors" — re-read the offenses that were warnings, not just errors. | An unresolved warning today is a known issue merged into the codebase; fix it now while context is loaded, not in a future cleanup pass that may never happen. |
-| **5. Report** | A short summary: what was built, what became a setting vs. fixed chrome, any assumption made where the frame was ambiguous, and confirmation `theme check` is clean. | Gives the human reviewer exactly what they need to review quickly — not a full recap of every file, just the decisions that need a second opinion. |
+| **4. Fix** | Delegate to the `theme-check-fixer` [subagent](/ai-assisted-development/claude-code-subagents/) rather than resolving offenses inline. Don't stop at "no more errors" — every warning gets resolved or explicitly justified. | Keeps offense-by-offense noise out of the main conversation, and runs with tool access scoped to exactly this job. |
+| **5. Document** | Write a short build record to `docs/sections/<section-name>.md` — Figma source, final settings/blocks, assumptions made, `theme check` status. | A record for a future maintainer who wasn't in this conversation, not something reconstructable from the diff alone. |
+| **6. Report** | A short summary in-conversation: what was built, what became a setting vs. fixed chrome, any assumption made where the frame was ambiguous, confirmation `theme check` is clean, and the path to the doc file from Stage 5. | Gives the human reviewer exactly what they need to review quickly — not a full recap of every file, just the decisions that need a second opinion. |
 
-This is exactly the loop [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/) automates as a single Claude Code command — see that page for the actual command file and how to adapt it for other repetitive jobs.
+This is exactly the loop [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/) automates as a single Claude Code command — see that page for the actual command file and how to adapt it for other repetitive jobs. `docs/sections/` is dev documentation, not theme code — see [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/) for excluding it from a submission zip.
 
 :::tip[Why "plan first" isn't optional]
 Skipping straight to "build" on an ambiguous frame is the single most common way this workflow goes wrong — the tool makes a plausible-looking guess (often a hardcoded value where a setting belongs), and that guess isn't visible until a reviewer notices it's not editable in the theme editor. Stating the plan back first turns that guess into a one-line correction instead of a rewrite.
@@ -136,7 +137,7 @@ Treat AI-generated Liquid/CSS/JS exactly like a human's first draft — see [AI 
 
 ## Quick Reference
 
-- The loop, every time: **plan → build → check → fix → report** — see the table at the top of this page.
+- The loop, every time: **plan → build → check → fix (delegated) → document → report** — see the table at the top of this page.
 - Decompose before prompting: content vs. chrome, block breakdown, responsive variants.
 - Extract design tokens (color, spacing, type) before writing CSS — a Figma MCP connection gives you exact values instead of eyeballing them.
 - Prompt with the decomposition, not just a screenshot.

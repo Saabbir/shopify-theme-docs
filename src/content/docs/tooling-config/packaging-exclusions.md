@@ -30,7 +30,7 @@ See [Folder Structure](/codebase-structure/folder-structure/) for what belongs i
 | Linter config | `.theme-check.yml` |
 | Build setup (if using one) | `package.json`, `node_modules/`, `src/`, `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, any `.env*` |
 | Editor/OS noise | `.vscode/`, `.DS_Store` |
-| Docs | `README.md`, this handbook itself |
+| Docs | `README.md`, this handbook itself, `docs/` (e.g. the per-section build records `/figma-to-section` writes — see [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/)) |
 | Explicitly disallowed by Shopify | `config/markets.json` (see [Packaging & Submitting](/publishing/packaging-and-submitting/)) |
 
 ## The mechanism: `.shopifyignore`
@@ -46,6 +46,7 @@ CLAUDE.md
 .cursorrules
 .theme-check.yml
 README.md
+docs/
 node_modules/
 src/
 package.json
