@@ -9,3 +9,72 @@
   --sl-color-accent: #8bc84a;
   --sl-color-accent-high: #c8f06a;
 }
+
+/* Interactive checklists — see public/scripts/checklist.js, which removes the
+   `disabled` attribute GFM task-list checkboxes render with by default, adds
+   these classes, and injects the .checklist-progress bar above each list. */
+.sl-markdown-content .checklist-item {
+  position: relative;
+  list-style: none;
+  /* Reserve space for the absolutely positioned checkbox so wrapped lines
+     indent to align under the text, not underneath the checkbox. */
+  padding-inline-start: 1.75em;
+}
+
+.sl-markdown-content .checklist-checkbox {
+  position: absolute;
+  inset-block-start: 0.2em;
+  inset-inline-start: 0;
+  width: 1.05em;
+  height: 1.05em;
+  margin: 0;
+  accent-color: var(--sl-color-accent);
+  cursor: pointer;
+}
+
+.sl-markdown-content .checklist-item--checked {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--sl-color-gray-4, #888);
+  color: var(--sl-color-gray-3, #777);
+}
+
+.checklist-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-block: 0.5rem 1rem;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3, #777);
+}
+
+.checklist-progress__track {
+  flex: 1 1 auto;
+  max-width: 14rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--sl-color-gray-5, #ccc);
+  overflow: hidden;
+}
+
+.checklist-progress__fill {
+  height: 100%;
+  width: 0%;
+  background: var(--sl-color-accent);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+.checklist-progress--complete .checklist-progress__fill {
+  background: var(--sl-color-accent-high);
+}
+
+.checklist-progress__label {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.checklist-progress--complete .checklist-progress__label {
+  color: var(--sl-color-accent-high);
+}

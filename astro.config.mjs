@@ -31,6 +31,12 @@ export default defineConfig({
           tag: 'link',
           attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
         },
+        // Makes GFM task-list checkboxes clickable, adds strikethrough + a
+        // per-list progress bar. See public/scripts/checklist.js.
+        {
+          tag: 'script',
+          attrs: { src: '/scripts/checklist.js', defer: true },
+        },
       ],
       customCss: ['./src/styles/custom.css'],
       lastUpdated: true,
