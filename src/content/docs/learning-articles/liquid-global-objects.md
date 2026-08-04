@@ -1,13 +1,15 @@
 ---
 title: "Learning Article: Liquid Global Objects Reference"
-description: A thorough, example-driven tour of the objects available in Liquid templates.
+description: A detailed, example-driven tour of the objects available in Liquid templates.
 ---
 
-[Liquid Style Guide](/style-guides/liquid/) has a quick map of the most common objects. This article goes deeper — what each object actually contains, where it's available, and the gotchas that trip people up in practice.
+The [Liquid Style Guide](/style-guides/liquid/) gives you a quick map of the most common objects. This article goes deeper. It covers what each object actually contains, where you can use it, and the mistakes that trip people up in real projects.
+
+A quick note before you start: an "object" here just means a named bundle of data that Liquid (Shopify's templating language) hands you, like `product` or `cart`. You'll see one heading below for each object, with examples and the gotchas (small traps that catch people off guard) to watch for.
 
 ## `product`
 
-Available on product templates, and anywhere you're rendering a product manually (a card in a grid, a related-products list).
+You can use `product` on product templates, and anywhere else you render a product by hand, like a card in a grid or a related-products list.
 
 ```liquid
 {{ product.title }}
@@ -17,7 +19,7 @@ Available on product templates, and anywhere you're rendering a product manually
 {{ product.selected_or_first_available_variant.id }}
 ```
 
-**Gotcha**: `product.price` is the price of the *cheapest available variant*, not necessarily the variant currently selected. For the actual selected variant's price, use `product.selected_or_first_available_variant.price`.
+**Gotcha**: `product.price` gives you the price of the *cheapest available variant*. It's not necessarily the price of the variant the customer currently has selected. If you want the actual selected variant's price, use `product.selected_or_first_available_variant.price` instead.
 
 ## `collection`
 
@@ -34,7 +36,7 @@ Available on product templates, and anywhere you're rendering a product manually
 {% endpaginate %}
 ```
 
-**Gotcha**: without `{% paginate %}`, `collection.products` defaults to Shopify's standard page size, which may silently truncate a large collection — always wrap collection product loops in `{% paginate %}` (also a performance requirement, see [Performance & Lighthouse](/theme-store-requirements/performance/)).
+**Gotcha**: if you leave out `{% paginate %}`, `collection.products` falls back to Shopify's standard page size. On a large collection, that can quietly cut off products you expect to see, with no error to warn you. Always wrap collection product loops in `{% paginate %}`. It's also a performance requirement, see [Performance & Lighthouse](/theme-store-requirements/performance/).
 
 ## `cart`
 
@@ -47,7 +49,7 @@ Available on product templates, and anywhere you're rendering a product manually
 {% endfor %}
 ```
 
-**Gotcha**: `cart` reflects server-rendered state at page load — after an AJAX add-to-cart, the Liquid-rendered `cart` object on the current page is stale until a refresh. Use the Cart AJAX API's JSON response to update cart UI without a full reload, not a re-render of Liquid `cart` data.
+**Gotcha**: `cart` shows the state of the cart at the moment the page loaded, since it's rendered on the server. After an AJAX add-to-cart (adding an item without reloading the page), the Liquid `cart` object on the current page is out of date until the page actually refreshes. To update the cart UI without a full reload, use the JSON response from the Cart AJAX API. Don't try to re-render Liquid `cart` data for this.
 
 ## `section` and `block`
 
@@ -62,7 +64,7 @@ Available on product templates, and anywhere you're rendering a product manually
 {% endfor %}
 ```
 
-**Gotcha**: `block.shopify_attributes` must be output on each block's root element or the theme editor can't highlight/select that block when clicked — an easy thing to forget and hard to notice unless you're actively testing in the editor.
+**Gotcha**: you must output `block.shopify_attributes` on each block's root element (the outermost HTML tag of that block), or the theme editor won't be able to highlight or select that block when someone clicks it. This is easy to forget, and you usually won't notice the mistake unless you're actively testing in the editor.
 
 ## `shop`
 
@@ -76,7 +78,7 @@ Available on product templates, and anywhere you're rendering a product manually
 
 ## `routes`
 
-Always prefer `routes` over a hardcoded path — it's correct across locale prefixes and custom domain setups that a hardcoded `/products/` string would silently ignore:
+Always use `routes` instead of typing out a path yourself. It stays correct across locale prefixes (like `/fr/` for French) and custom domain setups. A hardcoded string like `/products/` would quietly break in those cases, with no warning:
 
 ```liquid
 {{ routes.root_url }}
@@ -87,14 +89,14 @@ Always prefer `routes` over a hardcoded path — it's correct across locale pref
 
 ## `settings`
 
-Theme-wide settings from `config/settings_schema.json` — distinct from `section.settings`, which is scoped to one section instance:
+These are theme-wide settings, defined in `config/settings_schema.json`. They apply to the whole theme, which makes them different from `section.settings`, which only applies to one section instance (one specific copy of a section on the page):
 
 ```liquid
 {{ settings.color_primary }}
 {{ settings.type_heading_font }}
 ```
 
-**Gotcha**: `settings` (theme-wide) and `section.settings` (this section instance) look similar but are entirely different objects — a common copy-paste mistake is referencing `settings.heading` when `section.settings.heading` was meant, silently rendering blank since the theme-wide settings schema has no `heading` key.
+**Gotcha**: `settings` (theme-wide) and `section.settings` (this one section instance) look alike but are completely different objects. A common copy-paste mistake is writing `settings.heading` when you actually meant `section.settings.heading`. This renders blank with no error at all, because the theme-wide settings schema simply has no `heading` key.
 
 ## `request`
 
@@ -104,11 +106,11 @@ Theme-wide settings from `config/settings_schema.json` — distinct from `sectio
 {{ request.design_mode }}         {# true inside the theme editor #}
 ```
 
-`request.design_mode` is useful for editor-only affordances — e.g. showing a placeholder/warning in the editor for an empty section that would otherwise render nothing on the live storefront.
+`request.design_mode` is useful for showing helpers that should only appear inside the editor. For example, you could show a placeholder or warning for an empty section, one that would otherwise render nothing at all on the live storefront.
 
 ## `localization`
 
-Powers language/country selectors:
+This object powers language and country selectors, the dropdowns that let a shopper pick their language or country:
 
 ```liquid
 {% for language in localization.available_languages %}
@@ -123,7 +125,7 @@ See [Managing Locale Files](/learning-articles/managing-locale-files/) for how t
 
 ## `customer`
 
-Available when a customer is logged in — always guard against it being nil:
+The `customer` object is available when a customer is logged in. "Nil" is Liquid's word for empty or missing, so when no customer is logged in, `customer` is nil. Always check that it isn't nil before you try to use it:
 
 ```liquid
 {% if customer %}
@@ -135,7 +137,7 @@ Available when a customer is logged in — always guard against it being nil:
 
 ## `linklists`
 
-Backing data for menus configured in the admin:
+This object holds the data behind menus that a merchant sets up in the Shopify admin:
 
 ```liquid
 {% for link in linklists.main-menu.links %}
@@ -143,28 +145,28 @@ Backing data for menus configured in the admin:
 {% endfor %}
 ```
 
-**Gotcha**: a `linklist` setting's default should be `main-menu`/`footer`, not a demo-store-specific handle — see [Packaging & Submitting](/publishing/packaging-and-submitting/)'s pre-zip sanity checklist.
+**Gotcha**: a `linklist` setting's default should be `main-menu` or `footer`, not a handle that only exists in your demo store. See the pre-zip checklist in [Packaging & Submitting](/publishing/packaging-and-submitting/).
 
 ## Best practices
 
-- Guard nil possibilities explicitly (`customer`, an optional metafield, a variant with no image) — Liquid renders silently blank rather than erroring, which hides the bug instead of surfacing it.
-- Distinguish `settings` (theme-wide) from `section.settings` (this instance) deliberately — the similar names are a common source of silent, hard-to-spot bugs.
-- Always wrap `collection.products` in `{% paginate %}` — both for correctness on large collections and for performance.
+- Always check for nil explicitly. This applies to `customer`, an optional metafield, or a variant with no image. Liquid just renders blank instead of throwing an error, which hides bugs instead of showing them to you.
+- Be careful to tell `settings` (theme-wide) apart from `section.settings` (just this one instance). Their similar names are a common source of silent, hard-to-spot bugs.
+- Always wrap `collection.products` in `{% paginate %}`. It matters both for correctness on large collections and for performance.
 
 ## Common mistakes
 
-- **Assuming `product.price` is the currently selected variant's price** — it's the cheapest available variant's price.
-- **Confusing `settings.x` and `section.settings.x`** — different objects, easy to typo into the wrong one.
-- **Forgetting `block.shopify_attributes`** on a block's root element, breaking theme editor selection for that block.
-- **Rendering `cart` data as stale after an AJAX add-to-cart** instead of using the Cart AJAX API's response to update the UI.
+- **Assuming `product.price` is the currently selected variant's price.** It's actually the cheapest available variant's price.
+- **Confusing `settings.x` and `section.settings.x`.** These are different objects, and it's easy to type the wrong one by mistake.
+- **Forgetting `block.shopify_attributes`** on a block's root element, which breaks theme editor selection for that block.
+- **Using stale `cart` data after an AJAX add-to-cart** instead of updating the UI from the Cart AJAX API's response.
 
 ## Quick Reference
 
-- `product`, `collection`, `cart`, `section`/`block`, `shop`, `routes`, `settings`, `request`, `localization`, `customer`, `linklists` — the objects you'll touch daily.
-- `settings` ≠ `section.settings`. `product.price` ≠ the selected variant's price.
-- Always paginate `collection.products`. Always guard `customer` and any optional nested object.
+- `product`, `collection`, `cart`, `section`/`block`, `shop`, `routes`, `settings`, `request`, `localization`, `customer`, and `linklists` are the objects you'll touch daily.
+- `settings` is not the same as `section.settings`. `product.price` is not the same as the selected variant's price.
+- Always paginate `collection.products`. Always guard `customer` and any optional nested object with a nil check.
 
 ## Further Reading
 
-- [Liquid Style Guide](/style-guides/liquid/) — day-to-day conventions
-- [Liquid objects reference](https://shopify.dev/docs/api/liquid/objects) — shopify.dev
+- [Liquid Style Guide](/style-guides/liquid/): the day-to-day rules.
+- [Liquid objects reference](https://shopify.dev/docs/api/liquid/objects): the shopify.dev reference page.

@@ -3,25 +3,25 @@ title: Theme Editor & Storefront Events
 description: Shopify's built-in JavaScript events for the theme editor, and how to listen for them correctly.
 ---
 
-When a merchant customizes a section or block in the theme editor, Shopify swaps the changed HTML directly into the existing page — it does not reload the page. That means any JavaScript that ran on initial page load **does not run again** for that new markup, unless you explicitly listen for the events covered here and re-run it.
+When a merchant (the store owner) customizes a section or block in the theme editor, Shopify swaps the changed HTML straight into the existing page. It does not reload the page. That means any JavaScript that ran when the page first loaded **does not run again** for that new markup, unless you explicitly listen for the events described on this page and rerun your code yourself.
 
 ## The event table
 
-The theme editor emits these events on the relevant section/block element. Every event **bubbles** and is **not cancellable**:
+The theme editor fires these events on the section or block element they relate to. Every event **bubbles**, which means it also passes up through the parent elements above it. Every event is also **not cancellable**, meaning you can't stop it from happening once it starts.
 
 | Event | Target | Detail | Fires when | What you should do |
 |---|---|---|---|---|
 | `shopify:section:load` | section | `{ sectionId }` | A section is added or re-rendered | Re-run any JS the section needs, as if the page had just loaded |
 | `shopify:section:unload` | section | `{ sectionId }` | A section is deleted, or about to be re-rendered | Clean up listeners/observers/timers so nothing leaks or breaks |
 | `shopify:section:select` | section | `{ sectionId, load }` | The merchant selects the section in the sidebar | Make sure the section scrolls into view and stays visible while selected |
-| `shopify:section:deselect` | section | `{ sectionId }` | The merchant deselects the section | — |
-| `shopify:section:reorder` | section | `{ sectionId }` | A section is reordered | — |
+| `shopify:section:deselect` | section | `{ sectionId }` | The merchant deselects the section | (none) |
+| `shopify:section:reorder` | section | `{ sectionId }` | A section is reordered | (none) |
 | `shopify:block:select` | block | `{ blockId, sectionId, load }` | The merchant selects the block in the sidebar | Scroll the block into view; e.g. advance a carousel to the selected slide and pause it there |
-| `shopify:block:deselect` | block | `{ blockId, sectionId }` | The merchant deselects the block | — |
-| `shopify:inspector:activate` | — | — | The theme editor's preview inspector is activated | — |
-| `shopify:inspector:deactivate` | — | — | The preview inspector is deactivated | — |
+| `shopify:block:deselect` | block | `{ blockId, sectionId }` | The merchant deselects the block | (none) |
+| `shopify:inspector:activate` | (none) | (none) | The theme editor's preview inspector is activated | (none) |
+| `shopify:inspector:deactivate` | (none) | (none) | The preview inspector is deactivated | (none) |
 
-`load` (on `select` events) is `true` if triggered by a section re-render, `false` if triggered by an actual merchant click — useful for distinguishing "just re-rendered and auto-selected" from "the merchant deliberately clicked this."
+One detail worth knowing: the `load` value on `select` events is `true` when a section re-render triggered the event, and `false` when the merchant actually clicked something. This lets your code tell the difference between "this just re-rendered and got auto-selected" and "the merchant deliberately clicked this."
 
 ## Why `shopify:section:load`/`unload` matter more than they look
 
@@ -42,7 +42,9 @@ document.addEventListener('shopify:section:load', (event) => {
 });
 ```
 
-This is precisely why a [Web Component's lifecycle](/learning-articles/javascript-and-web-components-deep-dive/) (`connectedCallback`/`disconnectedCallback`) is such a good fit for theme sections — a Web Component re-runs its own setup automatically every time it's reconnected to the DOM, which is exactly what happens on a `shopify:section:load` re-render. Listening for the event explicitly (as above) is mainly needed for global/non-component JS; a well-built Web Component often needs no special theme-editor handling at all.
+This is exactly why a [Web Component's lifecycle](/learning-articles/javascript-and-web-components-deep-dive/) (its `connectedCallback`/`disconnectedCallback` methods, which run automatically when the component is added to or removed from the page) fits theme sections so well. A Web Component reruns its own setup automatically every time it's reconnected to the page, and that's exactly what happens during a `shopify:section:load` re-render.
+
+So when do you need to listen for the event yourself, like in the example above? Mostly for global or non-component JavaScript. A well-built Web Component often needs no special theme-editor handling at all.
 
 ## Keeping a selected section/block in view
 
@@ -65,7 +67,7 @@ document.addEventListener('shopify:block:deselect', (event) => {
 });
 ```
 
-Shopify explicitly expects this: a slideshow section should scroll into view when selected, advance to a selected slide/block, and pause there while it's selected — merchants editing a section they can't see is a genuinely confusing editing experience.
+Think about it from the merchant's point of view. If they click a section in the sidebar and can't see it change anywhere on their screen, that's confusing. So Shopify expects specific behavior here: a slideshow section should scroll into view when selected, jump to the selected slide or block, and pause there while it's selected.
 
 ## Cleaning up on `shopify:section:unload`
 
@@ -79,11 +81,11 @@ document.addEventListener('shopify:section:unload', (event) => {
 });
 ```
 
-Skipping this is a real, if subtle, source of bugs: a merchant who edits a section repeatedly in one editor session can accumulate duplicate intervals/observers if old ones are never torn down, degrading the editing experience the longer that session runs.
+Skipping this cleanup step causes a real, if subtle, kind of bug. Picture a merchant editing the same section five times in one sitting. If every edit sets up a new timer or observer without removing the old one, you end up with five timers running at once instead of one. The page gets slower and buggier the longer that editing session runs.
 
 ## Detecting the theme editor itself
 
-Sometimes you need different behavior specifically inside the editor (e.g. always expanding an accordion so a merchant can see what they're editing, or disabling an autoplay carousel that would otherwise be annoying to edit against):
+Sometimes you need your code to behave differently specifically inside the editor. Two common examples: always expanding an accordion (a collapsible section of content) so a merchant can see what they're editing, or turning off an autoplay carousel that would otherwise be distracting while someone edits it.
 
 ```liquid
 {% if request.design_mode %}
@@ -131,25 +133,25 @@ if (Shopify.inspectMode) {
 
 ## Best practices
 
-- Prefer a Web Component's own lifecycle (`connectedCallback`/`disconnectedCallback`) over a manual `shopify:section:load`/`unload` listener where possible — it handles the same re-render case automatically, with less code to keep in sync.
-- Always pair a `shopify:section:load` listener that sets something up with a `shopify:section:unload` listener that tears it down, even if it "seems fine" without it in casual testing.
-- Test every interactive section by actually editing it repeatedly in the theme editor, not just by loading the page once — this is the only way to catch a missing re-initialization or an accumulating leak.
+- Prefer a Web Component's own lifecycle (`connectedCallback`/`disconnectedCallback`) over a manual `shopify:section:load`/`unload` listener where you can. It handles the same re-render case automatically, with less code for you to keep in sync.
+- Always pair a `shopify:section:load` listener that sets something up with a `shopify:section:unload` listener that tears it down again, even if things "seem fine" without it during casual testing.
+- Test every interactive section by actually editing it repeatedly in the theme editor, not just by loading the page once. That's the only way to catch a missing re-initialization or a slow leak building up over time.
 
 ## Common mistakes
 
-- **Initializing interactive JS only on page load**, so it silently stops working the moment a merchant edits that section in the theme editor without a full page reload.
-- **Setting up a listener/observer/interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup**, causing duplicates to accumulate across repeated edits in one editor session.
-- **Forgetting to keep a selected section/block scrolled into view**, leaving merchants editing something they can't see on screen.
+- **Initializing interactive JS only on page load,** so it quietly stops working the moment a merchant edits that section in the theme editor without a full page reload.
+- **Setting up a listener, observer, or interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup.** This causes duplicates to pile up across repeated edits in one editor session.
+- **Forgetting to keep a selected section or block scrolled into view,** leaving merchants editing something they can't actually see on screen.
 
 ## Quick Reference
 
-- `shopify:section:load`/`unload` — re-initialize/clean up JS on section re-render.
-- `shopify:section:select`/`deselect`, `shopify:block:select`/`deselect` — keep the selected section/block visible; pause/resume things like autoplay accordingly.
-- `request.design_mode` / `Shopify.designMode` — true anywhere in the theme editor.
-- `request.visual_preview_mode` / `Shopify.visualPreviewMode` — true specifically when previewing a preset before adding it.
-- All events bubble and are not cancellable.
+- `shopify:section:load`/`unload`: set up/clean up JS when a section re-renders.
+- `shopify:section:select`/`deselect`, `shopify:block:select`/`deselect`: keep the selected section or block visible, and pause/resume things like autoplay accordingly.
+- `request.design_mode` / `Shopify.designMode`: true anywhere in the theme editor.
+- `request.visual_preview_mode` / `Shopify.visualPreviewMode`: true specifically when previewing a preset before adding it.
+- All events bubble and can't be cancelled.
 
 ## Further Reading
 
-- [Integrate sections and blocks with the theme editor](https://shopify.dev/docs/storefronts/themes/best-practices/editor/integrate-sections-and-blocks) — shopify.dev
-- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) — the component lifecycle these events complement
+- [Integrate sections and blocks with the theme editor](https://shopify.dev/docs/storefronts/themes/best-practices/editor/integrate-sections-and-blocks) - shopify.dev
+- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) - the component lifecycle these events complement

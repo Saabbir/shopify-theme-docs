@@ -3,7 +3,7 @@ title: Settings Schema Walkthrough
 description: Theme-level settings vs. section/block settings, and when to use which.
 ---
 
-Shopify has three separate places settings can live. Mixing them up is a common early mistake.
+Shopify has three separate places where settings can live. Mixing them up is a common mistake when you're new to this, so let's walk through each one.
 
 ## The three levels
 
@@ -58,9 +58,9 @@ Shopify has three separate places settings can live. Mixing them up is a common 
 ]
 ```
 
-Access it anywhere in Liquid via the `settings` object: `{{ settings.color_primary }}`. The `theme_info` block is required by Theme Store review (see [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/)).
+You can access this setting anywhere in Liquid through the `settings` object, like this: `{{ settings.color_primary }}`. The `theme_info` block is required by Theme Store review (see [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/)).
 
-Notice the `t:` prefixed strings — those pull from `locales/en.default.schema.json` instead of hardcoding English text, so the theme editor UI itself can be translated. Use this for every label and content string in schema, not just some of them.
+Notice the strings that start with `t:`. These pull text from `locales/en.default.schema.json` instead of hardcoding English words directly, so the theme editor's interface can be translated into other languages. Use this `t:` pattern for every label and content string in your schema, not just some of them.
 
 ```json
 // ❌ WRONG — hardcoded English, can't be localized for the theme editor UI
@@ -84,12 +84,12 @@ Notice the `t:` prefixed strings — those pull from `locales/en.default.schema.
 ```
 
 :::note[Flat, not nested]
-This is a **flat, shared** namespace (`general.*`, `labels.*`), not nested per-group like `settings_schema.colors.settings.primary`. This is the same convention verified against Skeleton Theme's actual shipped `settings_schema.json` and `en.default.schema.json` — see the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full reasoning (a label like "Heading" or "Primary color" gets reused across dozens of unrelated settings groups, so nesting it per-group would mean translating the same word over and over).
+This is a **flat, shared** namespace (`general.*`, `labels.*`). It isn't nested per group, the way `settings_schema.colors.settings.primary` would be. This matches how Skeleton Theme actually ships its `settings_schema.json` and `en.default.schema.json` files. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full reasoning. A label like "Heading" or "Primary color" gets reused across dozens of unrelated settings groups, so nesting it per group would mean translating the same word over and over again.
 :::
 
 ## Single-property vs. multi-property settings
 
-Skeleton Theme's own conventions (worth following) draw a clear line:
+Skeleton Theme's own rules (worth following) draw a clear line between two situations.
 
 ```liquid
 {% comment %} A setting that maps to ONE CSS property → use a CSS variable {% endcomment %}
@@ -144,29 +144,29 @@ Skeleton Theme's own conventions (worth following) draw a clear line:
 }
 ```
 
-If you find yourself adding a third or fourth CSS variable to control what's really one visual "mode," that's usually a sign it should collapse into a single `select` setting mapped to a CSS class instead.
+If you find yourself adding a third or fourth CSS variable to control what's really one visual "mode," that's usually a sign. It means you should combine them into a single `select` setting mapped to a CSS class instead.
 
 ## Best practices
 
-- Ask "does this vary per instance, or is it shared everywhere?" before adding any new setting — it's a fast check that prevents most misplaced-setting bugs.
-- Localize every schema string with `t:` from the moment you write it, not as a batch cleanup later.
-- When a section/block accumulates more than 3–4 related CSS custom properties controlling what's really one visual mode, consider collapsing them into a `select` + CSS classes instead.
+- Before you add a new setting, ask yourself: "Does this vary per instance, or is it shared everywhere?" This one quick check prevents most setting-placement mistakes.
+- Add the `t:` prefix to every schema string as you write it, not as a cleanup job later.
+- When a section or block builds up more than 3 to 4 related CSS custom properties that all control one visual mode, consider combining them into a `select` setting with CSS classes instead.
 
 ## Common mistakes
 
-- **Defining the same conceptual setting (like a brand color) independently in multiple sections** instead of once at the theme level — this creates inconsistency and makes global rebrand changes painful.
-- **Hardcoding schema label/content strings "temporarily"** and never circling back to localize them.
-- **Overusing CSS custom properties for what should be a class-based variant setting**, leading to a tangle of variables that can be set in inconsistent combinations.
+- **Defining the same setting (like a brand color) separately in multiple sections** instead of once at the theme level. This creates inconsistency and makes it painful to rebrand the whole store later.
+- **Hardcoding schema label/content strings "temporarily"** and never coming back to add the `t:` prefix.
+- **Overusing CSS custom properties for something that should be a class-based variant setting.** This leads to a tangle of variables that can end up set in combinations that don't make sense together.
 
 ## Quick Reference
 
-- Theme-wide → `config/settings_schema.json`. Per-instance → the section/block's own schema.
-- Always localize schema strings with `t:` — never hardcode English.
-- One CSS property changing → CSS variable. Several properties changing together → a CSS class via a `select` setting.
+- Theme-wide settings go in `config/settings_schema.json`. Per-instance settings go in the section or block's own schema.
+- Always add `t:` to schema strings. Never hardcode English text.
+- One CSS property changing means use a CSS variable. Several properties changing together means use a CSS class via a `select` setting.
 
 ## Further Reading
 
-- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) — the full deep dive on both files, including how they interact and what breaks a merchant's data
-- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) — mapping a design system onto exactly the settings this page describes
-- [Settings schema](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) — shopify.dev
-- [Settings (concept overview)](https://shopify.dev/docs/storefronts/themes/architecture/settings) — shopify.dev
+- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/): the full deep dive on both files, including how they interact and what breaks a merchant's data
+- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/): mapping a design system onto exactly the settings this page describes
+- [Settings schema](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json): shopify.dev
+- [Settings (concept overview)](https://shopify.dev/docs/storefronts/themes/architecture/settings): shopify.dev

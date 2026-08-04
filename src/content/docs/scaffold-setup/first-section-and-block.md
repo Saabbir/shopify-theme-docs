@@ -1,11 +1,17 @@
 ---
 title: Your First Section & Block
-description: A worked example — a testimonial section with a nestable quote block.
+description: A worked example of a testimonial section with a nestable quote block.
 ---
 
-Let's build something real: a "Testimonials" section merchants can add to any page, made of reusable "Quote" blocks they can add, remove, and reorder.
+In this guide, you'll build something real: a "Testimonials" section that merchants can add to any page of their store.
+
+A section is one chunk of a page, like a header, a footer, or a row of product images. Inside our Testimonials section, merchants can add "Quote" blocks. A block is a smaller, reusable piece that lives inside a section. Think of blocks like Lego pieces: merchants can snap in as many as they want, remove ones they don't need, and drag them into a different order.
+
+Let's build the block first, then the section that holds it.
 
 ## 1. The block
+
+Here's the code for the Quote block. It's a Liquid file (Liquid is Shopify's template language) that defines how one quote looks, plus a small schema at the bottom that tells the theme editor what settings to show merchants.
 
 ```liquid
 {% comment %} /blocks/quote.liquid {% endcomment %}
@@ -34,7 +40,13 @@ Let's build something real: a "Testimonials" section merchants can add to any pa
 {% endschema %}
 ```
 
+This file does three things. It shows the quote text and author on the page, it adds a little styling with the `{% stylesheet %}` tag, and it defines a `{% schema %}` block so merchants can edit the quote's text and author from the theme editor.
+
+Notice the `{%- if block.settings.author != blank -%}` check. It only shows the author's name if the merchant actually typed one in, so you never end up with an empty author line on the page.
+
 ## 2. The section that hosts it
+
+Now let's build the section that holds these Quote blocks. A section is the bigger container, and a block lives inside it.
 
 ```liquid
 {% comment %} /sections/testimonials.liquid {% endcomment %}
@@ -81,11 +93,13 @@ Let's build something real: a "Testimonials" section merchants can add to any pa
 {% endschema %}
 ```
 
-Notice `"blocks": [{ "type": "quote" }, { "type": "@app" }]` — this restricts the section to only `quote` blocks plus app blocks, instead of `@theme` (any theme block). Use this narrower form when a section has a specific purpose, and `@theme` when it's meant to be a flexible, general-purpose container (like the Group block in [Theme Blocks & Nesting](/codebase-structure/theme-blocks/)).
+Look at this part of the schema: `"blocks": [{ "type": "quote" }, { "type": "@app" }]`. This line tells Shopify which blocks are allowed inside this section. Here, only `quote` blocks and app blocks (blocks added by external apps) are allowed. Compare that to `@theme`, which would let a merchant drop in any theme block, not just quote blocks.
+
+Use this narrow list when your section has one specific job, like ours does here. Use `@theme` instead when a section is meant to be a flexible, general-purpose container that can hold many different kinds of blocks. A good example is the Group block described in [Theme Blocks & Nesting](/codebase-structure/theme-blocks/).
 
 ## 3. Add it to a template
 
-Merchants add sections through the theme editor, but during development you can add one directly to a JSON template:
+Merchants normally add sections themselves, using the theme editor's drag-and-drop interface. But while you're developing, it's faster to add a section directly to a JSON template file, like this:
 
 ```json
 // templates/page.json (excerpt)
@@ -99,19 +113,23 @@ Merchants add sections through the theme editor, but during development you can 
 
 ## 4. Preview it
 
+Now run this command to preview your work in a real store:
+
 ```bash
 shopify theme dev --store your-dev-store.myshopify.com
 ```
 
-Open the page in the theme editor, and you should see "Testimonials" available in the section picker, with an "Add block" option offering "Quote."
+Open the page in the theme editor. You should see "Testimonials" listed in the section picker. Click "Add block" and you should see "Quote" as an option.
 
 ## 5. Stress-test it before calling it done
 
-This is the step most likely to get skipped under time pressure, and it's the one Theme Store review actually checks (see [Store & Design Requirements](/theme-store-requirements/store-and-design/)):
+This step is the one most people skip when they're short on time. It's also the one that Theme Store review actually checks (see [Store & Design Requirements](/theme-store-requirements/store-and-design/)), so it's worth doing properly.
+
+Here's what to test:
 
 | Test case | What to check |
 |---|---|
-| Zero quote blocks added | `.testimonials__grid` shouldn't show an awkward empty box — either hide the section or show a sensible fallback |
+| Zero quote blocks added | `.testimonials__grid` shouldn't show an awkward empty box. Either hide the whole section, or show a sensible fallback |
 | One quote block | Grid layout shouldn't look broken with just one item (check `auto-fit` behavior at different widths) |
 | 10+ quote blocks | Confirm the grid still reads well and doesn't create odd row gaps |
 | A quote with a very long text (300+ characters) | Confirm the card grows to fit rather than clipping or overflowing |
@@ -129,6 +147,8 @@ This is the step most likely to get skipped under time pressure, and it's the on
 ```
 
 ## A common variation: what if a merchant adds zero blocks at all?
+
+Here's one more way to handle that case: hide the whole section when there are no blocks, so merchants never see a heading sitting above an empty space.
 
 ```liquid
 {% comment %} ✅ Consider hiding the whole section rather than showing
@@ -149,15 +169,15 @@ This is the step most likely to get skipped under time pressure, and it's the on
 
 ## Best practices
 
-- Build the empty/one-item/many-item test into your normal workflow for every new section, not just this example — it catches the majority of layout bugs Theme Store review would otherwise flag.
-- Add a blank-value guard (`{% if x != blank %}`) around any conditionally-rendered piece of markup by default, rather than adding it reactively after noticing an empty tag in the DOM.
-- Use `"blocks": [{ "type": "quote" }, { "type": "@app" }]` (not `@theme`) whenever a section has one specific purpose — it keeps merchants from accidentally dropping in unrelated blocks that break the intended layout.
+- Test every new section with zero, one, and many items, not just the example here. Make this a normal part of your workflow. It catches most of the layout bugs that Theme Store review would otherwise flag.
+- Add a blank-value guard (`{% if x != blank %}`) around any markup that only shows up sometimes. Add it by default while you write the code, not later after you spot an empty tag on the page.
+- Use `"blocks": [{ "type": "quote" }, { "type": "@app" }]` instead of `@theme` whenever a section has one specific job. This stops merchants from accidentally dropping in unrelated blocks that break the layout you designed.
 
 ## Common mistakes
 
-- **Building the happy path only** (a handful of nicely-sized quotes) and never testing zero, one, or many blocks.
-- **Forgetting blank checks around optional settings**, leaving empty tags in the rendered HTML that a real accessibility/HTML validator would flag.
-- **Using `@theme` on a purpose-built section "just in case"** instead of restricting it to the block types it's actually designed for.
+- **Only testing the happy path.** This means testing with a handful of nicely sized quotes, and never testing what happens with zero, one, or many blocks.
+- **Forgetting blank checks around optional settings.** This leaves empty tags in the final HTML, which a real accessibility or HTML validator would flag as a problem.
+- **Using `@theme` on a purpose-built section "just in case."** It's better to limit the section to the exact block types it's actually designed for.
 
 ## Quick Reference
 
@@ -168,5 +188,5 @@ This is the step most likely to get skipped under time pressure, and it's the on
 
 ## Further Reading
 
-- [Theme blocks quick start](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start) — shopify.dev
-- [Section schema reference](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema) — shopify.dev
+- [Theme blocks quick start](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start) (shopify.dev)
+- [Section schema reference](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema) (shopify.dev)

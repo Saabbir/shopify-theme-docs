@@ -3,13 +3,13 @@ title: Metafields & Metaobjects
 description: Using custom data safely in a theme meant for any merchant.
 ---
 
-Metafields and metaobjects let merchants attach custom structured data to products, pages, and other resources — a "material" field on a product, a "brand story" metaobject, and so on. They're powerful, but a Theme Store theme has to use them more carefully than a one-off client theme.
+Metafields and metaobjects let merchants attach custom, structured data to products, pages, and other resources. Think of a "material" field on a product, or a "brand story" metaobject. A metafield holds one piece of custom data, like a single fact. A metaobject is a small structured record made up of several fields, like a mini form with multiple answers. They're powerful, but a Theme Store theme has to use them more carefully than a one-off client theme does.
 
 ## The rule that trips people up
 
 > For `metaobject` and `metaobject_list` settings, only **standard definitions** can be used as the `metaobject_type`. Custom or app-owned definitions cannot be used.
 
-In a client project, you'd happily create a custom metaobject definition (say, `brand_story`) and reference it directly. In a Theme Store theme, you can't — every merchant who installs your theme has a different store, with different (or no) custom metaobject definitions. If your schema references a definition that doesn't exist on their store, that setting breaks on install.
+On a client project, you could freely create a custom metaobject definition (say, `brand_story`) and reference it directly. On a Theme Store theme, you can't do that. Here's why: every merchant who installs your theme has a different store, with different custom metaobject definitions, or none at all. If your schema references a definition that doesn't exist on their store, that setting breaks the moment they install your theme.
 
 ## What this means in practice
 
@@ -38,7 +38,7 @@ In a client project, you'd happily create a custom metaobject definition (say, `
 
 ### A worked example: a "material" field on a Solis product page
 
-Say Solis wants to show a product's material (cotton, leather, etc.) on the product page. There are two ways to build this — one that works for every merchant, one that only works for stores that happen to have your exact custom setup:
+Say Solis wants to show a product's material (cotton, leather, and so on) on the product page. There are two ways to build this: one that works for every merchant, and one that only works for stores that happen to have your exact custom setup.
 
 ```liquid
 {% comment %} ❌ WRONG — assumes every merchant has defined a custom
@@ -68,19 +68,19 @@ Say Solis wants to show a product's material (cotton, leather, etc.) on the prod
 }
 ```
 
-If you genuinely want to pull from Shopify's own **standard** product metafields (not a custom namespace), that's fine — the restriction is specifically about *custom or app-owned* definitions, not metafields in general.
+If you genuinely want to pull from Shopify's own **standard** product metafields (not a custom namespace), that's fine. The restriction is specifically about *custom or app-owned* definitions, not metafields in general.
 
 ## Best practices
 
-- Default to a plain theme setting for merchant-facing custom data, and only reach for a standard metaobject reference when Shopify already ships the exact standard type you need.
-- Audit every `settings_data.json` default before submission — a reference to a demo-store-only resource is one of the more common late-stage rejection reasons.
-- If you're unsure whether a metaobject type counts as "standard," check [Shopify's standard metaobject definitions](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) rather than assuming.
+- Default to a plain theme setting for merchant-facing custom data. Only reach for a standard metaobject reference when Shopify already ships the exact standard type you need.
+- Check every `settings_data.json` default before submission. A reference to a resource that only exists in your demo store is one of the more common reasons themes get rejected late.
+- If you're not sure whether a metaobject type counts as "standard," check [Shopify's standard metaobject definitions](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) instead of guessing.
 
 ## Common mistakes
 
-- **Defining a custom metaobject type for your own demo store, then referencing it directly in schema** — this works perfectly on your store and breaks on every merchant's fresh install.
-- **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store** — the same failure mode, just for a different setting type.
-- **Assuming any metafield use is off-limits.** The restriction is specifically about custom/app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings — standard metafields elsewhere are fine.
+- **Defining a custom metaobject type for your own demo store, then referencing it directly in schema.** This works fine on your store, then breaks on every merchant's fresh install.
+- **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store.** Same failure, just on a different setting type.
+- **Assuming any use of metafields is off-limits.** The restriction only covers custom or app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings, standard metafields elsewhere are fine.
 
 ## Quick Reference
 
@@ -90,5 +90,5 @@ If you genuinely want to pull from Shopify's own **standard** product metafields
 
 ## Further Reading
 
-- [Metaobject input setting](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) — shopify.dev
-- [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) — shopify.dev
+- [Metaobject input setting](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) (shopify.dev)
+- [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) (shopify.dev)

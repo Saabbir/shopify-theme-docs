@@ -4,7 +4,7 @@ description: What Shopify actually requires for language and region support, and
 ---
 
 :::note[Flagging this clearly]
-Shopify's official requirements list doesn't have a single numbered "internationalization" or "RTL" section — the requirements are split across **Features** and **Pages**. RTL (right-to-left) layout support specifically is **not** called out as a hard Theme Store requirement in the current official list. We recommend building it in anyway (see below), but don't take this page as "Shopify will reject you for missing RTL" — that's our best-practice recommendation, not a documented rule. If you're aiming at a market where RTL matters, confirm current policy on [shopify.dev](https://shopify.dev/docs/storefronts/themes/store/requirements) before you rely on this.
+Shopify's official requirements list doesn't have one numbered "internationalization" or "RTL" section. These rules are split across the **Features** and **Pages** sections instead. RTL (right-to-left) layout support, used for languages like Arabic and Hebrew, is **not** listed as a hard Theme Store requirement right now. We recommend building it in anyway (see below), but don't read this page as "Shopify will reject you for missing RTL," that's our own best-practice advice, not a documented rule. If you're targeting a market where RTL matters, check the current policy on [shopify.dev](https://shopify.dev/docs/storefronts/themes/store/requirements) before you rely on this.
 :::
 
 ## What's actually required
@@ -64,7 +64,7 @@ Shopify's official requirements list doesn't have a single numbered "internation
 
 ## RTL — our recommendation, not a documented requirement
 
-Arabic, Hebrew, and other right-to-left languages are common in Shopify Markets. Supporting them well means:
+RTL stands for "right-to-left." Arabic, Hebrew, and other right-to-left languages read from right to left instead of left to right, the way a mirror flips a page. These languages are common among stores using Shopify Markets (Shopify's tool for selling in multiple countries). Supporting them well means:
 
 | ✅ Do | ❌ Avoid |
 |---|---|
@@ -109,16 +109,16 @@ Arabic, Hebrew, and other right-to-left languages are common in Shopify Markets.
 
 ## Best practices
 
-- Run every locale string through `t:`/`| t` from the start of a section's development, not as a cleanup pass — retrofitting localization across dozens of hardcoded strings is tedious and error-prone.
-- Use CSS logical properties by default in new code, even before RTL is a concrete requirement — they cost nothing in LTR layouts and make RTL support close to free later.
-- Test at least one real RTL locale (not just a mirrored screenshot) before considering internationalization "done" for a section.
+- Run every piece of text through `t:`/`| t` (Shopify's translation filter) from the start of a section's development. Don't leave it for a cleanup pass, fixing dozens of hardcoded strings later is tedious and easy to get wrong.
+- Use CSS logical properties by default in new code, even before RTL is a concrete requirement. They cost nothing in left-to-right layouts and make RTL support almost free later.
+- Test at least one real RTL locale, not just a mirrored screenshot, before you consider internationalization "done" for a section.
 
 ## Common mistakes
 
 - **Hardcoding `lang="en"` early "to get something working," then forgetting to make it dynamic before shipping.**
-- **Using physical CSS properties (`margin-left`) throughout, then discovering the entire theme needs a parallel RTL stylesheet** instead of one working automatically.
-- **Forgetting to mirror directional icons** — a "next" chevron pointing the wrong way in RTL is a subtle but very visible bug.
-- **Hardcoding internal links with `/` prefixes**, which silently break the moment a store adds a second language and Shopify starts prefixing localized URLs.
+- **Using physical CSS properties (`margin-left`) everywhere, then discovering you need a whole separate RTL stylesheet** instead of one that just works automatically.
+- **Forgetting to mirror directional icons.** A "next" chevron pointing the wrong way in RTL is a subtle but very visible bug.
+- **Hardcoding internal links with `/` prefixes.** These quietly break the moment a store adds a second language, because Shopify starts prefixing localized URLs.
 
 ## Quick Reference
 
@@ -127,6 +127,6 @@ Arabic, Hebrew, and other right-to-left languages are common in Shopify Markets.
 
 ## Further Reading
 
-- [Selling in multiple languages](https://shopify.dev/docs/storefronts/themes/markets/multiple-currencies-languages) — shopify.dev
-- [Country/language selector UX](https://shopify.dev/docs/storefronts/themes/markets/country-language-ux) — shopify.dev
-- [Locale files](https://shopify.dev/docs/storefronts/themes/architecture/locales) — shopify.dev
+- [Selling in multiple languages](https://shopify.dev/docs/storefronts/themes/markets/multiple-currencies-languages) (shopify.dev)
+- [Country/language selector UX](https://shopify.dev/docs/storefronts/themes/markets/country-language-ux) (shopify.dev)
+- [Locale files](https://shopify.dev/docs/storefronts/themes/architecture/locales) (shopify.dev)

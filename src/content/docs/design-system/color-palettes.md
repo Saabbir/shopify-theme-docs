@@ -1,37 +1,53 @@
 ---
 title: "Color Palettes: the color_palette Setting"
-description: Shopify's newer, flatter alternative to hand-rolling brand colors as separate settings — one shared grid merchants edit directly.
+description: Shopify's newer color_palette setting, one shared grid of brand colors that merchants edit directly, instead of separate color settings.
 ---
 
-Shopify shipped a new theme setting type, `color_palette`, in the [Spring '26 Edition](https://shopify.dev/changelog/color-palettes) (June 17, 2026). It's a genuinely new mechanism, not a rename of something existing — worth a dedicated page since it changes how a theme's color system should be modeled going forward, and this handbook's [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) and [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) both predate it.
+Shopify added a new theme setting type called `color_palette` in the [Spring '26 Edition](https://shopify.dev/changelog/color-palettes) (June 17, 2026). A "theme setting type" is just a category of option that shows up in the Shopify theme editor, like a color picker or a text box. This one is brand new, not a renamed version of something that already existed.
 
-:::note[Status against our own scaffold, verified directly]
-As of this writing, [Skeleton Theme](https://github.com/Shopify/skeleton-theme) — what we actually scaffold from — does **not** use `color_palette` yet; its `config/settings_schema.json` still defines colors as plain, separate `color` settings. Horizon (Shopify's flagship reference theme, version 4.0.0+) uses the palette system throughout, per [Shopify's own changelog entry](https://shopify.dev/changelog/color-palettes). So this is an available, Shopify-recommended upgrade to adopt deliberately on Solis — not something that arrives for free the next time you re-scaffold. Don't take our word for either claim; both are the kind of platform-version fact worth reconfirming against the live repos if meaningful time has passed since this was written.
+It changes how you should think about a theme's color system going forward, so it gets its own page here. Keep in mind that this handbook's [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) and [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) pages were written before `color_palette` existed.
+
+:::note[Where our scaffold stands right now]
+As of this writing, [Skeleton Theme](https://github.com/Shopify/skeleton-theme) (the theme we use as a starting point for new projects) does **not** use `color_palette` yet. Its `config/settings_schema.json` still defines colors as separate, plain `color` settings.
+
+Horizon, Shopify's flagship example theme (version 4.0.0 and up), uses the palette system throughout. See [Shopify's changelog entry](https://shopify.dev/changelog/color-palettes) for proof. So this is an upgrade Shopify recommends, but you need to add it to Solis on purpose. It won't just appear the next time you re-scaffold your project.
+
+Don't just take our word for these two facts. Both depend on which version you're using, so check them against the live repos yourself if a lot of time has passed since this was written.
 :::
 
 ## What it actually is
 
-A `color_palette` setting defines **one shared grid of named colors** for the whole theme. Merchants see and edit this grid directly in the theme editor, and any `color` or `color_background` setting anywhere in the theme — a section's heading color, a block's background — can reference a palette entry as its default. Change "primary" once in the palette, and every setting that defaulted to it updates together.
+A `color_palette` setting creates **one shared grid of named colors** for the whole theme. Think of it like a paint swatch board that lives in one place. Merchants see this grid and can edit it directly in the theme editor.
 
-This solves a specific, real problem the old pattern had: modeling "primary," "secondary," "accent" as separate, independent `color` settings (as [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) previously showed) gives a merchant no single place to see or edit the theme's whole color story at once, and gives you no built-in mechanism for one section's `color` setting to default to "whatever the theme's primary brand color currently is" — you'd have to hardcode a hex value as that setting's default and hope it stayed in sync.
+Any `color` or `color_background` setting anywhere in the theme, like a section's heading color or a block's background, can point to a color in this palette and use it as its starting value (called a "default"). Change "primary" once in the palette, and every setting that used it as a default updates too, automatically.
+
+This solves a real problem with the old approach. Before, you'd model "primary," "secondary," and "accent" as separate `color` settings, as shown in [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/). That gave merchants no single place to see or edit the theme's whole color story.
+
+It also gave you no easy way for a section's `color` setting to default to "whatever the theme's primary brand color currently is." Without a palette, you had to hardcode (type a fixed value straight into the code) a hex color code (a six-character code that stands for one exact color, like #1a5f4f) as the default, and just hope it stayed in sync with the real primary color.
 
 ## What it is not
 
-`color_palette` doesn't replace [`color_scheme_group`](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes) — Shopify's mechanism for merchant-selectable **color schemes** (e.g. "Scheme 1," "Scheme 2," a dark variant), each a full bundle of `header`/`color`/`color_background` fields a section can pick between via a `color_scheme` setting. That mechanism still works, isn't deprecated, and isn't required to migrate. The two are complementary, not either/or:
+`color_palette` doesn't replace [`color_scheme_group`](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes). That's a different Shopify feature (a "mechanism" just means a built-in tool or system) that lets merchants pick between full **color schemes**, like "Scheme 1," "Scheme 2," or a dark version of the theme.
+
+Each scheme is a full bundle of `header`/`color`/`color_background` fields. A section picks between schemes using a `color_scheme` setting. This feature still works fine today. It isn't going away, and you don't need to switch away from it.
+
+The two features work together, instead of being alternatives to each other. Here's how they compare:
 
 | | `color_palette` | `color_scheme_group` |
 |---|---|---|
-| What it is | One flat grid of named raw colors | Multiple full, swappable schemes (each its own bundle of roles) |
-| Merchant sees | A single color grid, editable directly | A picker choosing between named schemes, applied per-section |
-| Typical use | The theme's actual brand colors — "primary," "accent," "secondary" | "Scheme 1 is light, Scheme 2 is dark, Scheme 3 is high-contrast," selectable per-section |
+| What it is | One flat grid of named raw colors | Several full, swappable color schemes, each its own bundle of roles |
+| Merchant sees | A single color grid they can edit directly | A picker for choosing between named schemes, applied per section |
+| Typical use | The theme's actual brand colors, like "primary," "accent," and "secondary" | "Scheme 1 is light, Scheme 2 is dark, Scheme 3 is high contrast," picked per section |
 | Can reference the other? | A `color_scheme_group`'s individual `color`/`color_background` fields can default to a palette entry | A `color_scheme` setting doesn't reference `color_palette` directly |
-| Required for Theme Store? | No — recommended for new themes, not required | No — still fully valid |
+| Required for Theme Store? | No, it's recommended for new themes but not required | No, this is still fully valid |
 
-A theme can reasonably use both: a `color_palette` holding the actual brand colors, and one or more `color_scheme_group` schemes whose individual fields default to those palette entries — so a merchant editing "primary" in the palette ripples into every scheme that defaulted to it, without losing per-scheme override flexibility.
+A theme can use both at once, and that's perfectly normal. You might have a `color_palette` holding your actual brand colors, plus one or more `color_scheme_group` schemes whose individual fields default to those palette entries.
+
+That way, when a merchant edits "primary" in the palette, the change flows into every scheme that used it as a default. Merchants can still override individual scheme colors on their own if they want to.
 
 ## Defining the palette
 
-Exactly **one** `color_palette` per theme, and it must live in `config/settings_schema.json`:
+Every theme can have exactly **one** `color_palette` setting, and it has to live in `config/settings_schema.json`:
 
 ```json
 {
@@ -46,29 +62,29 @@ Exactly **one** `color_palette` per theme, and it must live in `config/settings_
 }
 ```
 
-Constraints worth knowing before you hit them as confusing errors:
+Here are a few rules worth knowing now. Learning them now saves you from confusing error messages later:
 
-- **Only `id` is a supported standard attribute** — `label`, `info`, and `visible_if` aren't supported on this setting type. You can't scope a palette's visibility or give it a custom editor label; the editor renders it with its own fixed UI.
-- **`default` is the only additional attribute, and it's required** — an object of key → hex-color pairs. Keys must start with a letter and can contain letters, digits, and underscores (`primary`, `accent_2` — not `2nd-color`, not `accent-color` with a hyphen).
-- **Values must be plain hex, no alpha channel** — `#1a5f4f` or `#1a5` are valid; `#1a5f4fcc` (8-digit, with alpha) is not.
-- **Between 2 and 20 entries.** At least two colors are required; more than twenty isn't supported.
-- **Colors render in the order they appear in the JSON** — order deliberately, since that's the order merchants see in the editor grid.
+- **`id` is the only standard attribute supported.** Attributes like `label`, `info`, and `visible_if` (settings that control labels or visibility on other setting types) don't work here. You can't change how it's shown or hide it. The editor always displays it with its own fixed layout.
+- **`default` is the only other attribute, and you must include it.** It's an object that pairs a name (the "key") with a hex color. Keys must start with a letter, and can only contain letters, numbers, and underscores. So `primary` and `accent_2` work, but `2nd-color` and `accent-color` (which has a hyphen) don't.
+- **Values must be plain hex colors, with no alpha channel.** An "alpha channel" is the part of a color code that controls transparency. `#1a5f4f` and `#1a5` are fine, but `#1a5f4fcc` (which has 8 digits, including alpha) is not allowed.
+- **You need between 2 and 20 entries.** You must have at least two colors, and you can't go over twenty.
+- **Colors show up in the order you write them in the JSON.** Order them on purpose, because that's the exact order merchants will see them in the editor grid.
 
 ## Reading palette values in Liquid
 
-Access an individual color the same way you'd navigate any nested setting — `settings.<palette-id>.<key>`:
+You read one color from the palette the same way you'd read any nested setting (a setting stored inside another setting): `settings.<palette-id>.<key>`.
 
 ```liquid
 {{ settings.colors.primary }}
 ```
 
-This returns a full [`color` object](https://shopify.dev/docs/api/liquid/objects/color) — the same type a plain `color` setting returns — so every color filter still works on it exactly as before:
+This gives you back a full [`color` object](https://shopify.dev/docs/api/liquid/objects/color), the same type of value a plain `color` setting returns. That means every color filter (a tool that transforms a color, like making it lighter or darker) still works on it, exactly like before:
 
 ```liquid
 {%- assign primary_hover = settings.colors.primary | color_darken: 10 -%}
 ```
 
-You can also iterate the whole palette, though only the color values are exposed during iteration, not their keys:
+You can also loop through the whole palette to get every color at once. Keep in mind that looping only gives you the color values, not their names (the "keys"):
 
 ```liquid
 {% for color in settings.colors %}
@@ -78,7 +94,7 @@ You can also iterate the whole palette, though only the color values are exposed
 
 ## Cross-setting references: the actual point of this feature
 
-A `color` or `color_background` setting anywhere in the theme can use a palette entry as its **default**, via a Liquid output tag:
+Any `color` or `color_background` setting in the theme can use a palette entry as its **default** value. You do this with a Liquid output tag (the `{{ }}` syntax that prints a value):
 
 ```json
 {
@@ -89,7 +105,7 @@ A `color` or `color_background` setting anywhere in the theme can use a palette 
 }
 ```
 
-For `color_background`, a palette reference can be embedded inside a gradient string:
+For `color_background`, you can place a palette reference inside a gradient string (the text that describes a color gradient):
 
 ```json
 {
@@ -100,20 +116,22 @@ For `color_background`, a palette reference can be embedded inside a gradient st
 }
 ```
 
-This is the whole reason to reach for `color_palette` over a plain hardcoded hex default: a section's `heading_color` setting now defaults to "whatever the palette's `primary` currently is," not a hex value frozen at the moment you wrote the schema. A merchant who changes "primary" in the palette sees every setting that referenced it update to match — no hunting down every section/block that happened to hardcode the same hex value.
+This is the whole reason to use `color_palette` instead of typing a fixed hex value as the default. A section's `heading_color` setting now defaults to "whatever the palette's `primary` currently is," instead of a color frozen at the moment you wrote the schema.
 
-One restriction: **only `color_palette` access paths are supported as dynamic defaults.** You can't set a `color` setting's default to reference another arbitrary setting (`{{ settings.some_other_color }}`) — only a palette entry.
+When a merchant changes "primary" in the palette, every setting that referenced it updates to match automatically. You don't have to search through every section or block that happened to use the same hex color.
+
+One restriction worth knowing: **only `color_palette` entries can be used as dynamic defaults** (defaults that update automatically when the source changes). You can't set a `color` setting's default to point at just any other setting, like `{{ settings.some_other_color }}`. It only works with a palette entry.
 
 ## What happens on theme updates and merchant edits
 
-Two behaviors worth knowing before they surprise you mid-project:
+Here are two behaviors worth knowing about now, so they don't surprise you halfway through a project:
 
-- **Adding a new key to the palette's `default` in a theme update** makes that color appear automatically in the merchant's palette grid, without disturbing colors they've already customized — their edited values are stored in `settings_data.json` and always take precedence over your schema defaults.
-- **When a merchant deletes a palette color in the editor**, Shopify doesn't just remove it — it prompts them to pick a replacement color, then stores the deleted color's value as a reference to that replacement (e.g. `{{ settings.colors.accent }}`). Every setting that had defaulted to the deleted color keeps working, now pointing at the replacement, without you needing to hunt down and update every template that referenced it.
+- **If you add a new key to the palette's `default` in a theme update**, that color shows up automatically in the merchant's palette grid. It won't touch any colors they've already customized, because their edited values are saved in `settings_data.json` (the file that stores what a merchant actually chose) and always take priority over your schema defaults.
+- **If a merchant deletes a palette color in the editor**, Shopify doesn't just remove it and leave things broken. It asks the merchant to pick a replacement color, then saves the deleted color's value as a reference to that replacement, like `{{ settings.colors.accent }}`. Every setting that used to default to the deleted color keeps working. It just points to the replacement now, so you don't have to search for and fix every template that used it.
 
 ## A worked example: adopting it for a fresh settings schema
 
-Building on the same `testimonials` example from [Complete Worked Example](/codebase-structure/complete-worked-example/) — here's how its section would define and use a palette instead of a hardcoded hex default:
+Let's build on the same `testimonials` example from [Complete Worked Example](/codebase-structure/complete-worked-example/). Here's how that section would define and use a palette, instead of a fixed hex default:
 
 ```json
 // config/settings_schema.json (excerpt)
@@ -151,45 +169,49 @@ Building on the same `testimonials` example from [Complete Worked Example](/code
 </cite>
 ```
 
-Nothing about *reading* the setting in Liquid changes — `block.settings.author_color` still behaves like any `color` setting. What changed is where its default comes from, and that a merchant now has one place (the palette grid) to adjust the theme's whole color story instead of hunting through every section/block for a hardcoded hex.
+Nothing about *reading* the setting in Liquid changes. `block.settings.author_color` still behaves exactly like any `color` setting.
+
+What's different is where its default value comes from. The merchant now has one place, the palette grid, to adjust the theme's whole color story. They don't have to hunt through every section and block looking for a hardcoded hex value.
 
 ## Should Solis adopt this now?
 
-Yes, for new settings work — per Shopify's own guidance, `color_palette` is the recommended approach for a theme's shared brand colors going forward, and it directly solves the "no single place to edit brand colors" gap the old separate-`color`-settings pattern had. Concretely:
+Yes, for new settings work. Shopify itself recommends `color_palette` as the standard way to handle a theme's shared brand colors going forward. It directly solves the "no single place to edit brand colors" problem that the old approach, using separate `color` settings, had.
 
-- **New theme-wide color settings**: define them via `color_palette`, not as separate individual `color` settings, unless there's a specific reason a color shouldn't be part of the shared palette (a genuinely one-off, non-brand color used in exactly one place).
-- **Existing separate `color` settings already shipped**: don't rush to migrate them just because this feature exists — see [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/) on why changing/removing a shipped setting `id` is a breaking change. Migrate deliberately, as a planned change with its own PR, not as a drive-by while touching unrelated code.
-- **`color_scheme_group` usage**: keep it where you're already modeling genuinely swappable multi-scheme presets (light/dark/high-contrast) — `color_palette` doesn't replace that use case, though its individual fields can still default to palette entries.
+In practice, that means:
+
+- **For new theme-wide color settings**, define them with `color_palette`, not as separate individual `color` settings. The only exception is when you have a good reason a color shouldn't be part of the shared palette, like a genuinely one-off color used in exactly one place, that isn't part of your brand colors.
+- **For separate `color` settings you've already shipped**, don't rush to migrate them just because this feature exists. See [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/) to learn why changing or removing a shipped setting `id` (its unique name) is a breaking change. If you migrate, treat it as its own planned change with its own pull request, not something you slip in while touching unrelated code.
+- **For `color_scheme_group` usage**, keep using it wherever you're already modeling truly swappable multi-scheme presets, like light, dark, and high-contrast versions. `color_palette` doesn't replace that use case, though individual scheme fields can still default to palette entries.
 
 ## Best practices
 
-- Default to `color_palette` for any new theme-wide brand color setting, rather than a standalone `color` setting with a hardcoded hex default.
-- Name palette keys after role (`primary`, `accent`, `text`), the same naming discipline as [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) — never after appearance or a specific hex value.
-- Reference the palette from individual `color`/`color_background` defaults wherever a setting's color should track the theme's brand colors, instead of freezing a hex value at write-time.
-- Reconfirm this feature's current spec against [shopify.dev's own docs](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) before relying on details here — it shipped recently enough that specifics can still evolve.
+- Use `color_palette` by default for any new theme-wide brand color setting, instead of a standalone `color` setting with a hardcoded hex default.
+- Name palette keys after their role, like `primary`, `accent`, or `text`. This is the same naming rule used in [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/). Never name a key after how it looks or its exact hex value.
+- Point individual `color`/`color_background` defaults at the palette whenever a setting's color should follow the theme's brand colors, instead of locking in a fixed hex value when you write the schema.
+- Double-check this feature's current details against [shopify.dev's own docs](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) before relying on what's written here. It shipped recently, so details may still change.
 
 ## Common mistakes
 
-- **Assuming `color_palette` replaces `color_scheme_group`** — they solve different problems (one shared color grid vs. multiple swappable full schemes) and are meant to be used together, not as alternatives.
-- **Adding a `label`, `info`, or `visible_if` to a `color_palette` setting** and being confused when it's ignored — none of those attributes are supported on this setting type.
-- **Using an 8-digit hex with alpha** in a palette's `default` — only 6-digit (or 3-digit) hex without an alpha channel is supported.
-- **Migrating already-shipped `color` settings to reference the palette as a drive-by change** — treat it as its own deliberate, reviewed change, since it touches shipped setting defaults merchants may already have customized.
-- **Assuming Skeleton Theme (our scaffold) already includes this** — verify against the live repo before assuming; as of this writing it doesn't.
+- **Assuming `color_palette` replaces `color_scheme_group`.** They solve different problems, one shared color grid versus several swappable full schemes, and they're meant to be used together, not as alternatives.
+- **Adding a `label`, `info`, or `visible_if` to a `color_palette` setting**, then wondering why it's ignored. None of those attributes work on this setting type.
+- **Using an 8-digit hex value with alpha** in a palette's `default`. Only a 6-digit (or 3-digit) hex code without transparency is supported.
+- **Migrating already-shipped `color` settings to reference the palette as a quick, unplanned change.** Treat this as its own deliberate, reviewed change instead, since it touches shipped setting defaults that merchants may have already customized.
+- **Assuming Skeleton Theme, our scaffold, already includes this.** Check the live repo before assuming. As of this writing, it doesn't.
 
 ## Quick Reference
 
-- One `color_palette` per theme, in `settings_schema.json` only. Only `id` (required) and `default` (required, 2–20 hex-color key/value pairs, no alpha) are supported — no `label`, `info`, or `visible_if`.
-- Access via `settings.<id>.<key>`, returns a full `color` object — every color filter still works.
-- `color`/`color_background` settings can default to a palette entry: `"default": "{{ settings.colors.primary }}"` — only palette references are supported as dynamic defaults.
-- Complementary to `color_scheme_group`, not a replacement — a scheme's individual fields can still default to palette entries.
-- New palette keys auto-appear on theme update; merchant customizations always win. Deleting a palette color prompts a replacement and preserves existing references.
-- Skeleton Theme doesn't use it yet (verified); Horizon 4.0.0 does. Adopt it deliberately for new Solis settings work.
+- One `color_palette` per theme, and it only lives in `settings_schema.json`. Only `id` (required) and `default` (required, 2 to 20 hex-color pairs, no alpha) are supported. No `label`, `info`, or `visible_if`.
+- Read it with `settings.<id>.<key>`. It returns a full `color` object, so every color filter still works.
+- `color`/`color_background` settings can default to a palette entry, like `"default": "{{ settings.colors.primary }}"`. Only palette references work as dynamic defaults.
+- It works alongside `color_scheme_group`, not instead of it. A scheme's individual fields can still default to palette entries.
+- New palette keys show up automatically after a theme update. Merchant customizations always win. Deleting a palette color prompts the merchant for a replacement and keeps existing references working.
+- Skeleton Theme doesn't use it yet, we checked directly. Horizon 4.0.0 does. Adopt it deliberately for new Solis settings work.
 
 ## Further Reading
 
-- [Color palettes in Themes](https://shopify.dev/changelog/color-palettes) — shopify.dev developer changelog, the original announcement
-- [`color_palette` developer documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) — shopify.dev, the full input-settings reference
-- [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes) — shopify.dev, the `color_scheme_group`/`color_scheme` mechanism this complements
-- [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) — the semantic-naming discipline that applies equally to palette keys
-- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) — mapping a Figma color collection onto a palette instead of separate settings
-- [Complete Worked Example](/codebase-structure/complete-worked-example/) — the full section/block/schema example this page's worked example builds on
+- [Color palettes in Themes](https://shopify.dev/changelog/color-palettes), the shopify.dev developer changelog with the original announcement
+- [`color_palette` developer documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette), the full shopify.dev input-settings reference
+- [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes), shopify.dev's page on the `color_scheme_group`/`color_scheme` mechanism this complements
+- [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/), the semantic-naming approach that applies equally to palette keys
+- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/), on mapping a Figma color collection onto a palette instead of separate settings
+- [Complete Worked Example](/codebase-structure/complete-worked-example/), the full section/block/schema example this page's worked example builds on

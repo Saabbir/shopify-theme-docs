@@ -1,92 +1,92 @@
 ---
 title: Glossary
-description: Every term this handbook uses, defined once, grouped by topic.
+description: Every term this handbook uses, explained once, grouped by topic.
 ---
 
-## Shopify theme architecture
+## How a Shopify theme is put together
 
-**Skeleton Theme** — Shopify's official, minimal starting codebase, the only Shopify-provided base eligible for Theme Store submission. See [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/).
+**Skeleton Theme**: Shopify's official starter theme. It's simple and bare-bones, and it's the only Shopify-made theme you're allowed to start from for a Theme Store submission. See [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/).
 
-**Horizon** — Shopify's newest reference theme, showcasing current architecture (nested theme blocks, `@theme`/`@app` targeting). Not eligible as a Theme Store submission base — used here as an architectural reference only.
+**Horizon**: Shopify's newest reference theme. It shows the current way Shopify wants themes built, using nested theme blocks and `@theme`/`@app` targeting. You can't use it as a base for a Theme Store submission. It's for reference only.
 
-**Dawn** — Shopify's previous-generation reference theme (OS 2.0, but pre-nested-blocks architecture). Also not eligible as a submission base.
+**Dawn**: Shopify's previous reference theme. It uses OS 2.0 (Shopify's Online Store 2.0 theme framework), but it was built before nested blocks existed. Like Horizon, you can't use it as a submission base.
 
-**Theme block** — A merchant-addable, reorderable, removable unit of content living in `/blocks`, targeted into a section via `@theme`/`@app`. See [Theme Blocks & Nesting](/codebase-structure/theme-blocks/).
+**Theme block**: A piece of content that lives in the `/blocks` folder. Merchants can add it, move it, or remove it inside a section. A section pulls it in using `@theme`/`@app` targeting. See [Theme Blocks & Nesting](/codebase-structure/theme-blocks/).
 
-**Section** — A configurable region of a template, with its own settings and (optionally) blocks. See [Sections & Section Groups](/codebase-structure/sections-and-section-groups/).
+**Section**: A part of a template that merchants can configure. It has its own settings, and it can hold blocks if you want it to. See [Sections & Section Groups](/codebase-structure/sections-and-section-groups/).
 
-**Section group** — A JSON file defining a reusable arrangement of sections (e.g. the header or footer), shared across templates.
+**Section group**: A JSON file that defines a reusable layout of sections, like a header or footer, that many templates share.
 
-**Snippet** — A reusable piece of Liquid, invoked via `{% render %}` with explicit parameters — no merchant-editable settings of its own.
+**Snippet**: A reusable piece of Liquid code. You call it with `{% render %}` and pass it the values it needs. Unlike a section or block, it has no settings a merchant can edit.
 
-**`@theme` / `@app` block targeting** — Schema syntax letting a section accept theme blocks (`@theme`) and/or app blocks (`@app`) generically, instead of a fixed list of specific block types.
+**`@theme` / `@app` block targeting**: Schema syntax that lets a section accept any theme block (`@theme`) or app block (`@app`), instead of listing each allowed block type by name.
 
-**Presets** — A schema array (on a section or block) defining default configurations that appear in the theme editor's "Add section/block" picker. Without at least one preset, a block never appears in the picker.
+**Presets**: A list in a section's or block's schema that sets its default settings. These presets are what show up in the theme editor's "Add section/block" picker. If a block has no preset, it never appears in that picker.
 
 ## Liquid
 
-**`{% render %}`** — The current, correct way to invoke a snippet with explicit parameters. Replaces the deprecated `{% include %}`.
+**`{% render %}`**: The correct, modern way to call a snippet and pass it the values it needs. It replaces the older `{% include %}` tag.
 
-**`{% include %}`** — Deprecated. Leaks the calling scope's variables into the included file; never use it.
+**`{% include %}`**: An older tag that Shopify no longer recommends. Don't use it. It leaks variables from the calling code into the included file, and that causes bugs.
 
-**LiquidDoc** — The `{%- doc -%}` comment convention documenting a snippet's parameters.
+**LiquidDoc**: The `{%- doc -%}` comment style you use to document what a snippet expects.
 
-**Whitespace control** — The `{%-`/`-%}` hyphen syntax that strips surrounding whitespace from a tag's output.
+**Whitespace control**: The `{%-`/`-%}` hyphen syntax. It removes the extra blank space a tag would otherwise leave in the final output.
 
-**Global object** — A Liquid object available across many templates (`product`, `collection`, `cart`, `shop`, `routes`, `settings`, `request`, `localization`). See [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/).
+**Global object**: A Liquid object you can use in many templates, like `product`, `collection`, `cart`, `shop`, `routes`, `settings`, `request`, and `localization`. See [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/).
 
 ## CSS & JavaScript
 
-**Custom property** — A CSS variable (`--name: value`), resolved at render time, the mechanism for exposing a single merchant setting as one CSS value.
+**Custom property**: A CSS variable, written as `--name: value`. The browser fills in its value when the page loads, and it's how we turn one merchant setting into one CSS value.
 
-**Logical property** — A direction-aware CSS property (`margin-inline-start` vs. `margin-left`) that flips correctly under RTL layout.
+**Logical property**: A CSS property that adjusts to text direction, like `margin-inline-start` instead of `margin-left`. It flips automatically when the layout runs right-to-left (RTL), like Arabic or Hebrew.
 
-**`{% stylesheet %}` / `{% javascript %}`** — Liquid tags scoping CSS/JS to the component file they're written in; deduplicated and only loaded on pages where that component renders.
+**`{% stylesheet %}` / `{% javascript %}`**: Liquid tags that keep CSS and JS tied to the component file they're written in. Shopify removes duplicate output automatically, and the code only loads on pages where that component actually shows up.
 
-**Web Component** — A native browser API (Custom Elements) for building encapsulated, reusable interactive components without a framework.
+**Web Component**: A browser feature (also called Custom Elements) for building a self-contained, reusable, interactive component without needing a framework like React or Vue.
 
-**Custom Element lifecycle** — The sequence of methods (`constructor`, `connectedCallback`, `disconnectedCallback`, `attributeChangedCallback`) the browser calls automatically on a Web Component.
+**Custom Element lifecycle**: The set of methods (`constructor`, `connectedCallback`, `disconnectedCallback`, `attributeChangedCallback`) the browser calls automatically as a Web Component is created, added to the page, or removed.
 
-**Progressive enhancement** — Building a component so its underlying markup works without JS, with JS adding enhanced behavior on top rather than being required for basic function.
+**Progressive enhancement**: Building a component so its basic markup works even without JavaScript. JavaScript then adds extra behavior on top, instead of being the only thing that makes it work.
 
 ## AI-assisted development
 
-**AGENTS.md** — The open, cross-tool convention for a single-source-of-truth AI rules file. `shopify theme init` generates it automatically (with AI agent support selected), read natively by Cursor; Claude Code and Copilot read it via symlinked `CLAUDE.md`/`.github/copilot-instructions.md`.
+**AGENTS.md**: An open file format for one shared set of AI rules that every AI tool can read. Running `shopify theme init` creates it for you if you turn on AI agent support. Cursor reads it directly. Claude Code and Copilot read it through symlinked `CLAUDE.md` and `.github/copilot-instructions.md` files.
 
-**`.cursor/rules/*.mdc`** — Cursor's rule file format; supports `globs`-based auto-attach (a rule only loads when editing matching files). Optional/legacy now that Cursor reads `AGENTS.md` natively.
+**`.cursor/rules/*.mdc`**: Cursor's own rule file format. It supports `globs`, so a rule only loads when you're editing a matching file. It's now optional and mostly legacy, since Cursor can read `AGENTS.md` directly.
 
-**`CLAUDE.md`** — Claude Code's rules file, read automatically at repo root. In this project, it's a symlink to `AGENTS.md`, not separate content — see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/).
+**`CLAUDE.md`**: Claude Code's rules file. Claude Code reads it automatically from the root of the repo. In this project it's a symlink to `AGENTS.md`, not separate content of its own. See [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/).
 
-**Custom slash command** — A Markdown file at `.claude/commands/<name>.md` invokable as `/<name>` in Claude Code.
+**Custom slash command**: A Markdown file at `.claude/commands/<name>.md` that you can run as `/<name>` inside Claude Code.
 
-**Figma MCP server** — Figma's remote MCP (Model Context Protocol) server, giving MCP-aware AI tools structured design data (components, variables, layout) instead of just a screenshot.
+**Figma MCP server**: Figma's remote MCP server. MCP stands for Model Context Protocol, a way for AI tools to talk to outside data sources. This server gives MCP-aware AI tools structured design data, like components, variables, and layout, instead of just a screenshot to guess from.
 
-**Figma Dev Mode** — A mode in the Figma app exposing an inspector panel (exact spacing, tokens, exportable code) for anyone reading a design, human or (via MCP) AI tool.
+**Figma Dev Mode**: A mode in the Figma app that shows an inspector panel with exact spacing, tokens, and exportable code. It's useful for anyone reading a design, whether that's a person or an AI tool through MCP.
 
-**Code Connect** — A Figma feature linking design components to their real code counterparts, so tooling can detect an existing implementation instead of generating a duplicate.
+**Code Connect**: A Figma feature that links design components to the real code that builds them. It lets tooling detect that code already exists for a component, instead of generating a duplicate.
 
 ## Theme Store & publishing
 
-**Theme Check** — Shopify's official linter for Liquid/theme code, configured via `.theme-check.yml`.
+**Theme Check**: Shopify's official tool for checking Liquid and theme code for mistakes (this kind of tool is called a linter). You configure it in `.theme-check.yml`.
 
-**Lighthouse** — Google's page-quality auditing tool; Theme Store requires Performance ≥ 60 and Accessibility ≥ 90.
+**Lighthouse**: Google's tool for checking a page's quality. The Theme Store requires a Performance score of 60 or higher, and an Accessibility score of 90 or higher.
 
-**`.shopifyignore`** — Excludes files from Shopify CLI push/pull/package operations, distinct from `.gitignore`.
+**`.shopifyignore`**: Tells the Shopify CLI which files to skip during push, pull, and package. It's separate from `.gitignore`, which is for Git.
 
-**Semantic versioning (`X.Y.Z`)** — The major/minor/patch versioning scheme required for theme updates. See [After Approval](/publishing/after-approval/).
+**Semantic versioning (`X.Y.Z`)**: The version numbering pattern (major.minor.patch) that theme updates must follow. See [After Approval](/publishing/after-approval/).
 
-**Metaobject / metafield** — Shopify's custom-data structures; Theme Store themes may only reference standard (non-custom, non-app-owned) metaobject definitions in settings.
+**Metaobject / metafield**: Shopify's structures for storing custom data. A Theme Store theme can only reference standard metaobject definitions in its settings. It can't reference custom ones, or ones an app owns.
 
-**App block** — A block type an app can inject into a section that accepts `@app` targeting — required in main product/featured product sections for Theme Store review.
+**App block**: A block type that an app can add into a section that accepts `@app` targeting. Theme Store review requires that your main product section and featured product section both accept app blocks.
 
-## Build tooling (optional/alternative)
+## Optional build tools
 
-**Vite** — A frontend build tool/dev server; used with `vite-plugin-shopify` (or similar) by teams using the [Tailwind/Alpine build setup](/tooling-config/tailwind-and-alpine-build-setup/).
+**Vite**: A frontend build tool and dev server. Teams using the [Tailwind/Alpine build setup](/tooling-config/tailwind-and-alpine-build-setup/) pair it with `vite-plugin-shopify` or a similar plugin.
 
-**Tailwind CSS** — A utility-first CSS framework; an alternative to this handbook's default native-CSS approach.
+**Tailwind CSS**: A CSS framework built around small utility classes. It's an alternative to this handbook's default approach of writing plain CSS.
 
-**Alpine.js** — A small, framework-like reactive JS library used inline in markup; an alternative to this handbook's default Web Component approach.
+**Alpine.js**: A small JavaScript library you use inline in your markup, similar to a lightweight framework. It's an alternative to this handbook's default approach of using Web Components.
 
 ## Further Reading
 
-- [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) — shopify.dev
+- [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

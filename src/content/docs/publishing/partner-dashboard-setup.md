@@ -3,15 +3,17 @@ title: Partner Dashboard Setup
 description: The accounts and access you need before you can submit anything.
 ---
 
+The Partner Dashboard is a website where you manage everything related to your theme business: your stores, your submissions, and your account settings. Think of it as your control room. Before you can submit a theme, you need a few things set up inside it.
+
 :::note[Flagging this clearly]
-Partner Dashboard's sign-up flow and screens change fairly often. The account types and general flow below are accurate as of this writing, but confirm the exact current steps at [partners.shopify.com](https://www.shopify.com/partners) before you rely on this page for a real submission.
+Shopify changes the Partner Dashboard sign-up flow and screens fairly often. The account types and general steps below are correct as of when this was written, but check the exact current steps at [partners.shopify.com](https://www.shopify.com/partners) before you rely on this page for a real submission.
 :::
 
 ## Accounts you need
 
-- **Shopify Partner account** — free, sign up at [partners.shopify.com](https://www.shopify.com/partners). This is where you manage theme submissions, development stores, and client stores.
-- **A development store** — your working sandbox, created from the Partner Dashboard, used throughout [Getting Started](/getting-started/) and [Scaffold Setup](/scaffold-setup/).
-- **A Client transfer store** — required specifically for your demo store (see [Store & Design Requirements](/theme-store-requirements/store-and-design/)). Development stores with developer previews enabled can't be transferred, so plan which store type you're using for which purpose ahead of time.
+- **Shopify Partner account**: this is free. Sign up at [partners.shopify.com](https://www.shopify.com/partners). You'll use this account to manage theme submissions, development stores, and client stores.
+- **A development store**: this is your working sandbox, a store you can build and test in without any risk to a real merchant. Create it from the Partner Dashboard. You'll use it throughout [Getting Started](/getting-started/) and [Scaffold Setup](/scaffold-setup/).
+- **A Client transfer store**: you need this specifically for your demo store (see [Store & Design Requirements](/theme-store-requirements/store-and-design/)). Development stores with developer previews turned on can't be transferred, so decide ahead of time which store type you'll use for which purpose.
 
 | ✅ Do | ❌ Don't |
 |---|---|
@@ -30,31 +32,31 @@ Partner Dashboard's sign-up flow and screens change fairly often. The account ty
 
 ## Email matters more than you'd think
 
-Shopify's review team contacts you at whatever email is on your theme's **Theme submission contact email** field — not necessarily your account email. Add `themes@shopify.com` and `noreply@shopify.com` to your allowed senders list, or a rejection notice or request for changes can land in spam and quietly stall your submission.
+Shopify's review team emails whatever address is in your theme's **Theme submission contact email** field. Note that this isn't necessarily the same as your account email. Add `themes@shopify.com` and `noreply@shopify.com` to your allowed senders list. Otherwise, a rejection notice or a request for changes could land in spam and quietly stall your submission.
 
 ### A concrete scenario this actually prevents
 
-A common, entirely avoidable delay: a theme sits in "changes requested" status for two extra weeks because the notification email landed in a spam folder nobody checked, and the team assumed review was simply slow. Whitelisting Shopify's sender addresses and checking the Partner Dashboard status directly (not just waiting for an email) avoids this specific failure mode.
+Here's a common, avoidable delay: a theme sits in "changes requested" status for two extra weeks because the notification email landed in a spam folder nobody checked. Meanwhile, the team just assumes review is running slow. Whitelisting Shopify's sender addresses, and checking the Partner Dashboard status directly instead of just waiting for an email, avoids this problem entirely.
 
 ## Best practices
 
-- Set up 2FA on the Partner account immediately — it has billing and submission access, and account compromise here is a genuinely serious problem.
-- Confirm which team member's email is the submission contact *before* submitting, not after — and make sure that person actually checks it regularly during the review window.
-- Check the Partner Dashboard status directly on a regular cadence during review, rather than relying solely on email notifications arriving promptly.
+- Set up two-factor authentication (2FA), an extra login step that uses your phone as well as your password, on your Partner account right away. This account has billing and submission access, so if someone else gets into it, that's a serious problem.
+- Confirm which team member's email is the submission contact before you submit, not after. Make sure that person actually checks their email regularly during the review window.
+- Check the Partner Dashboard status directly on a regular basis during review, instead of relying only on email notifications showing up on time.
 
 ## Common mistakes
 
 - **Discovering account verification takes longer than expected** because setup was left until submission week.
-- **Enabling developer previews on the store meant to become your demo store**, then discovering it can't be transferred as required.
-- **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is simply slow instead of checking the dashboard directly.
+- **Turning on developer previews on the store meant to become your demo store**, then finding out it can't be transferred like you need it to be.
+- **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is just slow instead of checking the dashboard directly.
 
 ## Quick Reference
 
 - Partner account (free) + a dev store + a Client transfer store for your demo.
-- Submission contact email is set per-theme, separate from your login email — whitelist Shopify's sender addresses.
+- Submission contact email is set per theme, separate from your login email. Whitelist Shopify's sender addresses.
 - Check Partner Dashboard status directly during review, don't rely on email alone.
 
 ## Further Reading
 
-- [Shopify Partners](https://www.shopify.com/partners) — shopify.com
-- [Development stores](https://shopify.dev/docs/storefronts/themes/tools/development-stores) — shopify.dev
+- [Shopify Partners](https://www.shopify.com/partners) (shopify.com)
+- [Development stores](https://shopify.dev/docs/storefronts/themes/tools/development-stores) (shopify.dev)

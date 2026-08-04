@@ -1,49 +1,53 @@
 ---
 title: AI-Assisted Development
-description: How we use Cursor / Claude Code, and how we go from Figma to shipped code.
+description: How we use Cursor and Claude Code, and how we go from Figma to shipped code.
 ---
 
-Most of this team's day-to-day theme code is written with an AI coding assistant (Cursor, Claude Code, or GitHub Copilot) in the loop. This section starts with the vocabulary (agents, MCP, skills, commands, subagents, plugins) if any of that is new, then covers keeping every tool's rules consistent from one source, grounding generated Liquid in real platform facts, working with Figma design data directly, turning a Figma design into working sections, automating that process, isolating its noisy sub-steps, and writing prompts that get useful output on the first try.
+Most of our theme code is written with help from an AI coding tool, like Cursor, Claude Code, or GitHub Copilot. This section shows you how to use these tools well.
+
+We'll start with the basic words you need to know, like agent, MCP, skill, command, subagent, and plugin. Don't worry if these sound strange right now, we'll explain each one in plain English.
+
+After that, you'll learn how to keep every tool's rules the same, and how to make sure the AI writes real Liquid code instead of guessing. Liquid is the templating language Shopify themes use to display data on a page. You'll also see how to work with Figma designs directly, turn a Figma design into working code, and automate that process so the messy parts stay out of your way. Last, you'll learn how to write prompts that get good results on the first try.
 
 ## What's on this page group
 
-- [8a. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/) — the vocabulary the rest of this section assumes. Start here if any of it is new.
-- [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) — one source of truth, generated into every tool's format.
-- [8c. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/) — the guideline for changing AGENTS.md over time: order, format, sourcing, testing.
-- [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) — Shopify's own skill that grounds generated Liquid in real platform facts, not guesses.
-- [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — giving Cursor/Claude Code structured design data, not just a screenshot.
-- [8f. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — a repeatable, tool-specific process: plan → build → check → fix → report.
-- [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — turning that process into a single `/figma-to-section` command.
-- [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) — our `theme-check-fixer` subagent, for isolating that process's noisy sub-steps.
-- [8i. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/) — prompt patterns that consistently produce Theme-Store-compliant code.
+- [8a. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/): the basic words used through the rest of this section. Start here if any of them are new to you.
+- [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): one file that holds our rules, written in the format each tool needs.
+- [8c. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): how to change AGENTS.md safely over time.
+- [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): Shopify's own tool that helps the AI write real, working Liquid instead of guessing.
+- [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): how to give Cursor or Claude Code real design data, not just a screenshot.
+- [8f. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): our repeatable steps, plan, build, check, fix, report.
+- [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): how we turn those steps into one command, `/figma-to-section`.
+- [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): meet our `theme-check-fixer` helper, which handles the messy cleanup step on its own.
+- [8i. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): how to ask for code in a way that gets good results.
 
-## Why AI-assisted development needs its own section
+## Why this section exists
 
-AI tools are genuinely useful for Shopify theme work, but they carry two specific risks worth naming directly:
+AI tools are a big help when you build Shopify themes. But they also bring two real risks, and you should know about both before you start relying on them.
 
-1. **They default to whatever's most common in their training data**, which is often older Dawn-era patterns (`{% include %}`, inline section blocks) rather than the current architecture this handbook teaches. Left unguided, an AI tool will happily generate code that looks correct but uses patterns we don't want.
-2. **They can reproduce recognizable patterns from public theme source code** — including Horizon and Dawn, which we specifically can't derive from (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/)). This is a real risk, not a theoretical one, and it's why AI output needs review with this specific concern in mind.
+1. **They tend to copy what's most common online.** A lot of that code is old, from the Dawn era of Shopify themes (things like `{% include %}` or blocks written inline). If you don't guide the AI, it will happily write code that looks fine on the surface but uses patterns we don't want.
+2. **They can copy patterns straight from public theme code**, including Horizon and Dawn. These are themes we're specifically not allowed to copy from (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/)). This isn't some rare edge case. It's a real risk, and it's the reason we always review AI-written code with this in mind.
 
-The pages in this section exist to manage both risks: rules that steer the tool toward our actual conventions (including Shopify's own official AI Toolkit, which grounds generated Liquid in real platform documentation rather than training-data guesses), and a review habit that catches it when steering isn't enough.
+The pages in this section help you handle both risks. We use rule files to point the AI toward our own rules and style. This includes Shopify's own AI Toolkit, a tool that makes sure the AI's code is based on real platform docs, not guesses. Even with all that in place, we still review the code by hand, in case the rules aren't enough on their own.
 
 ## Best practices
 
-- Set up your AI tool's rule files (section 8b) before writing your first line of Solis code with it — retrofitting rules after a tool has already established bad habits in a session is much less effective than starting with them in place.
-- Treat every AI suggestion as a first draft from a fast, inexperienced-with-our-conventions teammate — useful, but never merged without review.
-- When an AI tool's output looks unusually close to a known reference theme's pattern, treat that as a specific, real risk to check, not paranoia.
+- Set up your AI tool's rule files (section 8b) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
+- Treat every AI suggestion like a first draft from a fast but new teammate. It's useful, but never merge it without reading it first.
+- If AI-written code looks a lot like a pattern from a well-known theme, treat that as something worth checking. Don't just brush it off.
 
 ## Common mistakes
 
-- **Assuming rule files alone are sufficient** and skipping code review on AI-generated PRs — rules bias the tool's output, they don't guarantee compliance.
-- **Not noticing when AI output defaults to Dawn-era patterns** because it "still works" — it works, but it's not the architecture we're building on, and it accumulates as inconsistency across the codebase.
-- **Treating "the AI wrote it" as a reason to skip stress-testing edge cases** — AI-generated sections fail empty/long-content states just as often as human-written first drafts, arguably more often, since the AI can't see your actual merchant data.
+- **Thinking rule files are enough on their own**, and skipping code review on AI-written pull requests. Rules guide the AI, but they don't guarantee it followed them.
+- **Not noticing when AI code falls back to old, Dawn-era patterns**, just because it still works. It runs fine, but it's not how we build things here, and it makes the codebase less consistent over time.
+- **Skipping edge-case testing just because "the AI wrote it."** AI-written sections break on empty or very long content just as often as a person's first draft. Sometimes they break even more, since the AI can't see your real merchant data.
 
 ## Quick Reference
 
-- Every AI tool reads the same underlying rules, just in a tool-specific file format.
-- AI output still gets reviewed like any other PR — see [GitHub Workflow](/github-workflow/).
-- Two specific risks to actively guard against: defaulting to Dawn-era patterns, and reproducing recognizable Horizon/Dawn code.
+- Every AI tool reads the same rules. Each tool just gets them written in its own file format.
+- AI-written code gets reviewed the same as any other pull request. See [GitHub Workflow](/github-workflow/) for details.
+- Watch for two things: old Dawn-era patterns, and code copied from Horizon or Dawn.
 
 ## Further Reading
 
-- [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) — shopify.dev
+- [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

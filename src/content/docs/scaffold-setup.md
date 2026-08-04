@@ -3,43 +3,47 @@ title: Scaffold Setup Guide
 description: Going from an empty folder to a working first section and block.
 ---
 
-Section 1 got a theme running locally. This section explains *why* we scaffold the way we do, and walks through building your first real section and block on top of it.
+In Section 1, you got a Shopify theme running on your own computer. Now it's time to understand why we set up a theme this way.
+
+A "scaffold" is just the basic starting structure of a project. Think of it like the frame of a house. You don't decorate a bare frame, you build walls and rooms on top of it. In the same way, this scaffold gives you folders and files to build your real sections and blocks on top of.
+
+This page then walks you through building your first real section and block, step by step.
 
 ## What's on this page group
 
-- [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/) — why we clone Skeleton Theme, not Horizon, and how to set up the project.
-- [Your First Section & Block](/scaffold-setup/first-section-and-block/) — a full worked example, start to finish.
-- [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) — theme-level settings vs. section/block settings.
+- [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/): why we clone Skeleton Theme instead of Horizon, and how to set up the project.
+- [Your First Section & Block](/scaffold-setup/first-section-and-block/): a full worked example, from start to finish.
+- [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/): the difference between theme-level settings and section or block settings.
 
 ## What "done scaffolding" looks like
 
-Before moving on to building real Solis features, confirm you have:
+Before you move on to building real Solis features, check that you have all of these:
 
-- ☑ A cloned Skeleton Theme project, running locally via `shopify theme dev`
-- ☑ At least one custom section and block built end to end (not just the scaffold's defaults)
-- ☑ `config/settings_schema.json` populated with `theme_info` and your first real theme-wide setting
-- ☑ A basic understanding of when something belongs in theme settings vs. section settings vs. block settings
+- ☑ A cloned Skeleton Theme project, running locally with `shopify theme dev`
+- ☑ At least one custom section and block that you built yourself, start to finish (not just the scaffold's default examples)
+- ☑ `config/settings_schema.json` filled in with `theme_info` and your first real theme-wide setting
+- ☑ A clear idea of when a setting belongs in theme settings, section settings, or block settings
 
-If any of those are missing, work through the three pages in this section before starting a real ticket — the first section you build sets the pattern everything after it follows.
+If you're missing any of these, work through the three pages in this section before you start a real ticket. The first section you build sets the pattern for everything you build after it, so it's worth getting right from the start.
 
 ## Best practices
 
-- Build one deliberately small, low-stakes section first (see [Your First Section & Block](/scaffold-setup/first-section-and-block/)) purely to exercise the full loop — code, schema, preview, PR — before taking on a real feature.
-- Resist the urge to copy an existing theme's section code wholesale "to save time" — see [Store & Design Requirements](/theme-store-requirements/store-and-design/) on why structural originality matters, and build your own pattern from the start.
-- Keep a running list of settings you add to `config/settings_schema.json` — a theme-wide settings panel that grows without a clear pattern becomes confusing for merchants fast.
+- Build one small, low-risk section first. See [Your First Section & Block](/scaffold-setup/first-section-and-block/) for a full example. Use it to practice the whole process: writing the code, building the schema, previewing it, and opening a pull request. Do this before you take on a real feature.
+- Don't copy an existing theme's section code just to save time. Read [Store & Design Requirements](/theme-store-requirements/store-and-design/) to understand why your code needs to be original, then build your own pattern from scratch.
+- Keep a running list of the settings you add to `config/settings_schema.json`. If the theme-wide settings panel grows without a clear pattern, merchants find it confusing fast.
 
 ## Common mistakes
 
-- **Skipping straight to a real, complex feature as your first section.** A testimonials or simple banner section is a much better first exercise than the actual product page.
-- **Copying patterns from an existing theme's public source code without adapting them.** Convenient in the moment, but risks both the uniqueness requirement and inheriting patterns that don't match our conventions.
-- **Adding settings to the wrong level** (theme-wide when it should be per-section, or vice versa) — see [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for the decision criteria.
+- **Skipping straight to a real, complex feature as your first section.** A testimonials section or a simple banner is a much better first exercise than a full product page.
+- **Copying patterns from another theme's public source code without changing them.** It's tempting because it's quicker, but it risks breaking the uniqueness rule. You can also end up with patterns that don't match our style.
+- **Adding settings at the wrong level.** This means making something theme-wide when it should be per-section, or the other way around. See [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for help deciding.
 
 ## Quick Reference
 
 - Scaffold: `shopify theme init` (clones Skeleton Theme).
-- Then: build sections in `/sections`, reusable blocks in `/blocks`, wire up `config/settings_schema.json` for global settings.
-- Build one small, low-risk section first to exercise the whole workflow before tackling a real feature.
+- Then: build sections in `/sections`, reusable blocks in `/blocks`, and set up `config/settings_schema.json` for global settings.
+- Build one small, low-risk section first, so you can practice the whole workflow before you tackle a real feature.
 
 ## Further Reading
 
-- [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) — shopify.dev
+- [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) (shopify.dev)

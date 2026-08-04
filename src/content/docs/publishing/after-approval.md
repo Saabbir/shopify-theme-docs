@@ -1,33 +1,37 @@
 ---
 title: After Approval
-description: Versioning, release notes, and the update cadence you're committing to.
+description: How to version your theme, write release notes, and follow the update schedule you're committing to.
 ---
 
-Getting approved starts an ongoing obligation, not a one-time achievement — Theme Partners are required to keep updating and supporting the theme.
+Getting approved is not the end of the work. It's the start of an ongoing commitment. Shopify requires Theme Partners (that's you, as the theme's developer) to keep updating and supporting their theme after it's live.
 
 ## Versioning (semantic versioning, `X.Y.Z`)
 
+Semantic versioning is just a naming rule for your version numbers, so anyone can tell how big a change is just by looking at the number. Think of how your phone shows a software version like 17.2.1. The first number jumps for a big redesign, the middle number moves for smaller new features, and the last number ticks up for tiny bug fixes. Shopify themes use the same idea.
+
+Every version has three parts, written as `X.Y.Z`. Here's what each part means:
+
 | Segment | Bump when | Example |
 |---|---|---|
-| `X` (major) | Breaking change — a setting's value/meaning changes, a setting/section/block is removed, a new global setting is added | `1.4.8` → `2.0.0` |
-| `Y` (minor) | Backwards-compatible addition — a new section/block, a changed default value or label, a visual/behavior change with no schema change | `1.4.8` → `1.5.0` |
-| `Z` (patch) | Bug fixes, security fixes, non-visual code cleanup | `1.4.8` → `1.4.9` |
+| `X` (major) | A breaking change: a setting's value or meaning changes, a setting, section, or block is removed, or a new global setting is added | `1.4.8` → `2.0.0` |
+| `Y` (minor) | A backwards-compatible addition: a new section or block, a changed default value or label, or a visual or behavior change that doesn't touch the schema (the file that defines a section's settings) | `1.4.8` → `1.5.0` |
+| `Z` (patch) | Bug fixes, security fixes, or code cleanup that doesn't change how anything looks or works | `1.4.8` → `1.4.9` |
 
 ### A worked example: classifying a real Solis change
 
-Say you're shipping three changes together: (1) a new "Testimonials" section, (2) a renamed setting ID in the header, and (3) a typo fix in a locale string.
+Say you're shipping three changes together: a new "Testimonials" section, a renamed setting ID in the header, and a typo fix in a locale string (the text file that holds your theme's translated wording).
 
 | Change | Classification | Why |
 |---|---|---|
-| New Testimonials section | Minor (`Y`) | Additive, backwards-compatible |
-| Renamed header setting ID | Major (`X`) | Invalidates existing merchant configuration for that setting |
-| Locale string typo fix | Patch (`Z`) | Non-visual, no schema impact |
+| New Testimonials section | Minor (`Y`) | It's additive and backwards-compatible |
+| Renamed header setting ID | Major (`X`) | It breaks any merchant's existing configuration for that setting |
+| Locale string typo fix | Patch (`Z`) | It's non-visual and doesn't touch the schema |
 
-The overall release version is determined by the **highest-impact** change in it — this release would be a major bump (`X`), because the renamed setting ID forces that classification regardless of the other two changes being smaller. This is exactly why batching a breaking change together with unrelated smaller changes is worth thinking about — see "manual vs. automated updates" below.
+The release version always matches the **highest-impact** change inside it. In this example, the whole release becomes a major bump (`X`), because the renamed setting ID forces that classification, even though the other two changes are much smaller on their own. This is why it pays to think carefully before you bundle a breaking change together with smaller, unrelated changes. See "Manual vs. automated updates" below for more on why that matters.
 
 ## Release notes (`release-notes.md`)
 
-Required starting with your **first post-launch update** (exclude it from your initial submission). Written for merchants, not developers — a curated summary, not a raw changelog.
+You need this file starting with your **first post-launch update**. Leave it out of your first submission entirely. Write it for merchants, not developers: keep it short, and focus on what changed for them, not a raw list of every code change.
 
 ```markdown
 We've added Shop Pay Installments, removed the Instagram section, and
@@ -50,22 +54,24 @@ changed how the social media section works.
 - Fixed a layout issue on the collection page sidebar
 ```
 
-Prefix a bullet with `Important:` to have it visually highlighted for merchants.
+Start a bullet with `Important:` to make it stand out visually for merchants.
 
 | ✅ Good release note | ❌ Weak release note |
 |---|---|
-| "Removed the Instagram section (API deprecated, no replacement — switch to an app for an Instagram feed)" | "Removed unused code" |
+| "Removed the Instagram section (the API it relied on is gone, and there's no replacement, so switch to an app for an Instagram feed)" | "Removed unused code" |
 | "Important: Changed default social sharing image" | "Updated stuff" |
 | "Fixed a layout issue on the collection page sidebar" | "Bug fixes" |
 
-Release notes are for merchants, so avoid developer-facing language ("refactored," "deprecated internal API") — describe the user-facing impact instead.
+Release notes are for merchants. Avoid developer language like "refactored" or "deprecated internal API." Describe what actually changed for the merchant instead.
 
 ## Manual vs. automated updates
 
-- **Automated**: applies silently to a merchant's live theme. Only happens if nothing but `settings_data.json`/template JSON was customized, and your update doesn't touch settings IDs/types/limits.
-- **Manual**: installed as a new unpublished theme in the merchant's library for them to review before publishing. Triggered by anything that could invalidate their current configuration — a changed/removed setting ID or type, a tightened `range` min/max, or a removed section/block.
+Picture your phone updating itself overnight without asking you anything, versus your phone popping up a message that says "Do you want to install this update now?" before it touches anything. Shopify theme updates work the same way.
 
-Group your changes by type where possible — automated updates are friendlier to merchants, so batch anything that would force a manual update rather than scattering it across releases.
+- **Automated**: the update applies quietly to a merchant's live theme, with no action needed from them. This only happens if the merchant has only customized `settings_data.json` or template JSON files, and your update doesn't change any setting IDs, types, or limits.
+- **Manual**: the update installs as a new, unpublished theme in the merchant's library, and they have to review it before publishing it. This happens whenever something could break their current setup, for example a changed or removed setting ID or type, a tightened `range` minimum or maximum, or a removed section or block.
+
+Group your changes by type whenever you can. Automated updates are easier on merchants, so try to batch anything that would force a manual update, instead of spreading it across several releases.
 
 ```text
 ❌ WRONG — three separate releases, each forcing a manual update on
@@ -81,31 +87,31 @@ merchants deal with one manual-update review instead of three:
 
 ## What you can never do in an update
 
-Shopify blocks submissions that: reduce a section's instance `limit`, reduce a block limit, add `disabled_on`/`enabled_on` restrictions to section groups, or add new template restrictions to existing sections. These break merchants who already customized their store on the assumption those limits wouldn't shrink.
+Shopify blocks submissions that do any of the following: reduce a section's instance `limit` (how many times a merchant can add that section to a page), reduce a block limit, add `disabled_on` or `enabled_on` restrictions to section groups, or add new template restrictions to existing sections. These changes would break merchants who already set up their store, since they built it assuming those limits wouldn't shrink.
 
 ## Update cadence
 
-Minimum **4 weeks** between updates — except your first two months, when you can update every 2 weeks. This exists to avoid "update fatigue" for merchants; don't plan a rapid post-launch iteration cadence assuming you can ship whenever you want.
+You must wait at least **4 weeks** between updates. The one exception is your first two months, when you can update every 2 weeks instead. This rule exists so merchants don't get "update fatigue," meaning they get tired of reviewing constant changes. Don't plan a fast, rapid-fire release schedule after launch assuming you can ship whenever you want.
 
 ## Best practices
 
-- Classify every change by its actual impact (major/minor/patch) as you build it, not retroactively at release time — it's easier to batch breaking changes deliberately when you've been tracking them as you go.
-- Write release notes from the merchant's point of view as you make each change, rather than reconstructing "what changed" from Git history right before a release.
-- Plan your update cadence around the 4-week (or 2-week, early on) minimum from the start — don't discover it only after wanting to ship an urgent fix on day 10.
+- Classify every change by its real impact (major, minor, or patch) as you build it, not after the fact at release time. It's easier to batch breaking changes on purpose when you've been tracking them as you go.
+- Write release notes from the merchant's point of view as you make each change, instead of trying to piece together "what changed" from Git history right before a release.
+- Plan your update schedule around the 4-week minimum (or 2-week, early on) from the start. Don't find out about this rule only when you want to ship an urgent fix on day 10.
 
 ## Common mistakes
 
-- **Shipping several small breaking changes across several releases** instead of batching them, forcing merchants through repeated manual-update reviews.
-- **Writing release notes in developer language** ("refactored the cart total calculation") instead of merchant-facing impact ("fixed an issue where the cart total didn't update immediately").
-- **Reducing a section/block limit** in an update, not realizing this specifically blocks the update from being accepted.
+- **Shipping several small breaking changes across several releases** instead of batching them together, forcing merchants through repeated manual-update reviews.
+- **Writing release notes in developer language**, like "refactored the cart total calculation," instead of describing the impact for merchants, like "fixed an issue where the cart total didn't update immediately."
+- **Reducing a section or block limit** in an update, without realizing this alone will get the update rejected.
 
 ## Quick Reference
 
-- Semver: `X.Y.Z` — major (breaking), minor (compatible addition), patch (fix). The highest-impact change in a release determines its version bump.
-- `release-notes.md` required from your first update onward, written for merchants.
-- Automated updates are friendlier — batch schema-breaking changes together instead of scattering them.
-- 4-week minimum gap between updates (2 weeks for your first two months).
+- Semantic versioning uses `X.Y.Z`: major (breaking change), minor (compatible addition), patch (fix). The highest-impact change in a release sets the version bump.
+- `release-notes.md` is required starting with your first update, and it should be written for merchants.
+- Automated updates are easier on merchants. Batch schema-breaking changes together instead of spreading them out.
+- There's a 4-week minimum gap between updates (2 weeks for your first two months).
 
 ## Further Reading
 
-- [Updating your theme](https://shopify.dev/docs/storefronts/themes/store/success/updates) — shopify.dev
+- [Updating your theme](https://shopify.dev/docs/storefronts/themes/store/success/updates) (shopify.dev)

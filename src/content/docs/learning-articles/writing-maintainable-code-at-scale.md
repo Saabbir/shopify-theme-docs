@@ -1,13 +1,13 @@
 ---
 title: "Learning Article: Writing Maintainable Code at Scale"
-description: What actually keeps a theme codebase manageable in year three — not just week one.
+description: What actually keeps a theme codebase manageable in year three, not just week one.
 ---
 
-Any theme is easy to keep clean on day one. The real test is a codebase with 60 sections, three years of merchant-driven feature requests, and five developers who've rotated through it — does it stay comprehensible, or does every change require archaeology first? This article is about the habits that determine which outcome you get.
+Any theme is easy to keep clean on day one. The real test comes later. Picture a codebase with 60 sections, three years of merchant feature requests, and five developers who've rotated through it over time. Does it stay easy to understand, or does every change require digging through old history first? This article covers the habits that decide which outcome you get.
 
 ## Step 1: consistency compounds — and so does inconsistency
 
-A single inconsistent pattern (one section using `{% include %}` instead of `{% render %}`, one component with physical CSS properties instead of logical ones) seems harmless in isolation. The actual cost shows up later: every new developer has to learn "the codebase does X, except in these N places," and N only grows over time unless something actively reverses it.
+Picture one inconsistent pattern in your codebase. Maybe one section uses `{% include %}` instead of `{% render %}`, or one component uses physical CSS properties instead of logical ones. On its own, this looks harmless. The real cost shows up later: every new developer has to learn "the codebase does X, except in these few places." And that list of exceptions only grows over time, unless someone actively fixes it.
 
 ```liquid
 {% comment %} If 59 sections use {% render %} and one uses
@@ -16,7 +16,7 @@ A single inconsistent pattern (one section using `{% include %}` instead of `{% 
    there might be two {% endcomment %}
 ```
 
-This is the actual argument for [AI rules](/ai-assisted-development/setting-up-ai-rules/) and [style guides](/style-guides/) being specific and enforced, not aspirational: consistency is cheap to maintain from the start and expensive to restore later, and every inconsistency that ships becomes a template for the next one.
+This is the real argument for making [AI rules](/ai-assisted-development/setting-up-ai-rules/) and [style guides](/style-guides/) specific and enforced, not just nice ideas on paper. Consistency is cheap to maintain from the start, but expensive to restore later once it's slipped. Every inconsistency that ships becomes a pattern the next developer copies, simply because it's there to copy.
 
 ## Step 2: name things for what they mean, not what they currently look like
 
@@ -31,15 +31,15 @@ This is the actual argument for [AI rules](/ai-assisted-development/setting-up-a
 <div class="featured-products">
 ```
 
-The same principle applies to settings: `settings.homepage_columns` describes what a setting *is for*; `settings.grid_3` describes what it currently renders as, and will be wrong the day someone changes it to 4 columns without renaming the setting (which would itself be a breaking change — see [After Approval](/publishing/after-approval/) on why renaming settings is costly once shipped).
+The same idea applies to settings. `settings.homepage_columns` describes what the setting is *for*. `settings.grid_3` describes what it currently renders as, and that name will be wrong the day someone changes it to 4 columns, unless they also remember to rename the setting. Renaming a setting after it's shipped is itself a breaking change (see [After Approval](/publishing/after-approval/) for why that's costly).
 
 ## Step 3: duplication is fine until it isn't — know the difference
 
-Premature abstraction (building a generic "flexible content section" that handles every case via a maze of conditionals) is its own maintainability problem, often worse than the duplication it was meant to prevent. The actual signal for "this should be extracted" is **the third occurrence**, not the second:
+Abstracting too early means building a generic "flexible content section" that tries to handle every case through a maze of conditionals. This creates its own maintenance problem, often worse than the duplication it was meant to avoid. The real signal that something should be extracted into its own snippet is **the third time you write it**, not the second:
 
 - First occurrence: just write it.
-- Second occurrence: notice the similarity, but two data points aren't enough to know the right abstraction shape yet.
-- Third occurrence: now you can see what's actually constant vs. what varies, and extract a snippet/theme block that reflects the real pattern rather than guessing at one from a single example.
+- Second occurrence: notice the similarity, but don't act on it yet. Two examples aren't enough to know the right shape for a shared version.
+- Third occurrence: now you can see what's actually constant and what varies. Extract a snippet or theme block that reflects the real pattern, instead of guessing at one from a single example.
 
 ```liquid
 {% comment %} A snippet extracted from three real occurrences takes
@@ -51,7 +51,7 @@ Premature abstraction (building a generic "flexible content section" that handle
 
 ## Step 4: the "explain it to the next developer" test
 
-Before merging non-trivial logic, a useful check: could someone unfamiliar with this change understand *why* it exists from the code and its comments alone, without asking you? If not, that's what a code comment or a clearer variable name is for — not because the logic is wrong, but because the reasoning behind a non-obvious decision is exactly the thing that gets lost first.
+Before you merge any non-trivial logic, ask yourself a simple question. Could someone unfamiliar with this change understand *why* it exists, just from the code and its comments, without having to ask you? If the answer is no, that's a sign you need a code comment or a clearer variable name. The logic itself isn't wrong. It's that the reasoning behind a non-obvious decision is exactly the thing everyone forgets first.
 
 ```liquid
 {% comment %} ❌ WRONG — no comment, and the reason for this
@@ -70,43 +70,45 @@ Before merging non-trivial logic, a useful check: could someone unfamiliar with 
 
 ## Step 5: tests and checks are cheaper than tribal knowledge
 
-Anything you currently rely on "someone remembering to check" (a locale key existing for every setting label, a section handling zero blocks gracefully) eventually gets missed once enough time passes and enough people rotate through the project. Where possible, convert tribal knowledge into something mechanically checked:
+Think about anything you currently rely on "someone remembering to check." Maybe it's a locale key that needs to exist for every setting label, or a section that needs to handle zero blocks gracefully. Given enough time and enough people rotating through a project, that kind of thing eventually gets missed. Where you can, turn that kind of tribal knowledge (things only people remember, with nothing written down) into something checked automatically:
 
 | Tribal knowledge | Converted into |
 |---|---|
 | "Remember to add a locale key for every new setting" | A `theme-check` rule that flags hardcoded schema strings (see [Theme Check & Linting](/quality-validation/theme-check-and-linting/)) |
-| "Remember not to hand-edit Shopify's generated AGENTS.md content" | `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks, so there's no separate copy to accidentally drift — and a clear `## Custom rules` boundary marking the only section anyone should touch (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) |
+| "Remember not to hand-edit Shopify's generated AGENTS.md content" | `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks, so there's no separate copy to accidentally drift out of sync. A clear `## Custom rules` boundary marks the only section anyone should touch (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) |
 | "Remember to test a section with zero blocks" | A documented, repeatable stress-test checklist (see [Manual QA Checklist](/quality-validation/manual-qa-checklist/)) |
 
-This is the same principle behind why this handbook has a [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) instead of relying on someone remembering every Theme Store requirement from memory before every submission.
+This is the same reason this handbook has a [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/). It's much safer than relying on someone remembering every Theme Store requirement from memory before each submission.
 
 ## Step 6: revisit decisions when their premise changes, not on a fixed schedule
 
-A pattern that was correct when written can become wrong not because it was a bad decision, but because something it depended on changed — a Shopify API deprecation, a new theme block feature that replaces an older workaround, a merchant request that reveals an edge case the original design didn't anticipate. The discipline isn't "review everything periodically" (unrealistic at scale) — it's noticing when a *specific* change touches a pattern's original assumption, and treating that as a prompt to revisit it rather than patching around the now-outdated assumption.
+A pattern that was correct when it was written can become wrong later. This doesn't mean it was a bad decision. It usually means something it depended on changed. Maybe a Shopify API got deprecated, or a new theme block feature replaces an older workaround, or a merchant request reveals an edge case the original design never anticipated.
+
+The discipline here isn't "review everything on a schedule." That's unrealistic once a codebase gets big. It's about noticing when a *specific* change touches a pattern's original assumption, and treating that as your cue to revisit the pattern, instead of just patching around the now-outdated assumption.
 
 ## Best practices
 
-- Treat every inconsistency as compounding, not isolated — fix the first instance of a wrong pattern rather than letting it become "how we sometimes do it here."
-- Extract an abstraction from the third real occurrence, not the second guess at one.
+- Treat every inconsistency as compounding, not isolated. Fix the first instance of a wrong pattern rather than letting it become "how we sometimes do it here."
+- Extract an abstraction from the third real occurrence, not from a second guess at one.
 - Comment the *why* behind non-obvious logic, not the *what* the code already says.
-- Convert anything relying on memory into a mechanical check (a lint rule, a CI check, a checklist) as soon as more than one person needs to remember it.
+- Convert anything relying on memory into a mechanical check, like a lint rule, a CI check, or a checklist, as soon as more than one person needs to remember it.
 
 ## Common mistakes
 
-- **Building a generic, flexible abstraction from a single use case**, guessing at options nobody has actually needed yet, producing something more complex than the duplication it replaced.
+- **Building a generic, flexible abstraction from a single use case**, guessing at options nobody has actually needed yet, which produces something more complex than the duplication it replaced.
 - **Naming things after their current appearance** instead of their role, so the name becomes misleading the first time the design changes.
-- **Relying on memory for anything more than one person needs to remember** — this is precisely where a checklist, a lint rule, or a CI check earns its cost.
+- **Relying on memory for anything more than one person needs to remember.** This is exactly where a checklist, a lint rule, or a CI check pays for itself.
 - **Letting a first wrong-pattern instance stand** "just this once," which becomes the template the next developer copies.
 
 ## Quick Reference
 
-- Consistency compounds; so does inconsistency — fix the first wrong instance, don't let it become precedent.
+- Consistency compounds, and so does inconsistency. Fix the first wrong instance, don't let it become precedent.
 - Extract abstractions from a third real occurrence, not a second guess.
 - Name for role, not current appearance.
-- Comment the *why*; the *what* is already in the code.
+- Comment the *why*. The *what* is already in the code.
 - Convert tribal knowledge into mechanical checks (lint rules, CI, checklists) as soon as it matters to more than one person.
 
 ## Further Reading
 
-- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) — an example of converting a manual sync process into a mechanical one
-- [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) — an example of converting "remember every requirement" into a checklist
+- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/): an example of converting a manual sync process into a mechanical one
+- [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/): an example of converting "remember every requirement" into a checklist

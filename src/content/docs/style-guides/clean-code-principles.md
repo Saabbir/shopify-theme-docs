@@ -1,19 +1,21 @@
 ---
 title: Clean Code Principles
-description: Clean, modular, readable code principles for Shopify theme development — with one complete, worked example.
+description: What clean, modular, readable code looks like in a Shopify theme, with one complete worked example.
 ---
 
-"Clean code" is vague until you can point at two versions of the same real section and say exactly what makes one harder to work with than the other. This page states the principles briefly, then works through one complete example end to end — a messy version and a clean version of the same section — so every principle is grounded in something concrete.
+"Clean code" is a phrase people use a lot, but it's hard to pin down. It becomes clear once you see two versions of the same code side by side, and you can point at exactly what makes one harder to work with than the other.
+
+This page does that for you. First, it lists the principles briefly. Then it walks through one full example from start to finish: a messy version of a section, and a clean version of the same section, so every principle is tied to something real you can see.
 
 ## The principles, briefly
 
 | Principle | In practice |
 |---|---|
-| **Readable over clever** | Code should be understandable on first read, not admired for compactness. If a reviewer has to pause and decode a line, it's not clean, however short it is. |
-| **Modular over monolithic** | A section's markup, styling, and behavior are each scoped and separable — a snippet does one thing, a Web Component owns one piece of behavior. |
-| **Named for meaning** | Variables, classes, and setting `id`s describe what something *is for*, not what it currently looks like — see [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/). |
-| **Consistent, not novel** | The tenth section should look like it was written by the same person as the first — see [Style Guides](/style-guides/) generally. |
-| **Guarded, not optimistic** | Nil checks, empty states, and long-content handling are part of the code, not an afterthought — see [Liquid Style Guide](/style-guides/liquid/). |
+| **Readable over clever** | Code should be easy to understand the first time you read it, not admired for being short. If a reviewer has to stop and puzzle out a line, it isn't clean, no matter how few characters it uses. |
+| **Modular over monolithic** ("monolithic" means one giant, tangled block instead of separate pieces) | A section's markup (HTML structure), styling (CSS), and behavior (JavaScript) should each stand on their own. A snippet does one thing. A Web Component owns one piece of behavior. |
+| **Named for meaning** | Variables, classes, and setting `id`s should describe what something *is for*, not what it happens to look like right now. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/). |
+| **Consistent, not novel** | The tenth section you write should look like it was written by the same person as the first one. See [Style Guides](/style-guides/) for more on this. |
+| **Guarded, not optimistic** | Nil checks (making sure a value actually exists before you use it), empty states, and handling for long content are part of the code. They're not something you add later if you remember. See [Liquid Style Guide](/style-guides/liquid/). |
 
 ## The complete example: a "Featured Collection" section, messy vs. clean
 
@@ -56,17 +58,17 @@ document.querySelectorAll('.card').forEach(function(c) {
 
 | Problem | Where |
 |---|---|
-| Cryptic names (`fp`, `h`, `c`, `p`, `col`, `t`, `pr`) instead of meaningful ones | Throughout |
-| Inline `style=` attributes instead of scoped CSS — unmaintainable and impossible to make responsive cleanly | The grid and card `style` attributes |
-| Deprecated `img_url` filter instead of current `image_url`/`image_tag` | The image line |
-| Manual currency math (`divided_by: 100.0`) instead of the `money` filter — breaks for other currencies | The price line |
+| Cryptic names (`fp`, `h`, `c`, `p`, `col`, `t`, `pr`) instead of names that say what they mean | Throughout |
+| Inline `style=` attributes instead of scoped CSS. These are hard to maintain and hard to make responsive. | The grid and card `style` attributes |
+| The old `img_url` filter instead of the current `image_url`/`image_tag` | The image line |
+| Manual currency math (`divided_by: 100.0`) instead of the `money` filter. This breaks for stores using other currencies. | The price line |
 | No `alt` text, no `width`/`height`, no `loading="lazy"` on the image | The image line |
 | Hardcoded English schema labels (`"Heading"`, `"Collection"`) instead of `t:` locale keys | The schema |
-| No empty-state handling if the collection has zero products | Nowhere handles this |
-| Global, unscoped `<script>` in the section instead of `{% javascript %}`, and it re-runs incorrectly (or not at all) after a theme editor edit — see [Theme Editor & Storefront Events](/style-guides/theme-editor-events/) | The script block |
-| A whole card wrapped in a click handler instead of a real `<a>` — inaccessible, not keyboard operable, not a real link (can't open in a new tab, no status bar preview) | The script block |
-| Fixed 4-column grid via `calc(25% - 12px)` instead of a responsive grid — breaks badly on mobile | The card `style` |
-| No `paginate`, though this specific case is safe under the 50-item Liquid loop limit given `limit: 8` — still worth using the theme's real pagination pattern if this ever changes | The `for` loop |
+| No handling for an empty collection with zero products | Nowhere handles this |
+| A global, unscoped `<script>` in the section instead of `{% javascript %}`. It doesn't rerun correctly (or at all) after a theme editor edit. See [Theme Editor & Storefront Events](/style-guides/theme-editor-events/). | The script block |
+| A whole card wrapped in a click handler instead of a real `<a>` link. This isn't accessible, can't be reached by keyboard, and doesn't behave like a real link (it can't open in a new tab, and shows no status bar preview). | The script block |
+| A fixed 4-column grid using `calc(25% - 12px)` instead of a responsive grid. This breaks badly on mobile. | The card `style` |
+| No `paginate` (Liquid's tool for splitting a long list across pages). This one case is safe, since `limit: 8` stays under Liquid's 50-item loop limit, but it's still worth using the theme's real pagination pattern in case that ever changes. | The `for` loop |
 
 ### The clean version
 
@@ -152,35 +154,35 @@ document.querySelectorAll('.card').forEach(function(c) {
 
 | Clean version does this | Principle |
 |---|---|
-| `featured_collection`, `product_card`, `heading`, `collection` — every name says what it is | Named for meaning |
-| Product card extracted into its own snippet, reused wherever a product card is needed | Modular over monolithic |
-| A real `<a>` for the whole card — keyboard operable, right-clickable, opens in a new tab correctly | Readable/guarded, not optimistic |
-| `image_tag`, `money`, `t:` locale keys throughout | Consistent with the rest of this handbook's conventions |
-| An explicit empty state when the collection has no products | Guarded, not optimistic |
-| `{% stylesheet %}` scoped CSS, no inline `style=` attributes, a responsive grid via `auto-fit`/`minmax` | Modular, and correctly responsive without manual breakpoints |
-| No `<script>` at all — this section needs no JS, so it has none | Readable — nothing to maintain that isn't earning its place |
+| `featured_collection`, `product_card`, `heading`, `collection`: every name says what it is | Named for meaning |
+| The product card is pulled out into its own snippet, and reused anywhere a product card is needed | Modular over monolithic |
+| A real `<a>` wraps the whole card. It works with the keyboard, works with right-click, and opens correctly in a new tab. | Readable, and guarded rather than optimistic |
+| `image_tag`, `money`, and `t:` locale keys used throughout | Consistent with the rest of this handbook's rules |
+| An explicit empty state for when the collection has no products | Guarded, not optimistic |
+| `{% stylesheet %}` scoped CSS, no inline `style=` attributes, and a responsive grid using `auto-fit`/`minmax` | Modular, and responsive without manual breakpoints |
+| No `<script>` at all. This section doesn't need JS, so it doesn't have any. | Readable, with nothing extra left to maintain |
 
-Notice the clean version isn't cleverer — if anything it's more verbose in places (the explicit empty-state branch, the doc comments). Clean code optimizes for the next reader's speed of understanding, not for line count.
+Notice that the clean version isn't cleverer than the messy one. If anything, it's a bit longer in places, like the explicit empty-state branch and the doc comments. That's fine. Clean code aims for how fast the next person can understand it, not for how few lines it takes.
 
 ## Best practices
 
-- When reviewing a section, check it against this page's table the same way you'd check it against [Theme Store Requirements](/theme-store-requirements/) — readability and modularity are review criteria, not just personal taste.
-- Extract a snippet the moment markup is used a second time in a genuinely identical way — see [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) on the "third occurrence" rule for when to go further and generalize it.
-- Prefer a few extra lines of explicit, guarded code (an empty-state branch, a nil check) over fewer lines that assume the happy path always holds.
+- When reviewing a section, check it against this page's table the same way you'd check it against [Theme Store Requirements](/theme-store-requirements/). Readability and modularity are things you review for, not just personal taste.
+- Pull code out into a snippet the moment the same markup is used a second time in a truly identical way. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) for the "third occurrence" rule on when to go further and generalize it.
+- Prefer a few extra lines of explicit, guarded code (an empty-state branch, a nil check) over fewer lines that just assume everything always goes right.
 
 ## Common mistakes
 
-- **Optimizing for fewer lines instead of faster comprehension** — clean code is judged by how quickly the next person understands it, not by character count.
-- **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS, making a section's visual behavior harder to find, override, or make responsive.
-- **Skipping the empty/nil-check branch** because the demo data never triggers it — this is exactly the class of bug [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) both call out.
+- **Optimizing for fewer lines instead of faster understanding.** Clean code is judged by how quickly the next person gets it, not by how few characters it uses.
+- **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS. This makes a section's visual behavior harder to find, override, or make responsive.
+- **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) both warn about.
 
 ## Quick Reference
 
-- Readable over clever, modular over monolithic, named for meaning, consistent, and guarded — five checkable principles, not a vibe.
-- The worked example above is the concrete reference — when in doubt about what "clean" means here, compare against it.
-- Clean code is judged by the next reader's speed of understanding, not brevity.
+- Readable over clever, modular over monolithic, named for meaning, consistent, and guarded: five principles you can actually check for, not just a vague feeling.
+- The worked example above is the concrete reference. When you're not sure what "clean" means here, compare your code against it.
+- Clean code is judged by how fast the next reader understands it, not by how short it is.
 
 ## Further Reading
 
-- [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) — the longer-horizon version of this same discipline
+- [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) (the longer-term version of this same discipline)
 - [Liquid Style Guide](/style-guides/liquid/) · [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/)

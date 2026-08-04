@@ -1,16 +1,16 @@
 ---
 title: 8i. Writing Prompts That Work
-description: Prompt patterns that consistently produce Theme-Store-compliant code.
+description: Prompt patterns that consistently produce code that meets Theme Store requirements.
 ---
 
-The rule files in [8b](/ai-assisted-development/setting-up-ai-rules/) set standing context. These patterns are for the prompt you type in the moment.
+The rule files covered in [8b](/ai-assisted-development/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
 
 ## The four things every theme-code prompt should state
 
-1. **What Shopify object it's a section/block/snippet for** (product, collection, generic content).
-2. **What's merchant-editable vs. fixed** — which parts are settings/blocks, which parts are hardcoded layout.
-3. **How it should behave with unusual content** — empty state, very long text, many vs. zero blocks.
-4. **Which existing pattern to match**, if one exists — point at a real file, don't describe it from memory.
+1. **What Shopify object it's a section, block, or snippet for** (product, collection, generic content).
+2. **What's merchant-editable versus fixed.** Which parts are settings or blocks, and which parts are hardcoded layout?
+3. **How it should behave with unusual content.** Think empty state, very long text, many blocks versus zero blocks.
+4. **Which existing pattern to match**, if one exists. Point at a real file. Don't describe it from memory.
 
 ## Template
 
@@ -41,7 +41,7 @@ the schema conventions in sections/main-product.liquid for @app block
 support."
 ```
 
-The first prompt forces the AI tool to guess at settings, content boundaries, and edge-case behavior — you'll get something that looks right in a screenshot and breaks the moment a merchant actually uses it. The second gives it everything it needs to get those three things right without a guess.
+The first prompt forces the AI tool to guess at the settings, at what counts as content, and at how edge cases should behave. You'll get something that looks right in a screenshot and breaks the moment a merchant actually uses it. The second prompt gives the tool everything it needs to get those three things right without guessing.
 
 ## More before/after examples
 
@@ -84,7 +84,7 @@ checklist in /theme-store-requirements/accessibility/."
 
 ## When the AI tool gets it wrong
 
-Don't just paste an error and ask "fix this." State what you expected vs. what happened:
+Don't just paste an error and ask "fix this." State what you expected versus what actually happened, like this:
 
 ```text
 Expected: the "quote" block accepts @app blocks alongside quote blocks.
@@ -92,31 +92,31 @@ Actual: the schema only lists { "type": "quote" } — @app support is missing.
 Add { "type": "@app" } to the section's blocks array.
 ```
 
-This is faster to fix correctly than "this section is broken, fix it" — which invites the tool to change something unrelated.
+This gets fixed correctly faster than "this section is broken, fix it" would. That kind of vague phrasing invites the tool to go change something unrelated.
 
-## A prompting anti-pattern worth naming: "just make it work"
+## A prompting habit worth avoiding: "just make it work"
 
-When a prompt is vague and the output doesn't work, the fastest-feeling fix is often "just make it work" or "try again" — but this tends to produce increasingly hacky patches rather than a correct fix, because the tool still doesn't know what "correct" means for this specific case. Stopping to write the specific expected-vs-actual prompt (as above) is almost always faster in total time than several rounds of "no, still broken, try again."
+When a prompt is vague and the output doesn't work, the tempting quick fix is to say "just make it work" or "try again." But this tends to produce increasingly hacky patches instead of a real fix, because the tool still doesn't know what "correct" means for this specific case. Stopping to write the specific expected-versus-actual prompt, as shown above, is almost always faster overall than several rounds of "no, still broken, try again."
 
 ## Best practices
 
-- Write the four required elements (object type, editable vs. fixed, unusual-content behavior, pattern to match) as an actual checklist before sending a prompt for anything non-trivial — it takes under a minute and consistently produces better first drafts.
-- Point at real file paths when asking the tool to match an existing pattern — "like the header" is far weaker than "match the section-group pattern in sections/header-group.json."
-- When correcting output, always state expected vs. actual explicitly, even for something that feels obvious in the moment.
+- Write out the four required pieces (object type, editable versus fixed, unusual-content behavior, pattern to match) as an actual checklist before sending a prompt for anything non-trivial. It takes under a minute and consistently produces better first drafts.
+- Point at real file paths when asking the tool to match an existing pattern. "Like the header" is much weaker than "match the section-group pattern in sections/header-group.json."
+- When correcting output, always state expected versus actual clearly, even when it feels obvious in the moment.
 
 ## Common mistakes
 
-- **Describing a desired outcome without stating constraints** ("make a nice testimonials section") and being surprised when the result doesn't match our architecture.
-- **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-vs-actual correction.
-- **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like unless you point at it directly.
+- **Describing what you want without stating constraints** ("make a nice testimonials section") and being surprised when the result doesn't match how we build things.
+- **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-versus-actual correction.
+- **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like, unless you point it there directly.
 
 ## Quick Reference
 
-- State: object type, editable vs. fixed, unusual-content behavior, and which existing file to match.
+- State: object type, editable versus fixed, unusual-content behavior, and which existing file to match.
 - Point at real files, not vague descriptions ("like the other one").
-- When correcting output, state expected vs. actual — not just "this is wrong."
-- Resist "just make it work" loops — stop and write a specific correction instead.
+- When correcting output, state expected versus actual, not just "this is wrong."
+- Resist "just make it work" loops. Stop and write a specific correction instead.
 
 ## Further Reading
 
-- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) — this handbook
+- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) - this handbook

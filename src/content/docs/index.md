@@ -1,9 +1,9 @@
 ---
 title: Shopify Theme Handbook
-description: The single source of truth for scaffolding, developing, and publishing a Shopify theme to the Theme Store.
+description: The one place to learn how to build and publish a Shopify theme to the Theme Store.
 template: splash
 hero:
-  tagline: How we build Shopify themes, from a blank folder to a Theme Store submission — written for developers new to Shopify.
+  tagline: How we build Shopify themes, from a blank folder to a Theme Store submission. Written for developers who are new to Shopify.
   actions:
     - text: Get Started
       link: /getting-started/
@@ -25,7 +25,7 @@ hero:
 | [4. Scaffold Setup Guide](/scaffold-setup/) | Step by step: empty folder → working section and block |
 | [5. Design System & Configuration](/design-system/) | Figma tokens, color/type systems, settings schema/data, presets, icons |
 | [6. Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid, clean code, third-party libraries, theme editor events |
-| [7. Performance & Accessibility](/performance-and-accessibility/) | A11y and performance process — building it in, not retrofitting it |
+| [7. Performance & Accessibility](/performance-and-accessibility/) | Accessibility (making your site usable for everyone) and performance, built in from the start, not added later |
 | [8. AI-Assisted Development](/ai-assisted-development/) | AGENTS.md, Figma MCP, Claude commands, Shopify's own AI Toolkit |
 | [9. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
 | [10. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
@@ -34,6 +34,6 @@ hero:
 | [13. Learning Articles](/learning-articles/) | Step-by-step deep dives: CSS, JS/Web Components, Liquid objects, locale files, maintainable code |
 | [14. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
 
-New here? Read sections 1–4 in order, then use search (**⌘K**) for everything after that.
+New here? Start with sections 1 to 4, in order. After that, use search (**⌘K**) to find whatever you need.
 
-Examples throughout use **Solis**, our current Theme Store project, but this handbook applies to any Shopify theme we build.
+Examples throughout use **Solis**, our current Theme Store project. But this handbook applies to any Shopify theme we build.

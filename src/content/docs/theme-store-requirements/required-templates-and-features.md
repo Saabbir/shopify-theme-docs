@@ -101,7 +101,7 @@ Every template except Customer Account, Gift Card, and Checkout must support sec
 | ✅ Must include | ❌ Common gaps |
 |---|---|
 | A clear "page not found" message | A generic blank error page |
-| A way forward — search bar or homepage link | A dead end with no navigation options |
+| A way forward: a search bar or a homepage link | A dead end with no navigation options |
 
 ## Feature checklist
 
@@ -137,7 +137,7 @@ All of these must work somewhere in the theme:
 | Mobile | Mobile Safari (latest 2), Chrome Mobile (latest 3), Samsung Internet (latest 2) |
 | Webviews | Instagram, Facebook, Pinterest (latest release, iOS + Android) |
 
-Test in an actual webview, not just the desktop version of the same browser engine — webview environments frequently behave differently for things like `<video>` autoplay policies and viewport sizing.
+Test in an actual webview (the in-app browser used by apps like Instagram or Facebook), not just the desktop version of the same browser engine. Webviews often behave differently, for example, with `<video>` autoplay rules and viewport sizing.
 
 ## Assets
 
@@ -152,7 +152,7 @@ Test in an actual webview, not just the desktop version of the same browser engi
 |---|---|
 | Theme SEO metadata (title, meta description, canonical URL) | Missing or duplicate canonical URLs across pages |
 | Google rich product snippets | No structured data on product pages |
-| — | A `robots.txt.liquid` template (not allowed at all) |
+| N/A | A `robots.txt.liquid` template (not allowed at all) |
 
 ## Documentation & support
 
@@ -164,24 +164,24 @@ Test in an actual webview, not just the desktop version of the same browser engi
 
 ## Best practices
 
-- Build the full per-page checklist into your section development process from day one — retrofitting a missing feature (like unit pricing) across an already-built product/collection/cart/customer flow is expensive.
-- Test every page type with genuinely awkward data early: a sold-out variant, an empty cart, a zero-result search, a collection with mixed image aspect ratios.
-- Treat browser/webview testing as part of your regular QA loop, not a one-time pre-submission check — a regression introduced mid-project is much cheaper to catch immediately.
+- Build the full per-page checklist into your section development process from day one. Adding a missing feature (like unit pricing) across an already-built product/collection/cart/customer flow later is expensive.
+- Test every page type with genuinely awkward data early on: a sold-out variant, an empty cart, a zero-result search, a collection with mixed image aspect ratios.
+- Treat browser and webview testing as part of your regular QA loop, not a one-time check before submission. It's much cheaper to catch a regression right when it happens.
 
 ## Common mistakes
 
 - **Building the "happy path" for each page and skipping the edge-case states** (empty cart, no search results, sold-out variant) until QA finds them later.
-- **Testing only in desktop Chrome** and discovering webview-specific bugs (autoplay, viewport quirks) only during review.
-- **Treating documentation and support setup as a launch-day task** instead of something to have ready before you need it.
+- **Testing only in desktop Chrome**, and only finding webview-specific bugs (autoplay, viewport quirks) during review.
+- **Treating documentation and support setup as a launch-day task** instead of having it ready ahead of time.
 
 ## Quick Reference
 
-- 14 required templates — see the table above.
-- Product/collection/cart/search/404 pages each have their own must-have field list — see the tables above for the full ✅/❌ breakdown.
+- 14 required templates, see the table above.
+- Product/collection/cart/search/404 pages each have their own must-have field list, see the tables above for the full ✅/❌ breakdown.
 - Browser support spans 4 desktop browsers, 3 mobile browsers, 3 webview apps.
 - No Sass, no pre-minified assets.
-- 2-business-day support SLA once your theme is live.
+- 2-business-day support response time (your SLA, short for "service level agreement") once your theme is live.
 
 ## Further Reading
 
-- [Full requirements list](https://shopify.dev/docs/storefronts/themes/store/requirements) — shopify.dev
+- [Full requirements list](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)

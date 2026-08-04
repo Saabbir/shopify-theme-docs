@@ -1,16 +1,18 @@
 ---
 title: CSS Style Guide
-description: Global CSS, component-scoped stylesheets, custom properties, logical properties, and naming conventions.
+description: Global CSS, component-scoped stylesheets, custom properties, logical properties, and naming rules.
 ---
 
-Native CSS only — no Sass/SCSS, no CSS-in-JS. Modern CSS (custom properties, container queries, `:has()`, nesting) gives us everything a preprocessor used to be needed for, without a build step.
+We write plain, native CSS only. That means no Sass or SCSS (tools that add extra features to CSS, then convert the result back into plain CSS), and no CSS-in-JS (writing CSS inside JavaScript files).
+
+Modern CSS already gives us everything those tools used to be needed for: custom properties, container queries, `:has()`, and nesting. We get all of that without needing a build step (a process that changes your code before it reaches the browser).
 
 ## Global CSS vs. component-scoped CSS
 
 | Layer | Lives in | Contains |
 |---|---|---|
 | **Global** | `assets/base.css` (or similar, loaded in `layout/theme.liquid`) | Design tokens (custom properties), resets, typography defaults, utility classes used across many components |
-| **Component-scoped** | A `{% stylesheet %}` tag inside the section/block/snippet `.liquid` file itself | Everything specific to that one component — its layout, its states, anything not reused elsewhere |
+| **Component-scoped** | A `{% stylesheet %}` tag inside the section/block/snippet `.liquid` file itself | Everything specific to that one component, its layout, its states, anything not reused elsewhere |
 
 ```liquid
 {% comment %} sections/testimonials.liquid {% endcomment %}
@@ -27,7 +29,7 @@ Native CSS only — no Sass/SCSS, no CSS-in-JS. Modern CSS (custom properties, c
 {% endstylesheet %}
 ```
 
-`{% stylesheet %}` output is automatically deduplicated and only loaded on pages that actually render the component — you get colocation without paying a global-bundle-size cost for a section only used on one template.
+Shopify automatically removes duplicate `{% stylesheet %}` output. It also only loads this CSS on pages that actually render the component. This gives you the benefit of keeping styles right next to the component they belong to (developers call this "colocation"), without making the global CSS file bigger for a section that's only used on one template.
 
 | ✅ Do | ❌ Don't |
 |---|---|
@@ -37,7 +39,7 @@ Native CSS only — no Sass/SCSS, no CSS-in-JS. Modern CSS (custom properties, c
 
 ## Design tokens: CSS custom properties
 
-Every reusable value — color, spacing, radius, shadow, type size — is a custom property, defined once, referenced everywhere:
+A "design token" is just a named value. It could be a color, a spacing amount, a corner radius, a shadow, or a font size. You define it once, then reuse it everywhere. In CSS, we define these as custom properties (also called CSS variables):
 
 ```css
 :root {
@@ -58,7 +60,7 @@ Every reusable value — color, spacing, radius, shadow, type size — is a cust
 
 ### One CSS property changing → a custom property. Several changing together → a class.
 
-This is the rule that decides whether a merchant-facing setting becomes an inline custom property or a CSS class:
+Use this rule to decide whether a merchant-facing setting (something a store owner can change in the theme editor) should become an inline custom property or a CSS class:
 
 ```liquid
 {% comment %} ✅ RIGHT — one property (gap) varies, so it's a custom property {% endcomment %}
@@ -87,7 +89,9 @@ This is the rule that decides whether a merchant-facing setting becomes an inlin
 
 ## Logical properties (required for RTL)
 
-Use logical properties everywhere a physical property has a logical equivalent — this is what makes layout correct automatically in right-to-left languages (see [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/)):
+"Logical properties" are CSS properties like `margin-inline-start`. Instead of describing a fixed side, like "left" or "right," they describe direction based on reading order, using "start" and "end."
+
+Use a logical property everywhere a physical property has a logical equivalent. This is what makes your layout work correctly, automatically, in right-to-left (RTL) languages like Arabic or Hebrew. See [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) for more:
 
 | ❌ Physical (breaks in RTL) | ✅ Logical (works in both directions) |
 |---|---|
@@ -113,7 +117,7 @@ Use logical properties everywhere a physical property has a logical equivalent �
 
 ## Native CSS nesting: fine for a component's own scope
 
-Browsers support native CSS nesting now, no preprocessor required — Horizon's own stylesheets use it for exactly the case it's good at: styling a component's states/children without repeating the parent selector:
+Browsers support CSS nesting on their own now, so you don't need a preprocessor for it. Horizon's own stylesheets (Horizon is Shopify's reference theme) use nesting for the case it's good at: styling a component's states or children without repeating the parent selector every time:
 
 ```css
 /* ✅ RIGHT — nesting scoped to one component's own rule,
@@ -129,11 +133,13 @@ Browsers support native CSS nesting now, no preprocessor required — Horizon's 
 }
 ```
 
-Keep nesting shallow (one or two levels) and scoped to a single component's own selectors — it's a readability tool for "this lives inside that," not a replacement for BEM's flat naming discipline. Don't nest three or four levels deep chasing specificity; that's the exact problem BEM's flat class names exist to avoid.
+Keep nesting shallow, just one or two levels, and scoped to a single component's own selectors. Think of it as a way to show "this lives inside that." It's not a replacement for BEM's flat naming style, which we explain below.
+
+Don't nest three or four levels deep just to win a specificity fight (a situation where two CSS rules compete to control the same element, and the browser has to pick a winner). That's exactly the problem BEM's flat class names are meant to avoid.
 
 ## Naming: BEM-ish, kebab-case
 
-We don't require strict BEM, but the same shape — block, element, modifier — keeps class names predictable and greppable:
+BEM stands for block, element, modifier. It's a naming pattern, for example `.card__title--large`. We don't require strict BEM, but we follow the same shape, because it keeps class names predictable and easy to search for. Developers call this "greppable," meaning easy to find with a text search tool like `grep`:
 
 ```css
 .testimonials { }              /* block */
@@ -149,7 +155,7 @@ We don't require strict BEM, but the same shape — block, element, modifier —
 
 ## Layout: modern CSS over JavaScript
 
-Prefer CSS for anything CSS can do without a script:
+If CSS can do it without a script, use CSS:
 
 | Need | Reach for | Not |
 |---|---|---|
@@ -160,28 +166,28 @@ Prefer CSS for anything CSS can do without a script:
 
 ## Best practices
 
-- Default every reusable value to a custom property in the global stylesheet before it's used a second time — retrofitting tokens after three components have hardcoded the same value is more work than starting with the token.
-- Use logical properties by default, everywhere — treat a physical property in new CSS as something to double-check, not the default choice.
-- Keep component CSS colocated in `{% stylesheet %}` unless a value is genuinely shared — colocation makes a component's full behavior (markup, styling, JS) readable in one file.
-- Run new sections with `dir="rtl"` in dev tools periodically, not just at Theme Store submission time — logical-property mistakes are cheap to catch early and easy to miss without actually looking.
+- Turn any reusable value into a custom property in the global stylesheet before it gets used a second time. Adding tokens after three components have already hardcoded the same value is more work than starting with the token in the first place.
+- Use logical properties by default, everywhere. Treat a physical property in new CSS as something to double-check, not your default choice.
+- Keep component CSS in `{% stylesheet %}`, next to the component, unless a value is genuinely shared elsewhere. Keeping things together like this lets you read a component's whole behavior, its markup, styling, and JS, in one file.
+- Test new sections with `dir="rtl"` in your browser's dev tools now and then, not just right before Theme Store submission. Logical-property mistakes are cheap to catch early, but easy to miss if you never actually look.
 
 ## Common mistakes
 
-- **Hardcoding a color/spacing value that already exists as a token** — the value drifts the next time the token changes, since this one instance wasn't using it.
-- **Using physical properties (`margin-left`) by habit** — passes review in English, breaks silently the first time the theme is used in a RTL market.
-- **Exposing five separate custom properties for one coherent layout state** instead of a single class — harder for merchants to reason about (if exposed as settings) and harder for developers to maintain.
-- **Putting every section's CSS in one global file** — loses colocation, and every page pays for CSS it doesn't use.
+- **Hardcoding a color or spacing value that already exists as a token.** The value drifts out of sync the next time the token changes, because this one spot wasn't using it.
+- **Using physical properties (`margin-left`) out of habit.** This passes review fine in English, then breaks silently the first time the theme runs in a right-to-left market.
+- **Exposing five separate custom properties for what's really one layout state**, instead of a single class. This is harder for merchants to understand (if exposed as settings) and harder for developers to maintain.
+- **Putting every section's CSS in one global file.** This loses the benefit of keeping styles next to their component, and every page ends up loading CSS it doesn't use.
 
 ## Quick Reference
 
-- Global tokens in `assets/base.css` (custom properties). Component CSS in `{% stylesheet %}`, colocated with its markup.
-- One property varies → custom property. Several vary together → a class.
-- Logical properties everywhere a physical/logical pair exists — this is what makes RTL work.
+- Global tokens (custom properties) live in `assets/base.css`. Component CSS lives in `{% stylesheet %}`, next to its markup.
+- One property varies → use a custom property. Several vary together → use a class.
+- Use logical properties everywhere a physical/logical pair exists. This is what makes RTL work.
 - Naming: kebab-case, BEM-shaped (`block__element--modifier`).
-- Native CSS nesting is fine, kept shallow and scoped to one component's own selectors — not a substitute for BEM's flat naming.
+- Native CSS nesting is fine, kept shallow and scoped to one component's own selectors. It's not a substitute for BEM's flat naming.
 - Prefer modern CSS (grid, scroll-snap, container queries, `:has()`) over JS for anything CSS can do alone.
 
 ## Further Reading
 
-- [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) — MDN
-- [`{% stylesheet %}` tag](https://shopify.dev/docs/api/liquid/tags/stylesheet) — shopify.dev
+- [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) (MDN)
+- [`{% stylesheet %}` tag](https://shopify.dev/docs/api/liquid/tags/stylesheet) (shopify.dev)

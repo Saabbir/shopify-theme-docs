@@ -5,7 +5,7 @@ description: Reusable Liquid partials, and how we name files across the theme.
 
 ## Snippets
 
-A snippet is a small piece of reusable Liquid, invisible to merchants in the theme editor (no schema, no settings UI). Use snippets for logic you'd otherwise copy-paste — a price formatter, a product card, an SVG icon.
+A snippet is a small, reusable piece of Liquid code. Merchants never see it in the theme editor, because it has no schema (settings file) and no settings screen. Use a snippet for logic you'd otherwise copy and paste over and over, like a price formatter, a product card, or an SVG icon.
 
 ```liquid
 {% comment %} snippets/price.liquid {% endcomment %}
@@ -26,9 +26,9 @@ A snippet is a small piece of reusable Liquid, invisible to merchants in the the
 {% render 'price', product: product %}
 ```
 
-Unlike a theme block, a snippet **does** receive variables you explicitly pass it — that's the key difference. Use a snippet when you need to pass data in; use a block when you need merchant-editable settings and reordering.
+Unlike a theme block, a snippet **does** receive the variables you explicitly pass it. That's the key difference between the two. Use a snippet when you need to pass data in yourself. Use a block when you need settings a merchant can edit, plus the ability to reorder it.
 
-The `{%- doc -%}` tag above is [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) — write one for any snippet another developer (or an AI tool) will call, so its parameters are self-documenting in the VS Code extension.
+The `{%- doc -%}` tag you see above is called [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc). Write one for any snippet that another developer, or an AI tool, will call. It documents the parameters for you, and shows up right inside the VS Code extension.
 
 ### Snippet vs. block — a decision you'll make constantly
 
@@ -37,7 +37,7 @@ The `{%- doc -%}` tag above is [LiquidDoc](https://shopify.dev/docs/storefronts/
 | Does a merchant need to configure this visually in the theme editor? | Block | Snippet |
 | Does it need to be independently added/removed/reordered? | Block | Snippet |
 | Are you calling it with explicit data each time (`{% render 'x', y: y %}`)? | Snippet | Block |
-| Is it purely presentational logic reused across several sections (e.g. a price formatter)? | Snippet | — |
+| Is it purely presentational logic reused across several sections (e.g. a price formatter)? | Snippet | N/A |
 
 ```liquid
 {% comment %} ❌ WRONG — using {% include %}, deprecated and unscoped
@@ -107,25 +107,25 @@ The `{%- doc -%}` tag above is [LiquidDoc](https://shopify.dev/docs/storefronts/
 
 ## Best practices
 
-- Write a LiquidDoc `{%- doc -%}` block on every snippet the moment you create it, not as cleanup later — it's the difference between a teammate (or an AI tool) using it correctly on the first try or guessing.
-- Run the snippet-vs-block decision table above every time you're about to extract reusable logic — it's a quick check that prevents a bigger refactor later.
-- Keep naming consistent even under time pressure — a rushed generic name (`block1.liquid`) becomes permanent technical debt far more often than it gets renamed later.
+- Write a LiquidDoc `{%- doc -%}` block on every snippet the moment you create it. Don't leave it for later cleanup. It's the difference between a teammate, or an AI tool, using your snippet correctly the first time, versus guessing.
+- Run through the snippet-vs-block decision table above every time you're about to pull out reusable logic. It's a quick check that saves you a bigger rewrite later.
+- Keep your naming consistent even when you're in a hurry. A rushed, generic name like `block1.liquid` almost always sticks around as permanent technical debt instead of getting renamed later.
 
 ## Common mistakes
 
-- **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is deprecated specifically because it doesn't scope variables — a snippet using `{% include %}` can accidentally read or clobber variables from whatever called it.
-- **Building something as a snippet that should have been a block** (or vice versa) — usually surfaces when a "just pass in a variable" snippet later needs to become merchant-configurable, forcing a rewrite.
-- **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never gets circled back to, and it's the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
-- **Inconsistent casing** — mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to predict a file or setting's name without looking it up.
+- **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is an older, deprecated (no longer recommended) tag, specifically because it doesn't keep variables separate. A snippet using it can accidentally read or overwrite variables from whatever called it.
+- **Building something as a snippet that should have been a block** (or the other way around). This usually shows up when a "just pass in a variable" snippet later needs to become something a merchant can configure, forcing you to rewrite it.
+- **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
+- **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up.
 
 ## Quick Reference
 
-- Snippets receive variables you pass explicitly; blocks only see `block`/`section`.
+- Snippets receive variables you pass explicitly. Blocks only see `block` and `section`.
 - Use `{% render %}`, never the deprecated `{% include %}`.
-- File names: `kebab-case`. Schema `id`s: `snake_case`.
-- Write LiquidDoc comments on any snippet meant to be reused by someone else (human or AI).
+- File names use `kebab-case`. Schema `id`s use `snake_case`.
+- Write LiquidDoc comments on any snippet meant to be reused by someone else, human or AI.
 
 ## Further Reading
 
-- [Snippets](https://shopify.dev/docs/storefronts/themes/architecture/snippets) — shopify.dev
-- [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) — shopify.dev
+- [Snippets](https://shopify.dev/docs/storefronts/themes/architecture/snippets) (shopify.dev)
+- [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) (shopify.dev)

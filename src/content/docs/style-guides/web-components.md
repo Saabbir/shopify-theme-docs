@@ -1,9 +1,11 @@
 ---
 title: Web Components Guideline
-description: Two valid patterns for a theme Web Component — a simple one and Horizon's advanced one — and how to choose between them.
+description: Two valid patterns for a theme Web Component, a simple one and Horizon's advanced one, and how to choose between them.
 ---
 
-[JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) covers the baseline rules (progressive enhancement, `CustomEvent` over direct coupling, cleanup). This page goes deeper: two concrete patterns for structuring a component's internals, verified against what Shopify's own Horizon theme actually ships, and a decision framework for which one a given component deserves.
+The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) covers the basic rules: build with progressive enhancement (making sure the page still works before your JavaScript loads), use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
+
+It covers two real patterns for structuring what's inside a component. We checked both against what Shopify's own Horizon theme actually ships, and this page shows you how to decide which one a given component needs.
 
 ## Two valid patterns, not one required one
 
@@ -13,21 +15,25 @@ description: Two valid patterns for a theme Web Component — a simple one and H
 | Finding child elements | `this.querySelector(...)` in `connectedCallback` | Declarative `ref="name"` attributes in the Liquid markup, auto-collected into `this.refs.name` |
 | Wiring up events | `this.addEventListener(...)` + matching `removeEventListener` in `disconnectedCallback` | Declarative `on:click="methodName"` attributes in the markup, handled by one shared, delegated listener |
 | Best for | A component with one or two behaviors, used in one or two places | A theme with many components, where the boilerplate of manual `querySelector`/`addEventListener` pairs has become repetitive and error-prone across dozens of files |
-| Cost | None — it's just `HTMLElement` | You maintain the shared `Component` base class yourself (Skeleton Theme doesn't ship one) |
+| Cost | None, it's just `HTMLElement` | You maintain the shared `Component` base class yourself (Skeleton Theme doesn't ship one) |
 
-Neither is "more correct." The simple pattern is what [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) shows by default, and it's the right choice for most components in a theme of Solis's current size. The advanced pattern is what Shopify's own Horizon theme uses throughout — verified directly against its shipped `assets/component.js` and component files — and it's worth adopting once a theme has enough components that the simple pattern's repetition becomes the actual maintenance cost.
+Neither pattern is "more correct" than the other. The simple pattern is what [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) shows by default, and it's the right choice for most components in a theme Solis's current size.
+
+The advanced pattern is what Shopify's own Horizon theme uses throughout. We checked this directly against its shipped `assets/component.js` and component files. It's worth adopting once a theme has enough components that the simple pattern's repetition starts costing you real maintenance time.
 
 ## The simple pattern
 
-Covered in full in [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#a-minimal-well-structured-web-component) — a class extending `HTMLElement` directly, with manual `querySelector` and `addEventListener`/`removeEventListener` pairs. Reach for this by default.
+This pattern is covered in full in [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#a-minimal-well-structured-web-component). In short, it's a class that extends `HTMLElement` directly, using manual `querySelector` calls and matching `addEventListener`/`removeEventListener` pairs. Use this pattern by default.
 
 ## The advanced pattern: a shared `Component` base class
 
-This is the pattern Horizon's own theme uses for every interactive component. It trades a small amount of upfront infrastructure (a base class you write once) for two things that matter once a theme has dozens of components: **no manual `querySelector`/`addEventListener` boilerplate repeated in every file**, and **a markup-visible contract** — you can read a component's Liquid file and see exactly which elements it depends on (`ref="..."`) and which events it handles (`on:click="..."`), without opening the JS file at all.
+This is the pattern Horizon's own theme uses for every interactive component. It costs a small amount of upfront setup, since you write a base class once, but it pays off once a theme has dozens of components.
+
+You get two real benefits from it. First, no more manual `querySelector`/`addEventListener` code repeated in every file. Second, a contract you can see right in the markup: you can read a component's Liquid file and see exactly which elements it needs (`ref="..."`) and which events it handles (`on:click="..."`), without ever opening the JS file.
 
 ### Part 1: `ref` attributes instead of `querySelector`
 
-Rather than writing `this.querySelector('[data-price]')` in every component, mark the elements you need in the markup itself, and let a base class collect them automatically:
+Instead of writing `this.querySelector('[data-price]')` in every component, mark the elements you need directly in the markup, and let a base class collect them automatically.
 
 ```liquid
 {% comment %} snippets/price.liquid — mark what the component needs {% endcomment %}
@@ -53,11 +59,11 @@ class PriceDisplay extends Component {
 customElements.define('price-display', PriceDisplay);
 ```
 
-The `Component` base class (below) queries every `[ref]` descendant once on connect, keeps that map fresh via a `MutationObserver` as the DOM changes (important for Section Rendering API re-renders, which morph markup in place), and exposes it as `this.refs`.
+The `Component` base class shown further down finds every `[ref]` element inside it once, right when the component connects to the page. It keeps that list up to date using a `MutationObserver` (a built-in browser tool that watches for changes to the page) as the page changes. This matters for Section Rendering API re-renders, which update markup in place. The whole list becomes available to you as `this.refs`.
 
 ### Part 2: declarative event binding instead of manual listeners
 
-Instead of `addEventListener` in every `connectedCallback`, bind an event to a method by name directly in the markup:
+Instead of calling `addEventListener` in every `connectedCallback`, you can bind an event to a method by name, right in the markup.
 
 ```liquid
 <button on:click="increment">+</button>
@@ -75,11 +81,13 @@ class QuantitySelector extends Component {
 }
 ```
 
-One shared, delegated listener (registered once, globally, by the base class) reads `on:click`/`on:change`/etc. attributes and calls the named method on the closest `Component` ancestor — no per-component `addEventListener` call, and nothing to clean up in `disconnectedCallback` for these bindings, since the listener isn't attached per-instance.
+Here's how it works under the hood: one shared listener, registered once and globally by the base class, reads the `on:click`, `on:change`, and similar attributes, then calls the named method on the nearest `Component` ancestor. There's no per-component `addEventListener` call, and nothing to clean up in `disconnectedCallback` for these bindings, since the listener isn't attached separately for each component instance.
 
 ### A minimal version of the base class
 
-This is our own compact implementation of the pattern above — inspired by Horizon's architecture (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/) for why we reference Horizon's patterns without deriving our codebase from it directly), not a copy of Shopify's actual `assets/component.js`. Adapt it to what Solis's components actually need — this is deliberately smaller than Horizon's version, which additionally handles declarative shadow DOM hydration, `ref="name[]"` array collection, and a `requiredRefs` contract-checking feature.
+This is our own compact version of the pattern above. It's inspired by how Horizon is built (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/) for why we look at Horizon's patterns without copying our codebase from it directly), but it isn't a copy of Shopify's actual `assets/component.js`. Adapt it to what Solis's components actually need.
+
+It's deliberately smaller than Horizon's version, which also handles declarative shadow DOM hydration (a technique for rendering isolated markup before JavaScript runs), `ref="name[]"` array collection, and a `requiredRefs` check.
 
 ```javascript
 // assets/component.js
@@ -137,57 +145,59 @@ function findComponent(el) {
 }
 ```
 
-Call `registerDeclarativeEvents()` once, in your global JS entry point. Every component then extends `Component` instead of `HTMLElement` directly, and gets `this.refs` and `on:*` binding for free.
+Call `registerDeclarativeEvents()` once, in your global JavaScript entry point (the main file that sets everything up when your site loads). From then on, every component extends `Component` instead of `HTMLElement` directly, and gets `this.refs` and `on:*` binding for free.
 
-:::note[This is genuinely optional infrastructure]
-Skeleton Theme doesn't ship anything like this — it's plain, per-component Web Components by default, which is exactly [the simple pattern](#the-simple-pattern) above. Only build and adopt this base class once you've noticed the same `querySelector`/`addEventListener` boilerplate repeating across enough components that the shared infrastructure pays for itself. Introducing it for a theme with three or four simple components is premature abstraction — see [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) on waiting for the third real occurrence before extracting a pattern.
+:::note[This is genuinely optional]
+Skeleton Theme doesn't ship anything like this. Plain, per-component Web Components are its default, which is exactly [the simple pattern](#the-simple-pattern) described above. Only build and adopt this base class once you notice the same `querySelector`/`addEventListener` code repeating across enough components that a shared setup pays for itself. Adding it for a theme with three or four simple components is solving a problem you don't have yet. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) for why it's worth waiting for the third real occurrence of a pattern before you extract it into shared code.
 :::
 
-## Naming conventions
+## Naming rules
 
-- **Custom element tag names:** kebab-case, matching what the component does (`price-display`, `quantity-selector`), not the file it lives in if those differ. Horizon's own components follow this exactly.
-- **`ref` names:** camelCase (`priceContainer`, `volumePricingNote`) — matches the JS property they become on `this.refs`.
-- **`data-testid` for test/automation hooks**, separate from `ref` — `ref` is for the component's own internal wiring; `data-testid` is for anything external (Playwright, Cypress) that needs a stable selector regardless of the component's internal structure. Horizon uses this pattern (`data-testid="divider-{{ section.id }}"`) throughout its sections.
-- **Guard `customElements.define` calls** — `if (!customElements.get('price-display')) { customElements.define(...) }` — a component's JS module can execute more than once in some Section Rendering API / theme editor scenarios, and a duplicate `customElements.define` call throws.
+- **Custom element tag names:** use kebab-case (words separated by hyphens, like `price-display`), matching what the component does, not the name of the file it lives in if those differ. Horizon's own components follow this exactly.
+- **`ref` names:** use camelCase (like `priceContainer`, `volumePricingNote`). This matches the JS property name they become on `this.refs`.
+- **Use `data-testid` for test and automation hooks, kept separate from `ref`.** A `ref` is for the component's own internal wiring. `data-testid` is for anything external, like Playwright or Cypress (testing tools), that needs a stable, predictable selector regardless of how the component is built inside. Horizon uses this pattern (`data-testid="divider-{{ section.id }}"`) throughout its sections.
+- **Guard every `customElements.define` call,** for example: `if (!customElements.get('price-display')) { customElements.define(...) }`. A component's JS module can run more than once in some Section Rendering API or theme editor situations, and a duplicate `customElements.define` call throws an error.
 
 ## Shadow DOM: light DOM by default
 
-Default to **light DOM** (no `attachShadow` call) for theme components — it keeps global CSS custom properties, the cascade, and `{% stylesheet %}`-scoped styles working normally, and keeps a component's markup visible to `Ctrl+F`/accessibility tooling/browser extensions without extra work. Reach for Shadow DOM only when you specifically need style/DOM encapsulation strong enough that global CSS shouldn't reach inside (rare in a theme, more common in a widget meant to be embedded in arbitrary third-party pages).
+Default to **light DOM** (meaning you never call `attachShadow`) for theme components. This keeps global CSS custom properties, the normal styling cascade, and `{% stylesheet %}`-scoped styles all working as expected. It also keeps a component's markup visible to `Ctrl+F` searches, accessibility tools, and browser extensions with no extra work from you.
+
+Reach for Shadow DOM (a technique that isolates a component's markup and styles from the rest of the page) only when you specifically need style or DOM isolation strong enough that global CSS shouldn't reach inside. That situation is rare in a theme, and more common in a widget meant to be embedded on someone else's page.
 
 ## Accessibility patterns worth calling out specifically
 
-- **Every custom element that's interactive needs a real, focusable, semantic element inside it** — a `<button>` for a click target, not a `<div on:click="...">` with no keyboard path. The custom element wraps semantic HTML; it doesn't replace the need for it.
-- **`aria-expanded`, `aria-live`, `hidden`/`aria-hidden`** — set these as real DOM state (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#state-attributes-and-properties-not-a-framework-store)), not just visually implied by CSS classes, so assistive tech gets the same information sighted users do.
-- **A component that updates content dynamically** (a price after a variant change, a cart count) should update via a live region (`aria-live="polite"`) if the change isn't already inside an element the user just interacted with directly — otherwise a screen reader user gets no indication anything changed.
+- **Every interactive custom element needs a real, focusable, semantic element inside it.** Use a `<button>` for a click target, not a `<div on:click="...">` with no way to reach it by keyboard. The custom element wraps semantic HTML (markup with built-in meaning, like a button or a link), it doesn't replace the need for it.
+- **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#state-attributes-and-properties-not-a-framework-store)), not just implied visually by a CSS class, so assistive tech (like screen readers) gets the same information sighted users do.
+- **A component that updates content on its own,** like a price after a variant change or a cart count, should update through a live region (`aria-live="polite"`) if the change isn't already inside something the user just interacted with directly. Otherwise, a screen reader user gets no sign that anything changed.
 
 ## Best practices
 
-- Default to the simple pattern; adopt the advanced `Component`/`refs`/`on:*` pattern only once repeated boilerplate across several components makes the shared infrastructure worth its cost.
-- Whichever pattern you use, keep it consistent across the theme — mixing both patterns in different components makes the codebase harder to read, not more flexible.
-- Light DOM by default; Shadow DOM only for genuine encapsulation needs.
-- Guard every `customElements.define` call against double-registration.
-- Wrap real semantic HTML (`<button>`, `<dialog>`, `<details>`) inside a custom element — the element adds behavior, it doesn't replace the need for accessible markup underneath.
+- Default to the simple pattern. Only adopt the advanced `Component`/`refs`/`on:*` pattern once repeated code across several components makes a shared setup worth the cost.
+- Whichever pattern you use, stay consistent across the theme. Mixing both patterns across different components makes the codebase harder to read, not more flexible.
+- Use light DOM by default. Reach for Shadow DOM only when you genuinely need isolation.
+- Guard every `customElements.define` call against double registration.
+- Wrap real semantic HTML (`<button>`, `<dialog>`, `<details>`) inside a custom element. The element adds behavior, it doesn't replace the need for accessible markup underneath.
 
 ## Common mistakes
 
-- **Building the advanced `Component` base class for a theme with only a handful of simple components** — pure overhead until the repetition it solves actually exists.
-- **Mixing `ref`/`on:*` attributes into a component that extends plain `HTMLElement`** (no base class implementing them) — the attributes silently do nothing, since nothing is reading them.
-- **A `<div on:click>` or `<span on:click>` with no real interactive element underneath** — unreachable by keyboard, invisible to a screen reader as an actionable control.
-- **Attaching Shadow DOM by habit** ("that's what real Web Components do") when light DOM would have kept global styles and accessibility tooling working with zero extra effort.
-- **Forgetting the `customElements.get` guard**, causing a "already defined" error the first time a component's module happens to execute twice.
+- **Building the advanced `Component` base class for a theme with only a handful of simple components.** It's pure overhead until the repetition it solves actually exists.
+- **Mixing `ref`/`on:*` attributes into a component that extends plain `HTMLElement`** with no base class reading them. The attributes silently do nothing, since nothing is looking for them.
+- **A `<div on:click>` or `<span on:click>` with no real interactive element underneath.** It's unreachable by keyboard and invisible to a screen reader as something you can act on.
+- **Attaching Shadow DOM out of habit,** thinking "that's what real Web Components do," when light DOM would have kept global styles and accessibility tools working with zero extra effort.
+- **Forgetting the `customElements.get` guard,** which causes an "already defined" error the first time a component's module happens to run twice.
 
 ## Quick Reference
 
-- Two valid patterns: simple (`HTMLElement`, manual `querySelector`/`addEventListener`) and advanced (shared `Component` base class, `ref` attributes, declarative `on:*` event binding) — pick based on how much repeated boilerplate the theme actually has, not by default.
-- Tag names: kebab-case. `ref` names: camelCase. `data-testid` for external test hooks, separate from `ref`.
-- Light DOM by default; Shadow DOM only for genuine encapsulation needs.
-- Guard `customElements.define` against double-registration.
+- Two valid patterns: simple (`HTMLElement`, manual `querySelector`/`addEventListener`) and advanced (shared `Component` base class, `ref` attributes, declarative `on:*` event binding). Pick based on how much repeated code the theme actually has, not by default.
+- Tag names: kebab-case. `ref` names: camelCase. Use `data-testid` for external test hooks, kept separate from `ref`.
+- Use light DOM by default. Reach for Shadow DOM only when you genuinely need isolation.
+- Guard `customElements.define` against double registration.
 - Wrap real semantic, focusable HTML inside every interactive custom element.
 
 ## Further Reading
 
-- [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) — the baseline rules this page builds on
-- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) — the custom element lifecycle in detail
-- [Complete Worked Example](/codebase-structure/complete-worked-example/) — a full block using the simple pattern, explained alongside its code
-- [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) — MDN
-- [Declarative Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) — MDN
+- [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) - the baseline rules this page builds on
+- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) - the custom element lifecycle in detail
+- [Complete Worked Example](/codebase-structure/complete-worked-example/) - a full block using the simple pattern, explained alongside its code
+- [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) - MDN
+- [Declarative Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) - MDN

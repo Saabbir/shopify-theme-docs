@@ -3,7 +3,7 @@ title: Folder Structure
 description: The required top-level directories in a Shopify theme.
 ---
 
-Every Shopify theme — Skeleton, Horizon, Dawn, or ours — uses this exact top-level layout. No other top-level folders are supported.
+Every Shopify theme uses this exact folder layout at the top level. This includes Skeleton, Horizon, Dawn, and our own theme too. No other top-level folders are allowed.
 
 ```
 .
@@ -17,15 +17,15 @@ Every Shopify theme — Skeleton, Horizon, Dawn, or ours — uses this exact top
 └── templates    # One file per page type, usually JSON
 ```
 
-Only a `layout/theme.liquid` file is strictly required to upload a theme — everything else is added as you build features.
+Only `layout/theme.liquid` is required to upload a theme. You add everything else as you build out new features.
 
 ## What goes where
 
 | Folder | Put here | Don't put here |
 |---|---|---|
-| `assets/` | Compiled CSS/JS, images, fonts | Liquid logic — assets are static files, though `.css.liquid`/`.js.liquid` extensions exist for limited Liquid use |
+| `assets/` | Compiled CSS/JS, images, fonts | Liquid logic (assets are static files, though `.css.liquid`/`.js.liquid` extensions exist for limited Liquid use) |
 | `blocks/` | Any block meant to be reused across multiple sections | A block only ever used in one section (define it inline in that section instead) |
-| `config/` | Global theme settings | Section- or block-specific settings (those live in the section/block's own schema) |
+| `config/` | Global theme settings | Section- or block-specific settings (those live in the section's or block's own schema) |
 | `layout/` | Repeated page chrome (`<head>`, header/footer wrappers) | Page-specific content |
 | `locales/` | All merchant- and customer-facing text | Anything hardcoded that should be translatable |
 | `sections/` | Page-level, merchant-addable modules | Tiny reusable fragments (that's a snippet) |
@@ -34,13 +34,13 @@ Only a `layout/theme.liquid` file is strictly required to upload a theme — eve
 
 ## A worked example: where does this file go?
 
-Say you're building a Solis feature that shows a "recently viewed products" strip. Here's how the decision plays out:
+Let's say you're building a Solis feature that shows a "recently viewed products" strip on a product page. Here's how you'd work through the decision, step by step.
 
 | Question | Answer | Conclusion |
 |---|---|---|
 | Does a merchant need to add/remove/reorder it? | Yes, as a section on the product page | It's a **section**, in `sections/` |
-| Does it need its own repeatable, merchant-configurable sub-items? | No — it's driven by browsing history, not manual content | No blocks needed |
-| Is there shared markup logic (e.g. rendering one product card) reused elsewhere? | Yes — the same product card markup appears in collection grids too | Extract that into a **snippet** in `snippets/`, rendered with explicit parameters |
+| Does it need its own repeatable, merchant-configurable sub-items? | No. It's driven by browsing history, not manual content | No blocks needed |
+| Is there shared markup logic (for example, rendering one product card) reused elsewhere? | Yes. The same product card markup appears in collection grids too | Extract that into a **snippet** in `snippets/`, rendered with explicit parameters |
 | Does it need JS to track/read viewed products? | Yes | Goes in `assets/`, loaded via a scoped `{% javascript %}` tag in the section |
 
 ```liquid
@@ -54,23 +54,23 @@ Say you're building a Solis feature that shows a "recently viewed products" stri
 
 ## Best practices
 
-- When you're unsure whether something is a section, block, or snippet, walk through the decision table above rather than guessing from habit.
-- Keep `assets/` organized by type (e.g. a clear naming convention for CSS vs. JS vs. images) as the theme grows — a flat, undifferentiated `assets/` folder gets hard to navigate past a few dozen files.
-- Treat `config/settings_schema.json` as genuinely global — if you find yourself adding a setting there that only one section actually uses, move it into that section's own schema instead.
+- If you're not sure whether something should be a section, block, or snippet, walk through the decision table above instead of just guessing.
+- Keep `assets/` organized by type as your theme grows. For example, use a clear naming pattern for CSS files, JS files, and images. A flat `assets/` folder with everything mixed together gets hard to navigate once you pass a few dozen files.
+- Treat `config/settings_schema.json` as truly global. If you notice you're adding a setting there that only one section actually uses, move it into that section's own schema instead.
 
 ## Common mistakes
 
-- **Putting a block-worthy piece of content directly in `snippets/`** because it's reusable, without considering that merchants might need to control its settings visually — that's a sign it should be a block, not a snippet.
-- **Overloading `config/settings_schema.json`** with settings that really belong to one specific section, making the global theme settings panel cluttered and confusing for merchants.
-- **Creating ad hoc top-level folders** (e.g. a `components/` or `styles/` folder) — only the 8 folders listed above are supported; anything else is silently ignored by Shopify.
+- **Putting content that should be a block directly in `snippets/`**, just because it's reusable, without stopping to ask whether merchants need to control its settings visually. If they do, it should be a block, not a snippet.
+- **Overloading `config/settings_schema.json`** with settings that really belong to just one section. This clutters the global theme settings panel and confuses merchants.
+- **Creating extra top-level folders** on your own, like `components/` or `styles/`. Only the 8 folders listed above are supported. Shopify silently ignores anything else.
 
 ## Quick Reference
 
 - 8 top-level folders, no others allowed: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, `templates`.
 - Only `layout/theme.liquid` is strictly required.
-- `blocks/` is the newest addition — it didn't exist in Dawn-era themes.
-- When unsure where something goes, walk through: does a merchant edit it visually? Is it reused with different data each time? Does it need settings?
+- `blocks/` is the newest addition. It didn't exist in Dawn-era themes.
+- When you're unsure where something goes, ask yourself: does a merchant edit it visually? Is it reused with different data each time? Does it need its own settings?
 
 ## Further Reading
 
-- [Theme architecture — directory structure](https://shopify.dev/docs/storefronts/themes/architecture#directory-structure-and-component-types) — shopify.dev
+- [Theme architecture, directory structure](https://shopify.dev/docs/storefronts/themes/architecture#directory-structure-and-component-types) (shopify.dev)

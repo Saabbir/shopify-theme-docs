@@ -1,6 +1,6 @@
 ---
 title: Cheatsheet
-description: Day-to-day commands, objects, filters, and syntax — the quick-lookup version.
+description: Day-to-day commands, objects, filters, and syntax, in a quick-lookup format.
 ---
 
 ## Shopify CLI commands
@@ -89,7 +89,7 @@ Full detail: [Liquid Global Objects Reference](/learning-articles/liquid-global-
 }
 ```
 
-Locale keys are flat, shared, purpose-based namespaces (`names.*`, `settings.*`, `options.*`, `categories.*`) — not nested per-section like `t:sections.testimonials.settings.heading.label`. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full convention.
+Locale keys are flat, and the whole theme shares them. Group them by purpose, using prefixes like `names.*`, `settings.*`, `options.*`, and `categories.*`. Don't nest them per section, like `t:sections.testimonials.settings.heading.label`. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for the full picture.
 
 ## Theme block targeting
 
@@ -150,5 +150,5 @@ See [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-co
 
 ## Further Reading
 
-- [Liquid reference](https://shopify.dev/docs/api/liquid) — shopify.dev
-- [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) — shopify.dev
+- [Liquid reference](https://shopify.dev/docs/api/liquid) (shopify.dev)
+- [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)

@@ -1,23 +1,25 @@
 ---
 title: "Learning Article: CSS Deep Dive"
-description: The cascade, specificity, and modern layout — from first principles, not just the rulebook.
+description: How the cascade, specificity, and modern layout actually work, not just a list of rules to memorize.
 ---
 
-[CSS Style Guide](/style-guides/css/) tells you what to write. This article is about *why* — the mental model that makes the rules obvious in hindsight instead of arbitrary.
+The [CSS Style Guide](/style-guides/css/) tells you what to write. This article explains *why* those rules exist. Once you understand the reasoning behind them, the rules stop feeling random and start making sense.
 
 ## Step 1: the cascade is a conflict-resolution system, not a stylesheet reader
 
-When two rules target the same element and property, the browser needs to decide which wins. It resolves this in a strict order:
+Sometimes two CSS rules try to style the same element and the same property at the same time. When that happens, the browser has to pick a winner. This process is called the "cascade," and it always follows the same strict order.
 
-1. **Origin and importance** — user-agent styles, then author styles, then `!important` author styles (roughly — the full algorithm has more tiers, but this covers what you'll encounter day to day).
-2. **Specificity** — a more specific selector beats a less specific one, regardless of source order.
-3. **Source order** — if specificity ties, whichever rule appears later in the stylesheet wins.
+Think of it like a tiebreaker in a competition. If there's a tie, you check the next rule down the list, then the next, until someone wins. CSS works the same way:
 
-Most "why isn't my CSS applying" confusion is actually a specificity or source-order question in disguise. Once you can answer "which of these two rules wins, and why" by inspecting the selectors rather than guessing, most cascade confusion disappears.
+1. **Where the rule comes from, and whether it's marked `!important`.** The browser checks its own default styles first, then your styles, then any of your styles marked `!important`. (This is a simplified version. The real process has more layers, but this covers what you'll run into most days.)
+2. **Specificity.** A more specific selector (one that targets an element more precisely) wins over a less specific one, no matter which one appears first in the file.
+3. **Source order.** If two rules are equally specific, whichever one is written later in the stylesheet wins.
+
+Most "why isn't my CSS working" problems are really just specificity or source-order problems in disguise. Once you can look at two selectors and say which one wins and why, most of that confusion goes away.
 
 ## Step 2: specificity, calculated by hand once
 
-Specificity is calculated as three numbers, compared left to right: (ID selectors, class/attribute/pseudo-class selectors, element/pseudo-element selectors).
+Specificity sounds complicated, but it's really just a scorecard with three numbers. You compare these numbers left to right: (number of ID selectors, number of class/attribute/pseudo-class selectors, number of element/pseudo-element selectors).
 
 | Selector | Specificity (id, class, element) |
 |---|---|
@@ -26,7 +28,7 @@ Specificity is calculated as three numbers, compared left to right: (ID selector
 | `#main-product .price` | (1, 1, 0) |
 | `div.product-card` | (0, 1, 1) |
 
-`#main-product .price` beats `.product-card.product-card--sold-out` because one ID outweighs any number of classes. This is precisely why this handbook avoids ID selectors for styling ([CSS Style Guide](/style-guides/css/)) — an ID-based rule is nearly impossible to override later without another ID or `!important`, both of which make the next override even harder.
+Look at the table above. `#main-product .price` beats `.product-card.product-card--sold-out`, even though the second selector has more classes. That's because one ID always outweighs any number of classes. This is why this handbook avoids ID selectors for styling (see [CSS Style Guide](/style-guides/css/)). Once you write a rule with an ID selector, it's almost impossible to override later without using another ID or `!important`, and both of those just make the next override even harder.
 
 ```css
 /* ❌ Once written, overriding this later requires another ID selector
@@ -40,7 +42,9 @@ Specificity is calculated as three numbers, compared left to right: (ID selector
 
 ## Step 3: the box model, and why `box-sizing: border-box` matters
 
-By default, `width`/`height` set the *content* box only — padding and border add on top, so a `width: 200px` element with `padding: 20px` and a `1px` border actually occupies 242px. `box-sizing: border-box` makes `width`/`height` include padding and border, so the number you write is the number you get:
+Every element on a page is really a box made of layers: content in the middle, then padding, then a border. By default, `width` and `height` only set the size of the *content* layer. Padding and border get added on top of that.
+
+So an element with `width: 200px`, `padding: 20px`, and a `1px` border actually takes up 242px on screen, not 200px. That can be confusing when you're trying to line things up. `box-sizing: border-box` fixes this: it changes `width` and `height` so they include the padding and border too. With it turned on, the number you write is the number you get:
 
 ```css
 *, *::before, *::after {
@@ -48,9 +52,11 @@ By default, `width`/`height` set the *content* box only — padding and border a
 }
 ```
 
-This single global rule (in most themes' reset) is why width math tends to "just work" in practice — without it, every padding/border addition would require recalculating widths elsewhere.
+This one global rule (already part of most themes' CSS reset, the small set of base styles that make browsers behave consistently) is why width math "just works" in practice. Without it, adding padding or a border anywhere would force you to recalculate widths everywhere else.
 
 ## Step 4: modern layout — flexbox vs. grid, decided by the actual question you're asking
+
+Picking between flexbox and grid gets a lot easier once you stop thinking about which one is "better" and start thinking about the question you're actually asking. Here's a simple way to decide:
 
 | You're asking | Reach for |
 |---|---|
@@ -84,11 +90,13 @@ This single global rule (in most themes' reset) is why width math tends to "just
 }
 ```
 
-Reaching for JavaScript to compute a column count or a breakpoint is almost always solving a problem grid/flexbox/container-queries already solve declaratively — see [CSS Style Guide](/style-guides/css/#layout-modern-css-over-javascript).
+If you ever catch yourself reaching for JavaScript to compute a column count or a breakpoint, stop and check first. Grid, flexbox, or container queries can almost always do this for you, declaratively (meaning you describe the result you want, and the browser figures out how to get there), in plain CSS. See [CSS Style Guide](/style-guides/css/#layout-modern-css-over-javascript).
 
 ## Step 5: custom properties are runtime, not compile-time
 
-Unlike a Sass variable (resolved once, at build time), a CSS custom property is resolved at render time and can be changed dynamically — including per-instance, inline, from Liquid:
+Here's a difference that trips a lot of people up. A Sass variable gets resolved once, when your CSS is built, and after that it's just a fixed value baked into the file. A CSS custom property works differently. It gets resolved when the page renders in the browser, so it can change dynamically, even after the page has loaded.
+
+Because of this, you can set a custom property per instance, inline, straight from Liquid (Shopify's templating language):
 
 ```liquid
 <div class="progress-bar" style="--percent: {{ product.metafields.custom.stock_percent }}%;">
@@ -100,7 +108,7 @@ Unlike a Sass variable (resolved once, at build time), a CSS custom property is 
 }
 ```
 
-This is why a single custom property (not a Sass variable, not a JS-computed inline style property-by-property) is the right tool for "one merchant setting maps to one CSS value" — see [CSS Style Guide](/style-guides/css/#design-tokens-css-custom-properties).
+This is why a custom property is the right tool when one merchant setting needs to map to one CSS value. It beats a Sass variable, and it beats a JS-computed inline style set property by property. See [CSS Style Guide](/style-guides/css/#design-tokens-css-custom-properties).
 
 ## Exercise: diagnose this real bug
 
@@ -110,17 +118,19 @@ This is why a single custom property (not a Sass variable, not a JS-computed inl
 #featured-product .badge { color: blue; }
 ```
 
-A merchant reports a badge inside `#featured-product .product-card` is blue when it should be sale-red. Work out why using the specificity rules above before reading on: the ID selector `(1,0,0)` beats the two-class selector `(0,2,0)`, regardless of source order — the fix is removing the ID selector (or, at minimum, matching its specificity with an equally specific override, which just escalates the same problem).
+Here's a real-world example to try on your own. A merchant reports that a badge inside `#featured-product .product-card` shows up blue when it should be sale-red. Before reading the answer, try to work out why using the specificity rules from Step 2.
+
+The answer: the ID selector `(1,0,0)` beats the two-class selector `(0,2,0)`, no matter what order they're written in. The fix is to remove the ID selector. (You could instead match its specificity with an equally specific override, but that just escalates the same problem.)
 
 ## Quick Reference
 
-- Cascade resolves conflicts by: origin/importance → specificity → source order, in that priority.
-- Specificity: (IDs, classes, elements) — compared left to right. Avoid ID selectors for styling; they're hard to override later.
+- Cascade resolves conflicts in this order: origin/importance, then specificity, then source order.
+- Specificity is three numbers (IDs, classes, elements), compared left to right. Avoid ID selectors for styling, since they're hard to override later.
 - `box-sizing: border-box` makes width/height math predictable.
-- Flexbox = one dimension. Grid = two dimensions/explicit structure. Container queries = component-relative responsiveness.
-- Custom properties resolve at render time — the right tool for a per-instance, merchant-controlled value.
+- Flexbox handles one dimension. Grid handles two dimensions or an explicit structure. Container queries let a component respond to its own size, not the screen's.
+- Custom properties resolve at render time, which makes them the right tool for a per-instance, merchant-controlled value.
 
 ## Further Reading
 
-- [CSS Style Guide](/style-guides/css/) — the rules this article explains the reasoning behind
-- [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade) — MDN
+- [CSS Style Guide](/style-guides/css/): the rules this article explains the reasoning behind.
+- [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade): the MDN reference page.

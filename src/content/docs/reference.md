@@ -1,17 +1,17 @@
 ---
 title: Reference
-description: Quick lookups — a cheatsheet, a glossary, and a curated tools directory.
+description: Quick lookups for the cheatsheet, the glossary, and the tools directory.
 ---
 
-Everything else in this handbook is written to be read; this section is written to be **looked up**. Use search (**⌘K**) and jump straight to the answer.
+Most of this handbook is meant to be read from start to finish. This section is different. It's meant to be **looked up**, not read top to bottom. Use search (**⌘K**) to jump straight to the answer you need.
 
 ## What's on this page group
 
-- [Cheatsheet](/reference/cheatsheet/) — day-to-day CLI commands, common objects/filters, and syntax snippets.
-- [Glossary](/reference/glossary/) — every term this handbook uses, defined once, grouped by topic.
-- [Tools Directory](/reference/tools-directory/) — a curated list of what to reach for, for which job.
+- [Cheatsheet](/reference/cheatsheet/): the CLI commands, objects, filters, and syntax you'll use every day.
+- [Glossary](/reference/glossary/): every term this handbook uses, explained once and grouped by topic.
+- [Tools Directory](/reference/tools-directory/): a short list that tells you which tool to use for which job.
 
 ## Quick Reference
 
 - [Cheatsheet](/reference/cheatsheet/) · [Glossary](/reference/glossary/) · [Tools Directory](/reference/tools-directory/)
-- This section is for lookups. For understanding, see [Learning Articles](/learning-articles/). For rules, see [Style Guides](/style-guides/).
+- This section is for quick lookups. If you want to actually understand a topic, read [Learning Articles](/learning-articles/) instead. Looking for our rules? Check [Style Guides](/style-guides/).

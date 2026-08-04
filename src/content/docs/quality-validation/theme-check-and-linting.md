@@ -5,7 +5,7 @@ description: Automated tools that catch mistakes before a human has to.
 
 ## Theme Check
 
-Shopify's official linter for Liquid, JSON schema, and theme structure. Skeleton Theme ships with a `.theme-check.yml` config already, so start from that rather than writing rules from scratch.
+Theme Check is Shopify's official linter for Liquid, JSON schema, and theme structure. A linter is a tool that scans your code and flags mistakes automatically, before a real person ever has to spot them by eye. Skeleton Theme already ships with a `.theme-check.yml` config file (a settings file that tells Theme Check which rules to apply), so start from that instead of writing your own rules from scratch.
 
 ```bash
 # Run it locally
@@ -15,35 +15,37 @@ shopify theme check
 # it runs Theme Check inline as you type.
 ```
 
-Theme Check catches things like: missing `alt` attributes, unused variables, deprecated tags (`{% include %}`), missing translation keys, and schema errors — many of the exact rules covered in [Codebase Structure](/codebase-structure/) and [Theme Store Requirements](/theme-store-requirements/).
+Theme Check catches things like missing `alt` attributes (text that describes an image for screen readers), unused variables, deprecated tags like `{% include %}` (tags that still work but are considered outdated), missing translation keys, and schema errors. Many of these are the exact same rules covered in [Codebase Structure](/codebase-structure/) and [Theme Store Requirements](/theme-store-requirements/), just checked automatically instead of by hand.
 
 ### A few specific offenses worth knowing by name
+
+An "offense" is just Theme Check's name for one specific rule violation it finds in your code. Here are a few worth recognizing by name, since you'll run into them often:
 
 | Offense | What it means | Where it's covered in this handbook |
 |---|---|---|
 | `DeprecatedTag` (on `{% include %}`) | You used the old, unscoped include tag instead of `{% render %}` | [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) |
-| `MissingTemplate` | A required template is absent | [Required Templates & Features](/theme-store-requirements/required-templates-and-features/) |
-| `TranslationKeyExists` / `MissingTranslation` | A locale key referenced in code doesn't exist in your locale file, or vice versa | [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) |
-| `RequiredLayoutThemeObject` | `theme.liquid` is missing something Shopify expects every layout to render (e.g. `content_for_header`) | [Folder Structure](/codebase-structure/folder-structure/) |
-| `ImgLazyLoading` | An `<img>` is missing `loading="lazy"` where it should have it | [Performance & Lighthouse](/theme-store-requirements/performance/) |
+| `MissingTemplate` | A required template is missing from your theme | [Required Templates & Features](/theme-store-requirements/required-templates-and-features/) |
+| `TranslationKeyExists` / `MissingTranslation` | A locale key referenced in your code doesn't exist in your locale file, or the other way around | [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) |
+| `RequiredLayoutThemeObject` | `theme.liquid` is missing something Shopify expects every layout to render, like `content_for_header` | [Folder Structure](/codebase-structure/folder-structure/) |
+| `ImgLazyLoading` | An `<img>` tag is missing `loading="lazy"`, an attribute that tells the browser to delay loading an image until it's needed | [Performance & Lighthouse](/theme-store-requirements/performance/) |
 
-You don't need to memorize these — the point is that Theme Check offenses usually map directly to a rule already covered elsewhere in this handbook. When you hit an unfamiliar one, that's a good moment to go find the relevant page rather than just silencing the warning.
+You don't need to memorize this table. The point is simple: a Theme Check offense usually points back to a rule that's already explained somewhere else in this handbook. When you hit one you don't recognize, go look up the relevant page instead of just dismissing the warning.
 
 ## Prettier (Liquid plugin)
 
-Shopify publishes an official [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin) — use it for consistent formatting instead of manually matching styles across contributors.
+Shopify publishes an official [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin). Prettier is a code formatter: a tool that automatically arranges your code in one consistent style, like spacing and line breaks. Use it instead of manually trying to match everyone else's formatting by hand.
 
 ## Where this runs
 
 | When | What runs |
 |---|---|
-| While coding (VS Code) | Shopify Liquid extension — inline Theme Check + Prettier |
-| Before committing | `shopify theme check` manually, or a pre-commit hook |
-| On every PR (CI) | `Shopify/theme-check-action` — see [CI Automation](/github-workflow/ci-automation/) |
+| While coding (VS Code) | Shopify Liquid extension: inline Theme Check plus Prettier |
+| Before committing | `shopify theme check` run manually, or a pre-commit hook (a script that runs automatically right before a commit is saved) |
+| On every PR (CI) | `Shopify/theme-check-action`. See [CI Automation](/github-workflow/ci-automation/) for more on this |
 
 ## When to actually ignore a Theme Check offense
 
-Occasionally a rule genuinely doesn't apply to a specific, deliberate choice. Theme Check supports inline ignores, but treat this as a last resort:
+Sometimes a rule genuinely doesn't fit a specific, deliberate choice you made. Theme Check lets you turn off a rule inline (meaning just for one specific spot in your code), but treat this as a last resort, not a first instinct:
 
 ```liquid
 {% comment %} ❌ AVOID — silencing a warning without understanding
@@ -58,28 +60,28 @@ Occasionally a rule genuinely doesn't apply to a specific, deliberate choice. Th
    an app block, not something Theme Check can resolve statically %}
 ```
 
-If you find yourself disabling the same rule repeatedly across the codebase, that's a signal to discuss it with the team rather than normalize suppressing it file by file.
+If you find yourself turning off the same rule again and again across your codebase, treat that as a signal. Bring it up with your team instead of just quietly suppressing it file by file.
 
 ## Best practices
 
-- Install the Shopify Liquid VS Code extension on day one — inline Theme Check feedback while typing catches issues far earlier than waiting for a CI run.
-- When you hit an unfamiliar Theme Check offense, look up what it actually checks for before either fixing or dismissing it — the name alone is sometimes ambiguous.
-- Use the Prettier Liquid plugin project-wide so formatting differences never show up as noise in a PR diff.
+- Install the Shopify Liquid VS Code extension on day one. Getting Theme Check feedback while you type catches issues far earlier than waiting for a CI run.
+- When you hit a Theme Check offense you don't recognize, look up what it actually checks for before you fix or dismiss it. The name alone doesn't always make the problem obvious.
+- Use the Prettier Liquid plugin across the whole project, so formatting differences never show up as noise in a pull request diff (the list of changes shown when you propose a code update).
 
 ## Common mistakes
 
-- **Silencing a Theme Check offense without understanding it**, which risks suppressing something that maps directly to a real Theme Store requirement.
-- **Only running Theme Check right before opening a PR** instead of continuously during development, turning a five-second fix into a larger cleanup pass.
-- **Inconsistent formatting across contributors** because Prettier isn't configured project-wide, creating noisy diffs that obscure the actual code change in review.
+- **Silencing a Theme Check offense without understanding it.** You might be hiding something that maps directly to a real Theme Store requirement.
+- **Only running Theme Check right before opening a PR**, instead of running it continuously during development. This turns a five-second fix into a much bigger cleanup job later.
+- **Letting formatting stay inconsistent across contributors** because Prettier isn't set up project-wide. This creates noisy diffs that hide the actual code change during review.
 
 ## Quick Reference
 
-- `shopify theme check` — run locally, and it runs again in CI.
-- Start from Skeleton Theme's `.theme-check.yml` rather than a blank config.
-- Prettier's official Liquid plugin keeps formatting consistent across contributors (and AI tools).
-- Look up unfamiliar offenses rather than silencing them reflexively.
+- `shopify theme check`: run it locally, and it runs again automatically in CI.
+- Start from Skeleton Theme's `.theme-check.yml` instead of a blank config.
+- Prettier's official Liquid plugin keeps formatting consistent across contributors (and AI tools too).
+- Look up offenses you don't recognize instead of silencing them without thinking it through.
 
 ## Further Reading
 
-- [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) — shopify.dev
-- [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin) — shopify.dev
+- [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check): shopify.dev
+- [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin): shopify.dev

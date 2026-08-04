@@ -1,13 +1,15 @@
 ---
-title: Modern Shopify Features to Utilize
-description: Current platform capabilities worth building on — beyond the baseline architecture already covered in this section.
+title: Modern Shopify Features to Use
+description: Newer Shopify features worth using, beyond the basics already covered in this section.
 ---
 
-[Folder Structure](/codebase-structure/folder-structure/) through [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) cover the architecture every theme needs. This page is different: it's a survey of specific, current Shopify platform features that aren't strictly required, but are worth actively reaching for because they solve real problems better than an older or more manual approach would.
+[Folder Structure](/codebase-structure/folder-structure/) through [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) cover what every theme needs. This page is different. It's a quick tour of specific, newer Shopify features. You don't strictly need them, but they're worth using because they solve real problems better than an older or more manual approach would.
 
 ## Metaobjects, used globally in the theme editor
 
-Metaobjects (custom structured data types a merchant defines — e.g. a "Brand" object with a name, logo, and story) can now be connected and used broadly across the theme editor via **dynamic sources** — a merchant can pick a metaobject field as a section/block's content source directly in the editor, without a developer wiring up a specific Liquid reference for that one use case.
+A metaobject is a custom, structured piece of data that a merchant sets up themselves. For example, a merchant might create a "Brand" object with a name, a logo, and a short story. Metaobjects can now be connected and used all over the theme editor through **dynamic sources**.
+
+Dynamic sources let a merchant pick a metaobject field as a section or block's content source, right inside the editor. A developer doesn't need to write a specific Liquid reference for that one case.
 
 ```liquid
 {% comment %} A block that accepts a dynamic source, rather than a
@@ -20,15 +22,21 @@ Metaobjects (custom structured data types a merchant defines — e.g. a "Brand" 
 { "type": "text", "id": "content", "label": "t:settings.content" }
 ```
 
-When a setting is written generically enough (a `text`/`richtext`/`image_picker` setting, without assuming a specific hardcoded metaobject type), a merchant can connect it to *any* compatible metaobject field via dynamic source selection in the editor — meaning the same block can pull from a "Brand," a "Size Guide," or any other metaobject definition without you writing separate code for each. This is a meaningfully more flexible pattern than a section hardcoded to read one specific metaobject type, and worth reaching for whenever a block's content is conceptually "some structured data a merchant defines," rather than something inherently theme-specific.
+Here's the trick. Write your setting generically, using a `text`, `richtext`, or `image_picker` type that doesn't assume one specific metaobject. Then a merchant can connect it to *any* compatible metaobject field, right in the editor.
+
+That means the same block can pull from a "Brand," a "Size Guide," or any other metaobject a merchant has created, without you writing separate code for each one. This is far more flexible than a section that's hardcoded to read one specific metaobject type. Reach for this approach whenever a block's content is really just "some structured data a merchant defines," rather than something tied to this one specific theme.
 
 ## Theme blocks nested arbitrarily deep
 
-Covered fully in [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) — worth calling out here specifically as a "use this, don't reach for the old pattern" reminder: a block containing other blocks (a "Group" block holding a "Text" block and an "Image" block, arranged and reordered freely by a merchant) replaces what used to require bespoke, single-purpose section schema for every layout variation. If you find yourself building a section with rigid, non-reorderable sub-content, check whether nested theme blocks would let a merchant achieve the same result more flexibly instead.
+This topic gets its own full page at [Theme Blocks & Nesting](/codebase-structure/theme-blocks/), but it's worth a quick reminder here. Use nested blocks, and don't fall back on the old pattern.
+
+A block that contains other blocks is a powerful idea. Picture a "Group" block that holds a "Text" block and an "Image" block inside it, and a merchant can arrange or reorder them freely. This replaces what used to require a custom, single-purpose section schema for every layout variation.
+
+If you catch yourself building a section with rigid content that a merchant can't reorder, stop and check whether nested theme blocks would let the merchant get the same result more flexibly instead.
 
 ## `{% style %}` — live-updating CSS in the editor
 
-Distinct from `{% stylesheet %}` (static, compiled CSS for a component): `{% style %}` is specifically for CSS that should **live-update as a merchant adjusts a color setting in the editor**, without a full section re-render.
+`{% style %}` is different from `{% stylesheet %}`, which is for static CSS that doesn't need to change instantly. Use `{% style %}` specifically for CSS that should **update live while a merchant adjusts a color setting in the editor**, without the whole section having to reload.
 
 ```liquid
 {% style %}
@@ -38,11 +46,11 @@ Distinct from `{% stylesheet %}` (static, compiled CSS for a component): `{% sty
 {% endstyle %}
 ```
 
-Use `{% style %}` specifically for settings-driven values (especially colors) where instant visual feedback while a merchant drags a color picker matters; use `{% stylesheet %}` for everything else (the bulk of a component's actual CSS).
+Use `{% style %}` for values that come from settings, especially colors, where instant feedback matters while a merchant drags a color picker around. Use `{% stylesheet %}` for everything else, which is most of a component's actual CSS.
 
 ## The View Transitions API for section/page changes
 
-The View Transitions API lets you animate between two DOM states (e.g. a product image swap on variant change, or a full page navigation) with a simple CSS-driven cross-fade/morph, instead of hand-rolled JS animation logic:
+The View Transitions API lets you animate between two states of a page. Think of a product image that smoothly swaps when a shopper picks a different variant, or a full page navigation that fades instead of jumping. You get a simple CSS-driven cross-fade or morph, and you don't have to hand-write any JavaScript animation logic for it:
 
 ```css
 ::view-transition-old(product-image),
@@ -59,19 +67,21 @@ if (document.startViewTransition) {
 }
 ```
 
-Always feature-detect (`document.startViewTransition`) and fall back to the immediate update for unsupported browsers — this is a progressive enhancement, not a required behavior.
+Always check that the browser supports this first, using `document.startViewTransition`, and fall back to an immediate update in browsers that don't support it. Treat this as a nice-to-have extra, not something the page depends on to work.
 
 ## `{% content_for %}` for theme blocks
 
-Covered in [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) — flagged here as the modern replacement for what used to require a fixed, hardcoded list of block types in a section's markup. `{% content_for 'blocks' %}` renders whatever blocks a merchant has actually added, in whatever order, without the section template needing to know the specific set of block types in advance.
+This is covered fully in [Theme Blocks & Nesting](/codebase-structure/theme-blocks/). It's mentioned here as the modern replacement for hardcoding a fixed list of block types into a section's markup. `{% content_for 'blocks' %}` renders whatever blocks a merchant has actually added, in whatever order they added them. The section template doesn't need to know the exact set of block types ahead of time.
 
 ## Native HTML elements over custom-built equivalents
 
-Not new to Shopify specifically, but worth calling out as a *current* best practice this handbook leans on repeatedly: `<dialog>` for modals, `<details>`/`<summary>` for disclosures, native form validation. These are stable, well-supported, and remove an entire category of accessibility/JS-maintenance work — see [Clean Code Principles](/style-guides/clean-code-principles/) and [Third-Party Libraries](/style-guides/third-party-libraries/) for the fuller reasoning.
+This tip isn't specific to Shopify, but it's worth repeating because this handbook relies on it often. Use `<dialog>` for popup windows (modals), `<details>`/`<summary>` for expandable sections, and native form validation instead of building your own from scratch.
+
+These native HTML elements are stable, well-supported by browsers, and they save you a whole category of accessibility and JavaScript-maintenance work. See [Clean Code Principles](/style-guides/clean-code-principles/) and [Third-Party Libraries](/style-guides/third-party-libraries/) for the full reasoning.
 
 ## Deciding whether a "modern feature" is worth adopting
 
-Not every new platform capability is automatically worth using in every theme. A quick filter:
+Not every new Shopify feature is automatically worth using in every theme. Here's a quick way to decide:
 
 | Ask | If yes → |
 |---|---|
@@ -81,25 +91,25 @@ Not every new platform capability is automatically worth using in every theme. A
 
 ## Best practices
 
-- Prefer dynamic-source-compatible settings (generic `text`/`richtext`/`image_picker`) over a hardcoded metaobject reference whenever a block's content is conceptually generic structured data.
-- Use `{% style %}` specifically for settings-driven values that benefit from live preview (colors especially); keep the bulk of CSS in `{% stylesheet %}`.
-- Feature-detect the View Transitions API and always provide a working fallback — don't assume universal support.
+- Use generic settings that work with dynamic sources (`text`, `richtext`, `image_picker`) instead of a hardcoded metaobject reference, whenever a block's content is really just generic structured data.
+- Use `{% style %}` only for settings-driven values that benefit from a live preview, colors especially. Keep the bulk of your CSS in `{% stylesheet %}`.
+- Check for browser support before using the View Transitions API, and always provide a working fallback. Don't assume every browser supports it.
 
 ## Common mistakes
 
-- **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without additional code.
-- **Using `{% style %}` for a component's entire CSS** instead of just the settings-driven values that need live preview — bloats what should be static, cacheable CSS.
-- **Using the View Transitions API with no fallback**, breaking the experience (rather than just being less animated) in browsers that don't support it.
+- **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
+- **Using `{% style %}` for a component's entire CSS** instead of just the settings-driven values that need a live preview. This bloats CSS that should stay static and cacheable (able to be saved and reused quickly by the browser).
+- **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
 
 ## Quick Reference
 
-- Metaobjects + dynamic sources: write generic settings, let merchants connect any compatible metaobject field in the editor.
-- `{% style %}` for live-updating, settings-driven CSS (colors); `{% stylesheet %}` for everything else.
-- View Transitions API: feature-detect, always provide a fallback.
-- A "modern feature" is worth adopting when it replaces something you'd otherwise hand-build — not just because it's new.
+- Metaobjects and dynamic sources: write generic settings, and let merchants connect any compatible metaobject field in the editor.
+- `{% style %}` is for live-updating, settings-driven CSS, especially colors. `{% stylesheet %}` is for everything else.
+- View Transitions API: check for support first, and always provide a fallback.
+- A "modern feature" is worth adopting when it replaces something you'd otherwise have to hand-build, not just because it's new.
 
 ## Further Reading
 
-- [Dynamic data sources](https://shopify.dev/docs/storefronts/themes/architecture/settings/dynamic-sources) — shopify.dev
-- [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) — this handbook
-- [`{% style %}` tag](https://shopify.dev/docs/api/liquid/tags/style) — shopify.dev
+- [Dynamic data sources](https://shopify.dev/docs/storefronts/themes/architecture/settings/dynamic-sources) (shopify.dev)
+- [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) (this handbook)
+- [`{% style %}` tag](https://shopify.dev/docs/api/liquid/tags/style) (shopify.dev)

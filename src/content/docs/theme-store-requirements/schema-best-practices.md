@@ -3,20 +3,25 @@ title: Schema.json Best Practices
 description: Writing settings that merchants can actually understand and use.
 ---
 
-Shopify reviews your `{% schema %}` blocks for merchant usability, not just technical correctness. Here's what they check.
+Shopify doesn't just check whether your code works. Reviewers also check whether merchants (the store owners who'll actually use your theme) can understand your settings without guessing. This review focuses on your `{% schema %}` block, which is the JSON code (a simple, structured way of writing data) that defines a section's settings. Here's what reviewers look for.
 
 ## Wording rules
 
 | ✅ Use this | ❌ Not this | Why |
 |---|---|---|
-| "Logo position on large screens" with options "Middle left," "Top left" | "Position 1," "Position 2" | Numbered options force merchants to guess |
-| "Horizontal position" | "X position" | Plain language over technical jargon |
-| "Button label" | "CTA label" | No unexplained jargon |
-| "Use a custom logo" | "Use a custom logo?" | Declarative, not a question |
-| American spelling: "color," "customize," "center" | "colour," "customise," "centre" | Shopify requires American English |
-| "Color" (inside a "Slideshow" section) | "Slideshow color" (repeating the subject) | Don't repeat the section's subject in every setting name |
+| "Logo position on large screens" with options "Middle left," "Top left" | "Position 1," "Position 2" | Numbered options force merchants to guess what each one means |
+| "Horizontal position" | "X position" | Plain words are easier to understand than technical terms |
+| "Button label" | "CTA label" | Don't use terms merchants won't recognize |
+| "Use a custom logo" | "Use a custom logo?" | Write it as a statement, not a question |
+| American spelling: "color," "customize," "center" | "colour," "customise," "centre" | Shopify requires American English spelling |
+| "Color" (inside a "Slideshow" section) | "Slideshow color" (repeating the subject) | Don't repeat the section's name inside every setting name |
 
-Other rules: sentence case for section/preset names (only capitalize the first word and proper nouns), no ampersands, active voice, every button/action starts with a verb.
+A few more rules to keep in mind:
+
+- Use sentence case for section and preset names. That means you only capitalize the first word and any proper nouns (specific names, like "Shopify").
+- Don't use ampersands (the `&` symbol). Spell out "and" instead.
+- Write in active voice, where the subject does the action, instead of passive voice.
+- Start every button or action label with a verb, like "Show" or "Add."
 
 ### A full before/after
 
@@ -59,27 +64,27 @@ Other rules: sentence case for section/preset names (only capitalize the first w
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Include at least 4 color settings | Ship with only 1–2 colors, forcing merchants into a narrow palette |
-| Pair every background color with a foreground/text color setting | A background color with no corresponding text color control, risking unreadable combinations |
-| Use `"type": "color"` | A free-text field for entering hex codes |
+| Include at least 4 color settings | Ship with only 1 or 2 colors, which limits merchants to a narrow color palette |
+| Pair every background color with a foreground/text color setting | Add a background color with no matching text color. This risks combinations that are hard to read |
+| Use `"type": "color"` | Use a free-text field where merchants have to type in hex codes |
 
 ## Font picker
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Use `"type": "font_picker"` for every font setting | A `select` or free-text setting for choosing a typeface |
-| Set a real default (e.g. `"default": "work_sans_n6"`) | Leave the default unset, showing an empty picker on install |
-| Only use [currently available fonts](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) | Reference a custom-uploaded or discontinued font in a default/preset |
-| Load bold/italic/bold-italic variants with `font_modify` | Assume a font's variants load automatically without the filter |
+| Use `"type": "font_picker"` for every font setting | Use a `select` or free-text setting for choosing a font |
+| Set a real default (e.g. `"default": "work_sans_n6"`) | Leave the default empty. This shows an empty picker when the theme is installed |
+| Only use [currently available fonts](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) | Use a custom-uploaded or discontinued font as a default or in a preset |
+| Load bold, italic, and bold-italic variants with `font_modify` | Assume a font's bold and italic versions load automatically, without using the filter |
 
 ## General settings hygiene
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Give every setting a `label` | Ship a setting with no label (fails review outright) |
-| Default `link_list` settings in header/footer to `main-menu`/`footer` | Leave them blank, breaking navigation on a fresh install |
+| Give every setting a `label` | Ship a setting with no label. This fails review right away |
+| Default `link_list` settings in header/footer to `main-menu`/`footer` | Leave them blank. This breaks navigation on a brand new store |
 | Point resource-setting defaults (product, metaobject) at something that exists on every store | Default to a resource that only exists in your demo store |
-| Include a `theme_info` block in `config/settings_schema.json` | Omit `theme_info` entirely |
+| Include a `theme_info` block in `config/settings_schema.json` | Leave out `theme_info` completely |
 
 ## Example: a well-written setting, start to finish
 
@@ -117,29 +122,29 @@ Other rules: sentence case for section/preset names (only capitalize the first w
 }
 ```
 
-Notice every string is a `t:` locale key, the color settings are paired (background + foreground), and the `select` options use descriptive values, not numbers.
+Notice three things in this example. Every string uses a `t:` locale key (a short code that points to a piece of translated text, so the setting can show up in different languages). The color settings come in a pair: background and foreground. And the `select` options use words like "left" and "center" instead of numbers.
 
 ## Best practices
 
-- Write schema labels the way you'd explain the setting out loud to a non-technical merchant, then convert that into sentence case with a verb where relevant.
-- Route every schema string through a locale key from the start — retrofitting localization across a large schema file later is tedious and error-prone.
-- When adding a new color setting, immediately add its paired foreground/text color setting in the same PR, not as a follow-up.
+- Write schema labels the way you'd explain the setting out loud to a merchant with no coding background. Then turn that into sentence case, adding a verb where it makes sense.
+- Route every schema string through a locale key from the start. Adding translations to a large schema file later is slow and easy to get wrong.
+- When you add a new color setting, add its matching foreground or text color setting in the same pull request. Don't leave it for later.
 
 ## Common mistakes
 
-- **Phrasing settings as questions** ("Show price?") instead of declarative statements ("Show price").
-- **Using numbered options** ("Layout 1," "Layout 2") instead of descriptive labels a merchant can understand without trial and error.
-- **Adding a background color without a paired foreground color**, which risks unreadable text/background combinations a merchant could accidentally create.
-- **Hardcoding English strings "temporarily" and forgetting to localize them** before submission.
+- **Phrasing settings as questions** ("Show price?") instead of plain statements ("Show price").
+- **Using numbered options** ("Layout 1," "Layout 2") instead of descriptive labels merchants can understand without trial and error.
+- **Adding a background color without a matching foreground color.** This risks text and background combinations that are hard to read.
+- **Hardcoding English text "temporarily" and forgetting to translate it** before submission.
 
 ## Quick Reference
 
-- American English, sentence case, declarative statements, active voice, verbs on buttons.
-- At least 4 colors, each with a paired foreground color.
-- Font settings: `font_picker` type, a real default, an available font, `font_modify` for variants.
-- Every setting has a `label`; every resource default actually exists on a fresh store.
+- American English, sentence case, plain statements (not questions), active voice, verbs on buttons.
+- At least 4 colors, each with a matching foreground color.
+- Font settings: use `font_picker`, set a real default, pick an available font, and use `font_modify` for variants.
+- Every setting has a `label`, and every resource default actually exists on a brand new store.
 
 ## Further Reading
 
-- [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) — shopify.dev
-- [Settings schema reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) — shopify.dev
+- [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) (shopify.dev)
+- [Settings schema reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) (shopify.dev)

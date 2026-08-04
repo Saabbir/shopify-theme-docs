@@ -1,50 +1,50 @@
 ---
 title: Pull Requests & Review
-description: Our PR template, and how to review AI-assisted code without rubber-stamping it.
+description: Our PR template, and how to review AI-assisted code carefully instead of approving it without checking.
 ---
 
 ## PR template
 
-[Download `PULL_REQUEST_TEMPLATE.md`](/templates/github/PULL_REQUEST_TEMPLATE.md) and save it to `.github/PULL_REQUEST_TEMPLATE.md` in the repo — GitHub will apply it to every new PR automatically.
+A pull request, or PR for short, is how you propose your code changes so a teammate can review them before they get merged. [Download `PULL_REQUEST_TEMPLATE.md`](/templates/github/PULL_REQUEST_TEMPLATE.md) and save it to `.github/PULL_REQUEST_TEMPLATE.md` in your repo. Once it's there, GitHub applies it to every new PR automatically.
 
-It asks for: what the PR does, a preview link or screenshots, and a checklist covering Theme Check, empty/long-content testing, keyboard navigation, locale strings, new dependencies, and AI-review sign-off.
+The template asks you for a few things: what the PR does, a preview link or screenshots, and a checklist. That checklist covers Theme Check, testing with empty or long content, keyboard navigation, locale strings (the text shown to shoppers, which may need translating), new dependencies, and sign-off on AI review.
 
 ## Writing a PR description that's actually reviewable
 
 | ✅ Good PR description | ❌ Weak PR description |
 |---|---|
 | "Adds a testimonials section (heading + repeatable quote blocks). Tested with 0/1/10 blocks and a 300-char quote. Preview: [link]" | "Added testimonials" |
-| "Fixes cart total not refreshing on quantity change — was missing a form re-submit trigger. Before/after video attached." | "Fixed cart bug" |
-| "Bumps color contrast on the footer newsletter form to meet 4.5:1 — was 3.2:1 against the dark scheme. Screenshot attached." | "Accessibility fix" |
+| "Fixes cart total not refreshing on quantity change (it was missing a form re-submit trigger). Before/after video attached." | "Fixed cart bug" |
+| "Bumps color contrast on the footer newsletter form to meet 4.5:1 (it was 3.2:1 against the dark scheme). Screenshot attached." | "Accessibility fix" |
 
-A reviewer without full context on your task should be able to understand what changed and why from the description alone, without opening every file in the diff first.
+A reviewer who doesn't have full context on your task should be able to understand what changed, and why, just from reading the description. They shouldn't have to open every file in the diff (the list of code changes) just to figure out what you did.
 
 ## Reviewing AI-assisted code
 
-AI tools produce plausible-looking code fast — which means the usual "does it look reasonable" skim is not enough. Review AI output for these specifically:
+AI tools write code fast, and that code often looks reasonable at a glance. That means a quick "does this look okay" skim isn't enough. When you review AI-generated code, check these things specifically:
 
-- **Does it match our rules, or just generic Shopify patterns?** AI tools default to whatever's most common in their training data, which is often Dawn-era patterns (`{% include %}`, blocks defined locally instead of theme blocks). Check against [Codebase Structure](/codebase-structure/).
-- **Did it invent scope?** AI assistants sometimes add "helpful" extras nobody asked for (an animation, an extra setting). Flag anything the prompt didn't ask for.
-- **Does it handle empty/unusual content?** This is the single most common thing AI-generated sections get wrong — see [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/).
-- **Are schema strings localized?** AI tools frequently hardcode English directly instead of routing through `t:` locale keys.
+- **Does it match our rules, or just generic Shopify patterns?** AI tools tend to default to whatever's most common in their training data. That's often older patterns from Dawn (Shopify's original reference theme), like using `{% include %}` or defining blocks locally instead of as theme blocks. Check it against [Codebase Structure](/codebase-structure/).
+- **Did it add things nobody asked for?** AI assistants sometimes add "helpful" extras, like an animation or an extra setting, that nobody actually asked for. Flag anything the prompt didn't request.
+- **Does it handle empty or unusual content?** This is the single most common mistake in AI-generated sections. See [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) for more on this.
+- **Are the schema strings translatable?** The schema is the settings file behind a section or block. AI tools often hardcode English text directly into it, instead of using `t:` locale keys, which are placeholders that let the text be translated into other languages.
 - **Would this pass Theme Check?** Run it, don't guess.
 
 ### A realistic AI-assisted PR review, walked through
 
-Say a PR adds a "Featured collection" section, built with Cursor. A thorough review checks, roughly in this order:
+Say a PR adds a "Featured collection" section, built with Cursor (an AI coding tool). A thorough review checks these things, roughly in this order:
 
-1. **Read the PR description** — does it state what was tested, or just "added the section"?
-2. **Run `shopify theme check` locally**, even if CI already ran it — catch issues before reading code line by line.
+1. **Read the PR description.** Does it state what was tested, or does it just say "added the section"?
+2. **Run `shopify theme check` locally**, even though CI already ran it. This catches issues before you start reading code line by line.
 3. **Open the preview link** and actually interact with it: change the collection, remove all blocks, add many blocks.
 4. **Skim the schema** for hardcoded English strings and missing `presets`.
-5. **Skim the Liquid** for `{% include %}` (should be `{% render %}`) and inline block definitions (should be `/blocks` files with `@theme` targeting).
-6. **Check for scope creep** — did it also "helpfully" restyle an unrelated section?
+5. **Skim the Liquid code** (Liquid is Shopify's templating language) for `{% include %}` (should be `{% render %}`) and inline block definitions (should be `/blocks` files with `@theme` targeting).
+6. **Check for scope creep.** Scope creep means the PR does more than it was supposed to. Did it also "helpfully" restyle an unrelated section?
 
-This is a five-minute habit once it's routine, not a heavyweight process — but skipping any one of these six steps is exactly how a Dawn-era pattern or a missing edge-case handler slips through.
+Once this becomes routine, it only takes about five minutes. It's not a heavy process. But skip any one of these six steps, and that's exactly how an old Dawn-era pattern or a missing edge case slips through unnoticed.
 
 ## Review checklist (for the reviewer)
 
-- [ ] Ran `shopify theme check` locally — zero new offenses
+- [ ] Ran `shopify theme check` locally, zero new offenses
 - [ ] Opened the preview link and tested empty/long/many-block states
 - [ ] Confirmed no hardcoded schema strings
 - [ ] Confirmed no scope creep beyond what the PR describes
@@ -53,22 +53,22 @@ This is a five-minute habit once it's routine, not a heavyweight process — but
 
 ## Best practices
 
-- Write your own PR description as if the reviewer has zero context beyond the ticket title — it consistently produces faster, better reviews.
-- Actually click through the preview link during review, don't just read the diff — most content-variability bugs are invisible in a code read and obvious in thirty seconds of interaction.
-- Call out in the PR description if a section was AI-assisted and what you already checked, so the reviewer knows where to focus additional scrutiny.
+- Write your PR description as if the reviewer only knows the ticket title and nothing else. This consistently leads to faster, better reviews.
+- Actually click through the preview link when you review. Don't just read the diff. Most bugs caused by different content stay invisible when you only read code, but become obvious after thirty seconds of clicking around.
+- Mention in your PR description if a section was built with AI help, and what you already checked. That tells the reviewer where to look more closely.
 
 ## Common mistakes
 
-- **Writing a one-line PR description** ("added testimonials") that forces the reviewer to reverse-engineer intent from the diff alone.
-- **Reviewing only the diff, never opening the live preview** — this is how empty-state and long-content bugs consistently slip through.
-- **Approving AI-generated code faster than human-written code** on the assumption it's "probably fine" — in practice it needs the same or more scrutiny, specifically for Dawn-era pattern regressions and invented scope.
+- **Writing a one-line PR description** (like "added testimonials") that forces the reviewer to guess your intent just from the diff.
+- **Reviewing only the diff and never opening the live preview.** This is exactly how empty-state bugs (what a section looks like with no content) and long-content bugs slip through.
+- **Approving AI-generated code faster than human-written code**, assuming it's "probably fine." In practice, it needs the same amount of scrutiny, or more, especially for old Dawn-era patterns and extra scope nobody asked for.
 
 ## Quick Reference
 
 - PR template lives at `.github/PULL_REQUEST_TEMPLATE.md`.
-- AI-assisted code gets the same review rigor as human code — arguably more, since it's more likely to default to Dawn-era patterns or invent scope.
+- AI-assisted code gets reviewed just as carefully as human code, maybe more, since it's more likely to fall back on Dawn-era patterns or add scope nobody asked for.
 - Always click through the preview link, not just the diff.
 
 ## Further Reading
 
-- [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) — this handbook
+- [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) (this handbook)

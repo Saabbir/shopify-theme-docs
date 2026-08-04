@@ -1,35 +1,39 @@
 ---
 title: Tooling & Config
-description: The dev-tooling files that live alongside a theme, and how to keep them out of a Theme Store submission.
+description: The dev tooling files that sit alongside your theme, and how to keep them out of your Theme Store submission.
 ---
 
-A real theme repo has more in it than the 8 folders Shopify actually reads (`assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, `templates`). Git config, AI rule files, CI workflows, and optionally a whole frontend build setup all live in the same repo — but none of them should end up in a Theme Store submission. This section covers both halves of that: managing the dev-tooling files, and correctly excluding them at packaging time.
+A real theme repo (the folder of code you work in every day) holds more than the 8 folders Shopify actually reads: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`. Your repo also holds other files, like Git settings, AI rule files, CI workflows (automated checks that run when you push code), and maybe a full frontend build setup.
+
+None of those extra files should end up in your Theme Store submission. This section covers two things: how to manage these dev tooling files day to day, and how to correctly leave them out when you package your theme.
 
 ## What's on this page group
 
-- [Project Files Explained](/tooling-config/project-files/) — what `.gitignore`, `.shopifyignore`, `.theme-check.yml`, `.github/`, `AGENTS.md`/`CLAUDE.md`, and `README.md` each do.
-- [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/) — how to submit only the 8 required folders, nothing else.
-- [Tailwind CSS & Alpine.js Build Setup](/tooling-config/tailwind-and-alpine-build-setup/) — an optional alternative build setup some agencies use, and its trade-offs.
+- [Project Files Explained](/tooling-config/project-files/): what `.gitignore`, `.shopifyignore`, `.theme-check.yml`, `.github/`, `AGENTS.md`/`CLAUDE.md`, and `README.md` each do.
+- [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/): how to submit only the 8 required folders, and nothing else.
+- [Tailwind CSS & Alpine.js Build Setup](/tooling-config/tailwind-and-alpine-build-setup/): an optional build setup some agencies use, and what it trades off.
 
 ## The core distinction this section is built around
 
-**Development-time files** (Git config, AI rules, CI, a build setup) make the *repo* better to work in. **Theme Store submission** only ever wants the 8 standard theme folders. Confusing the two — committing a `node_modules` folder into the zip, or forgetting `.shopifyignore` exists — is an easy, entirely avoidable mistake this section exists to prevent.
+**Development-time files** are things like Git config, AI rules, CI workflows, and a build setup. These files make your repo easier to work in day to day. **Theme Store submissions** only ever want the 8 standard theme folders, nothing more.
+
+It's easy to mix the two up. For example, you might accidentally commit a `node_modules` folder into your submission zip, or you might not even know that `.shopifyignore` exists. This section exists to help you avoid mistakes like these.
 
 ## Best practices
 
-- Treat every new dev-tooling file (a new GitHub Action, a new AI rule file) as something to also verify against your `.shopifyignore`/packaging process — don't assume "it's not in the 8 folders" is automatically enough; verify it explicitly per [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/).
-- Keep `.gitignore` and `.shopifyignore` conceptually separate in your head even though they look similar: one keeps files out of Git history, the other keeps files out of a theme package/deploy — a file can need one, both, or neither.
+- Whenever you add a new dev tooling file, like a new GitHub Action or a new AI rule file, check it against your `.shopifyignore` and your packaging process too. Don't just assume "it's not in the 8 folders" is enough on its own. Check it on purpose. See [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/).
+- Keep `.gitignore` and `.shopifyignore` separate in your head, even though they look similar. One keeps files out of your Git history. The other keeps files out of a theme package or deploy. A file might need one of them, both, or neither.
 
 ## Common mistakes
 
-- **Assuming `.gitignore` also protects a Theme Store submission** — it doesn't; a build-setup folder committed to Git could still end up in a theme zip if packaging isn't handled separately.
-- **Adding a new dev-tooling file and forgetting to add it to `.shopifyignore`** the same day, leaving a window where it could ship in a submission zip.
+- **Assuming `.gitignore` also protects a Theme Store submission.** It doesn't. A build setup folder that's committed to Git could still end up in a theme zip if you don't handle packaging separately.
+- **Adding a new dev tooling file and forgetting to add it to `.shopifyignore`** on the same day. Even a short delay leaves a window where it could ship inside a submission zip.
 
 ## Quick Reference
 
 - [Project Files Explained](/tooling-config/project-files/) · [Packaging Exclusions](/tooling-config/packaging-exclusions/) · [Tailwind & Alpine Build Setup](/tooling-config/tailwind-and-alpine-build-setup/)
-- Dev-tooling files make the repo better. Only the 8 theme folders go to the Theme Store. Keep the two concerns separate.
+- Dev tooling files make the repo better to work in. Only the 8 theme folders go to the Theme Store. Keep the two concerns separate.
 
 ## Further Reading
 
-- [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) — shopify.dev
+- [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)

@@ -3,7 +3,7 @@ title: Your First Preview
 description: Get a theme running locally in under ten minutes.
 ---
 
-This walks you through cloning our scaffold and seeing it live in a browser. It doesn't teach the architecture yet — that's [Section 3](/codebase-structure/) and [Section 4](/scaffold-setup/). This is just "does my environment work."
+This page walks you through cloning our scaffold (a starter template we build every theme from) and seeing it live in your browser. It doesn't teach you how everything is built yet. That part comes in [Section 3](/codebase-structure/) and [Section 4](/scaffold-setup/). For now, this page is just about checking that your setup works.
 
 ## 1. Clone the scaffold
 
@@ -13,14 +13,14 @@ We scaffold from Shopify's official Skeleton Theme (see [why, here](/scaffold-se
 shopify theme init
 ```
 
-You'll be prompted for a folder name — use `solis` (or whatever the current project name is). This clones the Skeleton Theme into that folder.
+You'll be prompted for a folder name. Use `solis` (or whatever the current project name is). This copies the Skeleton Theme into that folder on your computer.
 
 ```bash
 cd solis
 ```
 
 :::tip[Cloning an existing project instead]
-If Solis already has a codebase and you're joining an in-progress project, you don't run `shopify theme init` at all — you `git clone` the existing Solis repository like any other project. `shopify theme init` is only for starting a brand-new theme from the scaffold.
+If Solis already has code and you're joining a project that's already in progress, skip `shopify theme init`. Just `git clone` the existing Solis repository, the same way you would for any other project. `shopify theme init` is only for starting a brand-new theme from the scaffold.
 :::
 
 ## 2. Start the dev server
@@ -29,11 +29,11 @@ If Solis already has a codebase and you're joining an in-progress project, you d
 shopify theme dev --store your-dev-store.myshopify.com
 ```
 
-First run prompts you to log in to Shopify in the browser. Once connected, this command:
+The first time you run this, it asks you to log in to Shopify in your browser. Once you're connected, this command does three things:
 
-- uploads your local theme as a temporary "development theme" on that store (it doesn't touch the live theme)
-- starts a local server with hot reload for CSS and section changes
-- prints a local preview URL
+- uploads your local theme as a temporary "development theme" on that store (it doesn't touch the live theme customers see)
+- starts a local server with hot reload for CSS and section changes (hot reload means your browser updates automatically when you save a file, without you refreshing it)
+- prints a local preview URL, which is a web address you can open to see your theme
 
 ## 3. Open the preview
 
@@ -43,10 +43,10 @@ In **Google Chrome** (the only browser the hot-reload preview supports), go to:
 http://127.0.0.1:9292
 ```
 
-You should see the Skeleton Theme running against your dev store's real product/collection data.
+You should see the Skeleton Theme running against your dev store's real product and collection data.
 
 :::tip
-`shopify theme dev` also prints a shareable preview link and a link straight into the theme editor — useful for sending a work-in-progress to a teammate or designer without pushing anything live.
+`shopify theme dev` also prints a shareable preview link and a link straight into the theme editor. These are useful for sending a work-in-progress to a teammate or designer without pushing anything live.
 :::
 
 ## What "hot reload" does and doesn't cover
@@ -59,27 +59,27 @@ You should see the Skeleton Theme running against your dev store's real product/
 | `config/settings_schema.json` | ⚠️ Sometimes requires restarting `shopify theme dev` |
 | Renaming or moving a file | ❌ Restart `shopify theme dev` |
 
-If you make a change and nothing happens, don't assume you did something wrong — restart the dev server first; it's the single most common fix.
+If you make a change and nothing happens, don't assume you broke something. Restart the dev server first. That's the most common fix.
 
 ## Best practices
 
-- Keep `shopify theme dev` running in a dedicated terminal tab for your whole session, rather than starting and stopping it per change — restarts cost you the preview URL and force a browser refresh.
-- If your preview looks stale after a schema change, restart before debugging your code — a stale dev server is a far more common cause than an actual bug.
-- Use the shareable preview link (not a screenshot) when asking a teammate to look at work in progress — they can interact with it, not just view it.
+- Keep `shopify theme dev` running in its own terminal tab for your whole session. Don't start and stop it for every change, since restarting loses your preview URL and forces a browser refresh.
+- If your preview looks stale after a schema change, restart the dev server before you start debugging your code. A stale dev server is a much more common cause than an actual bug.
+- Use the shareable preview link, not a screenshot, when asking a teammate to look at work in progress. That way they can click around in it, not just look at it.
 
 ## Common mistakes
 
 - **Assuming a broken preview means broken code.** Check "what hot reload doesn't cover" above before you start debugging Liquid you haven't touched.
-- **Running `shopify theme dev` against a live/published theme by accident.** Always confirm the `--store` flag points at your personal dev store, not a shared or production store.
-- **Opening the preview in a browser other than Chrome and reporting it as broken.** This is expected — hot reload previews are Chrome-only.
+- **Running `shopify theme dev` against a live or published theme by accident.** Always confirm the `--store` flag points at your personal dev store, not a shared or production store.
+- **Opening the preview in a browser other than Chrome and reporting it as broken.** This is expected. Hot reload previews only work in Chrome.
 
 ## Quick Reference
 
-- `shopify theme init` → clone the scaffold (new project only — use `git clone` for an existing one).
-- `shopify theme dev --store <store>` → local preview with hot reload (Chrome only).
-- Schema and file-structure changes sometimes need a dev server restart — try that before debugging.
+- `shopify theme init`: clone the scaffold (new project only, use `git clone` for an existing one).
+- `shopify theme dev --store <store>`: local preview with hot reload (Chrome only).
+- Schema and file-structure changes sometimes need a dev server restart. Try that before debugging.
 - Nothing here touches the store's live theme.
 
 ## Further Reading
 
-- [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) — shopify.dev
+- [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) (shopify.dev)

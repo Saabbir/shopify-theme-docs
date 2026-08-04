@@ -1,11 +1,11 @@
 ---
 title: Sections & Section Groups
-description: The difference between a section and a section group, and why headers/footers are special.
+description: The difference between a section and a section group, and why headers and footers are special.
 ---
 
 ## Sections
 
-A section is a Liquid file with a `{% schema %}` block that merchants can add, remove, reorder, and configure from the theme editor. Any JSON template can include any number of sections.
+A section is a Liquid file that includes a `{% schema %}` block (a chunk of settings written in JSON, a common data format). That schema is what lets merchants add, remove, reorder, and configure the section from the theme editor. Any JSON template can include as many sections as it needs.
 
 ```liquid
 {% comment %} /sections/image-banner.liquid {% endcomment %}
@@ -27,7 +27,7 @@ A section is a Liquid file with a `{% schema %}` block that merchants can add, r
 
 ## Section groups
 
-Section groups are JSON files that let merchants add, remove, and reorder **sections** within a specific area of the layout — most commonly the header and footer. Our Theme Store requirement here is explicit: **header and footer sections must be rendered inside section groups**, not hardcoded directly into `theme.liquid`.
+A section group is a JSON file. It lets merchants add, remove, and reorder **sections** within one specific area of the layout, most often the header and footer. Shopify has a clear rule for the Theme Store here: **header and footer sections must be rendered inside section groups**, not hardcoded directly into `theme.liquid`.
 
 ```json
 // sections/header-group.json
@@ -82,7 +82,7 @@ Section groups are JSON files that let merchants add, remove, and reorder **sect
 
 ### A worked example: designing Solis's footer
 
-Say Solis's footer needs: a newsletter signup, a multi-column link menu, and social icons — and the merchant should be able to reorder or remove any of the three independently.
+Let's say Solis's footer needs three things: a newsletter signup, a multi-column link menu, and social icons. The merchant should be able to reorder or remove any of the three on their own.
 
 ```json
 // ✅ RIGHT — sections/footer-group.json
@@ -97,28 +97,28 @@ Say Solis's footer needs: a newsletter signup, a multi-column link menu, and soc
 }
 ```
 
-Each of those three is its own section file (`sections/footer-menu.liquid`, etc.), independently addable/removable/reorderable through the group. Compare that to cramming all three into one giant `footer.liquid` section — technically simpler to write, but merchants lose the ability to remove just the newsletter signup without losing the whole footer.
+Each of those three pieces is its own section file (`sections/footer-menu.liquid`, and so on). Each one can be added, removed, or reordered on its own through the group. Compare that to cramming all three into one giant `footer.liquid` section. That single file is technically simpler to write, but merchants lose the ability to remove just the newsletter signup without losing the whole footer.
 
 ## Best practices
 
-- Default to section groups for header and footer from the very first commit — retrofitting this after `theme.liquid` has grown organically is a bigger refactor than starting correctly.
-- Split a "kitchen sink" section (one file doing three unrelated jobs) into multiple smaller sections inside a section group whenever merchants would plausibly want to control each piece independently.
-- Keep the `order` array in a section group JSON file in sync with the actual visual order — a mismatch is a subtle bug that's easy to miss in review.
+- Use section groups for the header and footer from your very first commit. Adding this later, after `theme.liquid` has already grown on its own, is a much bigger job than starting correctly.
+- Split a "kitchen sink" section (one file doing three unrelated jobs) into several smaller sections inside a section group, whenever merchants would reasonably want to control each piece on its own.
+- Keep the `order` array in a section group JSON file matching the actual visual order. A mismatch is a subtle bug that's easy to miss during review.
 
 ## Common mistakes
 
-- **Hardcoding the header/footer directly into `theme.liquid`** because it feels simpler during early development — this is an explicit Theme Store rejection reason, not just a style preference.
-- **Building one large section that does several jobs** (menu + newsletter + social in one file) instead of letting merchants control each piece independently via a section group.
-- **Forgetting to update the `order` array** when adding a new section to an existing group, so the new section renders but not where expected.
+- **Hardcoding the header or footer directly into `theme.liquid`** because it feels simpler early on. This is an explicit reason for Theme Store rejection, not just a style preference.
+- **Building one large section that does several jobs** (menu, newsletter, and social all in one file) instead of letting merchants control each piece on its own through a section group.
+- **Forgetting to update the `order` array** when you add a new section to an existing group. The new section still renders, just not where you expect it to.
 
 ## Quick Reference
 
-- Sections are the page-content unit; section groups manage sections within header/footer.
-- Header and footer must use section groups — hardcoding them into `theme.liquid` fails Theme Store review.
+- A section is the basic unit of page content. A section group manages sections within the header or footer.
+- Header and footer must use section groups. Hardcoding them into `theme.liquid` fails Theme Store review.
 - `{% sections 'group-name' %}` renders a section group from the layout file.
 - Split "kitchen sink" sections into smaller ones inside a group when merchants would want independent control.
 
 ## Further Reading
 
-- [Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) — shopify.dev
-- [Section groups](https://shopify.dev/docs/storefronts/themes/architecture/section-groups) — shopify.dev
+- [Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) (shopify.dev)
+- [Section groups](https://shopify.dev/docs/storefronts/themes/architecture/section-groups) (shopify.dev)

@@ -1,22 +1,22 @@
 ---
 title: Managing Presets (Sections & Themes)
-description: Section presets vs. theme presets — what each does, how to build them, and how they interact with a Theme Store submission.
+description: Section presets vs. theme presets, what each one does, how to build them, and how they fit into a Theme Store submission.
 ---
 
-"Preset" means two different things in a Shopify theme, at two different scopes. Confusing them is an easy, common mistake — this article covers both, fully, and how they relate.
+The word "preset" means two different things in a Shopify theme, at two different levels. It's easy to mix them up. This article walks through both kinds, and shows how they relate to each other.
 
 ## The two kinds of preset
 
 | | Section/block preset | Theme preset |
 |---|---|---|
 | Lives in | A section or block's own `{% schema %}` → `"presets"` array | `config/settings_data.json` → `"presets"` object |
-| Controls | What appears when a merchant clicks "Add section"/"Add block" in the editor | An entire pre-configured look for the whole theme — colors, fonts, every setting, every default template's section arrangement |
+| Controls | What appears when a merchant clicks "Add section" or "Add block" in the editor | An entire pre-configured look for the whole theme: colors, fonts, every setting, and every default template's section arrangement |
 | Scope | One section/block type | The whole theme |
-| Required? | Yes — a block with no `"presets"` entry never appears in the block picker at all | Yes — every theme needs at least a "Default" theme preset; multiple are optional (and a Theme Store differentiator) |
+| Required? | Yes. A block with no `"presets"` entry never appears in the block picker at all | Yes. Every theme needs at least a "Default" theme preset. Adding more is optional, and is a nice extra for a Theme Store listing |
 
 ## Section & block presets
 
-A `"presets"` array in a section or block's schema defines the default settings/blocks a merchant gets when they add it fresh from the editor's picker:
+A `"presets"` array inside a section or block's schema defines the default settings and blocks a merchant gets the moment they add it fresh from the editor's picker. Think of it as a starter kit: instead of handing a merchant a blank section, you hand them one already filled in with sensible content.
 
 ```liquid
 {% schema %}
@@ -48,23 +48,23 @@ A `"presets"` array in a section or block's schema defines the default settings/
 {% endschema %}
 ```
 
-Locale keys use the flat, shared `names.*`/`settings.*` namespaces, not nested per-section keys like `t:sections.testimonials.settings.heading.label` — see the [Complete Worked Example](/codebase-structure/complete-worked-example/) for this convention verified against Horizon/Skeleton's real shipped source.
+Notice the locale keys use flat, shared namespaces like `names.*` and `settings.*`, not something nested like `t:sections.testimonials.settings.heading.label`. A locale key is just a reference to a translated piece of text, stored in a separate file so it can change per language. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for this convention, checked against Horizon and Skeleton's real shipped source code.
 
 ### Rules that are easy to miss
 
-- **A block with zero `"presets"` entries never appears in the theme editor's "Add block" picker at all** — not "appears with no defaults," but literally invisible as an option. This is the single most common reason a newly-built block "doesn't show up."
-- A section can have **multiple presets** — useful when a section genuinely has more than one common starting configuration (e.g. a "Featured Collection" section with a "Grid" preset and a "Carousel" preset, if the layout choice is meaningful enough to warrant two distinct starting points rather than one preset plus a setting).
-- Preset block settings should represent **realistic example content**, not empty placeholders — a merchant previewing "what does adding this look like" should see something that resembles real usage, per [Store & Design Requirements](/theme-store-requirements/store-and-design/).
+- **A block with zero `"presets"` entries never shows up in the theme editor's "Add block" picker at all.** It doesn't show up empty or with no defaults, it just isn't there as an option. This is the single most common reason a newly built block "doesn't show up" for a merchant.
+- A section can have **more than one preset.** This helps when a section genuinely has more than one common starting point. For example, a "Featured Collection" section could offer a "Grid" preset and a "Carousel" preset, if the layout choice is significant enough to deserve two separate starting points instead of one preset plus a setting.
+- Preset block settings should show **realistic example content**, not empty placeholders. A merchant previewing what adding this section looks like should see something close to real, finished content. See [Store & Design Requirements](/theme-store-requirements/store-and-design/) for more on this.
 
-| ✅ Do | ❌ Don't |
+| Do | Don't |
 |---|---|
 | Give every block at least one preset with realistic example content | Ship a block with no `"presets"` entry and wonder why it's missing from the picker |
-| Use multiple section presets only when there are genuinely distinct common configurations | Add a preset per minor settings variation — that's what settings are for |
-| Localize preset names with `t:`, same as every other schema string | Hardcode English preset names |
+| Use multiple section presets only when there are genuinely distinct common configurations | Add a preset for every minor settings variation. That's what settings are for |
+| Localize preset names with `t:`, the same as every other schema string | Hardcode English preset names |
 
 ## Theme presets
 
-A theme preset is a full, named configuration of the entire theme — stored in `config/settings_data.json`'s `"presets"` object (see [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) for that file's full role). This is the mechanism behind a theme offering multiple "styles" at install (e.g. "Studio," "Warehouse," "Boutique" — different color/font/layout combinations of the same underlying codebase).
+A theme preset is a complete, named configuration for the entire theme. It lives in `config/settings_data.json`, inside the `"presets"` object (see [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) for that file's full role). This is what lets a theme offer several different "styles" when a merchant installs it, for example "Studio," "Warehouse," and "Boutique," each a different mix of colors, fonts, and layout, all built on the same underlying code.
 
 ```json
 // config/settings_data.json
@@ -89,18 +89,18 @@ A theme preset is a full, named configuration of the entire theme — stored in 
 }
 ```
 
-A theme preset can override not just settings values but also which sections/blocks appear on default templates — giving each preset a genuinely distinct look and content arrangement, not just a different color scheme applied to identical layout.
+A theme preset can do more than change setting values. It can also change which sections and blocks appear on the default templates. This is what gives each preset a genuinely different look and content arrangement, instead of just a different color layered on top of an identical layout.
 
 ### Building a second (or third) theme preset, step by step
 
-1. Get the "Default" preset fully finished and tested first — every other preset is usually built as a variation on it, so an unfinished base multiplies the work.
+1. Finish and fully test the "Default" preset first. Every other preset is usually built as a variation of it, so an unfinished base multiplies your work later.
 2. Duplicate the "Default" preset object in `settings_data.json` under a new name.
-3. Change the settings values that define this preset's distinct look — colors, fonts, spacing-affecting settings.
-4. If the preset should also differ in section/block arrangement (not just settings values), edit that preset's `"sections"` data specifically — this is what makes two presets feel like genuinely different themes rather than a reskin.
-5. Test the new preset on a completely fresh store install — see the caution below.
+3. Change the settings values that give this preset its own distinct look, like colors, fonts, and spacing.
+4. If the preset should also use different sections or blocks, not just different setting values, edit that preset's `"sections"` data too. This is what makes two presets feel like genuinely different themes instead of a simple reskin.
+5. Test the new preset on a completely fresh store install. See the note below on why this step matters so much.
 
 :::caution[Test every preset on a genuinely fresh install]
-It's easy to develop and test only against whichever preset is currently active in your dev store. Before shipping, apply *each* preset on a clean store and click through the main templates — a preset that references a resource (a metaobject, a specific product) that only exists in your dev environment will break silently on a fresh install. This is exactly the kind of issue [Packaging & Submitting](/publishing/packaging-and-submitting/)'s pre-zip sanity pass exists to catch.
+It's easy to develop and test only against whichever preset is currently active in your dev store. Before shipping, apply *each* preset on a clean store and click through the main templates. A preset that references a resource that only exists in your dev environment, like a metaobject or a specific product, will break silently on a fresh install. This is exactly the kind of issue that [Packaging & Submitting](/publishing/packaging-and-submitting/)'s pre-zip sanity check exists to catch.
 :::
 
 ## How theme presets map to a Theme Store submission
@@ -118,31 +118,31 @@ Multiple theme presets map directly onto the `/listings` folder structure in you
 /templates             ← the base/"Default" preset's templates
 ```
 
-Only include files a given preset actually *overrides* in its `/listings/<preset>/` folder — not a full copy of every template. See [Packaging & Submitting](/publishing/packaging-and-submitting/) for the complete packaging workflow; this article is about building the presets correctly before that packaging step, not the zip structure itself.
+Only include the files a given preset actually *overrides* in its `/listings/<preset>/` folder, not a full copy of every template. See [Packaging & Submitting](/publishing/packaging-and-submitting/) for the complete packaging workflow. This article covers building the presets correctly before that packaging step, not the zip structure itself.
 
 ## Best practices
 
 - Finish and thoroughly test the "Default" preset before building additional presets as variations of it.
-- Give every block at least one preset with realistic example content — an empty block picker entry fails the "looks intentional" bar merchants and reviewers both judge by.
+- Give every block at least one preset with realistic example content. An empty block picker entry doesn't look intentional to a merchant or a reviewer.
 - Test every theme preset on a genuinely fresh store install before submission, not just whichever preset happens to be active in your dev environment.
-- Only diverge a theme preset's section/block arrangement when it meaningfully differs — a preset that's identical except for one color isn't worth the added maintenance surface.
+- Only make a theme preset's section or block arrangement different when it meaningfully differs. A preset that's identical except for one color isn't worth the extra upkeep.
 
 ## Common mistakes
 
-- **Shipping a block with no `"presets"` entry**, making it invisible in the editor's block picker — the single most common "why isn't my block showing up" bug.
-- **Building and testing a second theme preset only in a dev environment that already has the first preset's resources present** — a fresh install reveals demo-store-specific assumptions immediately.
-- **Adding a preset per minor variation** instead of a setting — inflating the number of presets to maintain for distinctions that should just be merchant-configurable.
-- **Copying every template file into every preset's `/listings` folder** instead of only what that preset overrides — see [Packaging & Submitting](/publishing/packaging-and-submitting/).
+- **Shipping a block with no `"presets"` entry**, which makes it invisible in the editor's block picker. This is the single most common "why isn't my block showing up" bug.
+- **Building and testing a second theme preset only in a dev environment that already has the first preset's resources.** A fresh install immediately reveals demo-store assumptions you didn't notice.
+- **Adding a preset for every minor variation** instead of using a setting. This inflates the number of presets you have to maintain for things that should just be merchant-configurable.
+- **Copying every template file into every preset's `/listings` folder** instead of only what that preset actually overrides. See [Packaging & Submitting](/publishing/packaging-and-submitting/).
 
 ## Quick Reference
 
-- Section/block presets (in `{% schema %}`) control what appears when adding from the editor picker — a block with none is invisible there.
-- Theme presets (in `settings_data.json`) are full theme configurations — colors, fonts, and optionally section/block arrangement.
+- Section/block presets (in `{% schema %}`) control what appears when adding from the editor picker. A block with none is invisible there.
+- Theme presets (in `settings_data.json`) are full theme configurations: colors, fonts, and optionally section/block arrangement.
 - Multiple theme presets map to `/listings/<preset-name>/` in a Theme Store submission zip.
-- Test every preset on a fresh store install before shipping — dev-environment assumptions don't carry over.
+- Test every preset on a fresh store install before shipping. Dev-environment assumptions don't always carry over.
 
 ## Further Reading
 
-- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) — the file where theme presets live
-- [Packaging & Submitting](/publishing/packaging-and-submitting/) — the `/listings` zip structure for multi-preset submissions
-- [Theme store listings](https://shopify.dev/docs/storefronts/themes/store/requirements) — shopify.dev
+- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/): the file where theme presets live
+- [Packaging & Submitting](/publishing/packaging-and-submitting/): the `/listings` zip structure for multi-preset submissions
+- [Theme store listings](https://shopify.dev/docs/storefronts/themes/store/requirements): shopify.dev
