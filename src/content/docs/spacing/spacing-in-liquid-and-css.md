@@ -102,6 +102,6 @@ For spacing between repeated sibling elements (cards in a grid, items in a list)
 
 - [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/): the token scale these properties reference
 - [Spacing in Settings](/spacing/spacing-in-settings/): the `range` setting this page's custom-property example reads from
-- [CSS Style Guide](/style-guides/css/): the general CSS conventions this page's rules are drawn from
+- [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/): the general CSS conventions this page's rules are drawn from
 - [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/): the broader RTL picture logical properties support
 - [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) (MDN)

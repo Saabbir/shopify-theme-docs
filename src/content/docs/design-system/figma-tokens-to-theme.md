@@ -54,7 +54,7 @@ Design tokens can drift out of sync with your code. This happens the moment some
 
 - Treat a Figma variable rename as a reminder to check whether the matching setting's `id` (its unique name) or label needs updating too. This doesn't automatically mean you should change the `id` itself. See [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/) for why setting IDs shouldn't change casually.
 - If your team maintains **Figma Code Connect** (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)), link components that use tokens back to their Figma source. This lets an AI tool or a developer trace a component back to Figma quickly.
-- When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Managing Presets](/design-system/managing-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
+- When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Theme Presets](/config-and-settings/theme-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
 
 ## Best practices
 

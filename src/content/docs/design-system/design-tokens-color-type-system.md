@@ -113,4 +113,4 @@ Once you allow one exception, the scale stops accurately describing what the the
 - [Fonts](/fonts/), the dedicated section for typography tokens, `font_picker`, and font accessibility/performance
 - [Spacing](/spacing/), the dedicated section for spacing tokens, `range` settings, and logical properties
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/), on pulling these tokens from Figma
-- [CSS Style Guide](/style-guides/css/), for day-to-day custom property conventions
+- [CSS Custom Properties (Variables)](/css/css-custom-properties/), for day-to-day custom property conventions

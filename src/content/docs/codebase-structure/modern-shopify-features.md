@@ -36,17 +36,7 @@ If you catch yourself building a section with rigid content that a merchant can'
 
 ## `{% style %}` — live-updating CSS in the editor
 
-`{% style %}` is different from `{% stylesheet %}`, which is for static CSS that doesn't need to change instantly. Use `{% style %}` specifically for CSS that should **update live while a merchant adjusts a color setting in the editor**, without the whole section having to reload.
-
-```liquid
-{% style %}
-  .hero-{{ section.id }} {
-    background-color: {{ section.settings.background_color }};
-  }
-{% endstyle %}
-```
-
-Use `{% style %}` for values that come from settings, especially colors, where instant feedback matters while a merchant drags a color picker around. Use `{% stylesheet %}` for everything else, which is most of a component's actual CSS.
+`{% style %}` and `{% stylesheet %}` are two different mechanisms for shipping CSS, and picking the wrong one causes real bugs, not just style preferences. This now has its own dedicated page: see [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/) for the full comparison, including Shopify's stylesheet subsetting mechanism and the Theme Check rule that catches broken cross-file CSS dependencies.
 
 ## The View Transitions API for section/page changes
 
@@ -92,24 +82,22 @@ Not every new Shopify feature is automatically worth using in every theme. Here'
 ## Best practices
 
 - Use generic settings that work with dynamic sources (`text`, `richtext`, `image_picker`) instead of a hardcoded metaobject reference, whenever a block's content is really just generic structured data.
-- Use `{% style %}` only for settings-driven values that benefit from a live preview, colors especially. Keep the bulk of your CSS in `{% stylesheet %}`.
 - Check for browser support before using the View Transitions API, and always provide a working fallback. Don't assume every browser supports it.
 
 ## Common mistakes
 
 - **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
-- **Using `{% style %}` for a component's entire CSS** instead of just the settings-driven values that need a live preview. This bloats CSS that should stay static and cacheable.
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
 
 ## Quick Reference
 
 - Metaobjects and dynamic sources: write generic settings, and let merchants connect any compatible metaobject field in the editor.
-- `{% style %}` is for live-updating, settings-driven CSS, especially colors. `{% stylesheet %}` is for everything else.
+- `{% style %}` vs `{% stylesheet %}`: see [CSS in Shopify](/css/css-in-shopify/).
 - View Transitions API: check for support first, and always provide a fallback.
 - A "modern feature" is worth adopting when it replaces something you'd otherwise have to hand-build, not just because it's new.
 
 ## Further Reading
 
+- [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/), the full `{% style %}`/`{% stylesheet %}` comparison
 - [Dynamic data sources](https://shopify.dev/docs/storefronts/themes/architecture/settings/dynamic-sources) (shopify.dev)
 - [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) (this handbook)
-- [`{% style %}` tag](https://shopify.dev/docs/api/liquid/tags/style) (shopify.dev)

@@ -35,7 +35,7 @@ Two settings work together to make this happen:
 
 `definition` is a plain array of settings, the same setting types you'd use anywhere else in `settings_schema.json` (`color`, `color_background`, and a handful of others). This array is the **shape** every scheme has to follow. It doesn't set any actual color values itself.
 
-The actual schemes ("Scheme 1," "Scheme 2," a dark scheme) and their real color values are presets, defined in `settings_data.json` alongside the rest of your theme's presets (see [Managing Presets](/design-system/managing-presets/)):
+The actual schemes ("Scheme 1," "Scheme 2," a dark scheme) and their real color values are presets, defined in `settings_data.json` alongside the rest of your theme's presets (see [Theme Presets](/config-and-settings/theme-presets/)):
 
 ```json
 // config/settings_data.json (excerpt)
@@ -156,5 +156,5 @@ A `color_scheme_group` naturally satisfies the "paired" part of this rule, since
 - [Color palettes](/colors/color-palettes/): the newer, complementary `color_palette` setting
 - [Color Design Tokens](/colors/color-design-tokens/): the three-tier model and naming rules this page's CSS custom properties follow
 - [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/): why pairing background/text colors and testing every scheme matters
-- [Managing Presets](/design-system/managing-presets/): how scheme presets fit into the broader presets workflow
+- [Theme Presets](/config-and-settings/theme-presets/): how scheme presets fit into the broader presets workflow
 - [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes) (shopify.dev)

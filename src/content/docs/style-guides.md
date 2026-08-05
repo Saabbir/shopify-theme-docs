@@ -1,21 +1,21 @@
 ---
 title: Style Guides
-description: Our rules for writing CSS, JavaScript & Web Components, and Liquid, all in one place.
+description: Our rules for writing Liquid and clean code, plus when (and how) to add a third-party dependency.
 ---
 
-The rest of this handbook explains how we build things in Shopify. It covers folders, blocks, schema (the settings a merchant can edit), and Theme Store rules. This section is different. It's a **standalone style guide** for the three languages we write every day, and it doesn't belong to any one section or feature.
+The rest of this handbook explains how we build things in Shopify. It covers folders, blocks, schema (the settings a merchant can edit), and Theme Store rules. This section is different. It's a **standalone style guide** for the languages we write every day, and it doesn't belong to any one section or feature.
 
 Read it once, start to finish, when you're new. After that, use it as a reference whenever you need it.
 
+:::note[Looking for CSS or JavaScript?]
+Both have their own dedicated sections: see [CSS](/css/) for units, cascade & specificity, custom properties, architecture & naming, `{% stylesheet %}`/`{% style %}`, modern features, and performance. See [JavaScript](/javascript/) for architecture, Web Components, the `{% javascript %}` tag, theme editor events, modern features, and performance — everything JS in one place.
+:::
+
 ## What's on this page group
 
-- [CSS Style Guide](/style-guides/css/): global CSS, `{% stylesheet %}`, custom properties, logical properties, and naming.
-- [JavaScript & Web Components](/style-guides/javascript-and-web-components/): `{% javascript %}`, native Web Components, state, and events.
-- [Web Components Guideline](/style-guides/web-components/): the simple pattern vs. Horizon's advanced `refs`/declarative-event pattern, and how to choose between them.
 - [Liquid Style Guide](/style-guides/liquid/): objects, filters, whitespace control, performance, and formatting.
 - [Clean Code Principles](/style-guides/clean-code-principles/): a complete worked example, showing a messy version and a clean version side by side.
 - [Third-Party Libraries](/style-guides/third-party-libraries/): how to decide whether (and how) to add a dependency.
-- [Theme Editor & Storefront Events](/style-guides/theme-editor-events/): `shopify:section:load` and the rest of the theme editor's JS events.
 
 ## Why a separate style guide from the architecture sections
 
@@ -27,8 +27,8 @@ Both matter, but we keep them on separate pages. That way, each one is faster to
 
 ## Best practices
 
-- Read all three style guide pages once, start to finish, when you're new to the project. Most of it becomes second nature fast, but a few things are easy to miss if you only skim, like RTL logical properties and `{% stylesheet %}` scoping.
-- Treat this section as a reference you keep coming back to. In a PR (a pull request, which is a proposed code change waiting for review) comment, link to the specific rule, like "see CSS Style Guide: logical properties," instead of explaining it again from scratch every time it comes up.
+- Read all style guide pages once, start to finish, when you're new to the project. Most of it becomes second nature fast, but a few things are easy to miss if you only skim, like RTL logical properties (see [CSS](/css/)).
+- Treat this section as a reference you keep coming back to. In a PR (a pull request, which is a proposed code change waiting for review) comment, link to the specific rule instead of explaining it again from scratch every time it comes up.
 - If a rule here seems to disagree with a rule in `AGENTS.md`, follow `AGENTS.md` for AI-generated code. That's the file the AI tool actually reads. Still flag the mismatch, though, so someone can fix whichever file is out of date.
 
 ## Common mistakes
@@ -38,9 +38,12 @@ Both matter, but we keep them on separate pages. That way, each one is faster to
 
 ## Quick Reference
 
-- [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/) · [Web Components Guideline](/style-guides/web-components/) · [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/) · [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)
+- [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/)
+- For CSS specifically: see [CSS](/css/). For JavaScript specifically: see [JavaScript](/javascript/).
 - This section covers *how* to write code. [Codebase Structure](/codebase-structure/) covers *where* it goes.
 
 ## Further Reading
 
+- [CSS](/css/), the dedicated section for everything CSS-related
+- [JavaScript](/javascript/), the dedicated section for everything JS-related
 - [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

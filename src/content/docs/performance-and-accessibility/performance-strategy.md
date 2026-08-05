@@ -35,7 +35,7 @@ The browser can't draw anything on screen until it builds the DOM and the CSSOM.
 </head>
 ```
 
-In practice, for a Shopify theme, "critical CSS" mostly comes down to two simple things. First, keep your global stylesheet small. Second, use `{% stylesheet %}` scoping (see [CSS Style Guide](/style-guides/css/)) so each page only loads CSS for the sections actually on it. For example, a product page shouldn't load CSS for a "Testimonials" section if that section never appears on that template. This approach, keeping each section's CSS together with the section itself, gets you most of the benefit of critical CSS without needing a separate build step to pull out and inline a critical subset.
+In practice, for a Shopify theme, "critical CSS" mostly comes down to two simple things. First, keep your global stylesheet small. Second, use `{% stylesheet %}` scoping (see [CSS in Shopify](/css/css-in-shopify/) and [CSS Performance](/css/css-performance/)) so each page only loads CSS for the sections actually on it. For example, a product page shouldn't load CSS for a "Testimonials" section if that section never appears on that template. This approach, keeping each section's CSS together with the section itself, gets you most of the benefit of critical CSS without needing a separate build step to pull out and inline a critical subset.
 
 | ✅ Do | ❌ Avoid |
 |---|---|
@@ -92,16 +92,7 @@ Using `loading="lazy"` on above-the-fold content is one of the most common well-
 
 ## Deferring and scoping JavaScript
 
-```html
-<!-- ❌ WRONG — blocks HTML parsing until the script downloads and executes -->
-<script src="{{ 'global.js' | asset_url }}"></script>
-
-<!-- ✅ RIGHT — module scripts are deferred by default, and don't
-   block parsing -->
-<script src="{{ 'global.js' | asset_url }}" type="module"></script>
-```
-
-Combine this with [`{% javascript %}` scoping](/style-guides/javascript-and-web-components/), so each page only ships JavaScript for the components that are actually rendered on it.
+This now has its own dedicated page: see [JavaScript Performance](/javascript/javascript-performance/) for module-script deferring, `{% javascript %}` scoping, layout thrashing, and memory-leak prevention across theme editor sessions.
 
 ## A performance roadmap for an existing, already-shipped theme
 
@@ -137,5 +128,5 @@ If you're improving the performance of a theme that already exists, instead of b
 ## Further Reading
 
 - [Performance & Lighthouse](/theme-store-requirements/performance/): the compliance bar this strategy targets
-- [Media Optimization](/performance-and-accessibility/media-optimization/): the media-specific half of this same strategy
+- [Assets Management](/assets/): the media-specific half of this same strategy — images, video, and 3D/AR
 - [Performance best practices](https://shopify.dev/docs/storefronts/themes/best-practices/performance) (shopify.dev)

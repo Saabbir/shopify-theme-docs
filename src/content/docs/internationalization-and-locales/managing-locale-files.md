@@ -107,7 +107,7 @@ A French shopper browsing an English-only store and a French merchant editing th
 
 ## Step 3: how `settings_schema.json`'s `t:` keys resolve into locale files
 
-[settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) covers what `settings_schema.json` is for. This is the part that connects it back to the files on this page: every `"t:..."` string inside `settings_schema.json` is a lookup into `<lang>.schema.json`, using the same dot-path structure as the `t` filter, just pointed at the editor-only file instead of the storefront one.
+[settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) covers what `settings_schema.json` is for. This is the part that connects it back to the files on this page: every `"t:..."` string inside `settings_schema.json` is a lookup into `<lang>.schema.json`, using the same dot-path structure as the `t` filter, just pointed at the editor-only file instead of the storefront one.
 
 ```json title="config/settings_schema.json (excerpt)"
 [
@@ -390,7 +390,7 @@ Don't assume a country implies a language, or the other way around. A Canadian s
 
 ## Further Reading
 
-- [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/): what settings_schema.json itself is for, and how it relates to settings_data.json
+- [Config & Global Settings](/config-and-settings/): what settings_schema.json itself is for, and how it relates to settings_data.json
 - [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/): the Theme Store requirement this supports
 - [Locales](https://shopify.dev/docs/storefronts/themes/architecture/locales) (shopify.dev): the overview page this article's official rules are drawn from
 - [Storefront locale files](https://shopify.dev/docs/storefronts/themes/architecture/locales/storefront-locale-files) (shopify.dev): naming, structure, interpolation, `_html`, and pluralization in full

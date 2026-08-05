@@ -7,12 +7,10 @@ The [Style Guides](/style-guides/) section gives you a rule to follow. This sect
 
 ## What's on this page group
 
-- [CSS Deep Dive](/learning-articles/css-deep-dive/) : learn the cascade, specificity, and modern layout from the ground up.
-- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) : learn how a custom element's lifecycle and event model work, in detail.
 - [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/) : a detailed tour of the objects you'll use every day.
 - [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) : what actually keeps a theme codebase easy to work with in year three, not just in week one.
 
-Locale file management moved to its own [Internationalization & Locales](/internationalization-and-locales/) section, alongside the Theme Store's i18n/RTL requirements, since translation work spans both.
+The CSS deep dive (cascade, specificity, and the box model) moved into its own [CSS](/css/) section, specifically [Cascade, Specificity & the Box Model](/css/cascade-specificity-and-box-model/), alongside everything else CSS-related. The JavaScript & Web Components deep dive moved into its own [JavaScript](/javascript/) section, specifically [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/), alongside everything else JS-related. Locale file management moved to its own [Internationalization & Locales](/internationalization-and-locales/) section, alongside the Theme Store's i18n/RTL requirements, since translation work spans both.
 
 ## How to use this section
 
@@ -20,5 +18,6 @@ These are not reference pages you bookmark for quick daily lookups. That's what 
 
 ## Quick Reference
 
-- [CSS Deep Dive](/learning-articles/css-deep-dive/) · [JS & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) · [Liquid Global Objects](/learning-articles/liquid-global-objects/) · [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/)
+- [Liquid Global Objects](/learning-articles/liquid-global-objects/) · [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/)
+- For the CSS deep dive: see [CSS](/css/). For the JS & Web Components deep dive: see [JavaScript](/javascript/).
 - This section helps you understand *why* something works the way it does. [Style Guides](/style-guides/) gives you the rule. [Reference](/reference/) is for quick lookups.

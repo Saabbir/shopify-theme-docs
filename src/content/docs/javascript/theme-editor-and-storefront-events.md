@@ -42,7 +42,7 @@ document.addEventListener('shopify:section:load', (event) => {
 });
 ```
 
-This is exactly why a [Web Component's lifecycle](/learning-articles/javascript-and-web-components-deep-dive/) (its `connectedCallback`/`disconnectedCallback` methods, which run automatically when the component is added to or removed from the page) fits theme sections so well. A Web Component reruns its own setup automatically every time it's reconnected to the page, and that's exactly what happens during a `shopify:section:load` re-render.
+This is exactly why a [Web Component's lifecycle](/javascript/custom-element-lifecycle-and-progressive-enhancement/) (its `connectedCallback`/`disconnectedCallback` methods, which run automatically when the component is added to or removed from the page) fits theme sections so well. A Web Component reruns its own setup automatically every time it's reconnected to the page, and that's exactly what happens during a `shopify:section:load` re-render.
 
 So when do you need to listen for the event yourself, like in the example above? Mostly for global or non-component JavaScript. A well-built Web Component often needs no special theme-editor handling at all.
 
@@ -153,5 +153,6 @@ if (Shopify.inspectMode) {
 
 ## Further Reading
 
-- [Integrate sections and blocks with the theme editor](https://shopify.dev/docs/storefronts/themes/best-practices/editor/integrate-sections-and-blocks) - shopify.dev
-- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) - the component lifecycle these events complement
+- [JavaScript in Shopify](/javascript/javascript-in-shopify/): the `{% javascript %}` tag mechanics these events complement
+- [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/): the component lifecycle these events complement
+- [Integrate sections and blocks with the theme editor](https://shopify.dev/docs/storefronts/themes/best-practices/editor/integrate-sections-and-blocks) (shopify.dev)

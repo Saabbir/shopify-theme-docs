@@ -65,7 +65,7 @@ document.querySelectorAll('.card').forEach(function(c) {
 | No `alt` text, no `width`/`height`, no `loading="lazy"` on the image | The image line |
 | Hardcoded English schema labels (`"Heading"`, `"Collection"`) instead of `t:` locale keys | The schema |
 | No handling for an empty collection with zero products | Nowhere handles this |
-| A global, unscoped `<script>` in the section instead of `{% javascript %}`. It doesn't rerun correctly (or at all) after a theme editor edit. See [Theme Editor & Storefront Events](/style-guides/theme-editor-events/). | The script block |
+| A global, unscoped `<script>` in the section instead of `{% javascript %}`. It doesn't rerun correctly (or at all) after a theme editor edit. See [Theme Editor & Storefront Events](/javascript/theme-editor-and-storefront-events/). | The script block |
 | A whole card wrapped in a click handler instead of a real `<a>` link. This isn't accessible, can't be reached by keyboard, and doesn't behave like a real link (it can't open in a new tab, and shows no status bar preview). | The script block |
 | A fixed 4-column grid using `calc(25% - 12px)` instead of a responsive grid. This breaks badly on mobile. | The card `style` |
 | No `paginate` (Liquid's tool for splitting a long list across pages). This one case is safe, since `limit: 8` stays under Liquid's 50-item loop limit, but it's still worth using the theme's real pagination pattern in case that ever changes. | The `for` loop |
@@ -185,4 +185,4 @@ Notice that the clean version isn't cleverer than the messy one. If anything, it
 ## Further Reading
 
 - [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) (the longer-term version of this same discipline)
-- [Liquid Style Guide](/style-guides/liquid/) · [CSS Style Guide](/style-guides/css/) · [JavaScript & Web Components](/style-guides/javascript-and-web-components/)
+- [Liquid Style Guide](/style-guides/liquid/) · [CSS](/css/) · [JavaScript](/javascript/)

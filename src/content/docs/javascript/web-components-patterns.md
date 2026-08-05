@@ -1,9 +1,9 @@
 ---
-title: Web Components Guideline
+title: "Web Components: Two Patterns"
 description: Two valid patterns for a theme Web Component, a simple one and Horizon's advanced one, and how to choose between them.
 ---
 
-The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) covers the basic rules: build with progressive enhancement, use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
+[JavaScript Architecture](/javascript/javascript-architecture-state-and-events/) covers the basic rules: build with progressive enhancement, use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
 
 It covers two real patterns for structuring what's inside a component. We checked both against what Shopify's own Horizon theme actually ships, and this page shows you how to decide which one a given component needs.
 
@@ -17,13 +17,13 @@ It covers two real patterns for structuring what's inside a component. We checke
 | Best for | A component with one or two behaviors, used in one or two places | A theme with many components, where the boilerplate of manual `querySelector`/`addEventListener` pairs has become repetitive and error-prone across dozens of files |
 | Cost | None, it's just `HTMLElement` | You maintain the shared `Component` base class yourself (Skeleton Theme doesn't ship one) |
 
-Neither pattern is "more correct" than the other. The simple pattern is what [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) shows by default, and it's the right choice for most components in a theme Solis's current size.
+Neither pattern is "more correct" than the other. The simple pattern is what [JavaScript Architecture](/javascript/javascript-architecture-state-and-events/#web-components-as-the-default-pattern) shows by default, and it's the right choice for most components in a theme Solis's current size.
 
 The advanced pattern is what Shopify's own Horizon theme uses throughout. We checked this directly against its shipped `assets/component.js` and component files. It's worth adopting once a theme has enough components that the simple pattern's repetition starts costing you real maintenance time.
 
 ## The simple pattern
 
-This pattern is covered in full in [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#a-minimal-well-structured-web-component). In short, it's a class that extends `HTMLElement` directly, using manual `querySelector` calls and matching `addEventListener`/`removeEventListener` pairs. Use this pattern by default.
+This pattern is covered in full in [JavaScript Architecture](/javascript/javascript-architecture-state-and-events/#web-components-as-the-default-pattern) and [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/). In short, it's a class that extends `HTMLElement` directly, using manual `querySelector` calls and matching `addEventListener`/`removeEventListener` pairs. Use this pattern by default.
 
 ## The advanced pattern: a shared `Component` base class
 
@@ -167,7 +167,7 @@ Reach for Shadow DOM only when you specifically need style or DOM isolation stro
 ## Accessibility patterns worth calling out specifically
 
 - **Every interactive custom element needs a real, focusable, semantic element inside it.** Use a `<button>` for a click target, not a `<div on:click="...">` with no way to reach it by keyboard. The custom element wraps semantic HTML, it doesn't replace the need for it.
-- **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#state-attributes-and-properties-not-a-framework-store)), not just implied visually by a CSS class, so assistive tech gets the same information sighted users do.
+- **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript Architecture: state](/javascript/javascript-architecture-state-and-events/#state-the-dom-is-the-source-of-truth)), not just implied visually by a CSS class, so assistive tech gets the same information sighted users do.
 - **A component that updates content on its own,** like a price after a variant change or a cart count, should update through a live region (`aria-live="polite"`) if the change isn't already inside something the user just interacted with directly. Otherwise, a screen reader user gets no sign that anything changed.
 
 ## Best practices
@@ -196,8 +196,8 @@ Reach for Shadow DOM only when you specifically need style or DOM isolation stro
 
 ## Further Reading
 
-- [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) - the baseline rules this page builds on
-- [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) - the custom element lifecycle in detail
-- [Complete Worked Example](/codebase-structure/complete-worked-example/) - a full block using the simple pattern, explained alongside its code
-- [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) - MDN
-- [Declarative Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) - MDN
+- [JavaScript Architecture: Global vs. Scoped, State & Events](/javascript/javascript-architecture-state-and-events/): the baseline rules this page builds on
+- [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/): the custom element lifecycle in detail
+- [Complete Worked Example](/codebase-structure/complete-worked-example/): a full block using the simple pattern, explained alongside its code
+- [Using custom elements](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements) (MDN)
+- [Declarative Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) (MDN)

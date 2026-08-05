@@ -113,7 +113,7 @@ Merchants can edit this block: text, author, and rating are all settings they ca
 
 ## 3. The section — `sections/testimonials.liquid`
 
-This section only accepts `quote` blocks by their specific type, not the generic `@theme` type, because this section only has one job to do. It also accepts `@app` blocks, so apps can add their own content here too. On top of that, it has its own heading setting, and its stylesheet shows the single-property-vs-multi-property CSS rule from the [CSS Style Guide](/style-guides/css/) in the same file.
+This section only accepts `quote` blocks by their specific type, not the generic `@theme` type, because this section only has one job to do. It also accepts `@app` blocks, so apps can add their own content here too. On top of that, it has its own heading setting, and its stylesheet shows the single-property-vs-multi-property CSS rule from [CSS Custom Properties (Variables)](/css/css-custom-properties/) in the same file.
 
 ```liquid
 {%- doc -%}
@@ -293,7 +293,7 @@ You reference it from any section or block through the global `settings` object,
 <h2 class="testimonials__heading" style="font-family: {{ settings.type_heading_font.family }};">
 ```
 
-See [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/) for the full difference between where a setting is *defined* (`settings_schema.json`) and where a merchant's actual *chosen values* live (`settings_data.json`, which you should never edit by hand).
+See [Config & Global Settings](/config-and-settings/) for the full difference between where a setting is *defined* (`settings_schema.json`) and where a merchant's actual *chosen values* live (`settings_data.json`, which you should never edit by hand).
 
 ## Putting it together: the decision points, recapped
 
@@ -332,7 +332,7 @@ See [`settings_schema.json` & `settings_data.json`](/design-system/settings-sche
 
 - [AGENTS.md "Horizon-verified conventions"](/getting-started/setting-up-ai-rules/): where each convention on this page was checked against real shipped source
 - [Theme Blocks & Nesting](/codebase-structure/theme-blocks/): the full `@theme`/`@app` targeting decision
-- [CSS Style Guide](/style-guides/css/): the single/multi-property rule used in the section's stylesheet above
+- [CSS Custom Properties (Variables)](/css/css-custom-properties/): the single/multi-property rule used in the section's stylesheet above
 - [Managing Locale Files](/internationalization-and-locales/managing-locale-files/): the storefront locale file in full
-- [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/): theme-wide settings in full
-- [Web Components Guideline](/style-guides/web-components/): how to add interactive behavior to a block like this one
+- [Config & Global Settings](/config-and-settings/): theme-wide settings in full
+- [Web Components: Two Patterns](/javascript/web-components-patterns/): how to add interactive behavior to a block like this one

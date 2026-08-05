@@ -59,7 +59,7 @@ Compare that to this handbook's default pattern. A native `<details>`/`<summary>
 | Dependency surface | Zero runtime dependencies | Alpine.js plus a build toolchain |
 | Onboarding | Any Shopify developer can contribute immediately | Requires familiarity with Tailwind's utility conventions and the specific Vite plugin setup |
 | Markup readability | Semantic class names (`.product-card__price`) | Utility classes stacked together (`flex items-center gap-2 text-sm font-medium text-gray-600`), faster to write but arguably harder to scan |
-| RTL/logical properties | Explicit, as covered in [CSS Style Guide](/style-guides/css/) | Tailwind has logical-property utilities (`ms-4` instead of `ml-4`), but they must be used deliberately, since nothing prevents reaching for the physical ones by mistake |
+| RTL/logical properties | Explicit, as covered in [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) | Tailwind has logical-property utilities (`ms-4` instead of `ml-4`), but they must be used deliberately, since nothing prevents reaching for the physical ones by mistake |
 | Packaging for Theme Store | No extra exclusion work, since there's no source tree to exclude | Requires the extra `.shopifyignore` discipline covered in [Packaging Exclusions](/tooling-config/packaging-exclusions/) |
 | Theme Store submission risk | None specific to this setup | Nothing inherent, since Shopify reviews the compiled output, not your toolchain, but a broken or uncommitted build step is a self-inflicted risk this setup adds that native CSS/JS doesn't have |
 
@@ -85,7 +85,7 @@ On top of that, this handbook's other pages (accessibility, RTL, performance) ar
 
 - **Assuming a working local dev build means submission packaging is fine.** The source tree still needs explicit exclusion, and you still need to verify where the compiled output ends up.
 - **Mixing this setup into an otherwise-native-CSS section "just this once."** This creates two different styling approaches in one theme, which confuses whoever maintains it next.
-- **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem the [CSS Style Guide](/style-guides/css/) exists to prevent.
+- **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) exists to prevent.
 
 ## Quick Reference
 

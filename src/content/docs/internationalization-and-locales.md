@@ -12,7 +12,7 @@ Translation and locale work touches several parts of a theme at once: what's req
 
 ## How this connects to the rest of the handbook
 
-Locale files aren't isolated from the rest of a theme's config. [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) covers what the schema file itself is for; the `t:` resolution mechanics live here instead, since they're really about locale files, not the schema's structure. [Liquid Style Guide](/style-guides/liquid/) and [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/) both use the `t` filter and the `localization` object in passing; this section is where those get their full treatment.
+Locale files aren't isolated from the rest of a theme's config. [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) covers what the schema file itself is for; the `t:` resolution mechanics live here instead, since they're really about locale files, not the schema's structure. [Liquid Style Guide](/style-guides/liquid/) and [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/) both use the `t` filter and the `localization` object in passing; this section is where those get their full treatment.
 
 ## Best practices
 

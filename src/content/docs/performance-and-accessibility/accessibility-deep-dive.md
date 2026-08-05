@@ -50,7 +50,7 @@ class Disclosure extends HTMLElement {
 }
 ```
 
-A component built this way never needs a separate "accessibility pass" later. The keyboard support was never missing in the first place, so there's nothing left to add. See [JavaScript & Web Components Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/) for more on the component patterns this example builds on.
+A component built this way never needs a separate "accessibility pass" later. The keyboard support was never missing in the first place, so there's nothing left to add. See [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/) for more on the component patterns this example builds on.
 
 ### Design for real content, not just your demo content
 

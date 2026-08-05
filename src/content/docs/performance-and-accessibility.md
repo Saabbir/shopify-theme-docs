@@ -9,7 +9,8 @@ The [Theme Store Requirements](/theme-store-requirements/) page has the complian
 
 - [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/): how to build accessibility into a section from the start, and how to keep it consistent across a whole theme project.
 - [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): a performance plan, critical CSS, lazy loading, and preload, prefetch, and preconnect.
-- [Media Optimization: Images, Video & 3D](/performance-and-accessibility/media-optimization/): how to load every media type without slowing your site down.
+
+Media-specific loading and performance (images, video, 3D/AR) moved into its own [Assets Management](/assets/) section, alongside icon management, so everything media-related lives in one place.
 
 ## Why this is a process, not just a checklist
 
@@ -28,10 +29,12 @@ The [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) and 
 
 ## Quick Reference
 
-- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) · [Performance Strategy](/performance-and-accessibility/performance-strategy/) · [Media Optimization](/performance-and-accessibility/media-optimization/)
+- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) · [Performance Strategy](/performance-and-accessibility/performance-strategy/)
+- For media-specific performance (images, video, 3D/AR): see [Assets Management](/assets/).
 - This section explains the process. [Theme Store Requirements](/theme-store-requirements/) is the compliance bar it helps you clear.
 
 ## Further Reading
 
+- [Assets Management](/assets/), the dedicated section for icons, images, video, and 3D media
 - [Accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#12-accessibility) (shopify.dev)
 - [Performance best practices](https://shopify.dev/docs/storefronts/themes/best-practices/performance) (shopify.dev)

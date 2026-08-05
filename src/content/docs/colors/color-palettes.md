@@ -180,7 +180,7 @@ Yes, for new settings work. Shopify itself recommends `color_palette` as the sta
 In practice, that means:
 
 - **For new theme-wide color settings**, define them with `color_palette`, not as separate individual `color` settings. The only exception is when you have a good reason a color shouldn't be part of the shared palette, like a genuinely one-off color used in exactly one place, that isn't part of your brand colors.
-- **For separate `color` settings you've already shipped**, don't rush to migrate them just because this feature exists. See [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/) to learn why changing or removing a shipped setting `id` (its unique name) is a breaking change. If you migrate, treat it as its own planned change with its own pull request, not something you slip in while touching unrelated code.
+- **For separate `color` settings you've already shipped**, don't rush to migrate them just because this feature exists. See [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/) to learn why changing or removing a shipped setting `id` (its unique name) is a breaking change. If you migrate, treat it as its own planned change with its own pull request, not something you slip in while touching unrelated code.
 - **For `color_scheme_group` usage**, keep using it wherever you're already modeling truly swappable multi-scheme presets, like light, dark, and high-contrast versions. `color_palette` doesn't replace that use case, though individual scheme fields can still default to palette entries.
 
 ## Best practices

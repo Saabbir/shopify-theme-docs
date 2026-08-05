@@ -9,7 +9,7 @@ It needs updating. It can introduce a security hole. It can break when a browser
 
 ## The default answer is no
 
-Our baseline approach (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/)) is to use native Web Components and native CSS wherever we can. That means no framework, and as few dependencies as possible. Before you even start comparing libraries, ask yourself first: does the browser already solve this problem on its own?
+Our baseline approach (see [JavaScript Architecture](/javascript/javascript-architecture-state-and-events/)) is to use native Web Components and native CSS wherever we can. That means no framework, and as few dependencies as possible. Before you even start comparing libraries, ask yourself first: does the browser already solve this problem on its own?
 
 | Need | Check first | Before reaching for |
 |---|---|---|
@@ -18,7 +18,7 @@ Our baseline approach (see [JavaScript & Web Components Style Guide](/style-guid
 | Form validation | Native HTML validation (`required`, `pattern`, `:user-invalid`) | A validation library |
 | Smooth animations on DOM changes | The View Transitions API | An animation library |
 | Date formatting | Liquid's `date` filter, or the native `Intl.DateTimeFormat` | A date-formatting library |
-| Reactive state | DOM attributes as source of truth (see [JS Deep Dive](/learning-articles/javascript-and-web-components-deep-dive/)) | A state-management library |
+| Reactive state | DOM attributes as source of truth (see [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/)) | A state-management library |
 
 ## The decision framework, when the platform genuinely doesn't cover it
 
@@ -28,7 +28,7 @@ Sometimes native HTML, CSS, and JavaScript really can't do the job. Think of a r
 2. **What's its actual bundle size, and does it tree-shake?** A library advertised as "lightweight" that still pulls in 200KB of code you never use isn't actually lightweight. Check the real transferred size, not the marketing claim.
 3. **Is it actively maintained?** Look at the last commit or release date, and the number of open issues. A library with no updates in two or more years is a risk, whether or not it currently seems to work, because no one may be around to fix a future browser change or security issue.
 4. **Does it have a license compatible with a commercial Theme Store product?** Confirm the license type. MIT, Apache 2.0, and similar permissive licenses are generally fine. Anything with attribution requirements, copyleft clauses, or unclear commercial terms needs a real check before you ship it in a paid theme.
-5. **Does it conflict with anything Shopify's platform already provides or restricts?** Some libraries assume they have full control over the page. That can conflict with Shopify's own scripts (checkout, cart, analytics) or with the theme editor's live-preview DOM patching (see [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)).
+5. **Does it conflict with anything Shopify's platform already provides or restricts?** Some libraries assume they have full control over the page. That can conflict with Shopify's own scripts (checkout, cart, analytics) or with the theme editor's live-preview DOM patching (see [Theme Editor & Storefront Events](/javascript/theme-editor-and-storefront-events/)).
 6. **Can it be scoped, not global?** "Scoped" means loading it only on the templates or sections that actually need it, instead of on every page. See the loading pattern below for how to do this.
 
 If a library passes all six questions, it's a reasonable candidate. If it fails even one, that's usually a hard stop, not something you deal with later.
@@ -91,5 +91,5 @@ If it clears all six questions, go ahead: vendor it into `assets/`, pin the vers
 
 ## Further Reading
 
-- [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) - the native-first baseline this framework supports
+- [JavaScript](/javascript/) - the native-first baseline this framework supports
 - [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/) - the ongoing cost every added script carries
