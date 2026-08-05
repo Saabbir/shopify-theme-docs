@@ -12,8 +12,7 @@ After that, you'll learn how to keep every tool's rules the same, and how to mak
 ## What's on this page group
 
 - [AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/): the basic words used through the rest of this section. Start here if any of them are new to you.
-- [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): one file that holds our rules, written in the format each tool needs.
-- [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): how to change AGENTS.md safely over time.
+- [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): how to change AGENTS.md safely over time. (For the initial setup, see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) in Getting Started.)
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): Shopify's own tool that helps the AI write real, working Liquid instead of guessing.
 - [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): how to give Cursor or Claude Code real design data, not just a screenshot.
 - [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): our repeatable steps, plan, build, check, fix, report.
@@ -32,7 +31,7 @@ The pages in this section help you handle both risks. We use rule files to point
 
 ## Best practices
 
-- Set up your AI tool's rule files (the Setting Up AI Rules page) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
+- Set up your AI tool's rule files (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) in Getting Started) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
 - Treat every AI suggestion like a first draft from a fast but new teammate. It's useful, but never merge it without reading it first.
 - If AI-written code looks a lot like a pattern from a well-known theme, treat that as something worth checking. Don't just brush it off.
 

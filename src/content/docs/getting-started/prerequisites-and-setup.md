@@ -30,11 +30,11 @@ Install Shopify CLI, then confirm it works:
 shopify version
 ```
 
-If that command isn't found, it means `shopify` wasn't added to your shell's `PATH` correctly (`PATH` is the list of folders your computer checks when you type a command). Reinstall by following the [official CLI docs](https://shopify.dev/docs/api/shopify-cli) instead of guessing at how to fix the `PATH` yourself.
+If that command isn't found, `shopify` wasn't added to your shell's `PATH` correctly. Reinstall by following the [official CLI docs](https://shopify.dev/docs/api/shopify-cli) instead of guessing at how to fix the `PATH` yourself.
 
 ## Choose your AI-assisted editor
 
-`AGENTS.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) is a file that gives your AI tool context about this project, and it works with any of the tools below, not just one. Your options are **Claude Code** (runs in your terminal, and can also embed in VS Code), **Cursor** (a VS Code fork with a built-in AI agent mode), and **VS Code + GitHub Copilot**.
+`AGENTS.md` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) is a file that gives your AI tool context about this project, and it works with any of the tools below, not just one. Your options are **Claude Code** (runs in your terminal, and can also embed in VS Code), **Cursor** (a VS Code fork with a built-in AI agent mode), and **VS Code + GitHub Copilot**.
 
 Pick one of these as your daily driver. The setup steps below cover all three, so follow whichever one your team actually uses, or set up more than one if you like to switch between them.
 
@@ -45,11 +45,11 @@ If any of the terms below (MCP, skill, plugin, subagent) are new to you, read [A
 | Extension | Marketplace ID | Why |
 |---|---|---|
 | **Shopify Liquid** | `Shopify.theme-check-vscode` | Syntax highlighting, autocomplete, and inline Theme Check linting for `.liquid` files. In practice, this isn't optional: without it, Liquid files look like plain, unstyled text, and you lose inline diagnostics (warnings and errors shown right in your code). Install from the [Marketplace listing](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) or search "Shopify Liquid" in the Extensions view. |
-| **Prettier (Code formatter)** | `esbenp.prettier-vscode` | Code formatting, paired with the [Liquid Prettier plugin](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin). See [Quality & Validation](/quality-validation/theme-check-and-linting/). |
+| **Prettier (Code formatter)** | `esbenp.prettier-vscode` | Our single default formatter for every file type, including Liquid via the [Liquid Prettier plugin](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin). Full config and settings: [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/). |
 | **Claude Code** | `anthropic.claude-code` | Anthropic's official extension. It adds a native panel for Claude Code inside VS Code, if that's your primary AI tool. It requires the Claude Code CLI itself to also be installed (see below). |
 | **GitHub Copilot** + **Copilot Chat** | `GitHub.copilot`, `GitHub.copilot-chat` | Only if Copilot is your team's AI tool instead of Claude Code/Cursor. Agent mode (not just inline suggestions) is what reads `AGENTS.md` and calls MCP tools. |
 
-Turn on format-on-save (`editor.formatOnSave: true` in VS Code settings). That way Prettier runs automatically instead of being a manual step people forget.
+Turn on format-on-save (`editor.formatOnSave: true` in VS Code settings). That way Prettier runs automatically instead of being a manual step people forget. Don't configure this by hand, though — [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) has a `.vscode/settings.json` and `.prettierrc.json` to download and commit, so the whole team gets the same setup automatically instead of everyone configuring it individually.
 
 **MCP servers in VS Code** live in a `.vscode/mcp.json` file at the repo root, under a `servers` key. This is different from Cursor and Claude Code, which both use a `mcpServers` key instead. Copying a Cursor config without changing this key is the single most common MCP setup mistake, so watch out for it.
 
@@ -121,7 +121,7 @@ If you'll be pulling design details from Figma, also install Figma's plugin: `cl
 
 Once your editor and AI tool are installed, the last piece is project context: a file called `AGENTS.md` at the repo root. Claude Code, Cursor, and Copilot all read this file. (Cursor and Claude Code read it directly. Copilot reads it through a symlinked `.github/copilot-instructions.md`.)
 
-`AGENTS.md` is generated automatically by `shopify theme init`, and our project-specific rules live in its `## Custom rules` section. Full setup steps (for a new theme or an existing repo) are in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/). Do that now if you haven't, since several checklist items below depend on it being in place.
+`AGENTS.md` is generated automatically by `shopify theme init`, and our project-specific rules live in its `## Custom rules` section. Full setup steps (for a new theme or an existing repo) are in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/). Do that now if you haven't, since several checklist items below depend on it being in place.
 
 ## The pre-flight checklist
 
@@ -146,7 +146,7 @@ Don't just check that each tool installed on its own. Confirm the whole chain wo
 - [ ] Editor installed (VS Code and/or Cursor)
 - [ ] Shopify Liquid extension installed. Open any `.liquid` file and confirm you see syntax highlighting, not plain text
 - [ ] Deliberately introduce a typo (for example, an unclosed `{%- if -%}`) and confirm Theme Check flags it inline, then revert the typo. This confirms linting is actually live, not just that the extension installed.
-- [ ] Format-on-save works. Save a deliberately misformatted file and confirm Prettier reformats it automatically
+- [ ] Format-on-save works. Save a deliberately misformatted file and confirm Prettier reformats it automatically (see [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) if it doesn't — Cursor in particular is worth double-checking, not assuming)
 
 **AI tooling**
 
@@ -198,6 +198,7 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 - [Shopify Liquid VS Code extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode) (shopify.dev)
 - [Claude Code installation](https://code.claude.com/docs/en/setup) (code.claude.com, the authoritative install instructions)
 - [AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) (MCP/skill/command/subagent/plugin vocabulary used throughout this page)
-- [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) (the full `AGENTS.md` setup this page's checklist depends on)
+- [Setting Up AI Rules (AGENTS.md)](/getting-started/setting-up-ai-rules/) (the full `AGENTS.md` setup this page's checklist depends on)
+- [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) (the full Prettier config and `.vscode/` settings this page's format-on-save step depends on)
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) (exact, current install commands for the toolkit)
 - [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) (Figma MCP setup for both Claude Code and Cursor)

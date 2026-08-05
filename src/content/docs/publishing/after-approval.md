@@ -7,19 +7,17 @@ Getting approved is not the end of the work. It's the start of an ongoing commit
 
 ## Versioning (semantic versioning, `X.Y.Z`)
 
-Semantic versioning is just a naming rule for your version numbers, so anyone can tell how big a change is just by looking at the number. Think of how your phone shows a software version like 17.2.1. The first number jumps for a big redesign, the middle number moves for smaller new features, and the last number ticks up for tiny bug fixes. Shopify themes use the same idea.
-
 Every version has three parts, written as `X.Y.Z`. Here's what each part means:
 
 | Segment | Bump when | Example |
 |---|---|---|
 | `X` (major) | A breaking change: a setting's value or meaning changes, a setting, section, or block is removed, or a new global setting is added | `1.4.8` → `2.0.0` |
-| `Y` (minor) | A backwards-compatible addition: a new section or block, a changed default value or label, or a visual or behavior change that doesn't touch the schema (the file that defines a section's settings) | `1.4.8` → `1.5.0` |
+| `Y` (minor) | A backwards-compatible addition: a new section or block, a changed default value or label, or a visual or behavior change that doesn't touch the schema | `1.4.8` → `1.5.0` |
 | `Z` (patch) | Bug fixes, security fixes, or code cleanup that doesn't change how anything looks or works | `1.4.8` → `1.4.9` |
 
 ### A worked example: classifying a real Solis change
 
-Say you're shipping three changes together: a new "Testimonials" section, a renamed setting ID in the header, and a typo fix in a locale string (the text file that holds your theme's translated wording).
+Say you're shipping three changes together: a new "Testimonials" section, a renamed setting ID in the header, and a typo fix in a locale string.
 
 | Change | Classification | Why |
 |---|---|---|
@@ -66,8 +64,6 @@ Release notes are for merchants. Avoid developer language like "refactored" or "
 
 ## Manual vs. automated updates
 
-Picture your phone updating itself overnight without asking you anything, versus your phone popping up a message that says "Do you want to install this update now?" before it touches anything. Shopify theme updates work the same way.
-
 - **Automated**: the update applies quietly to a merchant's live theme, with no action needed from them. This only happens if the merchant has only customized `settings_data.json` or template JSON files, and your update doesn't change any setting IDs, types, or limits.
 - **Manual**: the update installs as a new, unpublished theme in the merchant's library, and they have to review it before publishing it. This happens whenever something could break their current setup, for example a changed or removed setting ID or type, a tightened `range` minimum or maximum, or a removed section or block.
 
@@ -91,7 +87,7 @@ Shopify blocks submissions that do any of the following: reduce a section's inst
 
 ## Update cadence
 
-You must wait at least **4 weeks** between updates. The one exception is your first two months, when you can update every 2 weeks instead. This rule exists so merchants don't get "update fatigue," meaning they get tired of reviewing constant changes. Don't plan a fast, rapid-fire release schedule after launch assuming you can ship whenever you want.
+You must wait at least **4 weeks** between updates. The one exception is your first two months, when you can update every 2 weeks instead. This rule exists to prevent merchant "update fatigue." Don't plan a fast, rapid-fire release schedule after launch assuming you can ship whenever you want.
 
 ## Best practices
 

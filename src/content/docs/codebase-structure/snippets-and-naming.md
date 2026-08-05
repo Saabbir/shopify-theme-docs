@@ -5,7 +5,7 @@ description: Reusable Liquid partials, and how we name files across the theme.
 
 ## Snippets
 
-A snippet is a small, reusable piece of Liquid code. Merchants never see it in the theme editor, because it has no schema (settings file) and no settings screen. Use a snippet for logic you'd otherwise copy and paste over and over, like a price formatter, a product card, or an SVG icon.
+Merchants never see a snippet in the theme editor, since it has no schema and no settings screen. Use a snippet for logic you'd otherwise copy and paste over and over, like a price formatter, a product card, or an SVG icon.
 
 ```liquid
 {% comment %} snippets/price.liquid {% endcomment %}
@@ -113,7 +113,7 @@ The `{%- doc -%}` tag you see above is called [LiquidDoc](https://shopify.dev/do
 
 ## Common mistakes
 
-- **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is an older, deprecated (no longer recommended) tag, specifically because it doesn't keep variables separate. A snippet using it can accidentally read or overwrite variables from whatever called it.
+- **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is deprecated, specifically because it doesn't keep variables separate. A snippet using it can accidentally read or overwrite variables from whatever called it.
 - **Building something as a snippet that should have been a block** (or the other way around). This usually shows up when a "just pass in a variable" snippet later needs to become something a merchant can configure, forcing you to rewrite it.
 - **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
 - **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up.

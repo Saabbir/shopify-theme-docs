@@ -7,7 +7,7 @@ Every media type on a Shopify store, images, video, and 3D models, is a `product
 
 ## The one rule that applies to every media type: reserve its space
 
-Every media element needs its space reserved on the page *before* it actually loads. Picture a waiting room with reserved seats: everyone knows exactly where to sit even before they arrive, so nobody has to shuffle around later. You do this with explicit `width` and `height` attributes, which tell the browser the image's aspect ratio (the ratio between its width and height) right away, or with an explicit `aspect-ratio` value in your CSS. Skipping this step is the most common cause of layout shift, and both Lighthouse and Core Web Vitals (Google's tools for measuring how a page feels to use) penalize your score for it. The rule applies no matter whether the media is an image, a video, or a 3D viewer.
+Every media element needs its space reserved on the page *before* it actually loads. You do this with explicit `width` and `height` attributes, which tell the browser the image's aspect ratio right away, or with an explicit `aspect-ratio` value in your CSS. Skipping this step is the most common cause of layout shift, and both Lighthouse and Core Web Vitals penalize your score for it. The rule applies no matter whether the media is an image, a video, or a 3D viewer.
 
 ```css
 /* A reusable pattern for any media type */
@@ -41,7 +41,7 @@ Every media element needs its space reserved on the page *before* it actually lo
 }}
 ```
 
-`image_tag` is a Liquid filter that writes the full `srcset`, `sizes`, `width`, and `height` markup for you, all from one simple call. (`srcset` is a list of different image sizes the browser can choose from, so it picks the right one for each screen.) Use `image_tag` instead of writing `<img>` attributes by hand. It's easy to get small details wrong when you write them yourself, like forgetting a `width` value or writing a `srcset` that doesn't match the size you actually show the image at.
+`image_tag` is a Liquid filter that writes the full `srcset`, `sizes`, `width`, and `height` markup for you, all from one simple call. Use `image_tag` instead of writing `<img>` attributes by hand. It's easy to get small details wrong when you write them yourself, like forgetting a `width` value or writing a `srcset` that doesn't match the size you actually show the image at.
 
 ### Above the fold vs. below the fold
 
@@ -53,11 +53,11 @@ Every media element needs its space reserved on the page *before* it actually lo
 {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
 ```
 
-See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for the full explanation of lazy loading and preloading. The same idea, above the fold versus below the fold, applies to every media type on this page, not just images. ("Above the fold" means the part of the page a visitor sees right away, without scrolling. "Below the fold" is everything they only see once they scroll down.)
+See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for the full explanation of lazy loading and preloading. The same idea, above the fold versus below the fold, applies to every media type on this page, not just images.
 
 ### Format and quality
 
-Shopify serves images through its CDN, short for content delivery network. This is a network of servers around the world that stores and delivers your images quickly, wherever your visitor happens to be. The CDN automatically picks the best image format for the visitor's browser, using WebP or AVIF (two modern, smaller image formats) whenever the browser supports them. That means you don't need to generate multiple formats yourself. What you *do* need to control is requesting an image sized to match how big it actually appears on the page:
+Shopify serves images through its CDN. It automatically picks the best image format for the visitor's browser, using WebP or AVIF whenever the browser supports them. That means you don't need to generate multiple formats yourself. What you *do* need to control is requesting an image sized to match how big it actually appears on the page:
 
 ```liquid
 {% comment %} ❌ WRONG — requesting a 2400px-wide image for a 300px-wide
@@ -81,7 +81,7 @@ Shopify serves images through its CDN, short for content delivery network. This 
 {% endfor %}
 ```
 
-`video_tag` automatically includes the HLS (`.m3u8`) source that Shopify generates for every MP4 you upload, alongside a plain MP4 fallback for browsers that need it. HLS stands for HTTP Live Streaming. Think of it as a video player that adjusts quality on the fly: browsers that support HLS can start playing sooner and adjust quality to match the viewer's internet connection, instead of waiting to download the whole file first. If you write a `<video>` tag by hand using the media object's raw URL, you lose this adaptive streaming, and your visitors get a slower experience.
+`video_tag` automatically includes the HLS (`.m3u8`) source that Shopify generates for every MP4 you upload, alongside a plain MP4 fallback for browsers that need it. Browsers that support HLS can start playing sooner and adjust quality to match the viewer's internet connection, instead of waiting to download the whole file first. If you write a `<video>` tag by hand using the media object's raw URL, you lose this adaptive streaming, and your visitors get a slower experience.
 
 ### Autoplay video: only muted, and only with a real reason
 
@@ -111,7 +111,7 @@ A video with no poster image, the still picture a browser shows before you press
 
 ### Never autoplay video above the fold without accounting for its LCP cost
 
-An autoplaying hero video (a large video at the top of a page) looks great, but be careful with it. It can become the page's LCP element itself, or delay it, if you're not careful. LCP stands for Largest Contentful Paint. It's a Core Web Vitals metric that measures how long it takes the biggest visible thing on the page to finish loading. To keep this fast, set a poster image that's sized and optimized just like any other hero image (see the Images section above). And remember that the video file itself still costs real download time, even if it isn't blocking the page's very first paint.
+An autoplaying hero video looks great, but be careful with it. It can become the page's LCP element itself, or delay it, if you're not careful. To keep this fast, set a poster image that's sized and optimized just like any other hero image (see the Images section above). And remember that the video file itself still costs real download time, even if it isn't blocking the page's very first paint.
 
 ## 3D models
 
@@ -123,11 +123,11 @@ An autoplaying hero video (a large video at the top of a page) looks great, but 
 {% endfor %}
 ```
 
-`model_viewer_tag` renders a `<model-viewer>` element. This is Google's model-viewer web component (a reusable, ready-made piece of a webpage), and it comes with the model's `src`, `poster`, `alt`, and camera controls already set up for you.
+`model_viewer_tag` renders a `<model-viewer>` element. This is Google's model-viewer web component, and it comes with the model's `src`, `poster`, `alt`, and camera controls already set up for you.
 
 ### 3D models are the heaviest media type — gate them deliberately
 
-A 3D model file is usually much bigger than an equivalent product image, and the `<model-viewer>` component itself takes real time to load and parse (parsing means the browser reads the file and turns it into something it can display). Two settings matter most for performance:
+A 3D model file is usually much bigger than an equivalent product image, and the `<model-viewer>` component itself takes real time to load and parse. Two settings matter most for performance:
 
 - **`reveal: 'interaction'`**: this setting waits to load the actual 3D model until the customer clicks or interacts with it, instead of `reveal: 'auto'`, which loads the model right away. Use `interaction` as your default choice. Only switch to `auto` when the 3D model really is the main point of that page, like a dedicated 3D-first product template.
 - **`poster`**: always provide one, using a real product image. That way something meaningful shows up before the model loads, or instead of it, if the customer never interacts with it at all.

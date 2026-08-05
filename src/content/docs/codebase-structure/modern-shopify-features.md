@@ -7,7 +7,7 @@ description: Newer Shopify features worth using, beyond the basics already cover
 
 ## Metaobjects, used globally in the theme editor
 
-A metaobject is a custom, structured piece of data that a merchant sets up themselves. For example, a merchant might create a "Brand" object with a name, a logo, and a short story. Metaobjects can now be connected and used all over the theme editor through **dynamic sources**.
+Metaobjects can now be connected and used all over the theme editor through **dynamic sources**.
 
 Dynamic sources let a merchant pick a metaobject field as a section or block's content source, right inside the editor. A developer doesn't need to write a specific Liquid reference for that one case.
 
@@ -98,7 +98,7 @@ Not every new Shopify feature is automatically worth using in every theme. Here'
 ## Common mistakes
 
 - **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
-- **Using `{% style %}` for a component's entire CSS** instead of just the settings-driven values that need a live preview. This bloats CSS that should stay static and cacheable (able to be saved and reused quickly by the browser).
+- **Using `{% style %}` for a component's entire CSS** instead of just the settings-driven values that need a live preview. This bloats CSS that should stay static and cacheable.
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
 
 ## Quick Reference

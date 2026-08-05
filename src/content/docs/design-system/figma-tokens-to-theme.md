@@ -3,7 +3,7 @@ title: "Figma Tokens → Theme Settings"
 description: How to take a Figma variable collection and turn it into settings_schema.json entries and CSS custom properties, the right way.
 ---
 
-A Figma file has a **Variables** panel. It holds colors, spacing, type, and radii (the roundness of corners), all organized into collections and modes. This panel is the real source of truth for a theme's design tokens, not a developer's guess based on looking at the design canvas.
+A Figma file has a **Variables** panel. It holds colors, spacing, type, and radii, all organized into collections and modes. This panel is the real source of truth for a theme's design tokens, not a developer's guess based on looking at the design canvas.
 
 This article shows you the exact mapping from "what's in Figma" to "what's in the theme."
 
@@ -89,7 +89,7 @@ Not every design token should turn into a setting that merchants can see and cha
 
 ## Step 4: color functions — using Liquid's color filters instead of hardcoding derived values
 
-Shopify's Liquid color filters can calculate derived colors, like a hover state, a tint, or a shade, starting from just one merchant-set color. A "derived color" is simply a new color calculated from an existing one. That means you don't need a separate setting for every shade:
+Shopify's Liquid color filters can calculate derived colors, like a hover state, a tint, or a shade, starting from just one merchant-set color. That means you don't need a separate setting for every shade:
 
 ```liquid
 {% comment %} ❌ WRONG — a separate setting for the hover state,

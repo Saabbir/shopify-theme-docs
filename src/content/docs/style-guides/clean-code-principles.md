@@ -12,10 +12,10 @@ This page does that for you. First, it lists the principles briefly. Then it wal
 | Principle | In practice |
 |---|---|
 | **Readable over clever** | Code should be easy to understand the first time you read it, not admired for being short. If a reviewer has to stop and puzzle out a line, it isn't clean, no matter how few characters it uses. |
-| **Modular over monolithic** ("monolithic" means one giant, tangled block instead of separate pieces) | A section's markup (HTML structure), styling (CSS), and behavior (JavaScript) should each stand on their own. A snippet does one thing. A Web Component owns one piece of behavior. |
+| **Modular over monolithic** | A section's markup, styling, and behavior should each stand on their own. A snippet does one thing. A Web Component owns one piece of behavior. |
 | **Named for meaning** | Variables, classes, and setting `id`s should describe what something *is for*, not what it happens to look like right now. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/). |
 | **Consistent, not novel** | The tenth section you write should look like it was written by the same person as the first one. See [Style Guides](/style-guides/) for more on this. |
-| **Guarded, not optimistic** | Nil checks (making sure a value actually exists before you use it), empty states, and handling for long content are part of the code. They're not something you add later if you remember. See [Liquid Style Guide](/style-guides/liquid/). |
+| **Guarded, not optimistic** | Nil checks, empty states, and handling for long content are part of the code. They're not something you add later if you remember. See [Liquid Style Guide](/style-guides/liquid/). |
 
 ## The complete example: a "Featured Collection" section, messy vs. clean
 

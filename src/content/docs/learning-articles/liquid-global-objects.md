@@ -5,7 +5,7 @@ description: A detailed, example-driven tour of the objects available in Liquid 
 
 The [Liquid Style Guide](/style-guides/liquid/) gives you a quick map of the most common objects. This article goes deeper. It covers what each object actually contains, where you can use it, and the mistakes that trip people up in real projects.
 
-A quick note before you start: an "object" here just means a named bundle of data that Liquid (Shopify's templating language) hands you, like `product` or `cart`. You'll see one heading below for each object, with examples and the gotchas (small traps that catch people off guard) to watch for.
+A quick note before you start: an "object" here just means a named bundle of data that Liquid hands you, like `product` or `cart`. You'll see one heading below for each object, with examples and the gotchas to watch for.
 
 ## `product`
 
@@ -49,7 +49,7 @@ You can use `product` on product templates, and anywhere else you render a produ
 {% endfor %}
 ```
 
-**Gotcha**: `cart` shows the state of the cart at the moment the page loaded, since it's rendered on the server. After an AJAX add-to-cart (adding an item without reloading the page), the Liquid `cart` object on the current page is out of date until the page actually refreshes. To update the cart UI without a full reload, use the JSON response from the Cart AJAX API. Don't try to re-render Liquid `cart` data for this.
+**Gotcha**: `cart` shows the state of the cart at the moment the page loaded, since it's rendered on the server. After an AJAX add-to-cart, the Liquid `cart` object on the current page is out of date until the page actually refreshes. To update the cart UI without a full reload, use the JSON response from the Cart AJAX API. Don't try to re-render Liquid `cart` data for this.
 
 ## `section` and `block`
 
@@ -64,7 +64,7 @@ You can use `product` on product templates, and anywhere else you render a produ
 {% endfor %}
 ```
 
-**Gotcha**: you must output `block.shopify_attributes` on each block's root element (the outermost HTML tag of that block), or the theme editor won't be able to highlight or select that block when someone clicks it. This is easy to forget, and you usually won't notice the mistake unless you're actively testing in the editor.
+**Gotcha**: you must output `block.shopify_attributes` on each block's root element, or the theme editor won't be able to highlight or select that block when someone clicks it. This is easy to forget, and you usually won't notice the mistake unless you're actively testing in the editor.
 
 ## `shop`
 
@@ -89,7 +89,7 @@ Always use `routes` instead of typing out a path yourself. It stays correct acro
 
 ## `settings`
 
-These are theme-wide settings, defined in `config/settings_schema.json`. They apply to the whole theme, which makes them different from `section.settings`, which only applies to one section instance (one specific copy of a section on the page):
+These are theme-wide settings, defined in `config/settings_schema.json`. They apply to the whole theme, which makes them different from `section.settings`, which only applies to one section instance:
 
 ```liquid
 {{ settings.color_primary }}
@@ -110,7 +110,7 @@ These are theme-wide settings, defined in `config/settings_schema.json`. They ap
 
 ## `localization`
 
-This object powers language and country selectors, the dropdowns that let a shopper pick their language or country:
+This object powers language and country selectors:
 
 ```liquid
 {% for language in localization.available_languages %}
@@ -121,7 +121,7 @@ This object powers language and country selectors, the dropdowns that let a shop
 {{ localization.language.iso_code }}
 ```
 
-See [Managing Locale Files](/learning-articles/managing-locale-files/) for how this connects to the `locales/` folder.
+See [Managing Locale Files](/internationalization-and-locales/managing-locale-files/) for how this connects to the `locales/` folder.
 
 ## `customer`
 

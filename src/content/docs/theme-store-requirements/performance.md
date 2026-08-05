@@ -5,7 +5,7 @@ description: The exact Lighthouse thresholds Shopify enforces, and how to hit th
 
 ## The numbers
 
-Shopify runs Lighthouse (Google's automated tool that scores a page's speed and accessibility) against your product, collection, and home page. It tests on both desktop and mobile, using a benchmark dataset made of real content, not empty sections. You need:
+Shopify runs Lighthouse against your product, collection, and home page. It tests on both desktop and mobile, using a benchmark dataset made of real content, not empty sections. You need:
 
 | Metric | Minimum score |
 |---|---|
@@ -28,7 +28,7 @@ These are averages, so a strong page can pull up a weak one. But don't count on 
 
 - **Images are the single biggest lever you have.** A product page with 8 unoptimized hero images will fail Lighthouse before anything else even matters.
 - **Third-party scripts add up fast.** Each one costs parse and execution time, and usually a network round trip too. Every extra script needs a good reason to be there (see the [Technology Stack rules](/codebase-structure/) in `.cursor/rules`).
-- **Render-blocking CSS in the `<head>` delays first paint** (the moment the customer first sees something on screen). Load critical, above-the-fold styles first. Everything else can wait, or be scoped to just the section that needs it.
+- **Render-blocking CSS in the `<head>` delays first paint.** Load critical, above-the-fold styles first. Everything else can wait, or be scoped to just the section that needs it.
 - **Unnecessary JavaScript frameworks cost you on every page load.** A framework's setup cost is a fixed tax you pay every time, even for things plain JavaScript could do without it.
 
 ### A concrete example: a responsive image, done right vs. wrong

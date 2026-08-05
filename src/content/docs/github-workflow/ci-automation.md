@@ -39,7 +39,7 @@ When the Theme Check Action fails on a PR, GitHub shows you the exact problems i
 
 ## Extending CI later
 
-As your project grows, this same workflow file is a good place to add more automated checks. For example, you could add a Lighthouse CI step. Lighthouse is a tool that measures page speed and other performance scores, and Shopify provides tooling for this (see [Performance & Lighthouse](/theme-store-requirements/performance/)). Or you could add a step that checks whether commit messages follow our [Conventional Commits](/github-workflow/branching-and-commits/) style. You don't need to add any of this on day one. A single, reliable Theme Check step is a solid starting point, and you can build on this same file later instead of starting over.
+As your project grows, this same workflow file is a good place to add more automated checks. A `prettier --check` step is a good first addition, since it's what actually makes formatting an enforced convention instead of something that depends on everyone's editor settings being right — see [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) for the full step. You could also add a Lighthouse CI step. Lighthouse is a tool that measures page speed and other performance scores, and Shopify provides tooling for this (see [Performance & Lighthouse](/theme-store-requirements/performance/)). Or you could add a step that checks whether commit messages follow our [Conventional Commits](/getting-started/branching-and-commits/) style. You don't need to add any of this on day one. A single, reliable Theme Check step is a solid starting point, and you can build on this same file later instead of starting over.
 
 ## What CI does not replace
 

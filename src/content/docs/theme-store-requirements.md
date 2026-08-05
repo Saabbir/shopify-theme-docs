@@ -22,7 +22,7 @@ So build every requirement in from day one. Treat this section as a running chec
 | Store identity & design | 1 Exclusivity, 2 Uniqueness, 3 Design & UX, 18 Naming, 20 Demo stores | [Store & Design Requirements](/theme-store-requirements/store-and-design/) |
 | Performance | 6 Lighthouse | [Performance & Lighthouse](/theme-store-requirements/performance/) |
 | Accessibility | 12 Accessibility | [Accessibility](/theme-store-requirements/accessibility/) |
-| Global reach | 4 (language/country selection) | [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) |
+| Global reach | 4 (language/country selection) | [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/), now covered in its own [Internationalization & Locales](/internationalization-and-locales/) section |
 | Apps | 5 (app blocks), 8 (no app-dependent features) | [App Compatibility](/theme-store-requirements/app-compatibility/) |
 | Custom data | 14 (metaobject settings) | [Metafields & Metaobjects](/theme-store-requirements/metafields/) |
 | Coverage | 4 Features, 5 Templates, 7 Pages, 9 Browsers, 10 Assets, 11 SEO, 13 Social, 19 Versions, 21 Docs, 22 Support | [Required Templates & Features](/theme-store-requirements/required-templates-and-features/) |
@@ -42,7 +42,7 @@ Short on time? Triple-check these before you submit Solis. These are the things 
 ## How to use this section day to day
 
 - **When you're building a new section or feature**, check [Required Templates & Features](/theme-store-requirements/required-templates-and-features/) and [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/) first, before you start writing code.
-- **When you're reviewing a PR** (short for "pull request," the set of code changes someone wants to merge in), check it against [Accessibility](/theme-store-requirements/accessibility/) and [Performance & Lighthouse](/theme-store-requirements/performance/). These two break most often, usually because of an unrelated change somewhere else.
+- **When you're reviewing a PR**, check it against [Accessibility](/theme-store-requirements/accessibility/) and [Performance & Lighthouse](/theme-store-requirements/performance/). These two break most often, usually because of an unrelated change somewhere else.
 - **Right before submission**, go through every sub-page here, start to finish. See [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) for the full combined list.
 
 ## Best practices

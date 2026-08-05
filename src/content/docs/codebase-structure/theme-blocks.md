@@ -3,7 +3,7 @@ title: Theme Blocks & Nesting
 description: The biggest change since Dawn, blocks that contain other blocks.
 ---
 
-This is the single biggest difference between our theme and older Dawn-era themes (Dawn is Shopify's old reference theme, the one many older themes were built on). It's worth taking the time to understand it well.
+This is the single biggest difference between our theme and older Dawn-era themes. It's worth taking the time to understand it well.
 
 ## Old pattern vs. current pattern
 

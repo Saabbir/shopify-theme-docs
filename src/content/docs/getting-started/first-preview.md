@@ -32,8 +32,8 @@ shopify theme dev --store your-dev-store.myshopify.com
 The first time you run this, it asks you to log in to Shopify in your browser. Once you're connected, this command does three things:
 
 - uploads your local theme as a temporary "development theme" on that store (it doesn't touch the live theme customers see)
-- starts a local server with hot reload for CSS and section changes (hot reload means your browser updates automatically when you save a file, without you refreshing it)
-- prints a local preview URL, which is a web address you can open to see your theme
+- starts a local server with hot reload for CSS and section changes
+- prints a local preview URL
 
 ## 3. Open the preview
 

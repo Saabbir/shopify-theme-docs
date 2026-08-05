@@ -64,7 +64,7 @@ Shopify's official requirements list doesn't have one numbered "internationaliza
 
 ## RTL — our recommendation, not a documented requirement
 
-RTL stands for "right-to-left." Arabic, Hebrew, and other right-to-left languages read from right to left instead of left to right, the way a mirror flips a page. These languages are common among stores using Shopify Markets (Shopify's tool for selling in multiple countries). Supporting them well means:
+RTL stands for "right-to-left" — Arabic, Hebrew, and other right-to-left languages. These languages are common among stores using Shopify Markets. Supporting them well means:
 
 | ✅ Do | ❌ Avoid |
 |---|---|

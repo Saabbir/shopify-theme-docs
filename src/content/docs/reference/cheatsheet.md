@@ -135,7 +135,7 @@ customElements.define('my-component', MyComponent);
 
 | Command | Does |
 |---|---|
-| `git checkout -b feature/section-name` | New branch, per [Branching & Commits](/github-workflow/branching-and-commits/) convention |
+| `git checkout -b feature/section-name` | New branch, per [Branching & Commits](/getting-started/branching-and-commits/) convention |
 | `gh pr create` | Opens a PR (if using GitHub CLI) |
 
 ## Claude Code custom commands (this repo)

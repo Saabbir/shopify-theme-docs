@@ -3,13 +3,13 @@ title: Third-Party Libraries
 description: How to decide whether to add any third-party JS/CSS library, and how to do it correctly if the answer is yes.
 ---
 
-A third-party library is a chunk of code someone else wrote that you add to your project to save time. It sounds free, but it isn't. Every library you add is an ongoing cost, not a one-time convenience.
+Adding a third-party library sounds free, but it isn't. Every library you add is an ongoing cost, not a one-time convenience.
 
 It needs updating. It can introduce a security hole. It can break when a browser updates. And it adds to the load time of every single page it appears on. This page walks you through how to decide when that trade-off is actually worth it, and how to add a library the right way once you've decided it is.
 
 ## The default answer is no
 
-Our baseline approach (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/)) is to use native Web Components and native CSS wherever we can. That means no framework, and as few dependencies (outside libraries your code relies on) as possible. Before you even start comparing libraries, ask yourself first: does the browser already solve this problem on its own?
+Our baseline approach (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/)) is to use native Web Components and native CSS wherever we can. That means no framework, and as few dependencies as possible. Before you even start comparing libraries, ask yourself first: does the browser already solve this problem on its own?
 
 | Need | Check first | Before reaching for |
 |---|---|---|
@@ -22,10 +22,10 @@ Our baseline approach (see [JavaScript & Web Components Style Guide](/style-guid
 
 ## The decision framework, when the platform genuinely doesn't cover it
 
-Sometimes native HTML, CSS, and JavaScript really can't do the job. Think of a rich text editor, a complex date-range picker, or a payment SDK (a toolkit) that a payment provider requires you to use. In cases like that, work through the questions below **in order**. Stop as soon as one question rules the library out.
+Sometimes native HTML, CSS, and JavaScript really can't do the job. Think of a rich text editor, a complex date-range picker, or a payment SDK that a payment provider requires you to use. In cases like that, work through the questions below **in order**. Stop as soon as one question rules the library out.
 
 1. **Is it actually required, or does it just save some development time?** A library that saves you a day of work but costs every future page load isn't usually a good trade. See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for why every added script has a real, ongoing cost, not a one-time cost.
-2. **What's its actual bundle size, and does it tree-shake?** "Tree-shaking" means a build tool can strip out the parts of the library you don't use. A library advertised as "lightweight" that still pulls in 200KB of code you never use isn't actually lightweight. Check the real transferred size, not the marketing claim.
+2. **What's its actual bundle size, and does it tree-shake?** A library advertised as "lightweight" that still pulls in 200KB of code you never use isn't actually lightweight. Check the real transferred size, not the marketing claim.
 3. **Is it actively maintained?** Look at the last commit or release date, and the number of open issues. A library with no updates in two or more years is a risk, whether or not it currently seems to work, because no one may be around to fix a future browser change or security issue.
 4. **Does it have a license compatible with a commercial Theme Store product?** Confirm the license type. MIT, Apache 2.0, and similar permissive licenses are generally fine. Anything with attribution requirements, copyleft clauses, or unclear commercial terms needs a real check before you ship it in a paid theme.
 5. **Does it conflict with anything Shopify's platform already provides or restricts?** Some libraries assume they have full control over the page. That can conflict with Shopify's own scripts (checkout, cart, analytics) or with the theme editor's live-preview DOM patching (see [Theme Editor & Storefront Events](/style-guides/theme-editor-events/)).
@@ -55,14 +55,12 @@ If a library passes all six questions, it's a reasonable candidate. If it fails 
 | Pin an exact version and note it (for example, in a comment or `README.md`) so upgrades are deliberate | Load an unpinned "latest" version that can change behavior under you without warning |
 | Load with `defer` (or as a module) so it never blocks parsing | Use a blocking, synchronous `<script>` in `<head>` |
 
-Here, "vendoring" means copying the library's file directly into your own `assets/` folder instead of pulling it live from someone else's server. "Pinning" a version means locking it to an exact version number so it can't silently change on you.
-
 ## A worked example: evaluating a hypothetical rich text editor library
 
-Say a merchant-requested feature needs a WYSIWYG editor (a "what you see is what you get" editor, like the one you might use to write an email) for a custom app-adjacent admin page. This is rare in themes, but it's a useful example to walk through.
+Say a merchant-requested feature needs a WYSIWYG editor for a custom app-adjacent admin page. This is rare in themes, but it's a useful example to walk through.
 
 1. Required, or time-saver? Genuinely required. Building a rich text editor from scratch isn't a reasonable use of project time.
-2. Bundle size? Check the actual minified and gzipped size (the file size after compression). If there are two comparable options, this is often the deciding factor.
+2. Bundle size? Check the actual minified and gzipped size. If there are two comparable options, this is often the deciding factor.
 3. Actively maintained? Confirm recent commits and releases, not just an old GitHub star count.
 4. License? MIT or Apache 2.0 is fine. A "free for non-commercial use" license is a hard stop for a Theme Store product.
 5. Conflicts with the platform? Confirm it doesn't assume it owns the whole page, and doesn't fight with the theme editor's DOM patching if it's used inside the editor context.

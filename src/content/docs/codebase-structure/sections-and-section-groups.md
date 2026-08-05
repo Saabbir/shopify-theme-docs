@@ -5,7 +5,7 @@ description: The difference between a section and a section group, and why heade
 
 ## Sections
 
-A section is a Liquid file that includes a `{% schema %}` block (a chunk of settings written in JSON, a common data format). That schema is what lets merchants add, remove, reorder, and configure the section from the theme editor. Any JSON template can include as many sections as it needs.
+A section is a Liquid file that includes a `{% schema %}` block. That schema is what lets merchants add, remove, reorder, and configure the section from the theme editor. Any JSON template can include as many sections as it needs.
 
 ```liquid
 {% comment %} /sections/image-banner.liquid {% endcomment %}

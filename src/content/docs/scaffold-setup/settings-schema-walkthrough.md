@@ -3,7 +3,7 @@ title: Settings Schema Walkthrough
 description: Theme-level settings vs. section/block settings, and when to use which.
 ---
 
-Shopify has three separate places where settings can live. Mixing them up is a common mistake when you're new to this, so let's walk through each one.
+Shopify has three separate places where settings can live. Mixing them up is a common mistake even for experienced theme developers moving between projects, so here's how we draw the line on Solis.
 
 ## The three levels
 

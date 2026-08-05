@@ -9,7 +9,7 @@ That means the naming and structure choices that decide whether your token syste
 
 ## The three-tier token model
 
-A design token is just a named, reusable value, like a specific color or spacing size, that you use instead of typing the same raw value over and over again. A token system that lasts separates these values into three tiers, or layers: **raw values**, **semantic roles**, and **component usage**. Each tier only looks at the tier just below it:
+A token system that lasts separates values into three tiers, or layers: **raw values**, **semantic roles**, and **component usage**. Each tier only looks at the tier just below it:
 
 ```css
 :root {
@@ -125,7 +125,7 @@ Once you allow one exception, "the type scale" stops accurately describing what 
 
 ### Fluid type: `clamp()` over fixed breakpoint overrides
 
-A "breakpoint" is a specific screen width where your CSS changes, like the point where a phone-sized screen becomes a tablet-sized one. Instead of writing a separate font size for every breakpoint, you can use the CSS `clamp()` function. It smoothly scales a value between a minimum and a maximum as the screen resizes, so you don't need multiple overrides:
+Instead of writing a separate font size for every breakpoint, you can use the CSS `clamp()` function. It smoothly scales a value between a minimum and a maximum as the screen resizes, so you don't need multiple overrides:
 
 ```css
 /* ❌ WRONG — a separate override per breakpoint, verbose and easy to

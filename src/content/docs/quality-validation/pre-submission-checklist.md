@@ -18,7 +18,7 @@ Run this checklist once, all the way through, right before you submit. It highli
 - [ ] Lighthouse Performance ≥ 60 and Accessibility ≥ 90, averaged across product/collection/home, on both desktop and mobile, tested against real content
 - [ ] Keyboard-only pass completed on the full purchase flow (home to product to cart to checkout)
 - [ ] Color contrast checked: 4.5:1 for body text, 3:1 for large text and icons, in every color scheme the theme offers
-- [ ] Focus states (the outline shown when you tab to a link or button) are visible throughout, not just where a default browser style you haven't touched happens to show one
+- [ ] Focus states are visible throughout, not just where a default browser style you haven't touched happens to show one
 
 ## Content & design
 
@@ -29,7 +29,7 @@ Run this checklist once, all the way through, right before you submit. It highli
 
 ## Settings & schema
 
-- [ ] Every setting has a `label`, uses `t:` locale keys (so the text can be translated), and follows [Shopify's terminology list](/theme-store-requirements/schema-best-practices/)
+- [ ] Every setting has a `label`, uses `t:` locale keys, and follows [Shopify's terminology list](/theme-store-requirements/schema-best-practices/)
 - [ ] `metaobject`/`metaobject_list` settings use only standard definitions
 - [ ] No `settings_data.json` default points at a resource that only exists in your demo store
 - [ ] At least 4 color settings, each with a paired foreground color
@@ -46,7 +46,7 @@ Run this checklist once, all the way through, right before you submit. It highli
 
 - [ ] Tested on the required desktop browsers (Safari, Chrome, Firefox, Edge, see [Required Templates & Features](/theme-store-requirements/required-templates-and-features/))
 - [ ] Tested on the required mobile browsers (Mobile Safari, Chrome Mobile, Samsung Internet)
-- [ ] Tested in at least one required webview (the in-app browser used by Instagram, Facebook, or Pinterest)
+- [ ] Tested in at least one required webview (Instagram, Facebook, or Pinterest)
 
 ## Business readiness
 

@@ -3,11 +3,11 @@ title: "Learning Article: JavaScript & Web Components Deep Dive"
 description: How custom elements work, how components should talk to each other, and why you don't need a framework for this.
 ---
 
-The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) tells you the rules to follow. This article explains the thinking behind them. You'll learn how the custom element lifecycle (the set order of events a component goes through, from being created to being removed) actually works, and why components should talk to each other using events instead of calling each other's code directly.
+The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) tells you the rules to follow. This article explains the thinking behind them. You'll learn how the custom element lifecycle actually works, and why components should talk to each other using events instead of calling each other's code directly.
 
 ## Step 1: what a Custom Element actually is
 
-A Custom Element is a small building block for your page. In code terms, it's a class (a blueprint for creating objects) that extends `HTMLElement`, and it gets registered with the browser using `customElements.define(tagName, ClassName)`.
+A Custom Element is a small building block for your page. In code terms, it's a class that extends `HTMLElement`, and it gets registered with the browser using `customElements.define(tagName, ClassName)`.
 
 Once it's registered, the browser watches it and automatically calls certain methods on your class at certain moments, like when it appears on the page or gets removed. This set of methods is called the "lifecycle," because it describes the life of the component from start to finish:
 
@@ -45,7 +45,7 @@ customElements.define('my-component', MyComponent);
 
 ### Why `connectedCallback`, not `constructor`, is where real setup happens
 
-Here's something that surprises a lot of people. A component is only constructed once, but it can be connected, disconnected, and reconnected to the page several times. This can happen if it's moved somewhere else in the DOM (the Document Object Model, which is the browser's live tree of everything on the page), or if some framework-like code removes it and adds it back.
+Here's something that surprises a lot of people. A component is only constructed once, but it can be connected, disconnected, and reconnected to the page several times. This can happen if it's moved somewhere else in the DOM, or if some framework-like code removes it and adds it back.
 
 So if your setup code assumes "this only happens once," it's in the wrong place. It belongs in `connectedCallback`, with matching cleanup in `disconnectedCallback`, not in the constructor.
 
@@ -69,7 +69,7 @@ disconnectedCallback() {
 
 ## Step 2: progressive enhancement — the component should degrade gracefully
 
-Your markup (the HTML structure of the page) is rendered on the server by Liquid, Shopify's templating language. Because of that, a Web Component should add behavior on top of HTML that already exists and already works, rather than needing JavaScript just to show anything meaningful in the first place. This idea is called "progressive enhancement": start with something that works for everyone, then layer extra features on top for browsers that support them.
+Your markup is rendered on the server by Liquid. Because of that, a Web Component should add behavior on top of HTML that already exists and already works, rather than needing JavaScript just to show anything meaningful in the first place. This idea is called "progressive enhancement": start with something that works for everyone, then layer extra features on top for browsers that support them.
 
 ```liquid
 {% comment %} The <details> element already works with zero JS —
@@ -140,7 +140,7 @@ Look at the difference in the code above. The `CustomEvent` version lets `Varian
 
 ## Step 4: state — the DOM as the source of truth
 
-"State" just means the current data or condition of your component, like whether a menu is open or closed. When you write JavaScript by hand instead of using a framework that manages state for you, a sneaky kind of bug can creep in: the same piece of state ends up living in two places, and those two places can quietly drift out of sync with each other.
+When you write JavaScript by hand instead of using a framework that manages state for you, a sneaky kind of bug can creep in: the same piece of state ends up living in two places, and those two places can quietly drift out of sync with each other.
 
 ```javascript
 // ❌ isOpen (a JS variable) and the actual DOM state (the hidden
@@ -169,7 +169,7 @@ Look at the difference above. In the first example, `isOpen` (a variable in your
 
 ## Step 5: when a shared store is actually justified
 
-Sometimes two components that aren't related to each other really do need the same piece of state. For example, a cart item count might need to show up in both the header badge and the cart drawer at the same time. Here's a minimal shared-state pattern (a small, reusable way of keeping state in sync) that needs no framework:
+Sometimes two components that aren't related to each other really do need the same piece of state. For example, a cart item count might need to show up in both the header badge and the cart drawer at the same time. Here's a minimal shared-state pattern that needs no framework:
 
 ```javascript
 // cart-state.js — a tiny pub/sub, imported by any component that needs it

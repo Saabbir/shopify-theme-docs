@@ -3,7 +3,7 @@ title: Tailwind CSS & Alpine.js Build Setup
 description: An optional alternative build setup some agencies use, what it looks like, and the trade-offs against this handbook's default (native CSS/JS).
 ---
 
-This handbook's default, and what every other page in it assumes, is native CSS and native Web Components, with no build step (an extra process that transforms your code before it reaches the browser). Some agencies instead build Shopify themes with **Tailwind CSS** (a CSS approach built around small utility classes like `flex` or `gap-4`, instead of custom class names) and **Alpine.js** (a small, reactive JavaScript layer for adding interactivity), compiled through **Vite** (a build tool that bundles and processes your code).
+This handbook's default, and what every other page in it assumes, is native CSS and native Web Components, with no build step. Some agencies instead build Shopify themes with **Tailwind CSS** (a CSS approach built around small utility classes like `flex` or `gap-4`, instead of custom class names) and **Alpine.js** (a small, reactive JavaScript layer for adding interactivity), compiled through **Vite**.
 
 This page documents that setup so you know about it. It's not a recommendation to switch, but it's a real, fairly common pattern, worth understanding in case you run into it during a client handoff, or hear about it from a new hire's past experience.
 
@@ -49,17 +49,17 @@ The build step compiles `frontend/entrypoints/*` into the theme's `assets/` fold
 </div>
 ```
 
-Compare that to this handbook's default pattern. A native `<details>`/`<summary>` element needs no JavaScript at all for the same behavior. You'd only reach for a Web Component (a reusable custom HTML element with its own built-in behavior) when the interaction genuinely needs more than `<details>` can offer.
+Compare that to this handbook's default pattern. A native `<details>`/`<summary>` element needs no JavaScript at all for the same behavior. You'd only reach for a Web Component when the interaction genuinely needs more than `<details>` can offer.
 
 ## Trade-offs vs. this handbook's default (native CSS/JS)
 
 | Consideration | Native CSS/JS (this handbook's default) | Tailwind + Alpine + Vite |
 |---|---|---|
 | Build step | None. Shopify serves `assets/*` as-is | Required. A broken build blocks preview/deploy |
-| Dependency surface | Zero runtime dependencies | Alpine.js (a runtime dependency) plus a build toolchain (a dev-time dependency) |
+| Dependency surface | Zero runtime dependencies | Alpine.js plus a build toolchain |
 | Onboarding | Any Shopify developer can contribute immediately | Requires familiarity with Tailwind's utility conventions and the specific Vite plugin setup |
 | Markup readability | Semantic class names (`.product-card__price`) | Utility classes stacked together (`flex items-center gap-2 text-sm font-medium text-gray-600`), faster to write but arguably harder to scan |
-| RTL/logical properties | Explicit (RTL means right-to-left, the writing direction used by languages like Arabic), as covered in [CSS Style Guide](/style-guides/css/) | Tailwind has logical-property utilities (`ms-4` instead of `ml-4`), but they must be used deliberately, since nothing prevents reaching for the physical ones by mistake |
+| RTL/logical properties | Explicit, as covered in [CSS Style Guide](/style-guides/css/) | Tailwind has logical-property utilities (`ms-4` instead of `ml-4`), but they must be used deliberately, since nothing prevents reaching for the physical ones by mistake |
 | Packaging for Theme Store | No extra exclusion work, since there's no source tree to exclude | Requires the extra `.shopifyignore` discipline covered in [Packaging Exclusions](/tooling-config/packaging-exclusions/) |
 | Theme Store submission risk | None specific to this setup | Nothing inherent, since Shopify reviews the compiled output, not your toolchain, but a broken or uncommitted build step is a self-inflicted risk this setup adds that native CSS/JS doesn't have |
 
@@ -73,7 +73,7 @@ On top of that, this handbook's other pages (accessibility, RTL, performance) ar
 
 - Keep the entire frontend source tree (`frontend/`, `node_modules/`, config files) out of the Theme Store submission. See [Packaging Exclusions](/tooling-config/packaging-exclusions/).
 - Check that the compiled output actually lands in `assets/` (via the Vite plugin's configuration). Don't assume a successful local build means the right files are in the right place for `shopify theme push`.
-- Still apply this handbook's Theme Store requirements (accessibility, RTL, and Lighthouse, Google's tool for testing page performance) to the compiled output. Using utility classes doesn't excuse a component from needing a visible focus state or a logical-property equivalent.
+- Still apply this handbook's Theme Store requirements (accessibility, RTL, and Lighthouse) to the compiled output. Using utility classes doesn't excuse a component from needing a visible focus state or a logical-property equivalent.
 
 ## Best practices
 

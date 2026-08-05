@@ -3,7 +3,7 @@ title: Performance Strategy & Critical Rendering Path
 description: A performance plan for a Shopify theme, covering critical CSS, lazy loading, and preload, prefetch, and preconnect.
 ---
 
-The [Performance & Lighthouse](/theme-store-requirements/performance/) page sets the bar: a score of 60 out of 90, averaged across your pages. Lighthouse is a free tool from Google that measures how well a page performs. This article gives you a plan for hitting that score on purpose, all through the project, instead of finding out your score during a stressful, last-minute scramble right before you submit.
+The [Performance & Lighthouse](/theme-store-requirements/performance/) page sets the bar: a score of 60 out of 90, averaged across your pages. This article gives you a plan for hitting that score on purpose, all through the project, instead of finding out your score during a stressful, last-minute scramble right before you submit.
 
 ## A performance plan, phase by phase
 
@@ -21,7 +21,7 @@ Skipping straight to phase 4 is the most common way performance work turns into 
 
 ## The critical rendering path, briefly
 
-The browser can't draw anything on screen until it builds two things first: the DOM (the page's structure) and the CSSOM (the page's styles). Building both means the browser has to first parse, or read through, all the render-blocking CSS and JavaScript sitting in your `<head>`. Every extra millisecond spent on these render-blocking resources before the first paint (the moment anything at all shows up on screen) is a millisecond your customer spends staring at a blank page. Everything in this article really comes down to one idea, applied over and over: **get something on screen fast, then load everything else without blocking that.**
+The browser can't draw anything on screen until it builds the DOM and the CSSOM. Building both means the browser has to first parse all the render-blocking CSS and JavaScript sitting in your `<head>`. Every extra millisecond spent on these render-blocking resources before the first paint is a millisecond your customer spends staring at a blank page. Everything in this article really comes down to one idea, applied over and over: **get something on screen fast, then load everything else without blocking that.**
 
 ## Critical CSS: what actually matters and what doesn't
 

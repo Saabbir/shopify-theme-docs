@@ -19,17 +19,11 @@ layout (theme.liquid)
                  └─ blocks (a block can nest more blocks — new in Horizon's architecture)
 ```
 
-It really pays off to understand this chain well. Most "why isn't my change showing up" problems come down to one thing: not knowing which layer your code actually lives in.
+It really pays off to keep this chain in mind. Most "why isn't my change showing up" problems come down to one thing: not knowing which layer your code actually lives in, especially now that blocks can nest inside other blocks.
 
-For example, say you're editing a block's settings, but nothing changes on the page. Check whether you're actually editing the section instead. This mix-up is one of the most common mistakes when you're new to Shopify themes.
+## The Horizon-era change that matters most here
 
-## Why this looks different from a typical web project
-
-If you've worked on a typical component-based frontend project before (think React or Vue), here's a simple way to think about it. The `layout` is like your app shell. The `templates` are like your routes. The `sections` are page-level components, but a non-developer can rearrange them visually. And `blocks` are smaller components nested inside those sections.
-
-Here's the real difference, though. In a normal project, developers move components around in code. In a Shopify theme, **merchants** (the store owners, not developers) add, remove, and reorder sections and blocks themselves. They do this through a visual editor, without touching any code.
-
-That's why the schema matters so much. A schema is the set of settings a merchant sees and can change in that visual editor. It matters just as much as the actual markup (the HTML and Liquid code) behind it.
+If your prior theme experience is Dawn-era, the one structural shift to internalize is that **blocks can now hold other blocks**, several levels deep, targeted with `@theme`/`@app`. That changes how you decide what's a section vs. a block vs. a nested block, and it's the source of most "which layer does this belong in" mistakes on this project. See [Theme Blocks & Nesting](/codebase-structure/theme-blocks/) for the full rules.
 
 ## What's on this page group
 
@@ -44,7 +38,7 @@ That's why the schema matters so much. A schema is the set of settings a merchan
 
 - Before you add a new file, check the rendering chain above first. Work out which layer it belongs to. Getting this wrong early (like building a snippet when you actually needed a block) is easy to fix. Fixing it later, once other code depends on it, is much harder.
 - If your change isn't showing up on the page, check which layer you actually edited. Don't assume something is broken. This one check solves most early confusion.
-- Read this whole page once before you build your first Solis section. Shopify themes work differently enough from a typical frontend project that skimming this now will save you rework later.
+- Read this whole page once before you build your first Solis section. The nested-block model is the one part of this that's genuinely new, even if you've built Dawn-era themes before.
 
 ## Common mistakes
 

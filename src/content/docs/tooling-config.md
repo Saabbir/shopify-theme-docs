@@ -3,13 +3,13 @@ title: Tooling & Config
 description: The dev tooling files that sit alongside your theme, and how to keep them out of your Theme Store submission.
 ---
 
-A real theme repo (the folder of code you work in every day) holds more than the 8 folders Shopify actually reads: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`. Your repo also holds other files, like Git settings, AI rule files, CI workflows (automated checks that run when you push code), and maybe a full frontend build setup.
+A real theme repo holds more than the 8 folders Shopify actually reads: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`. Your repo also holds other files, like Git settings, AI rule files, CI workflows, and maybe a full frontend build setup.
 
 None of those extra files should end up in your Theme Store submission. This section covers two things: how to manage these dev tooling files day to day, and how to correctly leave them out when you package your theme.
 
 ## What's on this page group
 
-- [Project Files Explained](/tooling-config/project-files/): what `.gitignore`, `.shopifyignore`, `.theme-check.yml`, `.github/`, `AGENTS.md`/`CLAUDE.md`, and `README.md` each do.
+- [Project Files Explained](/tooling-config/project-files/): what `.gitignore`, `.shopifyignore`, `.theme-check.yml`, `.github/`, `AGENTS.md`/`CLAUDE.md`, and `README.md` each do. (For Prettier and editor setup, see [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) in Getting Started.)
 - [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/): how to submit only the 8 required folders, and nothing else.
 - [Tailwind CSS & Alpine.js Build Setup](/tooling-config/tailwind-and-alpine-build-setup/): an optional build setup some agencies use, and what it trades off.
 

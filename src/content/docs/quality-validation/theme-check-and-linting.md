@@ -25,7 +25,7 @@ An "offense" is just Theme Check's name for one specific rule violation it finds
 |---|---|---|
 | `DeprecatedTag` (on `{% include %}`) | You used the old, unscoped include tag instead of `{% render %}` | [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) |
 | `MissingTemplate` | A required template is missing from your theme | [Required Templates & Features](/theme-store-requirements/required-templates-and-features/) |
-| `TranslationKeyExists` / `MissingTranslation` | A locale key referenced in your code doesn't exist in your locale file, or the other way around | [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) |
+| `TranslationKeyExists` / `MissingTranslation` | A locale key referenced in your code doesn't exist in your locale file, or the other way around | [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/) |
 | `RequiredLayoutThemeObject` | `theme.liquid` is missing something Shopify expects every layout to render, like `content_for_header` | [Folder Structure](/codebase-structure/folder-structure/) |
 | `ImgLazyLoading` | An `<img>` tag is missing `loading="lazy"`, an attribute that tells the browser to delay loading an image until it's needed | [Performance & Lighthouse](/theme-store-requirements/performance/) |
 
@@ -33,13 +33,13 @@ You don't need to memorize this table. The point is simple: a Theme Check offens
 
 ## Prettier (Liquid plugin)
 
-Shopify publishes an official [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin). Prettier is a code formatter: a tool that automatically arranges your code in one consistent style, like spacing and line breaks. Use it instead of manually trying to match everyone else's formatting by hand.
+Shopify publishes an official [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin). Prettier is a code formatter: a tool that automatically arranges your code in one consistent style, like spacing and line breaks. Use it instead of manually trying to match everyone else's formatting by hand. For the actual project config, VS Code/Cursor setup, and where formatting is enforced (not just encouraged), see [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/).
 
 ## Where this runs
 
 | When | What runs |
 |---|---|
-| While coding (VS Code) | Shopify Liquid extension: inline Theme Check plus Prettier |
+| While coding (VS Code/Cursor) | Shopify Liquid extension for inline Theme Check; Prettier extension for formatting. See [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) |
 | Before committing | `shopify theme check` run manually, or a pre-commit hook (a script that runs automatically right before a commit is saved) |
 | On every PR (CI) | `Shopify/theme-check-action`. See [CI Automation](/github-workflow/ci-automation/) for more on this |
 
@@ -85,3 +85,4 @@ If you find yourself turning off the same rule again and again across your codeb
 
 - [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check): shopify.dev
 - [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin): shopify.dev
+- [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/): the project's `.prettierrc`, VS Code/Cursor settings, and enforcement (pre-commit/CI)

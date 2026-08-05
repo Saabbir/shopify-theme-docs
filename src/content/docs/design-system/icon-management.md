@@ -9,7 +9,7 @@ Because icons appear in so many places, it's easy for them to look inconsistent 
 
 ## The recommended pattern: inline SVG snippets
 
-The best way to add an icon in this theme is with an inline SVG snippet. SVG stands for Scalable Vector Graphics: a small image made of code instead of pixels, so it always looks sharp no matter how big or small you make it. A snippet is a small, reusable piece of Liquid code (Liquid is Shopify's templating language) that you can drop in wherever you need it.
+The best way to add an icon in this theme is with an inline SVG snippet.
 
 Here's what an icon snippet looks like. This one renders a cart icon:
 
@@ -41,9 +41,7 @@ Why pick this pattern over the alternatives? The table below compares it to two 
 
 ## Theming icons with `currentColor`
 
-So what is `currentColor`? It's a special CSS keyword. It tells an SVG to use whatever text color is already set on its parent element, instead of a fixed color baked into the SVG itself.
-
-Think of it like a chameleon that changes color to match its surroundings. Instead of painting the icon one fixed color, you let it automatically match whatever color is around it.
+`currentColor` tells an SVG to use whatever text color is already set on its parent element, instead of a fixed color baked into the SVG itself.
 
 For outline-style icons (icons drawn with lines instead of solid shapes), you do the same thing with `stroke="currentColor"` instead of `fill="currentColor"`. Here's the difference between the wrong way and the right way:
 
@@ -70,7 +68,7 @@ Using `currentColor` means the icon's color changes automatically whenever the c
 
 ## Sizing icons
 
-`em` is a CSS unit that means "the current font size." If you set an icon's width and height in `em` units, the icon's size is tied directly to the text size around it.
+If you set an icon's width and height in `em` units, the icon's size is tied directly to the text size around it.
 
 ```css
 .icon {
@@ -82,11 +80,9 @@ Using `currentColor` means the icon's color changes automatically whenever the c
 
 Here's why that's useful. Imagine a button with text next to an icon. If that button's text gets bigger, on a larger screen for example, the icon grows right along with it. You don't need a separate size setting for every icon on every screen size.
 
-There's one exception. If an icon needs to stand on its own, not tied to any nearby text, use a fixed size instead. For example, a large icon shown by itself in an empty-state message (like "your cart is empty") works better with a fixed `width` and `height` in `px` or `rem` (another CSS unit, based on the page's root font size) rather than `em`.
+There's one exception. If an icon needs to stand on its own, not tied to any nearby text, use a fixed size instead. For example, a large icon shown by itself in an empty-state message (like "your cart is empty") works better with a fixed `width` and `height` in `px` or `rem` rather than `em`.
 
 ## Accessibility: decorative vs. meaningful icons
-
-Before we get into code, let's talk about accessibility. Accessibility means making sure everyone can use your theme, including people who rely on a screen reader (software that reads a web page out loud for people who can't see the screen well).
 
 Icons fall into two groups when it comes to accessibility. Most icons are decorative: they sit next to text that already says what's needed, so the icon adds nothing new on its own. A smaller number of icons are meaningful: they're the only label for something, like a button that has an icon but no visible text next to it.
 
@@ -118,15 +114,15 @@ Icons fall into two groups when it comes to accessibility. Most icons are decora
 
 Notice that every icon snippet above sets `aria-hidden="true"` and `focusable="false"` on its `<svg>` tag. `aria-hidden="true"` tells a screen reader to skip that element entirely. `focusable="false"` stops the icon from being reachable by pressing the Tab key on a keyboard. Add both of these to every icon snippet you write, with no exceptions.
 
-So how does a screen reader know what a meaningful icon does, if the icon itself is hidden from it? The accessible name (the text a screen reader announces) belongs on the button or link that wraps the icon, not on the icon itself. You give it that name with visible text, or with an `aria-label` attribute, which sets a label that screen readers announce even though it isn't shown on screen.
+So how does a screen reader know what a meaningful icon does, if the icon itself is hidden from it? The accessible name belongs on the button or link that wraps the icon, not on the icon itself. You give it that name with visible text, or with an `aria-label` attribute.
 
 This is why the same icon snippet can work for both decorative and meaningful icons. You never need two versions of the same icon.
 
 ## Settings-driven icon choices
 
-Sometimes you want to let a merchant (the store owner using your theme) pick an icon from a small list, instead of you hardcoding one icon in the code. A good example is a "Features" section, where each block (a repeatable content item inside a section) has its own icon picker.
+Sometimes you want to let a merchant pick an icon from a small list, instead of you hardcoding one icon in the code. A good example is a "Features" section, where each block has its own icon picker.
 
-To build this, use a `select` setting, which shows up as a dropdown menu in the theme editor, and map each option to one icon snippet name. Then use a `{% case %}` block in Liquid to check which option was picked and render (display) the matching snippet. Don't create a whole separate setting type for every single icon. Here's what that looks like in code:
+To build this, use a `select` setting and map each option to one icon snippet name. Then use a `{% case %}` block in Liquid to check which option was picked and render the matching snippet. Don't create a whole separate setting type for every single icon. Here's what that looks like in code:
 
 ```liquid
 {% comment %} sections/features.liquid — dispatching a select setting to an icon snippet {% endcomment %}
@@ -145,7 +141,7 @@ To build this, use a `select` setting, which shows up as a dropdown menu in the 
 ] }
 ```
 
-Notice the `t:settings.icon` and `t:options.shipping` labels. The `t:` prefix means the text comes from a translation file, so the label can change depending on the store's language. Keep these translation keys flat and shared, like `t:settings.*` and `t:options.*`, instead of nesting a separate copy for every block. You can see the full pattern, checked against Shopify's own Horizon and Skeleton themes, in the [Complete Worked Example](/codebase-structure/complete-worked-example/).
+Notice the `t:settings.icon` and `t:options.shipping` labels. Keep these translation keys flat and shared, like `t:settings.*` and `t:options.*`, instead of nesting a separate copy for every block. You can see the full pattern, checked against Shopify's own Horizon and Skeleton themes, in the [Complete Worked Example](/codebase-structure/complete-worked-example/).
 
 Keep your list of icon options small on purpose. A picker with 40 icon choices is overwhelming and hard to use well. A picker with 6 well-chosen icons that match your theme's style is much easier for a merchant to use, and it looks more polished too.
 

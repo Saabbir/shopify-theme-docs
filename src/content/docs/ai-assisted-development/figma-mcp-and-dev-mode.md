@@ -12,7 +12,7 @@ Figma's **Dev Mode** and **MCP server** close that gap. They give Cursor and Cla
 | Term | What it is | What it gives your AI tool |
 |---|---|---|
 | **Dev Mode** | A mode inside the Figma app or browser, for anyone inspecting a design, not just AI tools | An inspector panel: exact spacing, color hex codes/variable names, exported CSS, component names. Meant for a person to read, or copy into a prompt |
-| **Figma MCP server** | An MCP server (a connection that follows the Model Context Protocol, an open standard) that Figma runs, which Cursor/Claude Code/other MCP-aware tools connect to directly | Structured, machine-readable design data, including components, variables, layout, and generated code, pulled in automatically with no copy-pasting |
+| **Figma MCP server** | An MCP server that Figma runs, which Cursor/Claude Code/other MCP-aware tools connect to directly | Structured, machine-readable design data, including components, variables, layout, and generated code, pulled in automatically with no copy-pasting |
 
 Dev Mode is useful even without MCP. A designer or developer can read the inspector panel with their own eyes. The MCP server is what lets an AI *tool* pull that same information on its own, without a person relaying it by hand.
 
@@ -20,17 +20,40 @@ Dev Mode is useful even without MCP. A designer or developer can read the inspec
 
 Figma runs a **remote MCP server** at `https://mcp.figma.com/mcp`. This is the setup we recommend for almost everyone. It works on all Figma plans, and you don't need to install anything locally.
 
-### Claude Code
+### Project-level setup (recommended): commit it once, the team gets it automatically
 
-The recommended path is Figma's official plugin, which bundles the MCP connection along with Agent Skills for common Figma workflows:
+Claude Code, Cursor, and VS Code all support a project-scoped MCP config file, the same idea as the committed `.vscode/settings.json` from [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/). Commit the right file for each tool, and the Figma connection is already registered the moment a teammate clones the repo, instead of everyone running the same manual setup by hand.
+
+| File | Tool | Download |
+|---|---|---|
+| `.mcp.json` (repo root) | Claude Code | [Download](/templates/mcp.json) |
+| `.cursor/mcp.json` | Cursor | [Download](/templates/cursor/mcp.json) |
+| `.vscode/mcp.json` | VS Code | [Download](/templates/vscode/mcp.json) |
+
+Each file registers both the Figma MCP server and the [Shopify Dev MCP server](/ai-assisted-development/shopify-ai-toolkit/) covered on the next page. All three should be committed to git, and excluded from the Theme Store submission zip via `.shopifyignore` (see [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/)).
+
+Two things this doesn't change:
+
+- **Claude Code still prompts each person to approve a project-scoped server the first time they use it.** That's a one-time, per-person security check against a malicious repo running a server on your machine, not a sign the config didn't work.
+- **Figma still requires each person to sign in with their own Figma account** the first time their editor actually connects. Committing the server's *registration* (the URL) doesn't share anyone's auth session; that part is still per-person, same as it would be with a manual setup.
+
+### Setting it up yourself, per editor
+
+If you haven't committed the project config yet, or you want the connection available globally across every project (not just this one), set it up by hand instead.
+
+**Claude Code**: Figma's official plugin bundles the MCP connection along with Agent Skills for common Figma workflows, which the raw MCP config above doesn't include on its own:
 
 ```bash
 claude plugin install figma@claude-plugins-official
 ```
 
-### Cursor
+Or register just the MCP connection, scoped to your user account across all projects:
 
-Cursor supports the same remote server through its MCP settings. To set it up by hand (this also works for Cursor and any other MCP-capable tool):
+```bash
+claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp
+```
+
+**Cursor**: through its MCP settings UI, which also works for the project-scoped file above if you'd rather not download the template:
 
 1. Open the command palette and search for **MCP: Add Server**.
 2. Choose **HTTP**.
@@ -40,7 +63,7 @@ Cursor supports the same remote server through its MCP settings. To set it up by
 
 ### What the connection gives you once it's set up
 
-- It can read design data from a selected frame or a pasted Figma link. This includes components, variables (your design tokens, meaning reusable values like colors and spacing), layout data, and even FigJam content.
+- It can read design data from a selected frame or a pasted Figma link. This includes components, variables (your design tokens), layout data, and even FigJam content.
 - It can generate code from a selected frame, based on that real structured data instead of guessing from an image.
 - **Code Connect**: if your team keeps it up to date, this links Figma components to their real code counterparts. That way, the AI tool can reuse an existing snippet or section instead of generating a new one that duplicates it.
 - There's also a `use_figma` tool for going the other direction (code to Figma). We don't typically need this for theme development, but it's worth knowing it exists.
@@ -67,12 +90,14 @@ You still need the breakdown step from [Figma to Code Workflow](/ai-assisted-dev
 
 ## Best practices
 
+- Commit the project-level MCP config on day one of a new project, the same way `.vscode/settings.json` is committed for formatting. It's the difference between everyone setting this up by hand and everyone already having it the moment they clone the repo.
 - Default to a Figma link or live selection over a screenshot whenever you have Figma access. The accuracy difference is real, not minor.
 - Check for a Code Connect match before generating new code for something that might already exist as a component.
 - Still write the structured prompt (settings, blocks, and unusual-content behavior). Figma MCP gives you accurate design data, not your team's judgment about what merchants should control.
 
 ## Common mistakes
 
+- **Leaving Figma MCP as a manual, per-person setup step** instead of committing the project config, so every new teammate re-does the same "MCP: Add Server" flow that a committed file would have handled for them.
 - **Pasting a screenshot when a Figma link was available.** You lose exact values and component identity for no reason.
 - **Assuming the MCP connection alone tells the AI tool what should be a setting.** It doesn't. That's still on you, in the prompt.
 - **Not keeping Code Connect up to date**, so the AI tool has no way to know a component already exists, and ends up regenerating near-duplicates.
@@ -80,7 +105,8 @@ You still need the breakdown step from [Figma to Code Workflow](/ai-assisted-dev
 ## Quick Reference
 
 - Dev Mode = design inspector for people. MCP server = design data for AI tools. Related, but not the same thing.
-- Remote server: `https://mcp.figma.com/mcp`. Claude Code: `claude plugin install figma@claude-plugins-official`. Cursor: **MCP: Add Server** → HTTP → same URL.
+- Recommended: commit [`.mcp.json`](/templates/mcp.json), [`.cursor/mcp.json`](/templates/cursor/mcp.json), and [`.vscode/mcp.json`](/templates/vscode/mcp.json) so the whole team gets the Figma connection automatically. Each person still approves it once (Claude Code) and signs in with their own Figma account.
+- Manual per-editor setup: Claude Code plugin (`claude plugin install figma@claude-plugins-official`, adds Agent Skills too) or `claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp`. Cursor: **MCP: Add Server** → HTTP → `https://mcp.figma.com/mcp`.
 - Prefer a Figma link or selection over a screenshot whenever possible.
 - MCP gives you accurate design data, but it doesn't replace the breakdown step in the Figma-to-code workflow.
 

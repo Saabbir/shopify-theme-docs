@@ -21,7 +21,7 @@ This list is short on purpose. It only covers tools we actually use, or have tri
 | **Cursor** | IDE-integrated AI coding, `.cursor/rules/*.mdc` scoped rule auto-attach |
 | **GitHub Copilot** | Inline completions, `.github/copilot-instructions.md`-aware |
 
-See [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) to learn how to keep all three tools in sync from one `AGENTS.md` file.
+See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) to learn how to keep all three tools in sync from one `AGENTS.md` file.
 
 ## Design-to-code
 
@@ -38,7 +38,7 @@ See [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) for
 
 | Tool | Use it for |
 |---|---|
-| **Theme Check** (`shopify theme check`, and the VS Code / editor extension) | Liquid and schema checks, both on your computer and in CI (the automatic checks GitHub runs on a pull request) |
+| **Theme Check** (`shopify theme check`, and the VS Code / editor extension) | Liquid and schema checks, both on your computer and in CI |
 | **`Shopify/theme-check-action`** | Running Theme Check automatically on every PR (see [CI Automation](/github-workflow/ci-automation/)) |
 | **Lighthouse** (Chrome DevTools, or `lighthouse-ci`) | Performance and accessibility scores, checked against the Theme Store's required thresholds |
 | **axe DevTools** (browser extension) | A deeper accessibility check than Lighthouse's automated scan |

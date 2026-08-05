@@ -3,11 +3,7 @@ title: Scaffold Setup Guide
 description: Going from an empty folder to a working first section and block.
 ---
 
-In Section 1, you got a Shopify theme running on your own computer. Now it's time to understand why we set up a theme this way.
-
-A "scaffold" is just the basic starting structure of a project. Think of it like the frame of a house. You don't decorate a bare frame, you build walls and rooms on top of it. In the same way, this scaffold gives you folders and files to build your real sections and blocks on top of.
-
-This page then walks you through building your first real section and block, step by step.
+In Section 1, you got a Shopify theme running on your own computer. This section walks through why we scaffold from Skeleton Theme specifically, then through building your first real Solis section and block, step by step, using our conventions.
 
 ## What's on this page group
 

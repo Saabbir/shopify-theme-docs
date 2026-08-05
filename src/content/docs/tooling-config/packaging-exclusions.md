@@ -3,7 +3,7 @@ title: "Packaging: Theme Store-Only Directories"
 description: How to submit only the 8 required theme folders, and keep every dev tooling file out of the zip.
 ---
 
-Your working repo (the folder where you write and store your code) holds far more than Shopify wants to see in a submission. It has Git config, AI rule files, CI workflows, and maybe a whole Tailwind or Alpine build setup too.
+Your working repo holds far more than Shopify wants to see in a submission. It has Git config, AI rule files, CI workflows, and maybe a whole Tailwind or Alpine build setup too.
 
 None of that extra stuff should end up in your submission zip. This page walks you through the steps for making sure only the required theme files end up in the zip you submit.
 
@@ -27,7 +27,7 @@ Check out [Folder Structure](/codebase-structure/folder-structure/) to see what 
 | Category | Examples |
 |---|---|
 | Version control | `.git/`, `.gitignore` |
-| AI tooling | `AGENTS.md`, `CLAUDE.md`, `.cursor/`, `.claude/`, `.cursorrules` |
+| AI tooling | `AGENTS.md`, `CLAUDE.md`, `.cursor/`, `.claude/`, `.cursorrules`, `.mcp.json` |
 | CI/CD and repo metadata | `.github/` |
 | Linter config | `.theme-check.yml` |
 | Build setup (if using one) | `package.json`, `node_modules/`, `src/`, `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, any `.env*` |
@@ -46,6 +46,7 @@ Check out [Folder Structure](/codebase-structure/folder-structure/) to see what 
 AGENTS.md
 CLAUDE.md
 .cursorrules
+.mcp.json
 .theme-check.yml
 README.md
 docs/

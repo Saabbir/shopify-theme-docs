@@ -3,15 +3,13 @@ title: Your First Section & Block
 description: A worked example of a testimonial section with a nestable quote block.
 ---
 
-In this guide, you'll build something real: a "Testimonials" section that merchants can add to any page of their store.
-
-A section is one chunk of a page, like a header, a footer, or a row of product images. Inside our Testimonials section, merchants can add "Quote" blocks. A block is a smaller, reusable piece that lives inside a section. Think of blocks like Lego pieces: merchants can snap in as many as they want, remove ones they don't need, and drag them into a different order.
+In this guide, you'll build something real: a "Testimonials" section that merchants can add to any page of their store, with "Quote" blocks merchants can add, remove, and reorder.
 
 Let's build the block first, then the section that holds it.
 
 ## 1. The block
 
-Here's the code for the Quote block. It's a Liquid file (Liquid is Shopify's template language) that defines how one quote looks, plus a small schema at the bottom that tells the theme editor what settings to show merchants.
+Here's the code for the Quote block: it defines how one quote looks, plus a small schema at the bottom that tells the theme editor what settings to show merchants.
 
 ```liquid
 {% comment %} /blocks/quote.liquid {% endcomment %}
@@ -46,7 +44,7 @@ Notice the `{%- if block.settings.author != blank -%}` check. It only shows the 
 
 ## 2. The section that hosts it
 
-Now let's build the section that holds these Quote blocks. A section is the bigger container, and a block lives inside it.
+Now let's build the section that holds these Quote blocks.
 
 ```liquid
 {% comment %} /sections/testimonials.liquid {% endcomment %}

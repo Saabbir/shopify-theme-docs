@@ -3,11 +3,11 @@ title: "Shopify's Official AI Toolkit"
 description: Should we use it? Yes. Here's a step-by-step install, what it does, and how it backs up this handbook's "no guessing" rule.
 ---
 
-Shopify publishes its own official plugin for AI coding tools, called the **Shopify AI Toolkit** (`github.com/Shopify/Shopify-AI-Toolkit`). It's genuinely worth installing alongside everything else in this section. It gives an AI tool direct, live access to Shopify's own documentation, plus a way to check its own code. That's exactly the "base claims on official sources, don't guess" rule that [AGENTS.md's "Source of truth & certainty requirements"](/ai-assisted-development/setting-up-ai-rules/) already asks for. This toolkit is how an AI tool actually *does* that, instead of just being told to.
+Shopify publishes its own official plugin for AI coding tools, called the **Shopify AI Toolkit** (`github.com/Shopify/Shopify-AI-Toolkit`). It's genuinely worth installing alongside everything else in this section. It gives an AI tool direct, live access to Shopify's own documentation, plus a way to check its own code. That's exactly the "base claims on official sources, don't guess" rule that [AGENTS.md's "Source of truth & certainty requirements"](/getting-started/setting-up-ai-rules/) already asks for. This toolkit is how an AI tool actually *does* that, instead of just being told to.
 
 ## It's already referenced at the top of our AGENTS.md — with one thing worth knowing
 
-The very first line of the `AGENTS.md` file that `shopify theme init` generates (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) is:
+The very first line of the `AGENTS.md` file that `shopify theme init` generates (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) is:
 
 ```
 🚨 MANDATORY: YOU MUST CALL "learn_shopify_api" ONCE WHEN WORKING WITH LIQUID THEMES.
@@ -60,10 +60,12 @@ This method is useful if your tool doesn't support plugins yet, or if you specif
 **3. The Dev MCP server: a separate package, provides `learn_shopify_api`**
 
 ```bash
-claude mcp add --transport stdio shopify-dev-mcp -- npx -y @shopify/dev-mcp@latest
+claude mcp add --scope project --transport stdio shopify-dev-mcp -- npx -y @shopify/dev-mcp@latest
 ```
 
-This is the mechanism behind the mandatory `learn_shopify_api` line discussed above. But as covered there, it currently covers app and extension development, not Liquid themes specifically. Installing this alone doesn't give you the `shopify-liquid` skill's search-and-check process. For theme work, install the plugin or the `shopify-liquid` skill (method 1 or 2).
+`--scope project` writes this to a committed `.mcp.json` at the repo root instead of registering it only for you. Since it's project-scoped this way, a teammate who clones the repo gets the same server automatically (Claude Code still prompts them to approve it once, the standard first-use check for any project-scoped server). This is the same file used for the project-level Figma MCP setup in [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) — [download the combined template](/templates/mcp.json) instead of running the command by hand if you want both servers at once.
+
+This is the mechanism behind the mandatory `learn_shopify_api` line discussed above. But as covered there, it currently covers app and extension development, not Liquid themes specifically. Installing this alone doesn't give you the `shopify-liquid` skill's search-and-check process. For theme work, install the plugin or the `shopify-liquid` skill (method 1 or 2) — and note that the plugin/skill install is still a per-person step today, since it bundles Agent Skills rather than just an MCP server, and isn't something a committed `.mcp.json` can register on someone else's behalf.
 
 :::caution
 Command syntax for developer tools changes often. Confirm against [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit) before running any of the commands above. This page reflects what was current as of this handbook's last update, and the toolkit's own `README.md` on GitHub has, at times, lagged behind the live docs page with older command syntax.
@@ -110,7 +112,7 @@ We have one Claude Code subagent so far, called `theme-check-fixer`. It runs `sh
 
 ## Using it alongside `AGENTS.md`'s `## Custom rules`
 
-`AGENTS.md` itself is already mostly Shopify's content. The toolkit and the file come from the same place and reinforce each other, rather than covering separate ground. The one part of `AGENTS.md` that's genuinely ours is `## Custom rules` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)).
+`AGENTS.md` itself is already mostly Shopify's content. The toolkit and the file come from the same place and reinforce each other, rather than covering separate ground. The one part of `AGENTS.md` that's genuinely ours is `## Custom rules` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)).
 
 | | `AGENTS.md` above `## Custom rules` (Shopify's) | `AGENTS.md`'s `## Custom rules` (ours) | Shopify's AI Toolkit |
 |---|---|---|---|
@@ -141,7 +143,7 @@ The toolkit's search and validation scripts send usage data to Shopify (`shopify
 
 ## Quick Reference
 
-- Three install methods: plugin (recommended, updates itself), agent skills (`npx skills add Shopify/shopify-ai-toolkit`, manual updates), Dev MCP server (`claude mcp add ...`, provides `learn_shopify_api`). Full current commands: [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit).
+- Three install methods: plugin (recommended, updates itself, per-person), agent skills (`npx skills add Shopify/shopify-ai-toolkit`, manual updates, per-person), Dev MCP server (`claude mcp add --scope project ...`, provides `learn_shopify_api`, committable via [`.mcp.json`](/templates/mcp.json)). Full current commands: [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit).
 - `learn_shopify_api`'s current API list doesn't include Liquid or themes. For theme work, the `shopify-liquid` skill's `search_docs.mjs` and `validate.mjs` loop is what actually applies.
 - Shopify ships skills only, no bundled subagents or slash commands. Our `/figma-to-liquid` and similar commands are a separate, Solis-specific layer on top.
 - Solis-specific rules still live only in `## Custom rules`. The toolkit only knows Shopify's platform facts.

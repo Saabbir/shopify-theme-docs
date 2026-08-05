@@ -3,7 +3,7 @@ title: "AI Coding Concepts: Agents, MCP, Skills, Commands & Plugins"
 description: A plain-language guide to the words used in this section. Read this one first if any of them are new to you.
 ---
 
-The rest of this section uses words like MCP, skill, subagent, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 8 builds on the five ideas below.
+The rest of this section uses words like MCP, skill, subagent, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 9 builds on the five ideas below.
 
 ## What makes a tool "agentic" — Claude Code, Cursor, Copilot
 
@@ -17,7 +17,7 @@ When you turn on "agent mode," these tools can do much more. They can read your 
 | **Cursor** | Desktop IDE (a VS Code fork) | Has agent mode alongside familiar IDE autocomplete |
 | **GitHub Copilot** | VS Code / IDE extension | Started as pure autocomplete; agent mode was added later |
 
-All three tools, when they're in agent mode, can read a file called `AGENTS.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) and call MCP servers, which we'll explain next. Depending on the tool, they can also load skills, run commands, and hand work off to subagents. The rest of this page walks through each of these four things, one at a time.
+All three tools, when they're in agent mode, can read a file called `AGENTS.md` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) and call MCP servers, which we'll explain next. Depending on the tool, they can also load skills, run commands, and hand work off to subagents. The rest of this page walks through each of these four things, one at a time.
 
 ## MCP — the connection that links a tool to outside data
 
@@ -36,7 +36,7 @@ Think of MCP as the wiring that connects everything together. Skills, commands, 
 
 A **skill** is a set of instructions, sometimes with extra scripts or reference files attached, that an AI tool loads **automatically** when it's relevant to what you're asking. You don't type its name to call it. It just switches on by itself, in the background.
 
-Shopify's `shopify-liquid` skill (from [the AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)) is the example already in this handbook. It turns on whenever a request looks like theme or Liquid work (Liquid is Shopify's templating language). Once it's on, it searches Shopify's docs before it writes any code, then checks its own work before handing it back to you.
+Shopify's `shopify-liquid` skill (from [the AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)) is the example already in this handbook. It turns on whenever a request looks like theme or Liquid work. Once it's on, it searches Shopify's docs before it writes any code, then checks its own work before handing it back to you.
 
 If you write your own skill, it lives at `.claude/skills/<name>/SKILL.md`. Skills can also come bundled inside an installed plugin, which we'll cover further down.
 
@@ -80,7 +80,7 @@ That's worth fixing eventually. A plugin would let the whole team install and up
 
 ## Where `AGENTS.md` fits — none of the above
 
-`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) aren't a skill, command, subagent, or plugin. They're **static context that's always loaded**. That means the AI reads them at the start of every session, no matter what you're doing.
+`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) aren't a skill, command, subagent, or plugin. They're **static context that's always loaded**. That means the AI reads them at the start of every session, no matter what you're doing.
 
 Compare that to the other four things on this page. A skill only turns on when it's relevant. A command needs to be typed. A subagent gets handed a task. `AGENTS.md` is different: it's just always there in the background from the moment a session starts.
 
@@ -88,7 +88,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 ## Where to go next in this section
 
-1. [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): the always-loaded project context every tool reads.
+1. [Setting Up AI Rules (AGENTS.md)](/getting-started/setting-up-ai-rules/): the always-loaded project context every tool reads.
 2. [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): keeping that file correct over time.
 3. [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): the skill (and MCP server) that makes sure Liquid code is based on real platform facts, not guesses.
 4. [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): a real MCP connection, for design data.
@@ -99,7 +99,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 ## Best practices
 
-- Read this page once, all the way through, before you move on to the rest of section 8. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which.
+- Read this page once, all the way through, before you move on to the rest of section 9. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which.
 - When you're deciding how to automate something you keep doing, ask yourself a few questions. Does it need to apply to *everything*? Use `AGENTS.md`. Does it need to trigger *automatically* on relevant tasks? Use a skill. Do you want to trigger it *by name*? Use a command. Is it noisy, or does it need a limited set of tools? Use a subagent.
 - Don't confuse "installed a plugin" with "wrote a skill." A plugin is just how you install things. The skill, command, subagent, or MCP connection inside it is what actually does the work.
 

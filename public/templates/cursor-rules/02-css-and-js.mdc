@@ -9,7 +9,7 @@ alwaysApply: false
   Source of truth: AGENTS.md's "## Custom rules" section.
   Current Cursor versions read AGENTS.md natively — you likely don't need this file at all.
   Only use this if you specifically want per-file-type scoped auto-attach (see
-  Setting Up AI Rules: /ai-assisted-development/setting-up-ai-rules/). If you do,
+  Setting Up AI Rules: /getting-started/setting-up-ai-rules/). If you do,
   keep it in sync with AGENTS.md's "## Custom rules" by hand whenever that section changes.
 -->
 

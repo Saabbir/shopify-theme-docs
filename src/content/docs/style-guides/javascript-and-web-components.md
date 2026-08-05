@@ -3,9 +3,9 @@ title: JavaScript & Web Components Style Guide
 description: The {% javascript %} tag, native Web Components, state and events, and when JS is the wrong tool.
 ---
 
-We write JavaScript as native ES modules. This just means we use the browser's built-in `import`/`export` system, instead of a build tool that bundles files together. Anything with state (data that changes) or interactivity, we ship as a **Web Component**: a custom HTML element you define yourself, backed by a JS class.
+We write JavaScript as native ES modules. Anything with state or interactivity, we ship as a **Web Component**: a custom HTML element you define yourself, backed by a JS class.
 
-You don't need a bundler (a tool that combines many files into one) at runtime, and you don't need a framework like React or Vue. The browser handles loading the modules on its own. Custom Elements, the browser feature behind Web Components, gives you the same kind of reusable, self-contained pieces a framework would otherwise give you.
+You don't need a bundler at runtime, and you don't need a framework like React or Vue. The browser handles loading the modules on its own. Custom Elements gives you the same kind of reusable, self-contained pieces a framework would otherwise give you.
 
 This page covers the baseline rules. For the two concrete patterns a component can follow, including Shopify's own Horizon theme's more advanced `refs`/declarative-event pattern (checked directly against its actual shipped code), see [Web Components Guideline](/style-guides/web-components/).
 
@@ -46,8 +46,8 @@ A native Web Component is a class that extends `HTMLElement` and gets registered
 ### Why Web Components here, specifically
 
 - **No framework to depend on.** It works in any Shopify theme with no build step and no runtime library to keep updated.
-- **Progressive enhancement fits naturally.** ("Progressive enhancement" means the page works with plain HTML first, then JavaScript adds extra behavior on top.) The element can show real, server-rendered Liquid markup first, then the component's `connectedCallback` method enhances it. If the JS fails to load, the underlying HTML, like a `<details>` element or a real `<button>`, still works.
-- **You get encapsulation without needing a framework's mental model.** ("Encapsulation" just means a component's behavior stays bundled with its own markup and styling.) That's the same idea behind keeping `{% stylesheet %}` and `{% javascript %}` next to the component's markup.
+- **Progressive enhancement fits naturally.** The element can show real, server-rendered Liquid markup first, then the component's `connectedCallback` method enhances it. If the JS fails to load, the underlying HTML, like a `<details>` element or a real `<button>`, still works.
+- **You get encapsulation without needing a framework's mental model.** That's the same idea behind keeping `{% stylesheet %}` and `{% javascript %}` next to the component's markup.
 
 ### A minimal, well-structured Web Component
 
@@ -82,7 +82,7 @@ class QuantitySelector extends HTMLElement {
 customElements.define('quantity-selector', QuantitySelector);
 ```
 
-Notice three things happening here. Attributes are used for configuration (`min`/`max`). A `CustomEvent` (a custom signal a component sends out) is used to talk to the outside world, instead of reaching directly into a parent component's internals. And `disconnectedCallback` cleans up the listener that was added, so it doesn't linger after the component is removed.
+Notice three things happening here. Attributes are used for configuration (`min`/`max`). A `CustomEvent` is used to talk to the outside world, instead of reaching directly into a parent component's internals. And `disconnectedCallback` cleans up the listener that was added, so it doesn't linger after the component is removed.
 
 | ✅ Do | ❌ Don't |
 |---|---|
@@ -93,13 +93,11 @@ Notice three things happening here. Attributes are used for configuration (`min`
 
 ## State: attributes and properties, not a framework store
 
-"State" is just the current data a component is tracking. Is this panel open right now? What's the current quantity? Things like that.
-
-Without a framework, that state should live in one of these places, in this order of preference:
+Without a framework, state should live in one of these places, in this order of preference:
 
 1. **The DOM itself**: an `open` attribute on a `<details>` element, or `aria-expanded` on a button. This is the simplest and most reliable option. Other code, including CSS using attribute selectors, can read it for free.
 2. **The custom element's own properties or attributes**: for state that's specific to that one component instance.
-3. **A shared store at the module level** (a small plain object, or a signal-like pattern): only when several unrelated components genuinely need to react to the same piece of state. For example, a cart item count shown in both the header and a cart drawer (a slide-out panel showing cart contents).
+3. **A shared store at the module level** (a small plain object, or a signal-like pattern): only when several unrelated components genuinely need to react to the same piece of state. For example, a cart item count shown in both the header and a cart drawer.
 
 ```javascript
 /* ✅ RIGHT — state lives in the DOM, CSS can react to it for free */
@@ -119,7 +117,7 @@ function toggle() {
 
 ## Events: `CustomEvent`, not direct coupling
 
-Say one component needs to tell another component that something happened. For example, a variant picker (where a shopper picks a size or color) changes, and the price display needs to know about it. In a case like that, dispatch (send out) a `CustomEvent` and let whoever's interested listen for it.
+Say one component needs to tell another component that something happened. For example, a variant picker changes, and the price display needs to know about it. In a case like that, dispatch a `CustomEvent` and let whoever's interested listen for it.
 
 Don't import one component into another and call its methods directly. That creates "coupling," where the two components become dependent on each other's internal details and harder to change independently.
 

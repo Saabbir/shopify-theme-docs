@@ -3,7 +3,7 @@ title: Shopify Theme Handbook
 description: The one place to learn how to build and publish a Shopify theme to the Theme Store.
 template: splash
 hero:
-  tagline: How we build Shopify themes, from a blank folder to a Theme Store submission. Written for developers who are new to Shopify.
+  tagline: How we build Shopify themes, from a blank folder to a Theme Store submission. Written for developers who already know Shopify and Liquid.
   actions:
     - text: Get Started
       link: /getting-started/
@@ -24,15 +24,16 @@ hero:
 | [3. Codebase Structure](/codebase-structure/) | Folders, theme blocks, sections, naming conventions, modern platform features |
 | [4. Scaffold Setup Guide](/scaffold-setup/) | Step by step: empty folder → working section and block |
 | [5. Design System & Configuration](/design-system/) | Figma tokens, color/type systems, settings schema/data, presets, icons |
-| [6. Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid, clean code, third-party libraries, theme editor events |
-| [7. Performance & Accessibility](/performance-and-accessibility/) | Accessibility (making your site usable for everyone) and performance, built in from the start, not added later |
-| [8. AI-Assisted Development](/ai-assisted-development/) | AGENTS.md, Figma MCP, Claude commands, Shopify's own AI Toolkit |
-| [9. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
-| [10. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
-| [11. Publishing](/publishing/) | Partner Dashboard, store setup, packaging, review, life after approval |
-| [12. Tooling & Config](/tooling-config/) | Project files, Theme-Store-only packaging, optional Tailwind/Alpine setup |
-| [13. Learning Articles](/learning-articles/) | Step-by-step deep dives: CSS, JS/Web Components, Liquid objects, locale files, maintainable code |
-| [14. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
+| [6. Internationalization & Locales](/internationalization-and-locales/) | i18n/RTL requirements, locale file management, and how settings_schema.json's t: keys resolve into them |
+| [7. Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid, clean code, third-party libraries, theme editor events |
+| [8. Performance & Accessibility](/performance-and-accessibility/) | Accessibility and performance, built in from the start, not added later |
+| [9. AI-Assisted Development](/ai-assisted-development/) | AGENTS.md, Figma MCP, Claude commands, Shopify's own AI Toolkit |
+| [10. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
+| [11. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
+| [12. Publishing](/publishing/) | Partner Dashboard, store setup, packaging, review, life after approval |
+| [13. Tooling & Config](/tooling-config/) | Project files, Theme-Store-only packaging, optional Tailwind/Alpine setup |
+| [14. Learning Articles](/learning-articles/) | Step-by-step deep dives: CSS, JS/Web Components, Liquid objects, maintainable code |
+| [15. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
 
 New here? Start with sections 1 to 4, in order. After that, use search (**⌘K**) to find whatever you need.
 

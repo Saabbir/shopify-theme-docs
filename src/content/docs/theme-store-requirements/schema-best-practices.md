@@ -3,7 +3,7 @@ title: Schema.json Best Practices
 description: Writing settings that merchants can actually understand and use.
 ---
 
-Shopify doesn't just check whether your code works. Reviewers also check whether merchants (the store owners who'll actually use your theme) can understand your settings without guessing. This review focuses on your `{% schema %}` block, which is the JSON code (a simple, structured way of writing data) that defines a section's settings. Here's what reviewers look for.
+Shopify doesn't just check whether your code works. Reviewers also check whether merchants can understand your settings without guessing. This review focuses on your `{% schema %}` block. Here's what reviewers look for.
 
 ## Wording rules
 
@@ -18,7 +18,7 @@ Shopify doesn't just check whether your code works. Reviewers also check whether
 
 A few more rules to keep in mind:
 
-- Use sentence case for section and preset names. That means you only capitalize the first word and any proper nouns (specific names, like "Shopify").
+- Use sentence case for section and preset names: only capitalize the first word and any proper nouns.
 - Don't use ampersands (the `&` symbol). Spell out "and" instead.
 - Write in active voice, where the subject does the action, instead of passive voice.
 - Start every button or action label with a verb, like "Show" or "Add."
@@ -122,7 +122,7 @@ A few more rules to keep in mind:
 }
 ```
 
-Notice three things in this example. Every string uses a `t:` locale key (a short code that points to a piece of translated text, so the setting can show up in different languages). The color settings come in a pair: background and foreground. And the `select` options use words like "left" and "center" instead of numbers.
+Notice three things in this example. Every string uses a `t:` locale key. The color settings come in a pair: background and foreground. And the `select` options use words like "left" and "center" instead of numbers.
 
 ## Best practices
 

@@ -64,7 +64,7 @@ Shopify draws a firm line here. Your theme must let merchant apps plug in, but y
 | Use a Custom Liquid or app block slot for anything API-dependent | Build wishlists, appointment scheduling, or an Instagram feed directly into theme code |
 
 - **Never build a feature that depends on an app to work.** If a feature only half-works without a specific app installed, Shopify will reject the theme.
-- **Never build "app-like" functionality yourself.** That means no wishlists, no appointment scheduling, no cart-level discount codes, no Instagram feed built into the theme. If a feature needs API access (a connection to an outside service) to work properly, it belongs in an app, not baked into the theme.
+- **Never build "app-like" functionality yourself.** That means no wishlists, no appointment scheduling, no cart-level discount codes, no Instagram feed built into the theme. If a feature needs API access to work properly, it belongs in an app, not baked into the theme.
 
 ```liquid
 {% comment %}

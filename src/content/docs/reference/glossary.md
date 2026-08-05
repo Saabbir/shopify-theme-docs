@@ -37,17 +37,7 @@ description: Every term this handbook uses, explained once, grouped by topic.
 
 ## CSS & JavaScript
 
-**Custom property**: A CSS variable, written as `--name: value`. The browser fills in its value when the page loads, and it's how we turn one merchant setting into one CSS value.
-
-**Logical property**: A CSS property that adjusts to text direction, like `margin-inline-start` instead of `margin-left`. It flips automatically when the layout runs right-to-left (RTL), like Arabic or Hebrew.
-
 **`{% stylesheet %}` / `{% javascript %}`**: Liquid tags that keep CSS and JS tied to the component file they're written in. Shopify removes duplicate output automatically, and the code only loads on pages where that component actually shows up.
-
-**Web Component**: A browser feature (also called Custom Elements) for building a self-contained, reusable, interactive component without needing a framework like React or Vue.
-
-**Custom Element lifecycle**: The set of methods (`constructor`, `connectedCallback`, `disconnectedCallback`, `attributeChangedCallback`) the browser calls automatically as a Web Component is created, added to the page, or removed.
-
-**Progressive enhancement**: Building a component so its basic markup works even without JavaScript. JavaScript then adds extra behavior on top, instead of being the only thing that makes it work.
 
 ## AI-assisted development
 
@@ -55,7 +45,7 @@ description: Every term this handbook uses, explained once, grouped by topic.
 
 **`.cursor/rules/*.mdc`**: Cursor's own rule file format. It supports `globs`, so a rule only loads when you're editing a matching file. It's now optional and mostly legacy, since Cursor can read `AGENTS.md` directly.
 
-**`CLAUDE.md`**: Claude Code's rules file. Claude Code reads it automatically from the root of the repo. In this project it's a symlink to `AGENTS.md`, not separate content of its own. See [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/).
+**`CLAUDE.md`**: Claude Code's rules file. Claude Code reads it automatically from the root of the repo. In this project it's a symlink to `AGENTS.md`, not separate content of its own. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/).
 
 **Custom slash command**: A Markdown file at `.claude/commands/<name>.md` that you can run as `/<name>` inside Claude Code.
 
@@ -78,14 +68,6 @@ description: Every term this handbook uses, explained once, grouped by topic.
 **Metaobject / metafield**: Shopify's structures for storing custom data. A Theme Store theme can only reference standard metaobject definitions in its settings. It can't reference custom ones, or ones an app owns.
 
 **App block**: A block type that an app can add into a section that accepts `@app` targeting. Theme Store review requires that your main product section and featured product section both accept app blocks.
-
-## Optional build tools
-
-**Vite**: A frontend build tool and dev server. Teams using the [Tailwind/Alpine build setup](/tooling-config/tailwind-and-alpine-build-setup/) pair it with `vite-plugin-shopify` or a similar plugin.
-
-**Tailwind CSS**: A CSS framework built around small utility classes. It's an alternative to this handbook's default approach of writing plain CSS.
-
-**Alpine.js**: A small JavaScript library you use inline in your markup, similar to a lightweight framework. It's an alternative to this handbook's default approach of using Web Components.
 
 ## Further Reading
 

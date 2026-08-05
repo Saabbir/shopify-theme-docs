@@ -3,7 +3,7 @@ title: Accessibility (WCAG 2.1 AA)
 description: Shopify's concrete, checkable accessibility requirements.
 ---
 
-Accessibility means making sure people with disabilities, like someone who can't use a mouse, or someone using a screen reader, can still use your theme. Shopify's accessibility bar is concrete and easy to check. It's not a vague "be inclusive" statement. For each item below, you can test whether you pass or fail.
+Shopify's accessibility bar is concrete and easy to check. It's not a vague "be inclusive" statement. For each item below, you can test whether you pass or fail.
 
 Here's every checkable item, with the right way and the wrong way to build it. This page covers the checklist. For the process behind meeting this bar consistently, see [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/).
 
@@ -68,7 +68,7 @@ button:focus-visible {
 <button type="submit" class="btn">Add to cart</button>
 ```
 
-Sometimes you need to build a custom interactive widget that isn't a native HTML element, like a custom dropdown or a carousel (a slideshow of images the customer can click through). When you do, give it the right ARIA role. ARIA is a set of HTML attributes that tell screen readers how an element behaves. You also need to add `tabindex="0"` so keyboard users can reach it, and write key handlers for Enter, Space, and the arrow keys. Styling alone doesn't make something accessible, you have to add the keyboard behavior too.
+Sometimes you need to build a custom interactive widget that isn't a native HTML element, like a custom dropdown or a carousel. When you do, give it the right ARIA role, add `tabindex="0"` so keyboard users can reach it, and write key handlers for Enter, Space, and the arrow keys. Styling alone doesn't make something accessible, you have to add the keyboard behavior too.
 
 ## Test before you submit
 

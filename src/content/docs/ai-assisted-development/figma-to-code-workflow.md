@@ -3,13 +3,13 @@ title: Figma to Code Workflow
 description: A repeatable process for turning a Figma frame into a working section, with Cursor or Claude Code.
 ---
 
-A Figma frame is a design file made in the tool Figma. It shows one possible version of your content, filled in with example text and images. It isn't a strict spec (a fixed set of rules the code must follow).
+A Figma frame shows one possible version of your content, filled in with example text and images. It isn't a strict spec.
 
 That difference matters a lot. A real merchant might type a 200-character product title, leave a collection empty, or delete every block but one. If your code only works for the neat example in the Figma frame, it will break the moment real data touches it. This page gives you a repeatable process so that doesn't happen.
 
 ## The end-to-end loop: plan → build → check → fix → document → report
 
-When you hand Cursor or Claude Code (two AI coding tools) a Figma frame, plus a clear prompt (the instructions you type), the tool should work through six steps, in order, every time. You can share the frame as a link, a selection, or a screenshot. See [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) for how to connect Figma to your AI tool.
+When you hand Cursor or Claude Code a Figma frame, plus a clear prompt, the tool should work through six steps, in order, every time. You can share the frame as a link, a selection, or a screenshot. See [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) for how to connect Figma to your AI tool.
 
 Here's what each step does and why it exists on its own:
 
@@ -18,7 +18,7 @@ Here's what each step does and why it exists on its own:
 | **1. Plan** | Break down the frame (Step 1 below): separate content from structure, work out the block breakdown, and pull out the values you'll need. State the plan back before writing any code, listing the settings, block types, and how it should behave on different screen sizes. | This catches a wrong guess (for example, "this should be one setting, not three") while it's still a one-line fix, not a full rewrite. |
 | **2. Build** | Generate the section, block, and snippet files to match the plan you stated, following the rules in `AGENTS.md` (the command points to that file instead of keeping its own copy of the rules). | N/A |
 | **3. Check** | Run `shopify theme check` against the new or changed files. | This catches schema mistakes, outdated patterns, and accessibility issues automatically, before a human reviewer has to spot them by eye. |
-| **4. Fix** | Hand this off to the `theme-check-fixer` [subagent](/ai-assisted-development/claude-code-subagents/) (a separate, focused AI helper) instead of fixing issues one by one yourself. Don't stop once the errors are gone. Every warning needs to be fixed or clearly explained. | This keeps issue-by-issue noise out of your main conversation, and the subagent only has access to the tools it needs for this one job. |
+| **4. Fix** | Hand this off to the `theme-check-fixer` [subagent](/ai-assisted-development/claude-code-subagents/) instead of fixing issues one by one yourself. Don't stop once the errors are gone. Every warning needs to be fixed or clearly explained. | This keeps issue-by-issue noise out of your main conversation, and the subagent only has access to the tools it needs for this one job. |
 | **5. Document** | Write a short build record to `docs/sections/<name>.md`, `docs/blocks/<name>.md`, or `docs/snippets/<name>.md` (whichever you actually built). Include the Figma source, the final settings and blocks, any assumptions you made, and the result of `theme check`. | This is a record for a future developer who wasn't part of this conversation. They can't just reconstruct it from the code changes alone. |
 | **6. Report** | Give a short summary in the conversation: what you built, what became a setting versus what stayed fixed structure, any assumption you made where the frame was unclear, confirmation that `theme check` is clean, and the path to the doc file from Step 5. | This gives the human reviewer exactly what they need to check your work quickly. It's not a full recap of every file, just the decisions that need a second opinion. |
 
@@ -52,7 +52,7 @@ Not everything becomes a setting. The product card's internal layout is fixed st
 
 ## Step 2: Pull out design values
 
-Before you write any CSS, pull the exact values out of Figma. If your team uses Figma variables (a way to store reusable design values inside Figma), use those instead of eyeballing the numbers.
+Before you write any CSS, pull the exact values out of Figma. If your team uses Figma variables, use those instead of eyeballing the numbers.
 
 | Value | Where it goes |
 |---|---|

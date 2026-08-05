@@ -5,7 +5,7 @@ description: How to build the theme ZIP correctly, and the actual steps for subm
 
 ## Building the ZIP
 
-A ZIP file is just a bunch of files and folders squeezed into one single file, like packing a suitcase instead of carrying loose clothes. Your submission is a ZIP file of the theme's root directory (the top-level folder that holds everything). This is the same [folder structure](/codebase-structure/folder-structure/) you've been working in all along.
+Your submission is a ZIP file of the theme's root directory. This is the same [folder structure](/codebase-structure/folder-structure/) you've been working in all along.
 
 If you have **only one preset**, zip the standard structure directly. You don't need a `/listings` folder. If you have **multiple presets**, each preset needs its own folder under `/listings`, containing just the files that differ from the base theme:
 

@@ -3,9 +3,9 @@ title: CSS Style Guide
 description: Global CSS, component-scoped stylesheets, custom properties, logical properties, and naming rules.
 ---
 
-We write plain, native CSS only. That means no Sass or SCSS (tools that add extra features to CSS, then convert the result back into plain CSS), and no CSS-in-JS (writing CSS inside JavaScript files).
+We write plain, native CSS only. That means no Sass or SCSS, and no CSS-in-JS.
 
-Modern CSS already gives us everything those tools used to be needed for: custom properties, container queries, `:has()`, and nesting. We get all of that without needing a build step (a process that changes your code before it reaches the browser).
+Modern CSS already gives us everything those tools used to be needed for: custom properties, container queries, `:has()`, and nesting. We get all of that without needing a build step.
 
 ## Global CSS vs. component-scoped CSS
 
@@ -39,7 +39,7 @@ Shopify automatically removes duplicate `{% stylesheet %}` output. It also only 
 
 ## Design tokens: CSS custom properties
 
-A "design token" is just a named value. It could be a color, a spacing amount, a corner radius, a shadow, or a font size. You define it once, then reuse it everywhere. In CSS, we define these as custom properties (also called CSS variables):
+In CSS, we define design tokens as custom properties:
 
 ```css
 :root {
@@ -91,7 +91,7 @@ Use this rule to decide whether a merchant-facing setting (something a store own
 
 "Logical properties" are CSS properties like `margin-inline-start`. Instead of describing a fixed side, like "left" or "right," they describe direction based on reading order, using "start" and "end."
 
-Use a logical property everywhere a physical property has a logical equivalent. This is what makes your layout work correctly, automatically, in right-to-left (RTL) languages like Arabic or Hebrew. See [Internationalization & RTL](/theme-store-requirements/internationalization-and-rtl/) for more:
+Use a logical property everywhere a physical property has a logical equivalent. This is what makes your layout work correctly, automatically, in right-to-left (RTL) languages like Arabic or Hebrew. See [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/) for more:
 
 | ❌ Physical (breaks in RTL) | ✅ Logical (works in both directions) |
 |---|---|
@@ -135,11 +135,11 @@ Browsers support CSS nesting on their own now, so you don't need a preprocessor 
 
 Keep nesting shallow, just one or two levels, and scoped to a single component's own selectors. Think of it as a way to show "this lives inside that." It's not a replacement for BEM's flat naming style, which we explain below.
 
-Don't nest three or four levels deep just to win a specificity fight (a situation where two CSS rules compete to control the same element, and the browser has to pick a winner). That's exactly the problem BEM's flat class names are meant to avoid.
+Don't nest three or four levels deep just to win a specificity fight. That's exactly the problem BEM's flat class names are meant to avoid.
 
 ## Naming: BEM-ish, kebab-case
 
-BEM stands for block, element, modifier. It's a naming pattern, for example `.card__title--large`. We don't require strict BEM, but we follow the same shape, because it keeps class names predictable and easy to search for. Developers call this "greppable," meaning easy to find with a text search tool like `grep`:
+We don't require strict BEM, but we follow the same block/element/modifier shape, because it keeps class names predictable and greppable:
 
 ```css
 .testimonials { }              /* block */

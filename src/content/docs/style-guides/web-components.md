@@ -3,7 +3,7 @@ title: Web Components Guideline
 description: Two valid patterns for a theme Web Component, a simple one and Horizon's advanced one, and how to choose between them.
 ---
 
-The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) covers the basic rules: build with progressive enhancement (making sure the page still works before your JavaScript loads), use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
+The [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/) covers the basic rules: build with progressive enhancement, use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
 
 It covers two real patterns for structuring what's inside a component. We checked both against what Shopify's own Horizon theme actually ships, and this page shows you how to decide which one a given component needs.
 
@@ -59,7 +59,7 @@ class PriceDisplay extends Component {
 customElements.define('price-display', PriceDisplay);
 ```
 
-The `Component` base class shown further down finds every `[ref]` element inside it once, right when the component connects to the page. It keeps that list up to date using a `MutationObserver` (a built-in browser tool that watches for changes to the page) as the page changes. This matters for Section Rendering API re-renders, which update markup in place. The whole list becomes available to you as `this.refs`.
+The `Component` base class shown further down finds every `[ref]` element inside it once, right when the component connects to the page. It keeps that list up to date using a `MutationObserver` as the page changes. This matters for Section Rendering API re-renders, which update markup in place. The whole list becomes available to you as `this.refs`.
 
 ### Part 2: declarative event binding instead of manual listeners
 
@@ -87,7 +87,7 @@ Here's how it works under the hood: one shared listener, registered once and glo
 
 This is our own compact version of the pattern above. It's inspired by how Horizon is built (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/) for why we look at Horizon's patterns without copying our codebase from it directly), but it isn't a copy of Shopify's actual `assets/component.js`. Adapt it to what Solis's components actually need.
 
-It's deliberately smaller than Horizon's version, which also handles declarative shadow DOM hydration (a technique for rendering isolated markup before JavaScript runs), `ref="name[]"` array collection, and a `requiredRefs` check.
+It's deliberately smaller than Horizon's version, which also handles declarative shadow DOM hydration, `ref="name[]"` array collection, and a `requiredRefs` check.
 
 ```javascript
 // assets/component.js
@@ -145,7 +145,7 @@ function findComponent(el) {
 }
 ```
 
-Call `registerDeclarativeEvents()` once, in your global JavaScript entry point (the main file that sets everything up when your site loads). From then on, every component extends `Component` instead of `HTMLElement` directly, and gets `this.refs` and `on:*` binding for free.
+Call `registerDeclarativeEvents()` once, in your global JavaScript entry point. From then on, every component extends `Component` instead of `HTMLElement` directly, and gets `this.refs` and `on:*` binding for free.
 
 :::note[This is genuinely optional]
 Skeleton Theme doesn't ship anything like this. Plain, per-component Web Components are its default, which is exactly [the simple pattern](#the-simple-pattern) described above. Only build and adopt this base class once you notice the same `querySelector`/`addEventListener` code repeating across enough components that a shared setup pays for itself. Adding it for a theme with three or four simple components is solving a problem you don't have yet. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) for why it's worth waiting for the third real occurrence of a pattern before you extract it into shared code.
@@ -153,7 +153,7 @@ Skeleton Theme doesn't ship anything like this. Plain, per-component Web Compone
 
 ## Naming rules
 
-- **Custom element tag names:** use kebab-case (words separated by hyphens, like `price-display`), matching what the component does, not the name of the file it lives in if those differ. Horizon's own components follow this exactly.
+- **Custom element tag names:** use kebab-case, like `price-display`, matching what the component does, not the name of the file it lives in if those differ. Horizon's own components follow this exactly.
 - **`ref` names:** use camelCase (like `priceContainer`, `volumePricingNote`). This matches the JS property name they become on `this.refs`.
 - **Use `data-testid` for test and automation hooks, kept separate from `ref`.** A `ref` is for the component's own internal wiring. `data-testid` is for anything external, like Playwright or Cypress (testing tools), that needs a stable, predictable selector regardless of how the component is built inside. Horizon uses this pattern (`data-testid="divider-{{ section.id }}"`) throughout its sections.
 - **Guard every `customElements.define` call,** for example: `if (!customElements.get('price-display')) { customElements.define(...) }`. A component's JS module can run more than once in some Section Rendering API or theme editor situations, and a duplicate `customElements.define` call throws an error.
@@ -162,12 +162,12 @@ Skeleton Theme doesn't ship anything like this. Plain, per-component Web Compone
 
 Default to **light DOM** (meaning you never call `attachShadow`) for theme components. This keeps global CSS custom properties, the normal styling cascade, and `{% stylesheet %}`-scoped styles all working as expected. It also keeps a component's markup visible to `Ctrl+F` searches, accessibility tools, and browser extensions with no extra work from you.
 
-Reach for Shadow DOM (a technique that isolates a component's markup and styles from the rest of the page) only when you specifically need style or DOM isolation strong enough that global CSS shouldn't reach inside. That situation is rare in a theme, and more common in a widget meant to be embedded on someone else's page.
+Reach for Shadow DOM only when you specifically need style or DOM isolation strong enough that global CSS shouldn't reach inside. That situation is rare in a theme, and more common in a widget meant to be embedded on someone else's page.
 
 ## Accessibility patterns worth calling out specifically
 
-- **Every interactive custom element needs a real, focusable, semantic element inside it.** Use a `<button>` for a click target, not a `<div on:click="...">` with no way to reach it by keyboard. The custom element wraps semantic HTML (markup with built-in meaning, like a button or a link), it doesn't replace the need for it.
-- **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#state-attributes-and-properties-not-a-framework-store)), not just implied visually by a CSS class, so assistive tech (like screen readers) gets the same information sighted users do.
+- **Every interactive custom element needs a real, focusable, semantic element inside it.** Use a `<button>` for a click target, not a `<div on:click="...">` with no way to reach it by keyboard. The custom element wraps semantic HTML, it doesn't replace the need for it.
+- **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript & Web Components Style Guide](/style-guides/javascript-and-web-components/#state-attributes-and-properties-not-a-framework-store)), not just implied visually by a CSS class, so assistive tech gets the same information sighted users do.
 - **A component that updates content on its own,** like a price after a variant change or a cart count, should update through a live region (`aria-live="polite"`) if the change isn't already inside something the user just interacted with directly. Otherwise, a screen reader user gets no sign that anything changed.
 
 ## Best practices

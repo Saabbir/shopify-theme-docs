@@ -17,11 +17,11 @@ These are two different kinds of things. Mixing them up is the most common mista
 
 A command should **point to** `AGENTS.md`, not repeat it or copy parts of it. [`/figma-to-liquid`](#the-three-commands-in-this-handbooks-templates)'s Stage 2 lists a few of the highest-stakes rules inline, as a quick reminder. But it says plainly that `AGENTS.md` is the real source of truth. The command is not a second copy of the rules that can quietly fall out of sync with the real one.
 
-If you notice a command file collecting its own detailed coding rules that aren't in `AGENTS.md`, that's a sign those rules belong in `AGENTS.md`'s `## Custom rules` section instead (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)). That way, every task benefits from them, not just the one command that happened to mention them.
+If you notice a command file collecting its own detailed coding rules that aren't in `AGENTS.md`, that's a sign those rules belong in `AGENTS.md`'s `## Custom rules` section instead (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). That way, every task benefits from them, not just the one command that happened to mention them.
 
 ## What a custom command actually is
 
-A Claude Code custom command is just a Markdown file. It can have optional YAML frontmatter, which is a block of settings at the top of the file. Save one at `.claude/commands/<name>.md`, and it becomes available as `/<name>` in any Claude Code session in this repo.
+A Claude Code custom command is just a Markdown file. It can have optional YAML frontmatter. Save one at `.claude/commands/<name>.md`, and it becomes available as `/<name>` in any Claude Code session in this repo.
 
 ```
 .claude/

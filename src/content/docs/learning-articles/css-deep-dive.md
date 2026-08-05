@@ -52,7 +52,7 @@ So an element with `width: 200px`, `padding: 20px`, and a `1px` border actually 
 }
 ```
 
-This one global rule (already part of most themes' CSS reset, the small set of base styles that make browsers behave consistently) is why width math "just works" in practice. Without it, adding padding or a border anywhere would force you to recalculate widths everywhere else.
+This one global rule (already part of most themes' CSS reset) is why width math "just works" in practice. Without it, adding padding or a border anywhere would force you to recalculate widths everywhere else.
 
 ## Step 4: modern layout — flexbox vs. grid, decided by the actual question you're asking
 
@@ -90,13 +90,13 @@ Picking between flexbox and grid gets a lot easier once you stop thinking about 
 }
 ```
 
-If you ever catch yourself reaching for JavaScript to compute a column count or a breakpoint, stop and check first. Grid, flexbox, or container queries can almost always do this for you, declaratively (meaning you describe the result you want, and the browser figures out how to get there), in plain CSS. See [CSS Style Guide](/style-guides/css/#layout-modern-css-over-javascript).
+If you ever catch yourself reaching for JavaScript to compute a column count or a breakpoint, stop and check first. Grid, flexbox, or container queries can almost always do this for you, declaratively, in plain CSS. See [CSS Style Guide](/style-guides/css/#layout-modern-css-over-javascript).
 
 ## Step 5: custom properties are runtime, not compile-time
 
 Here's a difference that trips a lot of people up. A Sass variable gets resolved once, when your CSS is built, and after that it's just a fixed value baked into the file. A CSS custom property works differently. It gets resolved when the page renders in the browser, so it can change dynamically, even after the page has loaded.
 
-Because of this, you can set a custom property per instance, inline, straight from Liquid (Shopify's templating language):
+Because of this, you can set a custom property per instance, inline, straight from Liquid:
 
 ```liquid
 <div class="progress-bar" style="--percent: {{ product.metafields.custom.stock_percent }}%;">

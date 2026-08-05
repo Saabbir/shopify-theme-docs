@@ -5,9 +5,9 @@ description: Linting, manual QA, and the final pre-submission pass.
 
 When you build a Shopify theme, you check its quality in three stages. Each stage runs at a different point in your workflow, and each one catches a different kind of problem. Here's the order you usually run them in:
 
-1. **Linting**: this runs constantly while you code, and it runs again automatically every time you open a pull request (a PR, short for "pull request," is a proposed code change waiting to be reviewed and merged). The system that runs it automatically is called CI, short for continuous integration.
-2. **Manual QA**: this runs whenever a section or page changes in a meaningful way. QA stands for quality assurance. It just means a person testing that something actually works before it ships.
-3. **Pre-submission checklist**: this runs once, right before you submit your theme to the Shopify Theme Store (the marketplace where merchants find and buy themes).
+1. **Linting**: this runs constantly while you code, and it runs again automatically every time you open a pull request, via CI.
+2. **Manual QA**: this runs whenever a section or page changes in a meaningful way.
+3. **Pre-submission checklist**: this runs once, right before you submit your theme to the Shopify Theme Store.
 
 ## What's on this page group
 

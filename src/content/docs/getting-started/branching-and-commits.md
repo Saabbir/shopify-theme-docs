@@ -8,7 +8,7 @@ description: How Git branches map to Shopify themes, and what happens when someo
 Shopify's GitHub integration works in both directions. It's not a one-way street. Once a branch is connected to a theme, two things happen:
 
 - **Pushing to the branch** updates that theme in Shopify automatically.
-- **Editing the theme in Shopify admin** (using the theme editor, the code editor, or even a merchant's own customizations) automatically commits those changes back to the branch. A commit is just a saved snapshot of a change in Git. Git shows these particular commits as authored by the `shopify` bot.
+- **Editing the theme in Shopify admin** (using the theme editor, the code editor, or even a merchant's own customizations) automatically commits those changes back to the branch, authored by the `shopify` bot.
 
 So imagine a designer changes a color setting in the theme editor. Without realizing it, they just added a commit to your Git history. Don't panic when you see commits made by `shopify` show up in your log. This is expected behavior, not a security problem.
 
@@ -105,7 +105,7 @@ Admin edits create real commits. That means the Git history on a connected branc
 
 - **Creating a branch with no namespace or collaborator id** (just "quote-block", for example). It's hard to tell at a glance who owns the branch or what kind of change it is, especially once several branches are open at once.
 - **Using mixed case or underscores in the `branch-name` part** instead of lowercase with hyphens. This doesn't match the naming style used everywhere else in this handbook (see [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/)).
-- **Writing vague commit messages** like "fix," "updates," or "wip." These make `git log` (the command that lists your commit history) useless when you're trying to understand the history later.
+- **Writing vague commit messages** like "fix," "updates," or "wip." These make `git log` useless when you're trying to understand the history later.
 - **Force-pushing or rebasing a connected branch** without thinking about whether Shopify's sync depends on the existing commit history.
 - **Assuming a branch picks up the same theme after you disconnect and reconnect it.** It doesn't. It creates a new theme instead, which can be a confusing surprise in the middle of a project.
 

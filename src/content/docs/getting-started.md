@@ -5,7 +5,7 @@ description: What this handbook is, who it's for, and how to use it.
 
 This handbook is the one place our team goes to learn how to build a Shopify theme from scratch. It also covers how to get that theme approved on the [Shopify Theme Store](https://themes.shopify.com/). It walks you through everything, from your first day on the project to the day you submit the finished theme for review.
 
-This handbook is written for developers who already know HTML, CSS, and JavaScript, but who may be new to Shopify themes. You don't need any prior Shopify experience to follow along. The examples use **Solis**, our current Theme Store project, but everything here applies to any Shopify theme we build in the future. This handbook won't get retired once Solis ships.
+This handbook is written for developers who've already worked on a Shopify theme: you know Liquid, you've built sections, snippets, and blocks, and you're comfortable in the Shopify admin. It's not a Shopify or Liquid tutorial. It's the specific conventions, stricter Theme Store bar, and AI-assisted workflow this team uses. See [What This Handbook Covers](/getting-started/how-to-use-this-handbook/) for the full picture of who this is (and isn't) for. The examples use **Solis**, our current Theme Store project, but everything here applies to any Shopify theme we build in the future. This handbook won't get retired once Solis ships.
 
 ## What you'll build
 
@@ -29,16 +29,22 @@ Be careful with older Shopify tutorials or blog posts you find online. Many of t
 
 | # | Section | What it answers |
 |---|---|---|
-| 1 | Getting Started | You're here. |
+| 1 | Getting Started | You're here. Everything you need to set up before you write any code: editor, Prettier, AI rules, Git. |
 | 2 | [Theme Store Requirements](/theme-store-requirements/) | What Shopify requires before they'll list your theme. |
 | 3 | [Codebase Structure](/codebase-structure/) | How a theme's files and folders fit together. |
 | 4 | [Scaffold Setup Guide](/scaffold-setup/) | Step-by-step: build your first section and block. |
-| 5 | [AI-Assisted Development](/ai-assisted-development/) | How we use Cursor / Claude Code, and how we go from Figma to code. |
-| 6 | [GitHub Workflow](/github-workflow/) | Branching, PRs, and CI on this project. |
-| 7 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
-| 8 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
+| 5 | [Design System & Configuration](/design-system/) | Figma tokens, color/type system, presets, icons. |
+| 6 | [Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid conventions. |
+| 7 | [Performance & Accessibility](/performance-and-accessibility/) | Accessibility, performance strategy, media optimization. |
+| 8 | [AI-Assisted Development](/ai-assisted-development/) | How we use Cursor / Claude Code, and how we go from Figma to code. |
+| 9 | [GitHub Workflow](/github-workflow/) | Pull requests, review, and CI on this project. |
+| 10 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
+| 11 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
+| 12 | [Tooling & Config](/tooling-config/) | Project files, packaging exclusions, optional build setups. |
+| 13 | [Learning Articles](/learning-articles/) | Deeper dives on CSS, JS, Liquid, locales, maintainable code. |
+| 14 | [Reference](/reference/) | Cheatsheet, glossary, tools directory. |
 
-Read sections 1 to 4 in order, once, at the start of the project. After that, use this handbook as a reference instead of reading it front to back. Jump to whatever section answers your current question, or use the search bar (top left) to find a topic fast.
+Read section 1 in full before you touch any code, it's the setup you need in place first. Then read sections 2 to 4 in order, once, at the start of the project. After that, use this handbook as a reference instead of reading it front to back. Jump to whatever section answers your current question, or use the search bar (top left) to find a topic fast.
 
 ## A realistic first week
 
@@ -46,16 +52,16 @@ If you're joining the Solis project without any background on it, here's roughly
 
 | Day | What you should be doing |
 |---|---|
-| 1 | Read sections 1–2 in full. Get your Partner account, dev store, and Shopify CLI set up (see [Prerequisites & Setup](/getting-started/prerequisites-and-setup/)). |
-| 2 | Read section 3. Clone the scaffold, get `shopify theme dev` running, poke around the existing codebase (if Solis already has code) or Skeleton Theme (if starting fresh). |
-| 3 | Read section 4. Build one small, low-risk section end to end (see [Your First Section & Block](/scaffold-setup/first-section-and-block/)) to try out the whole loop: code, then preview, then PR. |
-| 4 | Read section 5. Set up your AI tool's rule files. Pair on a real ticket with a more senior teammate if one's available. |
+| 1 | Read section 1 in full and complete its setup: Partner account, dev store, Shopify CLI, editor & Prettier, AI rule files, Git basics (see [Prerequisites & Setup](/getting-started/prerequisites-and-setup/) onward). |
+| 2 | Read section 2. Clone the scaffold, get `shopify theme dev` running, poke around the existing codebase (if Solis already has code) or Skeleton Theme (if starting fresh). |
+| 3 | Read section 3, then section 4. Build one small, low-risk section end to end (see [Your First Section & Block](/scaffold-setup/first-section-and-block/)) to try out the whole loop: code, then preview, then PR. |
+| 4 | Pair on a real ticket with a more senior teammate if one's available. Skim [AI-Assisted Development](/ai-assisted-development/) for how we use AI tools day to day. |
 | 5 | Open your first real PR against a real ticket. Expect review comments. That's the process working, not a sign that you did something wrong. |
 
 ## Best practices
 
-- Read sections 1 to 4 before you write any code, even if you're eager to jump in. Spending an hour reading now can save you days of rework later, all caused by one wrong assumption about how we build things.
-- Set up your AI tool's rule files (section 5) on day one. Don't wait until you've already written a dozen files the "wrong" way that now need fixing.
+- Finish section 1's setup before you write any code, even if you're eager to jump in. Working without your editor, Prettier, AI rules, and Git set up correctly costs you more time later than it saves now.
+- Set up your AI tool's rule files on day one, as part of section 1 (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). Don't wait until you've already written a dozen files the "wrong" way that now need fixing.
 - Ask in the team channel before you guess on anything Shopify-specific. A five-minute question beats a half-day detour built on a wrong assumption.
 - Keep this handbook open in a tab while you work. It's meant to be checked often, not read once and forgotten.
 
@@ -69,8 +75,8 @@ If you're joining the Solis project without any background on it, here's roughly
 ## Quick Reference
 
 - This handbook follows **Horizon's way of building things**, but we scaffold from **Skeleton Theme**, never Dawn, and never Horizon directly.
-- No prior Shopify experience required. Every section explains Shopify-specific terms the first time they appear.
-- Sections 1–4 are read-once onboarding. Sections 5–8 are ongoing references.
+- Written for developers who already know Liquid, sections/snippets/blocks, and the Shopify admin. This handbook covers our project-specific conventions and stricter Theme Store bar, not Shopify or Liquid fundamentals.
+- Section 1 is setup, do it first. Sections 2–4 are read-once onboarding after that. Everything from section 5 onward is a reference you come back to as needed.
 - Examples use "Solis" as the working theme name, but this handbook applies to any theme project.
 
 ## Further Reading

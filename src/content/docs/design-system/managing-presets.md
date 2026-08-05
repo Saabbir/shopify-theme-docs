@@ -48,7 +48,7 @@ A `"presets"` array inside a section or block's schema defines the default setti
 {% endschema %}
 ```
 
-Notice the locale keys use flat, shared namespaces like `names.*` and `settings.*`, not something nested like `t:sections.testimonials.settings.heading.label`. A locale key is just a reference to a translated piece of text, stored in a separate file so it can change per language. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for this convention, checked against Horizon and Skeleton's real shipped source code.
+Notice the locale keys use flat, shared namespaces like `names.*` and `settings.*`, not something nested like `t:sections.testimonials.settings.heading.label`. See the [Complete Worked Example](/codebase-structure/complete-worked-example/) for this convention, checked against Horizon and Skeleton's real shipped source code.
 
 ### Rules that are easy to miss
 

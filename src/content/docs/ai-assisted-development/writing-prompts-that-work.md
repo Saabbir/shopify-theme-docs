@@ -3,7 +3,7 @@ title: Writing Prompts That Work
 description: Prompt patterns that consistently produce code that meets Theme Store requirements.
 ---
 
-The rule files covered in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
+The rule files covered in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
 
 ## The four things every theme-code prompt should state
 
@@ -119,4 +119,4 @@ When a prompt is vague and the output doesn't work, the tempting quick fix is to
 
 ## Further Reading
 
-- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) - this handbook
+- [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) - this handbook

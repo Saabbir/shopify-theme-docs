@@ -46,6 +46,19 @@ Notice the flat, shared groups here: `t:general.*` for group names, and `t:label
 
 The `theme_info` object always comes first, and Theme Store review requires it. See [Schema.json Best Practices](/theme-store-requirements/schema-best-practices/) for more on that. Every other object in the array is a named settings group, and each one shows up as its own section in the theme editor's "Theme settings" panel.
 
+### Where those `t:` strings actually resolve
+
+Every `"t:..."` string above (`t:general.colors`, `t:labels.color_primary`) is a lookup into `locales/en.default.schema.json`, not `en.default.json`. It's a different file from the one your storefront strings live in, because a schema label is something a *merchant* sees in the theme editor, not something a shopper sees on the storefront:
+
+```json title="locales/en.default.schema.json"
+{
+  "general": { "colors": "Colors" },
+  "labels": { "color_primary": "Primary color" }
+}
+```
+
+Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:labels.color_primary` → `labels.color_primary` → `"Primary color"`. If that path doesn't exist, the theme editor shows the raw string `labels.color_primary` instead of real text, with nothing flagging the mismatch. See [Managing Locale Files](/internationalization-and-locales/managing-locale-files/) for the full picture, including how this same file is versioned per language (`fr.schema.json`, and so on) and why its language follows the merchant's Shopify admin language, not the storefront's.
+
 ## `settings_data.json`: what it looks like
 
 ```json
@@ -137,16 +150,19 @@ A merchant who installed the theme last month, and never touched the color setti
 - **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs.
 - **Adding a new setting but forgetting to add its default to every preset** in `settings_data.json`. This leaves non-default presets with a missing or inconsistent value.
 - **Referencing a setting `id` in Liquid that doesn't exist in the schema** (usually a typo). It renders blank silently instead of throwing an error, so it's easy to miss without testing.
+- **Adding a `t:` key to a setting without adding its counterpart to `en.default.schema.json`.** The theme editor shows the raw key text instead of a real label, with nothing flagging the mismatch.
 
 ## Quick Reference
 
 - `settings_schema.json` is the definition (what settings exist). `settings_data.json` is the data (current values plus presets).
+- Every `t:` string in `settings_schema.json` is a dot-path lookup into `locales/en.default.schema.json` (and its per-language versions), not the storefront's `en.default.json`.
 - A setting's `id` links the schema, the data, and your Liquid code together. Treat it as permanent once shipped.
 - Changing a schema default only affects fresh installs, not existing merchant stores.
 - Update every preset when you add a setting. Remove it from both files, and every preset, when you remove one.
 
 ## Further Reading
 
+- [Managing Locale Files](/internationalization-and-locales/managing-locale-files/): the full picture on how settings_schema.json's t: keys resolve, and how these locale files differ from the storefront ones
 - [Managing Presets (Sections & Themes)](/design-system/managing-presets/): the full preset workflow
 - [Settings schema](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json): shopify.dev
 - [Settings data](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-data-json): shopify.dev

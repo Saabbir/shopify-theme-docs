@@ -5,7 +5,7 @@ description: Testing real pages with real, and sometimes unusual, content.
 
 Linting is an automatic tool that scans your code for mistakes. But it can't tell you if a layout actually looks broken to a real person. That's what this checklist is for.
 
-Run this checklist by hand every time a section or page changes in a real way. Use your dev store (a test version of a Shopify store where you can safely try things out) with real product and collection data. Then add a few deliberately odd test cases too, like a very long product title or an empty collection.
+Run this checklist by hand every time a section or page changes in a real way. Use your dev store with real product and collection data. Then add a few deliberately odd test cases too, like a very long product title or an empty collection.
 
 This checklist is grouped by area of the store, the same way our old QA checklist was. That way, you can just run the section that matches what you changed, instead of testing everything every time.
 
@@ -20,12 +20,12 @@ This checklist is grouped by area of the store, the same way our old QA checklis
 
 ## Header
 
-- [ ] A multi-level menu (a menu with sub-menus nested inside it) opens and closes correctly on desktop
+- [ ] A multi-level menu opens and closes correctly on desktop
 - [ ] The same multi-level menu opens and closes correctly on mobile too (mobile menus are often built separately from desktop ones, so test both)
 - [ ] You can reach and use the search, cart, and account icons using only your keyboard, with no mouse
 - [ ] Long menu labels (test with a genuinely long collection or page name) don't break the layout or spill outside their box
 - [ ] The cart icon updates right away when you add an item, without reloading the whole page
-- [ ] A sticky header (a header that stays fixed at the top as you scroll), if your theme has one, doesn't overlap content or break while scrolling
+- [ ] A sticky header, if your theme has one, doesn't overlap content or break while scrolling
 - [ ] An announcement bar, if present, can be closed or rotates through messages correctly, and doesn't reappear after you close it in the same session
 
 ## Footer
@@ -52,12 +52,12 @@ This checklist is grouped by area of the store, the same way our old QA checklis
 - [ ] The contact page's alternate template (a separate layout used just for that page) works, and the form submits successfully
 - [ ] The contact form shows a clear error message when a required field is left empty
 - [ ] The contact form shows a clear success message after you submit it
-- [ ] The 404 page (the page shown when a link is broken) appears for a genuinely broken URL, with a working search bar or a link back to the homepage
+- [ ] The 404 page appears for a genuinely broken URL, with a working search bar or a link back to the homepage
 
 ## Link sharing (social + Open Graph)
 
 - [ ] Sharing a product link on Facebook or Twitter shows the correct title, description, and thumbnail image
-- [ ] Sharing a collection or blog article link shows correct metadata (page details), not just the homepage's default
+- [ ] Sharing a collection or blog article link shows correct metadata, not just the homepage's default
 - [ ] A product with no image falls back to a sensible default share image, instead of showing a broken image
 
 ## Local pickup
@@ -90,7 +90,7 @@ This checklist is grouped by area of the store, the same way our old QA checklis
 
 ## A note on how to actually run this
 
-Don't try to run the whole list above for every single PR (a PR, or "pull request," is a proposed code change waiting to be reviewed). If you do, the checklist gets so slow that people start skipping it entirely under time pressure. Instead:
+Don't try to run the whole list above for every single PR. If you do, the checklist gets so slow that people start skipping it entirely under time pressure. Instead:
 
 - Always run the **"Sections (general)"** group on every section you touch. It's the most useful group, and it applies almost everywhere.
 - Run a specific feature group (Local pickup, Unit pricing, Rich media, Selling plans) only when your change actually touches that feature.
@@ -99,7 +99,7 @@ Don't try to run the whole list above for every single PR (a PR, or "pull reques
 ## Best practices
 
 - Build a small set of "torture test" data in your dev store once. A torture test just means data designed to try to break things, like a product with a 250-character title, an empty collection, a sold-out variant, and a product with 20 variants. Reuse this same data for every QA pass instead of making up new test data each time.
-- Make the general "Sections" checklist a habit on every PR that touches a section, even one that looks minor. Regressions (bugs that bring back a problem you already fixed) are the most common kind here, and the cheapest to catch right away.
+- Make the general "Sections" checklist a habit on every PR that touches a section, even one that looks minor. Regressions are the most common kind here, and the cheapest to catch right away.
 - Treat a failed manual QA check the same as a failed CI check. Don't merge your change and plan to "fix it later."
 
 ## Common mistakes

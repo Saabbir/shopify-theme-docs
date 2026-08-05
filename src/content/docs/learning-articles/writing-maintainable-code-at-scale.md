@@ -16,7 +16,7 @@ Picture one inconsistent pattern in your codebase. Maybe one section uses `{% in
    there might be two {% endcomment %}
 ```
 
-This is the real argument for making [AI rules](/ai-assisted-development/setting-up-ai-rules/) and [style guides](/style-guides/) specific and enforced, not just nice ideas on paper. Consistency is cheap to maintain from the start, but expensive to restore later once it's slipped. Every inconsistency that ships becomes a pattern the next developer copies, simply because it's there to copy.
+This is the real argument for making [AI rules](/getting-started/setting-up-ai-rules/) and [style guides](/style-guides/) specific and enforced, not just nice ideas on paper. Consistency is cheap to maintain from the start, but expensive to restore later once it's slipped. Every inconsistency that ships becomes a pattern the next developer copies, simply because it's there to copy.
 
 ## Step 2: name things for what they mean, not what they currently look like
 
@@ -70,12 +70,12 @@ Before you merge any non-trivial logic, ask yourself a simple question. Could so
 
 ## Step 5: tests and checks are cheaper than tribal knowledge
 
-Think about anything you currently rely on "someone remembering to check." Maybe it's a locale key that needs to exist for every setting label, or a section that needs to handle zero blocks gracefully. Given enough time and enough people rotating through a project, that kind of thing eventually gets missed. Where you can, turn that kind of tribal knowledge (things only people remember, with nothing written down) into something checked automatically:
+Think about anything you currently rely on "someone remembering to check." Maybe it's a locale key that needs to exist for every setting label, or a section that needs to handle zero blocks gracefully. Given enough time and enough people rotating through a project, that kind of thing eventually gets missed. Where you can, turn that kind of tribal knowledge into something checked automatically:
 
 | Tribal knowledge | Converted into |
 |---|---|
 | "Remember to add a locale key for every new setting" | A `theme-check` rule that flags hardcoded schema strings (see [Theme Check & Linting](/quality-validation/theme-check-and-linting/)) |
-| "Remember not to hand-edit Shopify's generated AGENTS.md content" | `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks, so there's no separate copy to accidentally drift out of sync. A clear `## Custom rules` boundary marks the only section anyone should touch (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) |
+| "Remember not to hand-edit Shopify's generated AGENTS.md content" | `CLAUDE.md`/`.github/copilot-instructions.md` as symlinks, so there's no separate copy to accidentally drift out of sync. A clear `## Custom rules` boundary marks the only section anyone should touch (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) |
 | "Remember to test a section with zero blocks" | A documented, repeatable stress-test checklist (see [Manual QA Checklist](/quality-validation/manual-qa-checklist/)) |
 
 This is the same reason this handbook has a [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/). It's much safer than relying on someone remembering every Theme Store requirement from memory before each submission.
@@ -110,5 +110,5 @@ The discipline here isn't "review everything on a schedule." That's unrealistic 
 
 ## Further Reading
 
-- [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/): an example of converting a manual sync process into a mechanical one
+- [Setting Up AI Rules](/getting-started/setting-up-ai-rules/): an example of converting a manual sync process into a mechanical one
 - [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/): an example of converting "remember every requirement" into a checklist

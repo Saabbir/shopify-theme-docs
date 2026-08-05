@@ -5,13 +5,15 @@ description: Who this is for and how to get the most out of it.
 
 ## Who this is for
 
-This handbook is for a developer who's comfortable with HTML, CSS, and JavaScript, joining a Shopify theme project for the first time. You don't need to have shipped a Shopify theme before. If you've built a static site or a component-based frontend before, most of the ideas here will feel familiar, just with new names attached.
+This handbook is for developers who've already shipped work on a Shopify theme: you've built or edited sections, snippets, and blocks, you know your way around Liquid, and you're comfortable in the Shopify admin. It's not an introduction to Shopify theming, and it's not written for a frontend developer who hasn't touched Liquid before.
 
 This handbook assumes:
 
-- You can read and write HTML, CSS, and JavaScript comfortably.
-- You've used Git and GitHub before, even if only for smaller projects.
-- You have **not** necessarily used Liquid (Shopify's templating language, the code you use to build theme files), worked with a CMS-driven templating system (a system where content is stored separately and pulled into your templates), or built for a platform where a non-technical merchant can customize your code through a visual editor. That's the genuinely new part, and this handbook spends most of its time there.
+- You can read and write Liquid, JSON schema, and standard HTML/CSS/JS without it being explained from scratch.
+- You've worked with sections, snippets, blocks, and the theme editor before, on this project or another Shopify theme.
+- You're comfortable with Git and GitHub, and with the Shopify admin's theme and settings pages.
+
+What it doesn't assume is any of that experience with *this specific project*. Solis has its own conventions, stricter Theme Store requirements than a typical client theme, and an AI-assisted workflow with its own rules. That's what this handbook actually teaches: our conventions, our stricter Theme Store bar, and the reasoning behind both, not general Shopify or Liquid fundamentals.
 
 ## What "Solis" is
 
@@ -21,8 +23,9 @@ Whenever a code example needs a real theme name, we use "Solis." For example, yo
 
 ## How to read this
 
-- **Sections 1–4** are onboarding. Read them once, in order, in your first few days.
-- **Sections 5–8** are references you'll come back to throughout the project: AI tooling setup, Git workflow, QA, and the Theme Store submission process.
+- **Section 1** is setup. Finish it first, it's what everything else depends on: editor and Prettier, AI rules, Git basics, and your first preview.
+- **Sections 2–4** are onboarding. Read them once, in order, right after section 1.
+- **Everything from section 5 onward** is a reference you'll come back to throughout the project: design system, internationalization & locales, style guides, performance & accessibility, AI-assisted development, GitHub workflow, QA, and the Theme Store submission process.
 - Every major page ends with a **Quick Reference** (the key takeaways in one glance) and **Further Reading** (official Shopify docs to go deeper).
 - Code examples always show the current, Horizon-era pattern. Sometimes an older ("legacy") pattern is worth knowing about, because you'll run into it in existing code or old tutorials. When that happens, it's labeled **Old pattern** right next to the current one. It's shown so you can recognize it, never so you write it today.
 - Wherever a rule has a right way and a wrong way, we show both side by side, labeled **✅ Right** and **❌ Wrong** (or **Do** / **Avoid**), instead of just describing the right way in words. If you only remember one thing from this handbook, remember to look for these pairs. They're the fastest way to learn a rule.

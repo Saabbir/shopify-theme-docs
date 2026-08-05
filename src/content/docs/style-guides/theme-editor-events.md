@@ -3,7 +3,7 @@ title: Theme Editor & Storefront Events
 description: Shopify's built-in JavaScript events for the theme editor, and how to listen for them correctly.
 ---
 
-When a merchant (the store owner) customizes a section or block in the theme editor, Shopify swaps the changed HTML straight into the existing page. It does not reload the page. That means any JavaScript that ran when the page first loaded **does not run again** for that new markup, unless you explicitly listen for the events described on this page and rerun your code yourself.
+When a merchant customizes a section or block in the theme editor, Shopify swaps the changed HTML straight into the existing page. It does not reload the page. That means any JavaScript that ran when the page first loaded **does not run again** for that new markup, unless you explicitly listen for the events described on this page and rerun your code yourself.
 
 ## The event table
 
@@ -85,7 +85,7 @@ Skipping this cleanup step causes a real, if subtle, kind of bug. Picture a merc
 
 ## Detecting the theme editor itself
 
-Sometimes you need your code to behave differently specifically inside the editor. Two common examples: always expanding an accordion (a collapsible section of content) so a merchant can see what they're editing, or turning off an autoplay carousel that would otherwise be distracting while someone edits it.
+Sometimes you need your code to behave differently specifically inside the editor. Two common examples: always expanding an accordion so a merchant can see what they're editing, or turning off an autoplay carousel that would otherwise be distracting while someone edits it.
 
 ```liquid
 {% if request.design_mode %}

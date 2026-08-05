@@ -5,7 +5,7 @@ description: Shopify's 5-stage review, and how to handle a rejection without get
 
 ## The 5 stages
 
-Think of the review process like a line of checkpoints at an airport. You have to clear security before you even reach the gate agent. Shopify's review team checks these stages in order, one after another, and if you fail one stage, the review stops right there. You don't move on to the next one until you fix it and resubmit.
+Shopify's review team checks these stages in order, one after another, and if you fail one stage, the review stops right there. You don't move on to the next one until you fix it and resubmit.
 
 That's why it pays to fix the cheap, easy-to-catch problems in stages 1 to 3 yourself, before you spend a review cycle getting feedback on the more time-consuming one in stage 4 (design).
 

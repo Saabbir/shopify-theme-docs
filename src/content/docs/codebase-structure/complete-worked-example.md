@@ -5,7 +5,7 @@ description: A full example with a snippet, block, section, schema, theme settin
 
 Every other page in this handbook covers one rule at a time. This page is different. It puts all of those rules together into one real feature: a testimonials section with a quote block that merchants can reorder. You'll see how the pieces fit together, and you can copy the whole thing as a starting point for your own project.
 
-Every rule used here comes straight from real Shopify code. That includes the LiquidDoc syntax (a comment format that documents what a snippet expects), the locale key structure, the BEM naming pattern for CSS classes, and how setting IDs are written. We checked each of these against Shopify's actual Horizon and Skeleton Theme source code, not just against general guidance. See [AGENTS.md's "Horizon-verified conventions"](/ai-assisted-development/setting-up-ai-rules/) to see where each one was confirmed.
+Every rule used here comes straight from real Shopify code. That includes the LiquidDoc syntax, the locale key structure, the BEM naming pattern for CSS classes, and how setting IDs are written. We checked each of these against Shopify's actual Horizon and Skeleton Theme source code, not just against general guidance. See [AGENTS.md's "Horizon-verified conventions"](/getting-started/setting-up-ai-rules/) to see where each one was confirmed.
 
 ## What we're building
 
@@ -58,7 +58,7 @@ This snippet holds the reusable rendering logic (the actual code that builds the
 </div>
 ```
 
-**Why use a snippet instead of writing the markup directly in the block?** You might need this same rendering somewhere the data isn't coming from a theme block at all. For example, a reviews page might pull quotes from a metaobject (a custom data type a merchant sets up in Shopify). A snippet with clear parameters can be called from anywhere. Markup written straight into `blocks/quote.liquid` can't be reused that way.
+**Why use a snippet instead of writing the markup directly in the block?** You might need this same rendering somewhere the data isn't coming from a theme block at all. For example, a reviews page might pull quotes from a metaobject. A snippet with clear parameters can be called from anywhere. Markup written straight into `blocks/quote.liquid` can't be reused that way.
 
 ## 2. The block — `blocks/quote.liquid`
 
@@ -108,7 +108,7 @@ Merchants can edit this block: text, author, and rating are all settings they ca
 
 **Notes that match real-world convention:**
 - Setting `id`s use `snake_case` (`author`, `rating`), which is our general rule for writing IDs, like `my_setting_id` instead of `mySettingId`. None of these IDs happen to match a CSS custom property directly, so none of them need the kebab-case exception (you'll see one that does need it further down).
-- `"name": "t:names.quote"` and the preset's `"name"` use the **same** locale key (a locale key is just a label that points to translated text). That's normal. A block's display name and its preset's picker name are usually identical.
+- `"name": "t:names.quote"` and the preset's `"name"` use the **same** locale key. That's normal. A block's display name and its preset's picker name are usually identical.
 - **A `presets` array is required.** Without at least one entry, this block never shows up in the theme editor's "Add block" picker. The file itself still works fine, it's just invisible to merchants.
 
 ## 3. The section — `sections/testimonials.liquid`
@@ -232,7 +232,7 @@ This is the part people get wrong most often. The two files look similar at firs
 }
 ```
 
-Liquid reads this file with `{{ 'key' | t }}` to show real text to shoppers on the storefront (the `t` stands for "translate"). Nesting keys by feature, like the example above, is fine for this file. See [Managing Locale Files](/learning-articles/managing-locale-files/) for the full guide on it.
+Liquid reads this file with `{{ 'key' | t }}` to show real text to shoppers on the storefront. Nesting keys by feature, like the example above, is fine for this file. See [Managing Locale Files](/internationalization-and-locales/managing-locale-files/) for the full guide on it.
 
 ### `locales/en.default.schema.json` — editor labels, flat shared namespaces
 
@@ -330,9 +330,9 @@ See [`settings_schema.json` & `settings_data.json`](/design-system/settings-sche
 
 ## Further Reading
 
-- [AGENTS.md "Horizon-verified conventions"](/ai-assisted-development/setting-up-ai-rules/): where each convention on this page was checked against real shipped source
+- [AGENTS.md "Horizon-verified conventions"](/getting-started/setting-up-ai-rules/): where each convention on this page was checked against real shipped source
 - [Theme Blocks & Nesting](/codebase-structure/theme-blocks/): the full `@theme`/`@app` targeting decision
 - [CSS Style Guide](/style-guides/css/): the single/multi-property rule used in the section's stylesheet above
-- [Managing Locale Files](/learning-articles/managing-locale-files/): the storefront locale file in full
+- [Managing Locale Files](/internationalization-and-locales/managing-locale-files/): the storefront locale file in full
 - [`settings_schema.json` & `settings_data.json`](/design-system/settings-schema-and-data/): theme-wide settings in full
 - [Web Components Guideline](/style-guides/web-components/): how to add interactive behavior to a block like this one

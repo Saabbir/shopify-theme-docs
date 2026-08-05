@@ -3,7 +3,7 @@ title: Managing & Amending AI Rules
 description: How to change AGENTS.md's Custom rules section over time, including order, format, sourcing, and how to check a change actually works.
 ---
 
-`AGENTS.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) isn't a file you write once and forget. It changes as the codebase changes, as Shopify's platform changes, and as your team's own rules change. This page explains how to update it properly, so a change actually works (it really changes what the AI tool does) and stays safe (it doesn't contradict Shopify's own generated content or drift from what a fresh scaffold produces).
+`AGENTS.md` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) isn't a file you write once and forget. It changes as the codebase changes, as Shopify's platform changes, and as your team's own rules change. This page explains how to update it properly, so a change actually works (it really changes what the AI tool does) and stays safe (it doesn't contradict Shopify's own generated content or drift from what a fresh scaffold produces).
 
 ## The one boundary that matters: two authors, one file
 
@@ -34,7 +34,7 @@ The rule for adding new content is simple: general or governing rules go near th
 
 - **Plain Markdown, using `##` and `###` headings.** Match the heading level Shopify's own content uses for top-level topics (`##`), so `## Custom rules` reads as an equal section, not a nested afterthought.
 - **No literal `*/` sequence inside any comment or fenced code block.** This includes inside a glob pattern (a file-matching pattern like `**/*.liquid`) written in prose. For example, write "loads on `.liquid` files" instead of the literal glob, in case this file ever ends up read as code by some tool downstream. This isn't a Markdown rule. It matters specifically if anything treats this file as source code.
-- **Specific, checkable rules, not vague ones.** See the comparison table in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/#what-good-rules-actually-look-like). A rule that doesn't change what gets generated isn't worth keeping in the file.
+- **Specific, checkable rules, not vague ones.** See the comparison table in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/#what-good-rules-actually-look-like). A rule that doesn't change what gets generated isn't worth keeping in the file.
 - **Don't repeat what Shopify's content already says.** Before you add a rule, check whether it's already covered above `## Custom rules`. Shopify's file already covers schema good practices, the full Liquid reference, and translation standards in detail. A duplicate rule, even worded slightly differently, risks quietly contradicting the original the next time either section gets updated.
 
 ## The update process, step by step
@@ -55,7 +55,7 @@ A rule that reads correctly to a human isn't necessarily one that changes what t
 2. Check whether the new rule actually changes the output the way you intended.
 3. If it doesn't, the rule probably needs to be more specific or placed more prominently in `## Custom rules`, not just longer.
 
-This is the same test described in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/#testing-whether-your-rules-are-actually-working), applied to one new or changed rule instead of the whole section.
+This is the same test described in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/#testing-whether-your-rules-are-actually-working), applied to one new or changed rule instead of the whole section.
 
 ## Keeping a record of why a rule exists
 
@@ -71,7 +71,7 @@ This is the same test described in [Setting Up AI Rules](/ai-assisted-developmen
 | Edit anything above `## Custom rules` | That's Shopify's generated content, not ours. It isn't specific to this project, and hand-editing it means drifting from what a fresh `shopify theme init` produces. |
 | Add a rule based on something you read in a blog post or forum answer without confirming it against `shopify.dev` or `help.shopify.com` | Breaks the sourcing rule this file is built on |
 | Repeat a rule Shopify's content already states | Risks a future contradiction if either section is updated separately |
-| Add a vague rule ("write good code," "be performant") | Doesn't change what the model produces. See [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)'s vague-versus-specific comparison. |
+| Add a vague rule ("write good code," "be performant") | Doesn't change what the model produces. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)'s vague-versus-specific comparison. |
 | Look for a build or regeneration step | There isn't one. `CLAUDE.md` and `.github/copilot-instructions.md` are symlinks, always up to date. |
 
 ## Best practices
@@ -97,5 +97,5 @@ This is the same test described in [Setting Up AI Rules](/ai-assisted-developmen
 
 ## Further Reading
 
-- [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) - the base mechanism this page assumes
+- [Setting Up AI Rules (AGENTS.md)](/getting-started/setting-up-ai-rules/) - the base mechanism this page assumes
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) - a doc-search tool that helps you base changes on current, official sources

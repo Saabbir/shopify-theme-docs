@@ -15,7 +15,7 @@ You can only sell your theme through the Shopify Theme Store. You can't list it,
 
 ## Uniqueness
 
-This is the rule that trips up new Theme Partners (developers and agencies approved to sell themes on the Shopify Theme Store) more than any other. Shopify rejects themes that are just a reskin of an existing theme. A reskin means you took an existing theme and swapped in new colors, new fonts, and a few extra sections, without changing how it actually works underneath.
+This is the rule that trips up new Theme Partners more than any other. Shopify rejects themes that are just a reskin of an existing theme. A reskin means you took an existing theme and swapped in new colors, new fonts, and a few extra sections, without changing how it actually works underneath.
 
 Your theme needs **structural** differences instead: changes a merchant couldn't recreate just by adjusting settings on another theme. That means building different systems for navigation, product cards, media layout, and page structure, not just giving it a different look.
 
@@ -39,7 +39,7 @@ Your theme needs **structural** differences instead: changes a merchant couldn't
 A human reviewer judges five things here, and yes, it's subjective. There's no automatic test for good design, so try to look at your theme the way a reviewer would.
 
 1. **Visual design**: distinctive, professional-quality images and icons, and a color palette that holds together.
-2. **Layout**: a clear grid (the invisible structure that lines up your content into rows and columns), consistent spacing, and a layout that still looks intentional when content is unusually short or long, like a 200-character title or an empty collection.
+2. **Layout**: a clear grid, consistent spacing, and a layout that still looks intentional when content is unusually short or long, like a 200-character title or an empty collection.
 3. **Consistency**: one font pairing used everywhere, consistent button, link, and form styling, and settings grouped so merchants can find them without searching.
 4. **Shopping experience**: a customer can go from the home page to a product page to the cart to checkout with no confusion.
 5. **Demo store**: realistic products, real photography, and real writing. No "Lorem Ipsum" (placeholder filler text) anywhere.
@@ -69,7 +69,7 @@ If any of these breaks the layout, the section isn't finished yet, no matter how
 ## Naming your theme
 
 - Keep it to 1 or 2 words, under 30 characters.
-- Don't reuse or resemble a Shopify product or event name ("Shopify," "Unite," "Polaris"), a company name, an industry name ("Fashion," "Jewelry"), or an SEO term ("Performance," "Sales"). SEO stands for search engine optimization, and Shopify doesn't want theme names that read like a marketing claim.
+- Don't reuse or resemble a Shopify product or event name ("Shopify," "Unite," "Polaris"), a company name, an industry name ("Fashion," "Jewelry"), or an SEO term ("Performance," "Sales"). Shopify doesn't want theme names that read like a marketing claim.
 - It must be a noun, easy to spell, and not already used by another Theme Store listing.
 
 | ✅ Good theme names | ❌ Rejected theme names | Why |
@@ -81,7 +81,7 @@ If any of these breaks the layout, the section isn't finished yet, no matter how
 
 ## Demo stores
 
-Every preset (a pre-built version of your theme, with its own look and settings) needs its own demo store. Build it as a [Client transfer store](https://help.shopify.com/en/partners/manage-clients-stores/client-transfer-stores/create-client-transfer-stores) from your Partner Dashboard (the admin panel Shopify gives partners for managing apps, themes, and client stores), with:
+Every preset needs its own demo store. Build it as a [Client transfer store](https://help.shopify.com/en/partners/manage-clients-stores/client-transfer-stores/create-client-transfer-stores) from your Partner Dashboard, with:
 
 | ✅ Required | ❌ Not allowed |
 |---|---|

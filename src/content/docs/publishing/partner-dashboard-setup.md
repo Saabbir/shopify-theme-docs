@@ -40,7 +40,7 @@ Here's a common, avoidable delay: a theme sits in "changes requested" status for
 
 ## Best practices
 
-- Set up two-factor authentication (2FA), an extra login step that uses your phone as well as your password, on your Partner account right away. This account has billing and submission access, so if someone else gets into it, that's a serious problem.
+- Set up two-factor authentication (2FA) on your Partner account right away. This account has billing and submission access, so if someone else gets into it, that's a serious problem.
 - Confirm which team member's email is the submission contact before you submit, not after. Make sure that person actually checks their email regularly during the review window.
 - Check the Partner Dashboard status directly on a regular basis during review, instead of relying only on email notifications showing up on time.
 

@@ -137,7 +137,7 @@ All of these must work somewhere in the theme:
 | Mobile | Mobile Safari (latest 2), Chrome Mobile (latest 3), Samsung Internet (latest 2) |
 | Webviews | Instagram, Facebook, Pinterest (latest release, iOS + Android) |
 
-Test in an actual webview (the in-app browser used by apps like Instagram or Facebook), not just the desktop version of the same browser engine. Webviews often behave differently, for example, with `<video>` autoplay rules and viewport sizing.
+Test in an actual webview, not just the desktop version of the same browser engine. Webviews often behave differently, for example, with `<video>` autoplay rules and viewport sizing.
 
 ## Assets
 
@@ -180,7 +180,7 @@ Test in an actual webview (the in-app browser used by apps like Instagram or Fac
 - Product/collection/cart/search/404 pages each have their own must-have field list, see the tables above for the full ✅/❌ breakdown.
 - Browser support spans 4 desktop browsers, 3 mobile browsers, 3 webview apps.
 - No Sass, no pre-minified assets.
-- 2-business-day support response time (your SLA, short for "service level agreement") once your theme is live.
+- 2-business-day support response time (your SLA) once your theme is live.
 
 ## Further Reading
 

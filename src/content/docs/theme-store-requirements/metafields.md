@@ -3,7 +3,7 @@ title: Metafields & Metaobjects
 description: Using custom data safely in a theme meant for any merchant.
 ---
 
-Metafields and metaobjects let merchants attach custom, structured data to products, pages, and other resources. Think of a "material" field on a product, or a "brand story" metaobject. A metafield holds one piece of custom data, like a single fact. A metaobject is a small structured record made up of several fields, like a mini form with multiple answers. They're powerful, but a Theme Store theme has to use them more carefully than a one-off client theme does.
+Metafields and metaobjects are powerful, but a Theme Store theme has to use them more carefully than a one-off client theme does.
 
 ## The rule that trips people up
 

@@ -5,9 +5,10 @@ description: How branches connect to a theme, how pull requests get reviewed, an
 
 Shopify has its own GitHub integration built just for themes. It is not just "we happen to use Git." Shopify adds extra behavior on top of normal Git, and that behavior can catch you off guard if nobody warns you about it first. Learn how it works now, and you will save yourself a confusing first week.
 
+Branch naming and commit conventions are covered earlier, in [Branching & Commits](/getting-started/branching-and-commits/) under Getting Started, since you need them before you make your first commit. This section picks up from there: pull requests, review, and CI.
+
 ## What's on this page group
 
-- [Branching & Commits](/github-workflow/branching-and-commits/): how branches connect to Shopify themes, how to name a branch (`namespace/branch-name/collaborator-id`), and how to write a commit message.
 - [Pull Requests & Review](/github-workflow/pull-requests-and-review/): our pull request (PR) template and the checklist for reviewing AI-generated code.
 - [CI Automation](/github-workflow/ci-automation/): what checks run automatically every time you push code. This automatic checking is called CI, short for continuous integration.
 
@@ -32,7 +33,7 @@ Here's how a single Solis change moves from your machine to the live store. Thin
 
 - **Not knowing which branch is connected to which theme.** You push code and accidentally update a theme someone else is actively testing.
 - **Letting feature branches go stale for weeks.** The eventual PR becomes one big, hard-to-review change instead of several small, easy ones.
-- **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/github-workflow/branching-and-commits/) for why this is expected behavior.
+- **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/getting-started/branching-and-commits/) for why this is expected behavior.
 
 ## Quick Reference
 

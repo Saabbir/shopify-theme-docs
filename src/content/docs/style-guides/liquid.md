@@ -3,7 +3,7 @@ title: Liquid Style Guide
 description: Objects, filters, whitespace control, snippet rules, and formatting for writing clean Liquid code.
 ---
 
-Liquid is the templating language we use to turn data (like a product's name or price) into HTML that a browser can show. This page is your day-to-day style guide for writing Liquid in a clean, consistent way. If you want to know when to use a snippet versus a theme block, check out [Codebase Structure](/codebase-structure/) instead. This page is only about how the Liquid code itself should look and perform.
+This page is your day-to-day style guide for writing Liquid in a clean, consistent way. If you want to know when to use a snippet versus a theme block, check out [Codebase Structure](/codebase-structure/) instead. This page is only about how the Liquid code itself should look and perform.
 
 ## Whitespace control
 
@@ -29,7 +29,7 @@ There's one case where you should leave the hyphens off: when the whitespace its
 
 ## Objects: check before you assume
 
-An "object" in Liquid is just a piece of data, like `product` or `cart`. A common beginner mistake is assuming an object or one of its nested properties (a smaller piece of data inside it, like `product.featured_media`) will always be there.
+A common mistake, even for experienced Liquid developers, is assuming an object or one of its nested properties, like `product.featured_media`, will always be there.
 
 Here's the tricky part: Liquid doesn't throw an error when something is missing. It just quietly renders nothing. That might sound convenient, but it actually hides bugs from you instead of telling you something went wrong.
 
@@ -49,7 +49,7 @@ The takeaway: always check that a nested piece of data exists before you use it.
 
 ## The most common global objects (a quick map)
 
-A "global object" is a piece of data that Liquid makes available to you automatically, without you having to fetch it yourself. Here are the ones you'll use the most, along with a common trap to watch out for with each one.
+Here are the global objects you'll use the most, along with a common trap to watch out for with each one.
 
 | Object | What it gives you | Common gotcha |
 |---|---|---|
@@ -68,7 +68,7 @@ Want the full list? Check out the [Liquid Global Objects Reference](/learning-ar
 
 ## Filters: prefer Shopify's built-ins over manual logic
 
-A "filter" is a small tool you attach to a piece of data with a pipe symbol (`|`) to change how it looks. Shopify already gives you filters for the tricky stuff, like formatting money and building URLs. Use them instead of writing that logic yourself.
+Shopify already gives you filters for the tricky stuff, like formatting money and building URLs. Use them instead of writing that logic yourself.
 
 ```liquid
 {% comment %} ❌ WRONG — manual currency formatting, breaks for
@@ -97,7 +97,7 @@ Takeaway: if Shopify already built a filter for the job, use it. It has already 
 
 Both snippets and theme blocks let you reuse a piece of code in more than one place, but they work differently and solve different problems.
 
-- **Snippet** (`{% render 'name', param: value %}`): this only gets the data you explicitly hand it. Think of it like calling a friend and telling them exactly what they need to know, nothing more. Use a snippet for anything you reuse with different data, where a merchant (the store owner using the theme) doesn't need to reorder it in the editor.
+- **Snippet** (`{% render 'name', param: value %}`): this only gets the data you explicitly hand it. Use a snippet for anything you reuse with different data, where a merchant doesn't need to reorder it in the editor.
 - **Theme block**: this automatically gets `block`/`section` data, without you passing any variables in. Use a theme block for anything a merchant can edit, add, remove, or reorder inside the theme editor.
 
 ```liquid
@@ -105,11 +105,11 @@ Both snippets and theme blocks let you reuse a piece of code in more than one pl
 {% render 'product-card', product: collection.products[0], show_vendor: true %}
 ```
 
-One more rule: never use `{% include %}`. It's deprecated, which means Shopify no longer supports it. Worse, unlike `{% render %}`, it leaks the calling file's variables into the file it includes. That creates a hidden connection between two files that makes your codebase harder to understand as it grows.
+One more rule: never use `{% include %}`. It's deprecated, and unlike `{% render %}`, it leaks the calling file's variables into the file it includes. That creates a hidden connection between two files that makes your codebase harder to understand as it grows.
 
 ## Documenting snippets: LiquidDoc
 
-Every snippet you write should start with a `{%- doc -%}` block that describes its parameters (the pieces of data it expects to receive). This way, the next developer who opens your snippet knows exactly what it needs, without reading through the whole file to figure it out.
+Every snippet you write should start with a `{%- doc -%}` block that describes its parameters. This way, the next developer who opens your snippet knows exactly what it needs, without reading through the whole file to figure it out.
 
 ```liquid
 {%- doc -%}
@@ -161,7 +161,7 @@ If you calculate the same value over and over inside a loop, you're wasting time
 {% endfor %}
 ```
 
-Also, always paginate large collections with `{% paginate collection.products by 24 %}` instead of rendering every product on one page. This isn't just a style choice. It's also a real performance requirement for passing Lighthouse checks (a tool that scores how fast your page loads). See [Performance & Lighthouse](/theme-store-requirements/performance/) for more on that.
+Also, always paginate large collections with `{% paginate collection.products by 24 %}` instead of rendering every product on one page. This isn't just a style choice. It's also a real performance requirement for passing Lighthouse checks. See [Performance & Lighthouse](/theme-store-requirements/performance/) for more on that.
 
 ## Best practices
 

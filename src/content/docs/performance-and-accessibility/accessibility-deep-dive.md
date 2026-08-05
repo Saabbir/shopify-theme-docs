@@ -3,13 +3,13 @@ title: Accessibility Deep Dive
 description: How to build accessibility into a section from the start, and keep that discipline across a whole theme project.
 ---
 
-The [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) page is the checklist. It lists nine clear, testable rules. This article explains the process behind meeting those rules every time, not just once. You'll see how to build a section with accessibility in mind from the very first line of code, and how to keep that same care going across a whole theme project with multiple developers and dozens of sections. (You'll see the short form "a11y" used later on this page. It's just common shorthand for "accessibility": the letter "a", then 11 letters, then the letter "y".)
+The [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) page is the checklist. It lists nine clear, testable rules. This article explains the process behind meeting those rules every time, not just once. You'll see how to build a section with accessibility in mind from the very first line of code, and how to keep that same care going across a whole theme project with multiple developers and dozens of sections.
 
 ## Part 1: building a single section with a11y in mind
 
 ### Start from semantic HTML, not a div and some ARIA
 
-The most important decision you make in any section is simple: pick the right native HTML element instead of reaching for a generic `<div>` and patching it up with ARIA attributes. ARIA stands for Accessible Rich Internet Applications. It's a set of extra attributes you add to HTML so screen readers (software that reads a webpage out loud for people who can't see the screen) understand what an element does. Here's the useful part though: a native HTML element usually gives you all of that behavior for free, without any ARIA at all.
+The most important decision you make in any section is simple: pick the right native HTML element instead of reaching for a generic `<div>` and patching it up with ARIA attributes. Here's the useful part though: a native HTML element usually gives you all of that behavior for free, without any ARIA at all.
 
 | Need | Reach for | Not |
 |---|---|---|
@@ -23,7 +23,7 @@ A native element gives you correct keyboard behavior, correct screen reader anno
 
 ### Build keyboard support in from the start, don't add it later
 
-Write the keyboard interaction at the same time as the mouse interaction. Do it in the same coding session, not as a follow-up pass after the section "looks done." Think of it like wiring a house: you build the wiring in while the walls are still open, not after they're painted.
+Write the keyboard interaction at the same time as the mouse interaction. Do it in the same coding session, not as a follow-up pass after the section "looks done."
 
 ```javascript
 // ✅ A custom disclosure component handling both mouse and keyboard
@@ -77,7 +77,7 @@ Testing with unusually long or short content (see [Figma to Code Workflow](/ai-a
 
 ### Check color contrast against every color scheme
 
-Color contrast is how much a text color stands out against its background color. Low contrast text is hard to read, especially for people with low vision. If your theme supports multiple `color_scheme_group` options (see [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/)), checking contrast on only the default scheme isn't enough. A merchant might switch to a different scheme, and that scheme could fail the contrast test even though your default one passes fine:
+If your theme supports multiple `color_scheme_group` options (see [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/)), checking contrast on only the default scheme isn't enough. A merchant might switch to a different scheme, and that scheme could fail the contrast test even though your default one passes fine:
 
 ```liquid
 {% comment %} Check contrast for EVERY scheme a merchant can pick,
@@ -92,7 +92,7 @@ Making one section accessible is a problem a code review can catch pretty easily
 
 ### Make accessibility part of "done," not a separate pass
 
-A section isn't finished just because it looks right on screen. It's finished when it looks right *and* passes a keyboard-only test and a contrast check. Add this rule to your real definition of "done," whether that's in a PR (pull request, the way you propose a code change for review) template, a Definition of Done document, or the [Pull Requests & Review](/github-workflow/pull-requests-and-review/) checklist. That one habit is what stops "we'll do an accessibility pass before launch" from turning into weeks of rework.
+A section isn't finished just because it looks right on screen. It's finished when it looks right *and* passes a keyboard-only test and a contrast check. Add this rule to your real definition of "done," whether that's in a PR template, a Definition of Done document, or the [Pull Requests & Review](/github-workflow/pull-requests-and-review/) checklist. That one habit is what stops "we'll do an accessibility pass before launch" from turning into weeks of rework.
 
 ### Automate what you can, do the rest by hand
 
@@ -102,11 +102,11 @@ A section isn't finished just because it looks right on screen. It's finished wh
 | Keyboard operability, focus order, focus trapping in modals | No (requires an actual human tabbing through) | Manual QA checklist, per section, before merge |
 | Screen reader announcement quality (does this actually make sense read aloud?) | Partially (automated tools flag missing labels, not whether the *experience* makes sense) | Periodic manual screen reader spot-checks, not necessarily every PR |
 
-Don't rely on automated tools alone. They're great at catching missing attributes, but they can't catch broken interactions, like a modal that traps keyboard focus the wrong way. See [Manual QA Checklist](/quality-validation/manual-qa-checklist/) to see where the manual keyboard-only test fits into your regular QA (quality assurance, the testing you do before something ships) routine.
+Don't rely on automated tools alone. They're great at catching missing attributes, but they can't catch broken interactions, like a modal that traps keyboard focus the wrong way. See [Manual QA Checklist](/quality-validation/manual-qa-checklist/) to see where the manual keyboard-only test fits into your regular QA routine.
 
 ### Put clear, checkable rules in `AGENTS.md`
 
-A lot of this theme's code gets written by AI tools (see [AI-Assisted Development](/ai-assisted-development/)). That makes the project's shared AI rules file a great place to keep accessibility consistent. Write a clear rule, something like "every interactive element must be keyboard operable with a visible focus state," and generated code will follow that pattern automatically. That's a lot more reliable than hoping every reviewer catches every mistake by hand. See [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) for how to set this up.
+A lot of this theme's code gets written by AI tools (see [AI-Assisted Development](/ai-assisted-development/)). That makes the project's shared AI rules file a great place to keep accessibility consistent. Write a clear rule, something like "every interactive element must be keyboard operable with a visible focus state," and generated code will follow that pattern automatically. That's a lot more reliable than hoping every reviewer catches every mistake by hand. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) for how to set this up.
 
 ### Assign explicit ownership for spot-checks
 
@@ -114,7 +114,7 @@ Here's a trap a lot of teams fall into. On any team, saying "everyone is respons
 
 ### Treat a regression the same as a broken build
 
-If a change removes a focus style, breaks a modal's focus trap, or removes an `alt` attribute (the text description that describes an image), treat it as seriously as a change that breaks `theme check` or fails a test. Don't file it away as a "nice to fix eventually" note. This is as much about team culture as it is about code: a codebase only stays accessible if the whole team treats these regressions (a regression is when something that used to work stops working) as real bugs, not small cosmetic issues.
+If a change removes a focus style, breaks a modal's focus trap, or removes an `alt` attribute, treat it as seriously as a change that breaks `theme check` or fails a test. Don't file it away as a "nice to fix eventually" note. This is as much about team culture as it is about code: a codebase only stays accessible if the whole team treats these regressions as real bugs, not small cosmetic issues.
 
 ## Best practices
 
