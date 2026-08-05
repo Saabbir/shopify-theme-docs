@@ -1,5 +1,5 @@
 ---
-title: 8h. Claude Code Subagents
+title: Claude Code Subagents
 description: A dedicated theme-check-fixer subagent, and the day-to-day workflow that ties skills, commands, and subagents together.
 ---
 
@@ -51,7 +51,7 @@ Why do we have both this subagent *and* the `/theme-check-fix` command, instead 
 |---|---|---|
 | Runs in | Your main conversation | Its own separate conversation |
 | Triggered by | Typing `/theme-check-fix` | Automatically (Claude notices a matching task) or by name ("use the theme-check-fixer agent") |
-| Best for | A quick, interactive pass you want to watch | A noisy job (many issues) at the end of a longer task, for example Stage 4 of [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/), which hands its check → fix step off to this subagent instead of resolving each issue inline and filling up your main conversation with file content |
+| Best for | A quick, interactive pass you want to watch | A noisy job (many issues) at the end of a longer task, for example Stage 4 of [`/figma-to-liquid`](/ai-assisted-development/claude-code-custom-commands/), which hands its check → fix step off to this subagent instead of resolving each issue inline and filling up your main conversation with file content |
 | Tool access | Whatever your session already has | Limited to exactly `Read, Edit, Bash(shopify theme check:*)`. It can't touch anything else, even if your session has broader access |
 
 Both read `AGENTS.md` automatically. Subagents load the project's `CLAUDE.md`/`AGENTS.md` and git status at startup, the same way your main session does. So neither one needs Solis's rules repeated in its own instructions. They just point to the file.
@@ -62,8 +62,8 @@ Here's how a typical task actually flows once all three pieces are set up:
 
 1. **You describe what you want.** Maybe you say "build a testimonials section from this Figma frame," or you just start editing a `.liquid` file directly.
 2. **Skills turn on automatically**, with no action from you. If the AI Toolkit is installed (see [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)), `shopify-liquid` notices theme-related work and runs its search-then-check process in the background. You don't invoke a skill, it just applies on its own.
-3. **You reach for a command when the process is a known, repeatable sequence.** `/figma-to-section <link> <name>` runs the full plan → build → check → fix → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) as one step, instead of you retyping each stage.
-4. **A subagent picks up the noisy part.** `/figma-to-section`'s Stage 4 hands its check → fix work off to `theme-check-fixer`, instead of walking through every issue inline. You get back a clean list of what was fixed, not a wall of in-between output. The same handoff applies at the end of any other task where `theme check` turns up more than a couple of issues.
+3. **You reach for a command when the process is a known, repeatable sequence.** `/figma-to-liquid <link> <name>` runs the full plan → build → check → fix → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) as one step, instead of you retyping each stage.
+4. **A subagent picks up the noisy part.** `/figma-to-liquid`'s Stage 4 hands its check → fix work off to `theme-check-fixer`, instead of walking through every issue inline. You get back a clean list of what was fixed, not a wall of in-between output. The same handoff applies at the end of any other task where `theme check` turns up more than a couple of issues.
 5. **You review the result**, like any other AI-generated change. See [GitHub Workflow](/github-workflow/) for how. None of skills, commands, or subagents replace review. They just get you to something reviewable faster, with less repetitive typing.
 
 The short version: **skills are Shopify's, automatic, and about correctness** (don't guess at Liquid syntax). **Commands are ours, manual, and about repeatability** (don't retype the same multi-step prompt). **Subagents are ours, automatic-or-named, and about keeping your conversation clean** (don't let a noisy sub-task clutter your main conversation, and let it run with deliberately limited tools).

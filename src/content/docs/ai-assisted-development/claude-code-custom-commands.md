@@ -1,5 +1,5 @@
 ---
-title: 8g. Claude Code Custom Commands
+title: Claude Code Custom Commands
 description: Turning a repeated prompt (like the Figma-to-code steps) into a single slash command.
 ---
 
@@ -15,7 +15,7 @@ These are two different kinds of things. Mixing them up is the most common mista
 | Loaded | Always, every session, automatically | Only when you type `/command-name` |
 | Changes when... | Our coding rules change | The *steps themselves* change, or you want it to hand off work differently |
 
-A command should **point to** `AGENTS.md`, not repeat it or copy parts of it. [`/figma-to-section`](#the-three-commands-in-this-handbooks-templates)'s Stage 2 lists a few of the highest-stakes rules inline, as a quick reminder. But it says plainly that `AGENTS.md` is the real source of truth. The command is not a second copy of the rules that can quietly fall out of sync with the real one.
+A command should **point to** `AGENTS.md`, not repeat it or copy parts of it. [`/figma-to-liquid`](#the-three-commands-in-this-handbooks-templates)'s Stage 2 lists a few of the highest-stakes rules inline, as a quick reminder. But it says plainly that `AGENTS.md` is the real source of truth. The command is not a second copy of the rules that can quietly fall out of sync with the real one.
 
 If you notice a command file collecting its own detailed coding rules that aren't in `AGENTS.md`, that's a sign those rules belong in `AGENTS.md`'s `## Custom rules` section instead (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)). That way, every task benefits from them, not just the one command that happened to mention them.
 
@@ -26,7 +26,7 @@ A Claude Code custom command is just a Markdown file. It can have optional YAML 
 ```
 .claude/
   commands/
-    figma-to-section.md   →  /figma-to-section
+    figma-to-liquid.md    →  /figma-to-liquid
     theme-check-fix.md    →  /theme-check-fix
     pr-prep.md            →  /pr-prep
 ```
@@ -57,13 +57,13 @@ Reference $ARGUMENTS to insert whatever the user typed after the command name.
 | `allowed-tools` | Limits which tools Claude can use while running this command, for example restricting a review-only command to `Read` so it can't accidentally edit files | No, but a good idea for anything that shouldn't write files |
 | `model` | Pins a specific model for this command | No |
 
-`$ARGUMENTS` in the body gets replaced with whatever text follows the command name when you run it. For example, `/figma-to-section https://figma.com/... testimonials`.
+`$ARGUMENTS` in the body gets replaced with whatever text follows the command name when you run it. For example, `/figma-to-liquid https://figma.com/... testimonials`.
 
 ## The three commands in this handbook's templates
 
 | Command | Use it for | Download |
 |---|---|---|
-| `/figma-to-section` | The full plan → build → check → fix → document → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/), given a Figma link and a section name | [figma-to-section.md](/templates/claude-commands/figma-to-section.md) |
+| `/figma-to-liquid` | The full plan → build → check → fix → document → report loop from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/), given a Figma link and a name. Despite the name, it's not section-only — Stage 1 decides whether the frame actually needs a section, a standalone block, or just a snippet | [figma-to-liquid.md](/templates/claude-commands/figma-to-liquid.md) |
 | `/theme-check-fix` | Run `shopify theme check` and fix every issue it reports, one by one, with a log of what was fixed | [theme-check-fix.md](/templates/claude-commands/theme-check-fix.md) |
 | `/pr-prep` | Check the current branch's changes against our rules and draft a PR description before opening a pull request | [pr-prep.md](/templates/claude-commands/pr-prep.md) |
 

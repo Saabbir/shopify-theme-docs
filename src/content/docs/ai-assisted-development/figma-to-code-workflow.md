@@ -1,5 +1,5 @@
 ---
-title: 8f. Figma to Code Workflow
+title: Figma to Code Workflow
 description: A repeatable process for turning a Figma frame into a working section, with Cursor or Claude Code.
 ---
 
@@ -19,10 +19,10 @@ Here's what each step does and why it exists on its own:
 | **2. Build** | Generate the section, block, and snippet files to match the plan you stated, following the rules in `AGENTS.md` (the command points to that file instead of keeping its own copy of the rules). | N/A |
 | **3. Check** | Run `shopify theme check` against the new or changed files. | This catches schema mistakes, outdated patterns, and accessibility issues automatically, before a human reviewer has to spot them by eye. |
 | **4. Fix** | Hand this off to the `theme-check-fixer` [subagent](/ai-assisted-development/claude-code-subagents/) (a separate, focused AI helper) instead of fixing issues one by one yourself. Don't stop once the errors are gone. Every warning needs to be fixed or clearly explained. | This keeps issue-by-issue noise out of your main conversation, and the subagent only has access to the tools it needs for this one job. |
-| **5. Document** | Write a short build record to `docs/sections/<section-name>.md`. Include the Figma source, the final settings and blocks, any assumptions you made, and the result of `theme check`. | This is a record for a future developer who wasn't part of this conversation. They can't just reconstruct it from the code changes alone. |
+| **5. Document** | Write a short build record to `docs/sections/<name>.md`, `docs/blocks/<name>.md`, or `docs/snippets/<name>.md` (whichever you actually built). Include the Figma source, the final settings and blocks, any assumptions you made, and the result of `theme check`. | This is a record for a future developer who wasn't part of this conversation. They can't just reconstruct it from the code changes alone. |
 | **6. Report** | Give a short summary in the conversation: what you built, what became a setting versus what stayed fixed structure, any assumption you made where the frame was unclear, confirmation that `theme check` is clean, and the path to the doc file from Step 5. | This gives the human reviewer exactly what they need to check your work quickly. It's not a full recap of every file, just the decisions that need a second opinion. |
 
-This six-step loop is exactly what [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/) automates as a single Claude Code command. See that page for the actual command file and how to adapt it for other jobs you do often. Note that `docs/sections/` is dev documentation, not theme code. See [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/) for how to leave it out of a submission zip.
+This six-step loop is exactly what [`/figma-to-liquid`](/ai-assisted-development/claude-code-custom-commands/) automates as a single Claude Code command. Despite Step 1's "block breakdown" language, not every frame needs a full section. A small reusable piece is often just a block or a snippet, and Step 1 is where that call gets made. See that page for the actual command file and how to adapt it for other jobs you do often. Note that `docs/sections/`, `docs/blocks/`, and `docs/snippets/` are dev documentation, not theme code. See [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/) for how to leave them out of a submission zip.
 
 :::tip[Why "plan first" isn't optional]
 Skipping straight to "build" on an unclear frame is the single most common way this workflow goes wrong. The tool will make a plausible-looking guess (often hardcoding a value where a setting should go), and you won't notice until a reviewer finds out it isn't editable in the theme editor. If you state the plan back first, that guess turns into a one-line correction instead of a full rewrite.
@@ -146,7 +146,7 @@ Treat AI-generated Liquid, CSS, or JS exactly like a human's first draft. See [A
 - Pull out design values (color, spacing, type) before writing CSS. A Figma MCP connection gives you exact values instead of eyeballing them.
 - Prompt with the breakdown, not just a screenshot.
 - Stress-test with empty, very-long, and very-many-blocks content before calling it done.
-- Use [`/figma-to-section`](/ai-assisted-development/claude-code-custom-commands/) to run this whole loop as one command instead of typing it out each time.
+- Use [`/figma-to-liquid`](/ai-assisted-development/claude-code-custom-commands/) to run this whole loop as one command instead of typing it out each time.
 
 ## Further Reading
 

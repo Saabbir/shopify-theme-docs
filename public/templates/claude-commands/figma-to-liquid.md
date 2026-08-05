@@ -1,19 +1,19 @@
 ---
-description: Build a theme section/block from a Figma frame — plan, build, theme check, fix, document, report
-argument-hint: [figma-link-or-node-id] [section-name]
+description: Build a theme section, block, or snippet from a Figma frame — plan, build, theme check, fix, document, report
+argument-hint: [figma-link-or-node-id] [artifact-name]
 allowed-tools: Read, Write, Edit, Bash(shopify theme check:*), Bash(mkdir:*), Grep, Glob, Task
 ---
 
-You're building a Shopify theme section or block from a Figma design for the Solis project. Follow this loop in order — do not skip or reorder stages. The actual coding rules live in `AGENTS.md`, not in this command — this command is the repeatable *process*, `AGENTS.md` is the source of truth for *what correct code looks like*. Don't restate or fork conventions here; reference the file.
+You're building a Shopify theme artifact (a section, a standalone block, or a snippet — whichever the frame actually calls for) from a Figma design for the Solis project. Follow this loop in order — do not skip or reorder stages. The actual coding rules live in `AGENTS.md`, not in this command — this command is the repeatable *process*, `AGENTS.md` is the source of truth for *what correct code looks like*. Don't restate or fork conventions here; reference the file.
 
-Input: $ARGUMENTS (a Figma link/node-id, and the section name to build)
+Input: $ARGUMENTS (a Figma link/node-id, and the name of what you're building)
 
 ## Stage 1: Plan
 
 1. Pull design context for the given Figma frame (via the Figma MCP connection if available — see AGENTS.md and the handbook's Figma MCP & Dev Mode page).
-2. Decompose the frame: list every distinct visual pattern, separate merchant-editable content from fixed chrome, note responsive variants, decide the block breakdown.
+2. Decompose the frame: list every distinct visual pattern, separate merchant-editable content from fixed chrome, note responsive variants. Decide what this actually needs: a full section (with its own blocks or `@theme` blocks), a standalone block meant to be reused inside an existing section, or just a snippet. Not every Figma frame needs a section — a small reusable piece (a badge, a price display) is usually a block or snippet instead.
 3. Check whether an equivalent section/block/snippet already exists in this repo (search `sections/`, `blocks/`, `snippets/`) before planning to build something new.
-4. State the plan back before writing any code: proposed settings, block types and their settings, what's fixed, and how it handles empty/very-long/many-block content. Wait for confirmation only if something in the frame is genuinely ambiguous — otherwise proceed.
+4. State the plan back before writing any code: which artifact type you've decided on and why, proposed settings, block types and their settings if applicable, what's fixed, and how it handles empty/very-long/many-block content. Wait for confirmation only if something in the frame is genuinely ambiguous — otherwise proceed.
 
 ## Stage 2: Build
 
@@ -35,14 +35,15 @@ Input: $ARGUMENTS (a Figma link/node-id, and the section name to build)
 
 ## Stage 5: Document
 
-8. Create `docs/sections/<section-name>.md` (use kebab-case matching the section's file name; create the `docs/sections/` directory if it doesn't exist yet) recording, for future maintainers and reviewers:
+8. Create `docs/sections/<name>.md`, `docs/blocks/<name>.md`, or `docs/snippets/<name>.md` (match whichever type you actually built in Stage 2, using kebab-case matching the artifact's file name; create the directory if it doesn't exist yet) recording, for future maintainers and reviewers:
    - The Figma source (link/node-id) and the date built.
+   - Which artifact type you built (section, block, or snippet) and why.
    - The final settings and block-type list, with a one-line purpose for each.
    - Any assumption made where the Figma frame was ambiguous, and why that call was made.
    - Confirmation that `shopify theme check` is clean, and the fix log from Stage 4 if any offenses were found and resolved.
    - Any stress-test results (empty state, very long content, many blocks) if you ran them.
 
-   This file is dev documentation, not theme code — it must be excluded from any Theme Store submission zip via `.shopifyignore` (see the handbook's Packaging: Theme Store-Only Directories page). Don't skip this stage because the section feels self-explanatory; the point is a record for someone without this conversation's context, not a restatement of the diff.
+   This file is dev documentation, not theme code — it must be excluded from any Theme Store submission zip via `.shopifyignore` (see the handbook's Packaging: Theme Store-Only Directories page). Don't skip this stage because the artifact feels self-explanatory; the point is a record for someone without this conversation's context, not a restatement of the diff.
 
 ## Stage 6: Report
 

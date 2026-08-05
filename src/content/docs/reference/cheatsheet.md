@@ -142,7 +142,7 @@ customElements.define('my-component', MyComponent);
 
 | Command | Runs |
 |---|---|
-| `/figma-to-section <link> <name>` | Full plan → build → check → fix → report loop |
+| `/figma-to-liquid <link> <name>` | Full plan → build → check → fix → report loop |
 | `/theme-check-fix` | Runs `theme check`, fixes every offense |
 | `/pr-prep` | Checks the diff, drafts a PR description |
 

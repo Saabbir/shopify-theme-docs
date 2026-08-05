@@ -86,3 +86,4 @@ You can upload a revised ZIP (using **Upload new zip**) any time before Shopify'
 
 - [Submitting a theme](https://shopify.dev/docs/storefronts/themes/store/review-process/submit-theme) (shopify.dev)
 - [Structuring your theme zip](https://shopify.dev/docs/storefronts/themes/store/success/updates#best-practices-on-structuring-your-theme-zip) (shopify.dev)
+- [Partner Dashboard](https://app.shopify.com/services/partners/auth/login) — where you submit the theme

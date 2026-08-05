@@ -211,6 +211,8 @@ In practice, that means:
 
 - [Color palettes in Themes](https://shopify.dev/changelog/color-palettes), the shopify.dev developer changelog with the original announcement
 - [`color_palette` developer documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette), the full shopify.dev input-settings reference
+- [`color` object](https://shopify.dev/docs/api/liquid/objects/color) (shopify.dev), what a `color_palette` value returns
+- [Skeleton Theme](https://github.com/Shopify/skeleton-theme) (GitHub), our starting codebase — doesn't use `color_palette` yet
 - [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes), shopify.dev's page on the `color_scheme_group`/`color_scheme` mechanism this complements
 - [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/), the semantic-naming approach that applies equally to palette keys
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/), on mapping a Figma color collection onto a palette instead of separate settings

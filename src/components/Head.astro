@@ -1,0 +1,68 @@
+---
+// Overrides Starlight's default Head component to append the current
+// top-level sidebar section (e.g. "AI-Assisted Development") to the
+// document <title>, so a bookmarked page reads e.g.
+//   "AI Coding Concepts — AI-Assisted Development | Shopify Theme Handbook"
+// instead of just "AI Coding Concepts | Shopify Theme Handbook".
+//
+// This only changes the <title> tag (what shows in the browser tab and
+// what browsers pre-fill when bookmarking). It does NOT touch the
+// on-page H1 — that still reads the same everywhere, since it's driven
+// separately by each page's frontmatter `title`. Sidebar numbering
+// (astro.config.mjs) and page titles stay exactly as they are; this only
+// adds context to the one thing that doesn't otherwise carry it.
+import Default from '@astrojs/starlight/components/Head.astro';
+
+const { starlightRoute } = Astro.locals;
+const { entry, sidebar, siteTitle, head } = starlightRoute;
+
+/** Recursively find the label of the top-level sidebar group containing the current page. */
+function findCurrentSectionLabel(entries: typeof sidebar): string | undefined {
+  for (const item of entries) {
+    if (item.type !== 'group') continue;
+    if (containsCurrentPage(item.entries)) {
+      // Strip a leading "8. " / "12. " sidebar number — the tab title should
+      // read as a section name, not repeat the sidebar's outline number.
+      return item.label.replace(/^\d+\.\s*/, '');
+    }
+  }
+  return undefined;
+}
+
+function containsCurrentPage(entries: typeof sidebar): boolean {
+  return entries.some((item) =>
+    item.type === 'group' ? containsCurrentPage(item.entries) : item.isCurrent
+  );
+}
+
+/** Word set of a string, lowercased and stripped of punctuation. */
+function wordSet(str: string): Set<string> {
+  return new Set(str.toLowerCase().replace(/[^\w\s]/g, ' ').split(/\s+/).filter(Boolean));
+}
+
+// A section's own overview page (e.g. getting-started.md, titled "Getting
+// Started") already carries its section's name in its own title — the
+// sidebar just labels that link "Overview". Appending the section name
+// there would duplicate it ("Getting Started — Getting Started"). Skip
+// appending whenever every word in the section label already appears in
+// the page's own title, which covers exact matches and near-matches like
+// "Shopify Theme Store Requirements" / "Theme Store Requirements".
+function isRedundant(title: string, sectionLabel: string): boolean {
+  const titleWords = wordSet(title);
+  return [...wordSet(sectionLabel)].every((word) => titleWords.has(word));
+}
+
+const sectionLabel = findCurrentSectionLabel(sidebar);
+
+// Mutate the shared starlightRoute.head array in place — <Default /> below
+// reads the same Astro.locals object when it renders, so this is picked up
+// without reimplementing Starlight's own head-tag rendering.
+if (sectionLabel && !isRedundant(entry.data.title, sectionLabel)) {
+  const titleTag = head.find((tag) => tag.tag === 'title');
+  if (titleTag) {
+    titleTag.content = `${entry.data.title} — ${sectionLabel} | ${siteTitle}`;
+  }
+}
+---
+
+<Default />

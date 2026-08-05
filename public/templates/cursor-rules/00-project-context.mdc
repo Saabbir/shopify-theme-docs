@@ -49,7 +49,7 @@ node scripts/generate-ai-rules.mjs                       # (re)creates CLAUDE.md
 
 ## Figma-to-code workflow
 
-When given a Figma frame/screenshot and asked to build a section or block: **plan first** (decompose content vs. chrome, list settings/blocks), **then build**, **then run `shopify theme check`**, **then fix any offenses**, **then report a short summary** of what was built and any decisions made. Full process: [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/). For the repeatable version of this exact loop, use the `/figma-to-section` custom command — see [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/).
+When given a Figma frame/screenshot and asked to build a section, block, or snippet: **plan first** (decompose content vs. chrome, decide which artifact type it actually needs, list settings/blocks), **then build**, **then run `shopify theme check`**, **then fix any offenses**, **then report a short summary** of what was built and any decisions made. Full process: [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/). For the repeatable version of this exact loop, use the `/figma-to-liquid` custom command — see [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/).
 
 ## Before finishing any task
 

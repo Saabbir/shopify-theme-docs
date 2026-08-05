@@ -1,5 +1,5 @@
 ---
-title: "8a. AI Coding Concepts: Agents, MCP, Skills, Commands & Plugins"
+title: "AI Coding Concepts: Agents, MCP, Skills, Commands & Plugins"
 description: A plain-language guide to the words used in this section. Read this one first if any of them are new to you.
 ---
 
@@ -17,7 +17,7 @@ When you turn on "agent mode," these tools can do much more. They can read your 
 | **Cursor** | Desktop IDE (a VS Code fork) | Has agent mode alongside familiar IDE autocomplete |
 | **GitHub Copilot** | VS Code / IDE extension | Started as pure autocomplete; agent mode was added later |
 
-All three tools, when they're in agent mode, can read a file called `AGENTS.md` (see [8b](/ai-assisted-development/setting-up-ai-rules/)) and call MCP servers, which we'll explain next. Depending on the tool, they can also load skills, run commands, and hand work off to subagents. The rest of this page walks through each of these four things, one at a time.
+All three tools, when they're in agent mode, can read a file called `AGENTS.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) and call MCP servers, which we'll explain next. Depending on the tool, they can also load skills, run commands, and hand work off to subagents. The rest of this page walks through each of these four things, one at a time.
 
 ## MCP — the connection that links a tool to outside data
 
@@ -27,8 +27,8 @@ An **MCP server** offers a set of tools (and sometimes data) that any MCP-aware 
 
 This handbook already uses two MCP servers:
 
-- **Figma's MCP server**: gives your AI tool structured design data, like components, variables, and layout. See [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/).
-- **Shopify's Dev MCP server** (`@shopify/dev-mcp`): gives it tools like `learn_shopify_api` for app and platform context. See [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) to learn what it does and doesn't cover for theme work yet.
+- **Figma's MCP server**: gives your AI tool structured design data, like components, variables, and layout. See [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/).
+- **Shopify's Dev MCP server** (`@shopify/dev-mcp`): gives it tools like `learn_shopify_api` for app and platform context. See [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) to learn what it does and doesn't cover for theme work yet.
 
 Think of MCP as the wiring that connects everything together. Skills, commands, and subagents, which we'll cover next, are built on top of that wiring. For example, a skill might call an MCP tool as part of its own process.
 
@@ -44,7 +44,7 @@ If you write your own skill, it lives at `.claude/skills/<name>/SKILL.md`. Skill
 
 A **command** is a saved prompt, sometimes several steps long, that you run **manually** by typing `/<name>`. If you notice you keep typing the same instructions over and over, like "build this from Figma, then check it, then fix it, then summarize," that's a good sign you need a command instead.
 
-We use a few of our own: `/figma-to-section`, `/theme-check-fix`, and `/pr-prep`. See [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) for details.
+We use a few of our own: `/figma-to-liquid`, `/theme-check-fix`, and `/pr-prep`. See [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) for details.
 
 Commands live at `.claude/commands/<name>.md`. In current versions of Claude Code, commands and skills are actually built on the same underlying feature. A command is just the simpler, single-file version that you trigger by hand instead of it turning on automatically.
 
@@ -54,7 +54,7 @@ A **subagent** is a specialized helper that runs in its **own separate conversat
 
 Claude hands work off to a subagent in two ways. It can do this automatically, when a task matches what the subagent is described to handle, or you can ask for it by name. The subagent does the work and sends back only a summary, so messy details like file contents, command output, and retries stay out of your main conversation.
 
-We have one of our own, called `theme-check-fixer`. See [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) for how it works.
+We have one of our own, called `theme-check-fixer`. See [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) for how it works.
 
 Subagents live at `.claude/agents/<name>.md`.
 
@@ -74,13 +74,13 @@ That's worth fixing eventually. A plugin would let the whole team install and up
 |---|---|---|---|---|
 | **MCP server** | A connection to an outside data source or service | Always available once connected; offers tools an agent can call | Set up per tool (`claude mcp add`, Cursor's MCP settings, etc.) | Figma MCP server, Shopify's Dev MCP server |
 | **Skill** | Packaged instructions (plus optional scripts) | Automatically, when relevant | `.claude/skills/<name>/SKILL.md`, or via a plugin | `shopify-liquid` |
-| **Command** | A saved prompt | Manually, by typing `/<name>` | `.claude/commands/<name>.md` | `/figma-to-section`, `/theme-check-fix` |
+| **Command** | A saved prompt | Manually, by typing `/<name>` | `.claude/commands/<name>.md` | `/figma-to-liquid`, `/theme-check-fix` |
 | **Subagent** | A separate worker with limited tools | Automatically (handed off) or by name | `.claude/agents/<name>.md` | `theme-check-fixer` |
 | **Plugin** | A bundle of any/all of the above | Installed once; each piece then behaves as its own type | `claude plugin install ...` (or the tool's equivalent) | Shopify AI Toolkit, Figma's official plugin |
 
 ## Where `AGENTS.md` fits — none of the above
 
-`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (see [8b](/ai-assisted-development/setting-up-ai-rules/)) aren't a skill, command, subagent, or plugin. They're **static context that's always loaded**. That means the AI reads them at the start of every session, no matter what you're doing.
+`AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) aren't a skill, command, subagent, or plugin. They're **static context that's always loaded**. That means the AI reads them at the start of every session, no matter what you're doing.
 
 Compare that to the other four things on this page. A skill only turns on when it's relevant. A command needs to be typed. A subagent gets handed a task. `AGENTS.md` is different: it's just always there in the background from the moment a session starts.
 
@@ -88,14 +88,14 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 ## Where to go next in this section
 
-1. [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): the always-loaded project context every tool reads.
-2. [8c. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): keeping that file correct over time.
-3. [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): the skill (and MCP server) that makes sure Liquid code is based on real platform facts, not guesses.
-4. [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): a real MCP connection, for design data.
-5. [8f. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): the repeatable process built on top of it.
-6. [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): automating that process.
-7. [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): keeping the noisy parts of it out of your way.
-8. [8i. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): getting good results out of all of the above.
+1. [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): the always-loaded project context every tool reads.
+2. [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): keeping that file correct over time.
+3. [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): the skill (and MCP server) that makes sure Liquid code is based on real platform facts, not guesses.
+4. [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): a real MCP connection, for design data.
+5. [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): the repeatable process built on top of it.
+6. [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): automating that process.
+7. [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): keeping the noisy parts of it out of your way.
+8. [Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): getting good results out of all of the above.
 
 ## Best practices
 
@@ -114,7 +114,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 - **MCP server** = a connection to outside data or services. **Skill** = instructions that turn on automatically. **Command** = a saved prompt you trigger by hand. **Subagent** = a separate worker with limited tools. **Plugin** = a bundle of any or all of the above, installed as one unit.
 - `AGENTS.md` is none of these. It's always-loaded, static context.
-- This handbook's examples: Figma MCP server and Shopify Dev MCP server (MCP), `shopify-liquid` (skill), `/figma-to-section` and others (commands), `theme-check-fixer` (subagent), Shopify AI Toolkit and Figma's plugin (plugins).
+- This handbook's examples: Figma MCP server and Shopify Dev MCP server (MCP), `shopify-liquid` (skill), `/figma-to-liquid` and others (commands), `theme-check-fixer` (subagent), Shopify AI Toolkit and Figma's plugin (plugins).
 
 ## Further Reading
 

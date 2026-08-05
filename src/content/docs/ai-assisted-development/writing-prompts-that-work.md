@@ -1,9 +1,9 @@
 ---
-title: 8i. Writing Prompts That Work
+title: Writing Prompts That Work
 description: Prompt patterns that consistently produce code that meets Theme Store requirements.
 ---
 
-The rule files covered in [8b](/ai-assisted-development/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
+The rule files covered in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
 
 ## The four things every theme-code prompt should state
 

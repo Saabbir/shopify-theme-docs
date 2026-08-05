@@ -148,3 +148,4 @@ Notice three things in this example. Every string uses a `t:` locale key (a shor
 
 - [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) (shopify.dev)
 - [Settings schema reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) (shopify.dev)
+- [Currently available fonts](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) (shopify.dev)

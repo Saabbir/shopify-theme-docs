@@ -1,5 +1,5 @@
 ---
-title: 8c. Managing & Amending AI Rules
+title: Managing & Amending AI Rules
 description: How to change AGENTS.md's Custom rules section over time, including order, format, sourcing, and how to check a change actually works.
 ---
 

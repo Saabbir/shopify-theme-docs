@@ -77,5 +77,6 @@ If you're joining the Solis project without any background on it, here's roughly
 
 - [Shopify themes overview](https://shopify.dev/docs/storefronts/themes) (shopify.dev)
 - [Theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)
+- [Shopify Theme Store](https://themes.shopify.com/) — the storefront your finished theme gets submitted to
 - [Horizon theme source](https://github.com/Shopify/horizon) (GitHub, reference only, not our scaffold)
 - [Skeleton Theme source](https://github.com/Shopify/skeleton-theme) (GitHub, our actual scaffold)

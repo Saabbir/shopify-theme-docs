@@ -116,3 +116,5 @@ Every preset (a pre-built version of your theme, with its own look and settings)
 
 - [Theme Store requirements, sections 1-3, 18, 20](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)
 - [Design best practices](https://shopify.dev/docs/storefronts/themes/best-practices/design) (shopify.dev)
+- [Skeleton Theme](https://github.com/shopify/skeleton-theme) (GitHub), the only Shopify-approved starting codebase
+- [Client transfer stores](https://help.shopify.com/en/partners/manage-clients-stores/client-transfer-stores/create-client-transfer-stores) (help.shopify.com), how to build a preset demo store

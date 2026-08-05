@@ -122,3 +122,4 @@ Admin edits create real commits. That means the Git history on a connected branc
 
 - [Shopify GitHub integration](https://shopify.dev/docs/storefronts/themes/tools/github) (shopify.dev)
 - [Conventional Commits](https://www.conventionalcommits.org/) (conventionalcommits.org)
+- [Version control best practices](https://shopify.dev/docs/storefronts/themes/best-practices/version-control) (shopify.dev)

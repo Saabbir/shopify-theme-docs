@@ -129,4 +129,5 @@ RTL stands for "right-to-left." Arabic, Hebrew, and other right-to-left language
 
 - [Selling in multiple languages](https://shopify.dev/docs/storefronts/themes/markets/multiple-currencies-languages) (shopify.dev)
 - [Country/language selector UX](https://shopify.dev/docs/storefronts/themes/markets/country-language-ux) (shopify.dev)
+- [Theme Store requirements](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev), current policy on RTL and i18n
 - [Locale files](https://shopify.dev/docs/storefronts/themes/architecture/locales) (shopify.dev)

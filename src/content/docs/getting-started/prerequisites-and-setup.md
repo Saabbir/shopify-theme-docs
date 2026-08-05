@@ -34,11 +34,11 @@ If that command isn't found, it means `shopify` wasn't added to your shell's `PA
 
 ## Choose your AI-assisted editor
 
-`AGENTS.md` (see [8b. Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) is a file that gives your AI tool context about this project, and it works with any of the tools below, not just one. Your options are **Claude Code** (runs in your terminal, and can also embed in VS Code), **Cursor** (a VS Code fork with a built-in AI agent mode), and **VS Code + GitHub Copilot**.
+`AGENTS.md` (see [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/)) is a file that gives your AI tool context about this project, and it works with any of the tools below, not just one. Your options are **Claude Code** (runs in your terminal, and can also embed in VS Code), **Cursor** (a VS Code fork with a built-in AI agent mode), and **VS Code + GitHub Copilot**.
 
 Pick one of these as your daily driver. The setup steps below cover all three, so follow whichever one your team actually uses, or set up more than one if you like to switch between them.
 
-If any of the terms below (MCP, skill, plugin, subagent) are new to you, read [8a. AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) first. This page assumes you already know what they mean. That other page explains them from scratch.
+If any of the terms below (MCP, skill, plugin, subagent) are new to you, read [AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) first. This page assumes you already know what they mean. That other page explains them from scratch.
 
 ### Setting up VS Code
 
@@ -121,7 +121,7 @@ If you'll be pulling design details from Figma, also install Figma's plugin: `cl
 
 Once your editor and AI tool are installed, the last piece is project context: a file called `AGENTS.md` at the repo root. Claude Code, Cursor, and Copilot all read this file. (Cursor and Claude Code read it directly. Copilot reads it through a symlinked `.github/copilot-instructions.md`.)
 
-`AGENTS.md` is generated automatically by `shopify theme init`, and our project-specific rules live in its `## Custom rules` section. Full setup steps (for a new theme or an existing repo) are in [8b. Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/). Do that now if you haven't, since several checklist items below depend on it being in place.
+`AGENTS.md` is generated automatically by `shopify theme init`, and our project-specific rules live in its `## Custom rules` section. Full setup steps (for a new theme or an existing repo) are in [Setting Up AI Rules](/ai-assisted-development/setting-up-ai-rules/). Do that now if you haven't, since several checklist items below depend on it being in place.
 
 ## The pre-flight checklist
 
@@ -151,9 +151,9 @@ Don't just check that each tool installed on its own. Confirm the whole chain wo
 **AI tooling**
 
 - [ ] Primary AI tool installed and authenticated (`claude --version` succeeds and you're logged in, and/or Cursor's agent mode responds to a prompt, and/or Copilot Chat responds in VS Code)
-- [ ] Shopify AI Toolkit installed (plugin, skill, or Dev MCP, per [8d](/ai-assisted-development/shopify-ai-toolkit/)). It's easy to skip this, since the editor extension above already gives you syntax highlighting. But the toolkit is what makes sure *generated code* is based on real docs, not guesses.
+- [ ] Shopify AI Toolkit installed (plugin, skill, or Dev MCP, per [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)). It's easy to skip this, since the editor extension above already gives you syntax highlighting. But the toolkit is what makes sure *generated code* is based on real docs, not guesses.
 - [ ] `AGENTS.md` present at the repo root with our `## Custom rules` section filled in (not just Shopify's generated default)
-- [ ] Figma MCP connected, if you'll be converting Figma designs to code (see [8e](/ai-assisted-development/figma-mcp-and-dev-mode/))
+- [ ] Figma MCP connected, if you'll be converting Figma designs to code (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/))
 
 **End-to-end smoke test**
 
@@ -192,9 +192,12 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 
 - [Shopify CLI documentation](https://shopify.dev/docs/api/shopify-cli) (shopify.dev)
 - [Development stores](https://shopify.dev/docs/storefronts/themes/tools/development-stores) (shopify.dev)
+- [Liquid Prettier plugin](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin) (shopify.dev)
+- [Shopify Partners signup](https://www.shopify.com/partners) — the free account needed for dev stores and theme submission
+- [Shopify Liquid VS Code extension](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) (Marketplace listing)
 - [Shopify Liquid VS Code extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode) (shopify.dev)
 - [Claude Code installation](https://code.claude.com/docs/en/setup) (code.claude.com, the authoritative install instructions)
-- [8a. AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) (MCP/skill/command/subagent/plugin vocabulary used throughout this page)
-- [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) (the full `AGENTS.md` setup this page's checklist depends on)
-- [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) (exact, current install commands for the toolkit)
-- [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) (Figma MCP setup for both Claude Code and Cursor)
+- [AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) (MCP/skill/command/subagent/plugin vocabulary used throughout this page)
+- [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/) (the full `AGENTS.md` setup this page's checklist depends on)
+- [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) (exact, current install commands for the toolkit)
+- [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) (Figma MCP setup for both Claude Code and Cursor)

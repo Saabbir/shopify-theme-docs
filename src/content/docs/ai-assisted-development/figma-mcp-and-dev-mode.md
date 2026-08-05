@@ -1,5 +1,5 @@
 ---
-title: 8e. Figma MCP & Dev Mode
+title: Figma MCP & Dev Mode
 description: Giving Cursor and Claude Code direct, structured access to Figma, instead of just a screenshot.
 ---
 

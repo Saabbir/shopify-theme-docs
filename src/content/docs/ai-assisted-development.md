@@ -11,15 +11,15 @@ After that, you'll learn how to keep every tool's rules the same, and how to mak
 
 ## What's on this page group
 
-- [8a. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/): the basic words used through the rest of this section. Start here if any of them are new to you.
-- [8b. Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): one file that holds our rules, written in the format each tool needs.
-- [8c. Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): how to change AGENTS.md safely over time.
-- [8d. Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): Shopify's own tool that helps the AI write real, working Liquid instead of guessing.
-- [8e. Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): how to give Cursor or Claude Code real design data, not just a screenshot.
-- [8f. Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): our repeatable steps, plan, build, check, fix, report.
-- [8g. Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): how we turn those steps into one command, `/figma-to-section`.
-- [8h. Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): meet our `theme-check-fixer` helper, which handles the messy cleanup step on its own.
-- [8i. Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): how to ask for code in a way that gets good results.
+- [AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)](/ai-assisted-development/ai-coding-concepts/): the basic words used through the rest of this section. Start here if any of them are new to you.
+- [Setting Up AI Rules (AGENTS.md)](/ai-assisted-development/setting-up-ai-rules/): one file that holds our rules, written in the format each tool needs.
+- [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/): how to change AGENTS.md safely over time.
+- [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/): Shopify's own tool that helps the AI write real, working Liquid instead of guessing.
+- [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/): how to give Cursor or Claude Code real design data, not just a screenshot.
+- [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): our repeatable steps, plan, build, check, fix, report.
+- [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): how we turn those steps into one command, `/figma-to-liquid`.
+- [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): meet our `theme-check-fixer` helper, which handles the messy cleanup step on its own.
+- [Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): how to ask for code in a way that gets good results.
 
 ## Why this section exists
 
@@ -32,7 +32,7 @@ The pages in this section help you handle both risks. We use rule files to point
 
 ## Best practices
 
-- Set up your AI tool's rule files (section 8b) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
+- Set up your AI tool's rule files (the Setting Up AI Rules page) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
 - Treat every AI suggestion like a first draft from a fast but new teammate. It's useful, but never merge it without reading it first.
 - If AI-written code looks a lot like a pattern from a well-known theme, treat that as something worth checking. Don't just brush it off.
 

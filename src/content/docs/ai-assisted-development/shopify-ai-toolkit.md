@@ -1,5 +1,5 @@
 ---
-title: "8d. Shopify's Official AI Toolkit"
+title: "Shopify's Official AI Toolkit"
 description: Should we use it? Yes. Here's a step-by-step install, what it does, and how it backs up this handbook's "no guessing" rule.
 ---
 
@@ -103,7 +103,7 @@ That means the three ideas below map to three different things in this handbook,
 | Idea | Who provides it | Turns on | Covered here |
 |---|---|---|---|
 | **Skills** (`shopify-liquid`, etc.) | Shopify, through the AI Toolkit | Automatically, based on what you ask | This page |
-| **Custom commands** (`/figma-to-section`, `/theme-check-fix`, `/pr-prep`) | Us, Solis-specific, built on top | Manually, when you type the command | [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) |
+| **Custom commands** (`/figma-to-liquid`, `/theme-check-fix`, `/pr-prep`) | Us, Solis-specific, built on top | Manually, when you type the command | [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) |
 | **Subagents** (`.claude/agents/*.md`) | Neither. Not something Shopify ships; ours, where it's genuinely useful | Automatically, or handed off and named by the main agent | [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) |
 
 We have one Claude Code subagent so far, called `theme-check-fixer`. It runs `shopify theme check`, fixes every issue based on `AGENTS.md`'s rules, and reports back, all in its own separate conversation with tool access limited to `Read`, `Edit`, and `Bash(shopify theme check:*)`. See [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) for why it exists alongside the `/theme-check-fix` command instead of replacing it, and how to write more subagents of your own.
@@ -143,7 +143,7 @@ The toolkit's search and validation scripts send usage data to Shopify (`shopify
 
 - Three install methods: plugin (recommended, updates itself), agent skills (`npx skills add Shopify/shopify-ai-toolkit`, manual updates), Dev MCP server (`claude mcp add ...`, provides `learn_shopify_api`). Full current commands: [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit).
 - `learn_shopify_api`'s current API list doesn't include Liquid or themes. For theme work, the `shopify-liquid` skill's `search_docs.mjs` and `validate.mjs` loop is what actually applies.
-- Shopify ships skills only, no bundled subagents or slash commands. Our `/figma-to-section` and similar commands are a separate, Solis-specific layer on top.
+- Shopify ships skills only, no bundled subagents or slash commands. Our `/figma-to-liquid` and similar commands are a separate, Solis-specific layer on top.
 - Solis-specific rules still live only in `## Custom rules`. The toolkit only knows Shopify's platform facts.
 - Telemetry is on by default; set `OPT_OUT_INSTRUMENTATION=true` to turn it off.
 
