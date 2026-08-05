@@ -5,15 +5,18 @@ description: How Figma design tokens become theme settings that are easy to main
 
 Every theme has two different people who care about its design choices. There's you, the developer who writes the CSS. And there's the merchant, who uses Shopify's theme editor to pick colors and fonts without touching any code.
 
-This section is about the layer that serves both of you. It covers design tokens (reusable values like your brand colors, spacing, and font sizes), the `settings_schema.json` and `settings_data.json` files that expose those tokens to merchants, presets, and icons.
+This section is about the layer that serves both of you. It covers the general design token model, the `settings_schema.json` and `settings_data.json` files that expose tokens to merchants, presets, and icons.
 
-Get this layer right, and both you and the merchant have a smooth experience. Get it wrong, and you end up with problems like a color picker that doesn't match your CSS, or a preset that breaks quietly the moment someone installs a fresh copy of the theme.
+Get this layer right, and both you and the merchant have a smooth experience. Get it wrong, and you end up with problems like a settings panel that doesn't match your CSS, or a preset that breaks quietly the moment someone installs a fresh copy of the theme.
+
+:::note[Looking for color, fonts, or spacing?]
+Each of those has its own dedicated section: see [Colors](/colors/), [Fonts](/fonts/), and [Spacing](/spacing/) for settings, tokens, code, and accessibility in each domain.
+:::
 
 ## What's on this page group
 
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/): how to turn a Figma variable collection into `settings_schema.json` entries and CSS custom properties.
-- [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/): how to name and organize your tokens so they stay easy to work with for years, not just for the first few weeks.
-- [Color Palettes](/design-system/color-palettes/): Shopify's newer `color_palette` setting. It's one shared grid of brand colors that merchants can edit, and other settings can point to it.
+- [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/): how to name and organize your tokens so they stay easy to work with for years, not just for the first few weeks.
 - [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/): what each file does, how they work together, and how to change them without breaking merchant data.
 - [Managing Presets (Sections & Themes)](/design-system/managing-presets/): section presets, theme presets, and how to submit a theme with more than one preset to the Theme Store.
 - [Icon Management](/design-system/icon-management/): SVG sprites vs. inline snippets, how to theme icons with `currentColor`, and how to let merchants pick icons in settings.
@@ -28,7 +31,7 @@ Read this section fully before your theme grows past a handful of sections. Addi
 
 ## Best practices
 
-- Design your token system for colors, spacing, and type before you write your first section's CSS. Don't wait until your third section has different, hardcoded values that don't match.
+- Design your token system before you write your first section's CSS. Don't wait until your third section has different, hardcoded values that don't match.
 - Treat `settings_schema.json` as a promise to merchants. See [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) to learn what happens if you break that promise.
 - Test your presets often. Every time you change a shared schema, install a fresh copy of the theme with each preset applied, and check that everything still works.
 
@@ -39,8 +42,10 @@ Read this section fully before your theme grows past a handful of sections. Addi
 
 ## Quick Reference
 
-- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) · [Color Palettes](/design-system/color-palettes/) · [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) · [Managing Presets](/design-system/managing-presets/) · [Icon Management](/design-system/icon-management/)
+- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/) · [settings_schema.json & settings_data.json](/design-system/settings-schema-and-data/) · [Managing Presets](/design-system/managing-presets/) · [Icon Management](/design-system/icon-management/)
+- For color, fonts, or spacing specifically: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/).
 
 ## Further Reading
 
+- [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/), the dedicated sections for each domain
 - [Settings (concept overview)](https://shopify.dev/docs/storefronts/themes/architecture/settings), from shopify.dev

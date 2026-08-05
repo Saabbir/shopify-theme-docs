@@ -5,7 +5,7 @@ description: Shopify's newer color_palette setting, one shared grid of brand col
 
 Shopify added a new theme setting type called `color_palette` in the [Spring '26 Edition](https://shopify.dev/changelog/color-palettes) (June 17, 2026). This one is brand new, not a renamed version of something that already existed.
 
-It changes how you should think about a theme's color system going forward, so it gets its own page here. Keep in mind that this handbook's [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) and [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) pages were written before `color_palette` existed.
+It changes how you should think about a theme's color system going forward, so it gets its own page here. Keep in mind that this handbook's [Color Design Tokens](/colors/color-design-tokens/) and [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) pages were written before `color_palette` existed.
 
 :::note[Where our scaffold stands right now]
 As of this writing, [Skeleton Theme](https://github.com/Shopify/skeleton-theme) (the theme we use as a starting point for new projects) does **not** use `color_palette` yet. Its `config/settings_schema.json` still defines colors as separate, plain `color` settings.
@@ -27,9 +27,9 @@ It also gave you no easy way for a section's `color` setting to default to "what
 
 ## What it is not
 
-`color_palette` doesn't replace [`color_scheme_group`](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes), the mechanism that lets merchants pick between full **color schemes**, like "Scheme 1," "Scheme 2," or a dark version of the theme.
+`color_palette` doesn't replace [`color_scheme_group`](/colors/color-schemes/), the mechanism that lets merchants pick between full **color schemes**, like "Scheme 1," "Scheme 2," or a dark version of the theme.
 
-Each scheme is a full bundle of `header`/`color`/`color_background` fields. A section picks between schemes using a `color_scheme` setting. This feature still works fine today. It isn't going away, and you don't need to switch away from it.
+Each scheme is a full bundle of `header`/`color`/`color_background` fields. A section picks between schemes using a `color_scheme` setting. This feature still works fine today. It isn't going away, and you don't need to switch away from it. See [Color Schemes](/colors/color-schemes/) for the full page on defining and using `color_scheme_group`.
 
 The two features work together, instead of being alternatives to each other. Here's how they compare:
 
@@ -186,7 +186,7 @@ In practice, that means:
 ## Best practices
 
 - Use `color_palette` by default for any new theme-wide brand color setting, instead of a standalone `color` setting with a hardcoded hex default.
-- Name palette keys after their role, like `primary`, `accent`, or `text`. This is the same naming rule used in [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/). Never name a key after how it looks or its exact hex value.
+- Name palette keys after their role, like `primary`, `accent`, or `text`. This is the same naming rule used in [Color Design Tokens](/colors/color-design-tokens/). Never name a key after how it looks or its exact hex value.
 - Point individual `color`/`color_background` defaults at the palette whenever a setting's color should follow the theme's brand colors, instead of locking in a fixed hex value when you write the schema.
 - Double-check this feature's current details against [shopify.dev's own docs](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) before relying on what's written here. It shipped recently, so details may still change.
 
@@ -213,7 +213,7 @@ In practice, that means:
 - [`color_palette` developer documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette), the full shopify.dev input-settings reference
 - [`color` object](https://shopify.dev/docs/api/liquid/objects/color) (shopify.dev), what a `color_palette` value returns
 - [Skeleton Theme](https://github.com/Shopify/skeleton-theme) (GitHub), our starting codebase — doesn't use `color_palette` yet
-- [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes), shopify.dev's page on the `color_scheme_group`/`color_scheme` mechanism this complements
-- [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/), the semantic-naming approach that applies equally to palette keys
+- [Color Schemes](/colors/color-schemes/), the `color_scheme_group`/`color_scheme` mechanism this complements
+- [Color Design Tokens](/colors/color-design-tokens/), the semantic-naming approach that applies equally to palette keys
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/), on mapping a Figma color collection onto a palette instead of separate settings
 - [Complete Worked Example](/codebase-structure/complete-worked-example/), the full section/block/schema example this page's worked example builds on

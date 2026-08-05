@@ -16,7 +16,7 @@ Here's every checkable item, with the right way and the wrong way to build it. T
 | Alt text on all images | `image.alt` or `image_tag`'s `alt:` param; `alt=""` for decorative images | A missing `alt`, or `alt="image"` / `alt="photo"` placeholder text |
 | Connected form labels | Unique `id` on every input, matching `<label for="...">` | A `placeholder` used as the only label |
 | Valid HTML | Semantic, well-nested markup throughout | `<div>`-only markup with no semantic elements, or invalid nesting |
-| Color contrast | 4.5:1 body text, 3:1 large text (18pt+) / icons / borders | Light gray text on a white background that fails contrast ratios |
+| Color contrast (see [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/)) | 4.5:1 body text, 3:1 large text (18pt+) / icons / borders | Light gray text on a white background that fails contrast ratios |
 | Logical focus order | Tab order matches DOM order, top-to-bottom, left-to-right | `tabindex` values that jump around visually |
 | Touch targets | ≥ 24×24 CSS pixels (inline body text links exempt) | Tiny icon buttons with no padding, especially on mobile |
 | Distinct headings | h1–h6 each visually different from one another | Every heading level styled identically |
@@ -95,7 +95,7 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 - **Removing `outline: none` without adding a visible replacement.** This is the most common accessibility bug, and it usually happens when someone tries to "clean up" a default browser style.
 - **Using a `<div>` or `<span>` with a click handler instead of a real `<button>`.** It looks the same visually, but it fails completely for keyboard and screen reader users.
 - **Writing alt text that describes nothing useful** (`alt="image1.jpg"`, `alt="photo"`). This technically has an alt attribute, but it misses the point of the requirement.
-- **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one.
+- **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
 
 ## Quick Reference
 
@@ -107,5 +107,6 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 ## Further Reading
 
 - [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/), the process behind this checklist
+- [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/), the full color-specific contrast rules and testing approach
 - [Accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#12-accessibility) (shopify.dev)
 - [Accessibility best practices](https://shopify.dev/docs/storefronts/themes/best-practices/accessibility) (shopify.dev)

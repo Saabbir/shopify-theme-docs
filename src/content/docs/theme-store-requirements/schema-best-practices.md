@@ -62,20 +62,11 @@ A few more rules to keep in mind:
 
 ## Color system
 
-| ✅ Do | ❌ Don't |
-|---|---|
-| Include at least 4 color settings | Ship with only 1 or 2 colors, which limits merchants to a narrow color palette |
-| Pair every background color with a foreground/text color setting | Add a background color with no matching text color. This risks combinations that are hard to read |
-| Use `"type": "color"` | Use a free-text field where merchants have to type in hex codes |
+Color settings have their own dedicated rules, at least 4 color settings, every background paired with a foreground/text setting, and always `"type": "color"` instead of free text. See [Colors](/colors/) for the full section, and specifically [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule) for this exact rule in detail.
 
 ## Font picker
 
-| ✅ Do | ❌ Don't |
-|---|---|
-| Use `"type": "font_picker"` for every font setting | Use a `select` or free-text setting for choosing a font |
-| Set a real default (e.g. `"default": "work_sans_n6"`) | Leave the default empty. This shows an empty picker when the theme is installed |
-| Only use [currently available fonts](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) | Use a custom-uploaded or discontinued font as a default or in a preset |
-| Load bold, italic, and bold-italic variants with `font_modify` | Assume a font's bold and italic versions load automatically, without using the filter |
+Font settings have their own dedicated rules too: always `"type": "font_picker"` with a real default, only currently available fonts, and `font_modify` for bold/italic variants instead of assuming they load automatically. See [Fonts](/fonts/) for the full section, and specifically [Font Settings](/fonts/font-settings/) for the setting-level rules and [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/) for `font_modify`.
 
 ## General settings hygiene
 
@@ -140,12 +131,13 @@ Notice three things in this example. Every string uses a `t:` locale key. The co
 ## Quick Reference
 
 - American English, sentence case, plain statements (not questions), active voice, verbs on buttons.
-- At least 4 colors, each with a matching foreground color.
-- Font settings: use `font_picker`, set a real default, pick an available font, and use `font_modify` for variants.
+- At least 4 colors, each with a matching foreground color. See [Colors](/colors/).
+- Font settings: use `font_picker`, set a real default, pick an available font, and use `font_modify` for variants. See [Fonts](/fonts/).
 - Every setting has a `label`, and every resource default actually exists on a brand new store.
 
 ## Further Reading
 
+- [Colors](/colors/), the dedicated section for color settings rules, tokens, and accessibility
+- [Fonts](/fonts/), the dedicated section for font settings rules, the type scale, and typography in code
 - [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) (shopify.dev)
 - [Settings schema reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) (shopify.dev)
-- [Currently available fonts](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) (shopify.dev)

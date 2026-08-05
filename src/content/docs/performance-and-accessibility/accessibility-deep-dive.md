@@ -77,14 +77,7 @@ Testing with unusually long or short content (see [Figma to Code Workflow](/ai-a
 
 ### Check color contrast against every color scheme
 
-If your theme supports multiple `color_scheme_group` options (see [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/)), checking contrast on only the default scheme isn't enough. A merchant might switch to a different scheme, and that scheme could fail the contrast test even though your default one passes fine:
-
-```liquid
-{% comment %} Check contrast for EVERY scheme a merchant can pick,
-   not just "Scheme 1" — a text/background pairing that passes in
-   one scheme can easily fail in another if schemes aren't designed
-   with contrast in mind as a hard constraint, not a suggestion {% endcomment %}
-```
+If your theme supports multiple `color_scheme_group` options (see [Color Schemes](/colors/color-schemes/)), checking contrast on only the default scheme isn't enough. A merchant might switch to a different scheme, and that scheme could fail the contrast test even though your default one passes fine. This is common enough, and specific enough, that it has its own dedicated page: see [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/) for the actual ratios, testing tools, and how to derive per-scheme focus outline colors.
 
 ## Part 2: rolling this out across a whole theme project
 
@@ -142,5 +135,6 @@ If a change removes a focus style, breaks a modal's focus trap, or removes an `a
 ## Further Reading
 
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the compliance checklist this process supports
+- [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/): the full color-specific contrast rules and testing approach
 - [Manual QA Checklist](/quality-validation/manual-qa-checklist/): where the keyboard-only pass fits into day-to-day QA
 - [Accessibility best practices](https://shopify.dev/docs/storefronts/themes/best-practices/accessibility) (shopify.dev)

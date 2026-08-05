@@ -27,52 +27,13 @@ Map this structure directly onto groups in `config/settings_schema.json`:
 
 | Figma structure | Theme equivalent |
 |---|---|
-| Collection: "Colors," Variable: `brand/primary` | A key (`primary`) in a `color_palette` setting, see the worked example below and [Color Palettes](/design-system/color-palettes/) |
+| Collection: "Colors," Variable: `brand/primary` | A key (`primary`) in a `color_palette` setting, see [Color Design Tokens](/colors/color-design-tokens/#mapping-a-figma-color-collection-onto-theme-settings) for the full worked example |
 | Collection: "Colors," Mode: "Dark" | A `color_scheme_group` / `color_scheme` setting, or a merchant-facing dark-mode toggle, depending on whether dark mode is a Theme Store color scheme or a permanent site mode |
-| Collection: "Spacing," Variable: `space/md` | Either a fixed CSS custom property (if not merchant-editable) or a `range` setting, following the rule below |
-| Collection: "Type," Variable: `heading/size-lg` | A `font_picker` plus a `range` size setting, or a fixed CSS custom property if the type scale isn't meant to be adjustable by merchants |
+| Collection: "Spacing," Variable: `space/md` | A raw scale step (`--space-md`), see [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/#mapping-a-figma-spacing-collection-onto-theme-tokens) |
+| Collection: "Type," Variable: `heading/size-lg` | The font family maps to a `font_picker`, sizes usually stay fixed CSS custom properties, see [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/#mapping-a-figma-type-collection-onto-theme-settings) |
 
-### A worked example: mapping a Figma color collection
-
-Let's walk through an example. Say Figma has a "Colors" collection with these variables: `brand/primary` (#1a5f4f), `brand/secondary` (#e8b04b), `text/body` (#1a1a1a), and `surface/background` (#ffffff).
-
-Map the whole collection onto **one `color_palette` setting**, instead of creating a separate `color` setting for each variable. This is the current recommended approach. See [Color Palettes](/design-system/color-palettes/) for the full picture:
-
-```json
-// config/settings_schema.json (excerpt)
-{
-  "name": "t:general.colors",
-  "settings": [
-    {
-      "type": "color_palette",
-      "id": "colors",
-      "default": {
-        "primary": "#1a5f4f",
-        "secondary": "#e8b04b",
-        "text": "#1a1a1a",
-        "background": "#ffffff"
-      }
-    }
-  ]
-}
-```
-
-```css
-/* assets/base.css — generated once from settings, referenced everywhere */
-:root {
-  --color-primary: {{ settings.colors.primary }};
-  --color-secondary: {{ settings.colors.secondary }};
-  --color-text: {{ settings.colors.text }};
-  --color-background: {{ settings.colors.background }};
-}
-```
-
-Name each palette key after the token's *role*, like `primary`. This should match what Figma's variable name (`brand/primary`) means, not its current hex value.
-
-See [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) for the full naming rules. See [Color Palettes](/design-system/color-palettes/) for `color_palette`'s rules (one per theme, 2 to 20 hex colors, no `label`/`info`/`visible_if`), and to learn how individual section or block `color` settings can default to a palette entry instead of a hardcoded hex value.
-
-:::note[If you're on an older schema]
-A theme that already shipped brand colors as separate `color` settings (`color_primary`, `color_secondary`, and so on) doesn't need to migrate right away. That pattern still works fine. If you do migrate to `color_palette`, treat it as its own deliberate, reviewed change, not something you slip in as a quick edit. See [Color Palettes](/design-system/color-palettes/#should-solis-adopt-this-now) for why.
+:::note[Mapping a Figma color, type, or spacing collection]
+Each domain has its own dedicated worked example. See [Color Design Tokens](/colors/color-design-tokens/#mapping-a-figma-color-collection-onto-theme-settings), [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/#mapping-a-figma-type-collection-onto-theme-settings), and [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/#mapping-a-figma-spacing-collection-onto-theme-tokens) for the full walkthrough in each.
 :::
 
 ## Step 3: decide merchant-editable vs. fixed, per token
@@ -83,67 +44,40 @@ Not every design token should turn into a setting that merchants can see and cha
 |---|---|---|
 | Brand colors (primary, secondary, accent) | Yes | Merchants reasonably want to adjust brand colors without needing a developer |
 | Semantic colors (error, success, sale-price) | Sometimes | Often fixed to stay consistent with platform conventions (for example, a red "sold out" badge that merchants shouldn't accidentally turn green) |
-| Spacing scale | Rarely | Usually a fixed design decision. Exposing 6 spacing values as settings often adds confusion for merchants without much real benefit |
-| Type scale | Sometimes | A `font_picker` is standard. Exposing every individual size in the scale as its own setting is usually overkill |
+| Spacing scale | Rarely | Usually a fixed design decision, see [Spacing in Settings](/spacing/spacing-in-settings/) for the specific cases (mostly section padding) worth exposing |
+| Type scale | Sometimes | A `font_picker` is standard for the family, see [Font Settings](/fonts/font-settings/). Exposing every individual size in the scale as its own setting is usually overkill |
 | Component-specific one-off values | No | These aren't tokens, they're implementation details. See Step 1 |
 
-## Step 4: color functions — using Liquid's color filters instead of hardcoding derived values
-
-Shopify's Liquid color filters can calculate derived colors, like a hover state, a tint, or a shade, starting from just one merchant-set color. That means you don't need a separate setting for every shade:
-
-```liquid
-{% comment %} ❌ WRONG — a separate setting for the hover state,
-   which can drift out of sync with the base color if a merchant
-   updates one but not the other {% endcomment %}
-{{ settings.colors.primary }}
-{{ settings.color_primary_hover }}
-
-{% comment %} ✅ RIGHT — one setting, computed derived values. Works
-   identically whether the base color comes from a color_palette
-   entry (shown here) or a plain color setting {% endcomment %}
-{%- assign color_primary_hover = settings.colors.primary | color_darken: 10 -%}
-```
-
-```css
-:root {
-  --color-primary: {{ settings.colors.primary }};
-  --color-primary-hover: {{ settings.colors.primary | color_darken: 10 }};
-  --color-primary-tint: {{ settings.colors.primary | color_lighten: 40 }};
-}
-```
-
-Available color filters include `color_darken`, `color_lighten`, `color_mix`, `color_modify`, `color_saturate`, `color_brightness`, and the conversion filters `color_to_hex`, `color_to_hsl`, `color_to_rgb`, and `color_to_oklch`. Use these instead of asking a merchant to separately set up every derived shade by hand.
-
-## Step 5: keeping Figma and the theme in sync as the design evolves
+## Step 4: keeping Figma and the theme in sync as the design evolves
 
 Design tokens can drift out of sync with your code. This happens the moment someone updates a Figma variable without updating the matching setting default, or does it the other way around. A few habits help prevent this:
 
-- Treat a Figma variable rename as a reminder to check whether the matching setting's `id` (its unique name) or label needs updating too. This doesn't automatically mean you should change the `id` itself. See [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/) for why setting IDs shouldn't change casually.
+- Treat a Figma variable rename as a reminder to check whether the matching setting's `id` (its unique name) or label needs updating too. This doesn't automatically mean you should change the `id` itself. See [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/) for why setting IDs shouldn't change casually.
 - If your team maintains **Figma Code Connect** (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)), link components that use tokens back to their Figma source. This lets an AI tool or a developer trace a component back to Figma quickly.
 - When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Managing Presets](/design-system/managing-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
 
 ## Best practices
 
 - Pull tokens from Figma's Variables panel specifically, not by guessing values off the design canvas. The Variables panel is where design has already decided "this is a reusable value."
-- Use Liquid's color filters (`color_darken`, `color_mix`, and so on) to create related shades from one merchant setting, instead of adding a separate setting for each derived value.
 - Decide merchant-editable vs. fixed for each token on purpose, using Step 3's table as your guide, not as a blanket "expose everything" or "expose nothing" policy.
+- Each domain has its own derivation and settings rules: colors derive shades with Liquid color filters, fonts derive weights/styles with `font_modify`, spacing rarely becomes a setting at all. See [Colors](/colors/), [Fonts](/fonts/), and [Spacing](/spacing/).
 
 ## Common mistakes
 
 - **Turning a value that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
-- **Exposing every derived shade as its own setting** instead of computing it with a color filter. This creates settings that can drift out of sync with each other.
 - **Naming a setting after Figma's current value** instead of its role, so the name becomes misleading the moment the design changes.
 
 ## Quick Reference
 
 - Tokens come from Figma's Variables panel, not the design canvas. That's where the "reusable decision" has already been made.
 - Map collections and modes to settings schema groups. Decide merchant-editable vs. fixed for each token type.
-- Use color filters (`color_darken`, `color_mix`, and so on) to derive shades instead of adding separate settings.
 - Keep Figma and the theme in sync on purpose. A renamed variable or a changed value is a reminder to check the matching setting. It doesn't sync automatically.
+- Color, type, and spacing each have their own dedicated section: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/).
 
 ## Further Reading
 
-- [Color Palettes](/design-system/color-palettes/), the full `color_palette` feature used in this page's worked example
+- [Colors](/colors/), the dedicated section for `color_palette`, `color_scheme_group`, color tokens, and color filters
+- [Fonts](/fonts/), the dedicated section for `font_picker`, the type scale, and font accessibility/performance
+- [Spacing](/spacing/), the dedicated section for the spacing scale, `range` settings, and logical properties
 - [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/), on pulling this same design data directly into an AI coding tool
-- [Design Tokens, Color & Type System](/design-system/design-tokens-color-type-system/), the token structure and naming approach this article assumes
-- [Liquid color filters](https://shopify.dev/docs/api/liquid/filters/color-filters), from shopify.dev
+- [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/), the token structure and naming approach this article assumes

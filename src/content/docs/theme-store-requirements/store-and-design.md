@@ -114,6 +114,7 @@ Every preset needs its own demo store. Build it as a [Client transfer store](htt
 
 ## Further Reading
 
+- [Fonts](/fonts/) and [Colors](/colors/), the dedicated sections behind this checklist's font pairing and color system rules
 - [Theme Store requirements, sections 1-3, 18, 20](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)
 - [Design best practices](https://shopify.dev/docs/storefronts/themes/best-practices/design) (shopify.dev)
 - [Skeleton Theme](https://github.com/shopify/skeleton-theme) (GitHub), the only Shopify-approved starting codebase

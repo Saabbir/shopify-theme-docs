@@ -189,5 +189,7 @@ If CSS can do it without a script, use CSS:
 
 ## Further Reading
 
+- [Spacing](/spacing/), the dedicated section for the spacing scale, `range` settings, and logical properties in more depth
+- [Fonts](/fonts/) and [Colors](/colors/), the dedicated sections for those token types
 - [CSS logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values) (MDN)
 - [`{% stylesheet %}` tag](https://shopify.dev/docs/api/liquid/tags/stylesheet) (shopify.dev)

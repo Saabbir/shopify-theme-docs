@@ -20,7 +20,7 @@ These are averages, so a strong page can pull up a weak one. But don't count on 
 |---|---|
 | Serve responsive images via `srcset` with a real width/height and `loading="lazy"` for below-the-fold images | Shipping one large fixed-size image and letting the browser scale it down with CSS |
 | Scope CSS/JS per section with `{% stylesheet %}`/`{% javascript %}` tags | One giant `theme.css`/`theme.js` bundle loaded on every page regardless of what's used |
-| Use the theme's `font_picker` setting for typography | Loading an extra custom web font via `@import` or a third-party CDN link |
+| Use the theme's `font_picker` setting for typography (see [Font Accessibility & Performance](/fonts/font-accessibility-and-performance/)) | Loading an extra custom web font via `@import` or a third-party CDN link |
 | Reach for a native browser API (`<dialog>`, `IntersectionObserver`, CSS `:has()`) | Installing a JS library for something the platform already does natively |
 | Defer non-critical JavaScript | Blocking render with synchronous `<script>` tags in `<head>` |
 
