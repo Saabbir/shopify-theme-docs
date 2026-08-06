@@ -3,6 +3,8 @@ title: Project Files Explained
 description: What .gitignore, .shopifyignore, .theme-check.yml, .github, AGENTS.md/CLAUDE.md, and README.md each actually do.
 ---
 
+**TL;DR:** What .gitignore, .shopifyignore, .theme-check.yml, .github, AGENTS.md/CLAUDE.md, and README.md each actually do.
+
 None of these files change what shows up on your storefront. They exist to make the repo a good place to work, for both people and AI tools. If you know what each file actually does, it won't turn into boilerplate.
 
 ## `.gitignore` — keeps files out of Git history
@@ -79,7 +81,7 @@ Three things usually live here: automatic checks that run on every pull request 
 
 | Path | Purpose |
 |---|---|
-| `.github/workflows/theme-check.yml` | Runs `Shopify/theme-check-action` on every pull request. See [CI Automation](/github-workflow/ci-automation/) |
+| `.github/workflows/ci.yml` | Runs Prettier's `format:check` and `Shopify/theme-check-action` on every pull request. See [CI Automation](/github-workflow/ci-automation/) |
 | `.github/PULL_REQUEST_TEMPLATE.md` | The checklist every pull request description starts from. See [Pull Requests & Review](/github-workflow/pull-requests-and-review/) |
 | `.github/copilot-instructions.md` | Copilot's rule file. It's a symlink to `AGENTS.md`. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) |
 
@@ -125,8 +127,7 @@ No tool reads this file. It's purely for people. A good theme repo README briefl
 - **Mixing up what `.gitignore` and `.shopifyignore` each cover.** Excluding something from Git history doesn't exclude it from a CLI push or package operation, and the other way around isn't true either.
 - **Letting `README.md` and this handbook drift apart.** A stale local README that contradicts the current handbook confuses new developers about which one to trust.
 
-## Quick Reference
-
+## Key Takeaways
 - `.gitignore` covers Git history. `.shopifyignore` covers CLI push/pull/package operations. They do different jobs, and you need both.
 - `.theme-check.yml` sets the linter's rules and which paths it ignores.
 - `.github/` holds CI, the pull request template, and Copilot's rule file (a symlink to `AGENTS.md`).

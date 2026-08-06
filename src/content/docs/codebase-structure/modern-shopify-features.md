@@ -3,6 +3,8 @@ title: Modern Shopify Features to Use
 description: Newer Shopify features worth using, beyond the basics already covered in this section.
 ---
 
+**TL;DR:** Newer Shopify features worth using, beyond the basics already covered in this section.
+
 [Folder Structure](/codebase-structure/folder-structure/) through [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/) cover what every theme needs. This page is different. It's a quick tour of specific, newer Shopify features. You don't strictly need them, but they're worth using because they solve real problems better than an older or more manual approach would.
 
 ## Metaobjects, used globally in the theme editor
@@ -89,8 +91,7 @@ Not every new Shopify feature is automatically worth using in every theme. Here'
 - **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
 
-## Quick Reference
-
+## Key Takeaways
 - Metaobjects and dynamic sources: write generic settings, and let merchants connect any compatible metaobject field in the editor.
 - `{% style %}` vs `{% stylesheet %}`: see [CSS in Shopify](/css/css-in-shopify/).
 - View Transitions API: check for support first, and always provide a fallback.

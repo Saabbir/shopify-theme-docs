@@ -3,6 +3,8 @@ title: "Learning Article: Custom Element Lifecycle & Progressive Enhancement"
 description: A step-by-step deep dive into what a Custom Element actually is, its lifecycle, progressive enhancement, and when a shared store is actually justified.
 ---
 
+**TL;DR:** A step-by-step deep dive into what a Custom Element actually is, its lifecycle, progressive enhancement, and when a shared store is actually justified.
+
 [JavaScript Architecture](/javascript/javascript-architecture-state-and-events/) states the policy: Web Components, DOM as source of truth, `CustomEvent` for communication. This article is the deep dive underneath that policy — what a custom element actually is, why its lifecycle works the way it does, and where each rule comes from.
 
 ## Step 1: what a Custom Element actually is
@@ -222,8 +224,7 @@ Notice this is still small and specific: a `Set` of listener functions and two f
 - **Building interactive markup entirely in JavaScript** instead of enhancing real HTML, so a JS failure means a completely broken feature instead of a degraded one.
 - **Reaching for a shared store for state only one component actually uses.**
 
-## Quick Reference
-
+## Key Takeaways
 - Lifecycle: `constructor` (call `super()`, nothing else) → `connectedCallback` (setup, can run more than once) → `disconnectedCallback` (teardown) → `attributeChangedCallback` (reacts to observed attribute changes).
 - Progressive enhancement: start from working HTML, layer richer behavior on top in `connectedCallback`.
 - Events: `CustomEvent` with `bubbles: true` (add `composed: true` for Shadow DOM), not direct method calls between components.

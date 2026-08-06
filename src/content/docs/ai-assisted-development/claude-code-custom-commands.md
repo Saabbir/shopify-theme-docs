@@ -3,6 +3,8 @@ title: Claude Code Custom Commands
 description: Turning a repeated prompt (like the Figma-to-code steps) into a single slash command.
 ---
 
+**TL;DR:** Turning a repeated prompt (like the Figma-to-code steps) into a single slash command.
+
 Do you keep typing out the same multi-step instructions? Something like "build this from Figma, then check it, then fix it, then summarize"? If so, that's a sign it belongs in a **custom slash command**. Stop retyping it, and stop copying it from an old chat every time. Save it once, and you won't have to type it again.
 
 ## Rules vs. process: what goes in `AGENTS.md` vs. a command
@@ -102,8 +104,7 @@ Not every repeated prompt is worth turning into a command. A rough test:
 - **Not restricting `allowed-tools`** on a command that's meant to be read-only, like `/pr-prep`. This leaves room for it to make edits you didn't want.
 - **Keeping a useful command personal** (`~/.claude/commands/`) when it's actually specific to this project. The rest of the team would benefit from it being committed to the repo.
 
-## Quick Reference
-
+## Key Takeaways
 - Rules go in `AGENTS.md` (always loaded, "what correct code looks like"). Steps go in a command (manual `/trigger`, "what order to do things in"). A command points to `AGENTS.md`, and never forks its own copy of the rules.
 - `.claude/commands/<name>.md` becomes `/<name>`. Project-level means committed and shared with the team. Personal (`~/.claude/commands/`) means yours only.
 - Frontmatter fields: `description`, `argument-hint`, `allowed-tools`, `model`. All of them are optional.

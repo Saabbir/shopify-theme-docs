@@ -3,6 +3,8 @@ title: Figma MCP & Dev Mode
 description: Giving Cursor and Claude Code direct, structured access to Figma, instead of just a screenshot.
 ---
 
+**TL;DR:** Giving Cursor and Claude Code direct, structured access to Figma, instead of just a screenshot.
+
 A screenshot tells your AI tool what a design *looks like*. But it doesn't tell the tool what components were used, what the exact spacing or color values are, or which parts are meant to be reused elsewhere.
 
 Figma's **Dev Mode** and **MCP server** close that gap. They give Cursor and Claude Code real design data directly, including components, variables, layout, and (through Code Connect) links back to your actual code.
@@ -102,8 +104,7 @@ You still need the breakdown step from [Figma to Code Workflow](/ai-assisted-dev
 - **Assuming the MCP connection alone tells the AI tool what should be a setting.** It doesn't. That's still on you, in the prompt.
 - **Not keeping Code Connect up to date**, so the AI tool has no way to know a component already exists, and ends up regenerating near-duplicates.
 
-## Quick Reference
-
+## Key Takeaways
 - Dev Mode = design inspector for people. MCP server = design data for AI tools. Related, but not the same thing.
 - Recommended: commit [`.mcp.json`](/templates/mcp.json), [`.cursor/mcp.json`](/templates/cursor/mcp.json), and [`.vscode/mcp.json`](/templates/vscode/mcp.json) so the whole team gets the Figma connection automatically. Each person still approves it once (Claude Code) and signs in with their own Figma account.
 - Manual per-editor setup: Claude Code plugin (`claude plugin install figma@claude-plugins-official`, adds Agent Skills too) or `claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp`. Cursor: **MCP: Add Server** → HTTP → `https://mcp.figma.com/mcp`.

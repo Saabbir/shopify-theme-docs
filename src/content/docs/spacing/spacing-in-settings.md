@@ -3,6 +3,8 @@ title: Spacing in Settings
 description: The range setting type, and deciding when a spacing value should be merchant-editable versus fixed in CSS.
 ---
 
+**TL;DR:** The range setting type, and deciding when a spacing value should be merchant-editable versus fixed in CSS.
+
 Most spacing in a theme should be fixed in CSS, not exposed as a setting. This page covers the one setting type spacing does use when it's genuinely merchant-editable, and the reasoning for deciding when that's actually worth doing.
 
 ## The `range` setting type
@@ -84,8 +86,7 @@ Setting `step` to match your spacing scale's own increments (say, multiples of 8
 - **Forgetting the `default` attribute**, which is required and errors without one.
 - **Not providing a CSS fallback** for a spacing custom property, so a missing value silently collapses to `0` instead of the intended default.
 
-## Quick Reference
-
+## Key Takeaways
 - `range` needs `min`, `max`, and `default`. `step` defaults to `1`, `unit` is display-only.
 - Most spacing should stay fixed in CSS. Section-level padding is the most common spacing value that's actually worth exposing.
 - The test: would every value across the range still look like a reasonably designed page?

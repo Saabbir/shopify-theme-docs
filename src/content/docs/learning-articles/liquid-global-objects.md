@@ -3,6 +3,8 @@ title: "Learning Article: Liquid Global Objects Reference"
 description: A detailed, example-driven tour of the objects available in Liquid templates.
 ---
 
+**TL;DR:** A detailed, example-driven tour of the objects available in Liquid templates.
+
 The [Liquid Style Guide](/style-guides/liquid/) gives you a quick map of the most common objects. This article goes deeper. It covers what each object actually contains, where you can use it, and the mistakes that trip people up in real projects.
 
 A quick note before you start: an "object" here just means a named bundle of data that Liquid hands you, like `product` or `cart`. You'll see one heading below for each object, with examples and the gotchas to watch for.
@@ -160,8 +162,7 @@ This object holds the data behind menus that a merchant sets up in the Shopify a
 - **Forgetting `block.shopify_attributes`** on a block's root element, which breaks theme editor selection for that block.
 - **Using stale `cart` data after an AJAX add-to-cart** instead of updating the UI from the Cart AJAX API's response.
 
-## Quick Reference
-
+## Key Takeaways
 - `product`, `collection`, `cart`, `section`/`block`, `shop`, `routes`, `settings`, `request`, `localization`, `customer`, and `linklists` are the objects you'll touch daily.
 - `settings` is not the same as `section.settings`. `product.price` is not the same as the selected variant's price.
 - Always paginate `collection.products`. Always guard `customer` and any optional nested object with a nil check.

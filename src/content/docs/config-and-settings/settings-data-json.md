@@ -3,6 +3,8 @@ title: "settings_data.json: Storage & Presets"
 description: How merchant setting values are actually stored, the current/presets/platform_customizations structure, hard limits, and what switching a preset really changes.
 ---
 
+**TL;DR:** How merchant setting values are actually stored, the current/presets/platform_customizations structure, hard limits, and what switching a preset really changes.
+
 `config/settings_data.json` stores the *values* for whatever `settings_schema.json` declares. It's the file the theme editor actually writes to every time a merchant changes something. Facts on this page are verified directly against [shopify.dev's `settings_data.json` reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-data-json).
 
 ## Required structure
@@ -35,7 +37,7 @@ These aren't stylistic recommendations — they're enforced platform limits:
 - **A theme can't contain more than five presets total.**
 - **`settings_data.json` can't exceed 1.5MB.**
 
-Plan your preset strategy (see [Theme Presets](/config-and-settings/theme-presets/)) with the five-preset ceiling in mind from the start, rather than discovering it after building a sixth.
+Plan your preset strategy (see [Theme Presets](/presets/theme-presets/)) with the five-preset ceiling in mind from the start, rather than discovering it after building a sixth.
 
 ## What switching a preset actually changes: presentational settings only
 
@@ -64,7 +66,7 @@ color_scheme_group, font_picker, number, radio, range, select
 { "type": "url", "id": "cta_link" }
 ```
 
-If you're building a theme preset expecting it to also swap out a merchant's hero image or announcement text, it won't — only the presentational-type settings listed above are affected. A preset genuinely changing *content*, not just style, requires editing that preset's `"sections"` data directly (see [Theme Presets](/config-and-settings/theme-presets/)), not relying on the automatic preset-switch behavior.
+If you're building a theme preset expecting it to also swap out a merchant's hero image or announcement text, it won't — only the presentational-type settings listed above are affected. A preset genuinely changing *content*, not just style, requires editing that preset's `"sections"` data directly (see [Theme Presets](/presets/theme-presets/)), not relying on the automatic preset-switch behavior.
 
 ## `platform_customizations`: don't touch it
 
@@ -131,8 +133,7 @@ A merchant who installed the theme last month, and never touched the color setti
 - **Renaming a setting `id`** without a migration plan, silently discarding merchant customizations.
 - **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs.
 
-## Quick Reference
-
+## Key Takeaways
 - Required: `current`, `presets`. Optional, Shopify-managed: `platform_customizations`.
 - Hard limits: 5 presets max, 1.5MB file size max.
 - A preset switch changes only presentational settings (`color`, `color_background`, `color_palette`, `color_scheme`, `color_scheme_group`, `font_picker`, `checkbox`, `number`, `radio`, `range`, `select`) — never content settings.
@@ -142,6 +143,6 @@ A merchant who installed the theme last month, and never touched the color setti
 ## Further Reading
 
 - [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/): the definition file these values are shaped by
-- [Theme Presets](/config-and-settings/theme-presets/): extending `presets` to support more than one theme style
+- [Theme Presets](/presets/theme-presets/): extending `presets` to support more than one theme style
 - [Settings Conventions & Best Practices](/config-and-settings/settings-conventions-and-best-practices/): the pre-ship checklist for both files together
 - [`settings_data.json`](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-data-json) (shopify.dev)

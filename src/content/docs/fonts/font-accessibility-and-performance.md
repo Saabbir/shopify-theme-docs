@@ -3,6 +3,8 @@ title: Font Accessibility & Performance
 description: Readable sizes and line-height, and why font_picker's built-in loading beats a custom web font import.
 ---
 
+**TL;DR:** Readable sizes and line-height, and why font_picker's built-in loading beats a custom web font import.
+
 Typography choices affect two things reviewers and real users both notice: whether text is comfortable to read, and how much a font adds to page load. Both are checkable, not subjective.
 
 ## Readability: size, line-height, and line length
@@ -42,7 +44,7 @@ This overlaps with the general accessibility checklist (see [Accessibility (WCAG
 | Let `font_face` (see [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/)) handle font loading | Hand-write your own `@font-face` rules pointing at an external font host |
 | Load only the weights/styles the theme actually uses | Load every weight and style "just in case" |
 
-`font_picker` fonts are served from Shopify's own CDN, already optimized (WOFF2 with WOFF fallback) and cached alongside the rest of the store's assets. A custom `@import` from Google Fonts or another external host adds an extra DNS lookup, an extra connection, and a render-blocking request that Shopify's own delivery avoids. See [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/) for how font loading fits into the broader performance picture.
+`font_picker` fonts are served from Shopify's own CDN, already optimized (WOFF2 with WOFF fallback) and cached alongside the rest of the store's assets. A custom `@import` from Google Fonts or another external host adds an extra DNS lookup, an extra connection, and a render-blocking request that Shopify's own delivery avoids. See [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/) for how font loading fits into the broader performance picture.
 
 ### Only load the weights you actually use
 
@@ -70,8 +72,7 @@ Without `font_display: 'swap'`, some browsers hide text entirely until the custo
 - **Generating `font_face` for every possible weight and style** instead of only the ones the theme's CSS actually references.
 - **Omitting `font_display: 'swap'`**, which can leave text invisible during font load on some browsers.
 
-## Quick Reference
-
+## Key Takeaways
 - Body text: 16px+ minimum, 1.4–1.6 line-height, ~65ch max line length.
 - Every heading level visually distinct from its neighbors.
 - Use `font_picker`/`font_face`, never a custom `@import` or external font host.
@@ -81,4 +82,4 @@ Without `font_display: 'swap'`, some browsers hide text entirely until the custo
 
 - [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/): the `font_face`/`font_modify` filters referenced above
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the broader accessibility checklist this page's readability section belongs to
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): where font loading fits into overall page performance
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): where font loading fits into overall page performance

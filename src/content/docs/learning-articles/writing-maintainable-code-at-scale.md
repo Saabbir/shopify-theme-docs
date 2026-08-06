@@ -3,6 +3,8 @@ title: "Learning Article: Writing Maintainable Code at Scale"
 description: What actually keeps a theme codebase manageable in year three, not just week one.
 ---
 
+**TL;DR:** What actually keeps a theme codebase manageable in year three, not just week one.
+
 Any theme is easy to keep clean on day one. The real test comes later. Picture a codebase with 60 sections, three years of merchant feature requests, and five developers who've rotated through it over time. Does it stay easy to understand, or does every change require digging through old history first? This article covers the habits that decide which outcome you get.
 
 ## Step 1: consistency compounds — and so does inconsistency
@@ -100,8 +102,7 @@ The discipline here isn't "review everything on a schedule." That's unrealistic 
 - **Relying on memory for anything more than one person needs to remember.** This is exactly where a checklist, a lint rule, or a CI check pays for itself.
 - **Letting a first wrong-pattern instance stand** "just this once," which becomes the template the next developer copies.
 
-## Quick Reference
-
+## Key Takeaways
 - Consistency compounds, and so does inconsistency. Fix the first wrong instance, don't let it become precedent.
 - Extract abstractions from a third real occurrence, not a second guess.
 - Name for role, not current appearance.

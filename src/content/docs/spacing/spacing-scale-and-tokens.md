@@ -3,6 +3,8 @@ title: Spacing Scale & Tokens
 description: A defined spacing scale instead of one-off values, fluid spacing with clamp(), and naming rules.
 ---
 
+**TL;DR:** A defined spacing scale instead of one-off values, fluid spacing with clamp(), and naming rules.
+
 Spacing is the token type most likely to quietly fall apart in a large theme, because a one-off `padding: 18px` doesn't look wrong the way a clashing color does. It just slowly makes "the spacing scale" stop meaning anything. This page covers building a scale that holds up.
 
 ## A scale, not a pile of one-off values
@@ -103,8 +105,7 @@ Most spacing values stay fixed in CSS rather than becoming merchant-facing setti
 - **Skipping the semantic layer** for spacing that's reused for one specific purpose, making a later change to "section spacing" a find-and-replace job instead of a one-line edit.
 - **Writing a separate padding/margin override per breakpoint** instead of one `clamp()` declaration.
 
-## Quick Reference
-
+## Key Takeaways
 - Define a raw spacing scale (`--space-3xs` through `--space-3xl`, or similar) before writing section CSS.
 - Add semantic roles for spacing reused for one specific purpose.
 - Name tokens after their role or scale position, never their current value.

@@ -3,6 +3,8 @@ title: Complete Worked Example
 description: A full example with a snippet, block, section, schema, theme settings, and presets. Copy and paste it as a starting point, matching Horizon and Skeleton Theme's actual shipped source.
 ---
 
+**TL;DR:** A full example with a snippet, block, section, schema, theme settings, and presets. Copy and paste it as a starting point, matching Horizon and Skeleton Theme's actual shipped source.
+
 Every other page in this handbook covers one rule at a time. This page is different. It puts all of those rules together into one real feature: a testimonials section with a quote block that merchants can reorder. You'll see how the pieces fit together, and you can copy the whole thing as a starting point for your own project.
 
 Every rule used here comes straight from real Shopify code. That includes the LiquidDoc syntax, the locale key structure, the BEM naming pattern for CSS classes, and how setting IDs are written. We checked each of these against Shopify's actual Horizon and Skeleton Theme source code, not just against general guidance. See [AGENTS.md's "Horizon-verified conventions"](/getting-started/setting-up-ai-rules/) to see where each one was confirmed.
@@ -320,8 +322,7 @@ See [Config & Global Settings](/config-and-settings/) for the full difference be
 - **Forgetting the block's `presets` array.** The block still works fine if it's manually added through `@theme`, but it never appears in the picker on its own.
 - **Putting a sitewide choice in one section's own schema** instead of `config/settings_schema.json`. That forces a merchant to set the same value on every section, one by one.
 
-## Quick Reference
-
+## Key Takeaways
 - Snippet: reusable rendering with clear, named parameters. Block: editable by merchants, and can be added, removed, and reordered. A block wraps a snippet when the rendering itself is shared.
 - `{% schema %}` blocks array: use a specific type by default, `@theme` only for general-purpose containers, and always include `@app`.
 - One CSS property that varies becomes a custom property. Several properties that vary together become a class.

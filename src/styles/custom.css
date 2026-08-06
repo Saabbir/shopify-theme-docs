@@ -19,6 +19,16 @@
   /* Reserve space for the absolutely positioned checkbox so wrapped lines
      indent to align under the text, not underneath the checkbox. */
   padding-inline-start: 1.75em;
+  /* The whole item toggles the checkbox (see checklist.js), not just the
+     small checkbox square, so it should look clickable everywhere except
+     over a link, which sets its own cursor. */
+  cursor: pointer;
+}
+
+.sl-markdown-content .checklist-item a {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .sl-markdown-content .checklist-checkbox {

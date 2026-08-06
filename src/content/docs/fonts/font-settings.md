@@ -3,6 +3,8 @@ title: "Font Settings: font_picker"
 description: How font_picker works, the Shopify font library, required defaults, and the Theme Store's font pairing rule.
 ---
 
+**TL;DR:** How font_picker works, the Shopify font library, required defaults, and the Theme Store's font pairing rule.
+
 `font_picker` is the standard way a merchant chooses typefaces in the theme editor. This page covers the setting itself. For the type scale (sizes, line-heights, `clamp()`), see [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/). For reading the chosen font in Liquid and CSS, see [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/).
 
 ## What it actually is
@@ -65,8 +67,7 @@ This is a design-consistency rule as much as a technical one. A theme is easy to
 - **Adding a `font_picker` per section instead of per role.** This lets a merchant unintentionally combine four unrelated typefaces on one page, and fails Theme Store review's pairing rule.
 - **Defaulting to a font that isn't in the current font library**, which breaks on fresh installs and in presets.
 
-## Quick Reference
-
+## Key Takeaways
 - `font_picker` returns a `font` object, populated from Shopify's font library (system fonts + curated Google Fonts).
 - `default` is required, must be a real, currently available font library value.
 - One `font_picker` per role (heading, body), not one per section.

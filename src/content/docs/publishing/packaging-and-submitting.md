@@ -3,6 +3,8 @@ title: Packaging & Submitting
 description: How to build the theme ZIP correctly, and the actual steps for submitting it.
 ---
 
+**TL;DR:** How to build the theme ZIP correctly, and the actual steps for submitting it.
+
 ## Building the ZIP
 
 Your submission is a ZIP file of the theme's root directory. This is the same [folder structure](/codebase-structure/folder-structure/) you've been working in all along.
@@ -75,8 +77,7 @@ You can upload a revised ZIP (using **Upload new zip**) any time before Shopify'
 - **Setting a resource default (a product ID, a metaobject reference) that only exists on the demo store.** This breaks that setting on every fresh install.
 - **Copying every template file into every preset folder** instead of only including overrides. This bloats the ZIP and makes it harder for reviewers, and future you, to see what's actually preset-specific.
 
-## Quick Reference
-
+## Key Takeaways
 - One preset → plain structure. Multiple presets → `/listings/<preset-name>/` overrides.
 - No `release-notes.md` on your first submission.
 - No `config/markets.json` in the zip, ever.

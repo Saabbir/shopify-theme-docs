@@ -3,6 +3,8 @@ title: GitHub Workflow
 description: How branches connect to a theme, how pull requests get reviewed, and what CI checks automatically.
 ---
 
+**TL;DR:** How branches connect to a theme, how pull requests get reviewed, and what CI checks automatically.
+
 Shopify has its own GitHub integration built just for themes. It is not just "we happen to use Git." Shopify adds extra behavior on top of normal Git, and that behavior can catch you off guard if nobody warns you about it first. Learn how it works now, and you will save yourself a confusing first week.
 
 Branch naming and commit conventions are covered earlier, in [Branching & Commits](/getting-started/branching-and-commits/) under Getting Started, since you need them before you make your first commit. This section picks up from there: pull requests, review, and CI.
@@ -35,8 +37,7 @@ Here's how a single Solis change moves from your machine to the live store. Thin
 - **Letting feature branches go stale for weeks.** The eventual PR becomes one big, hard-to-review change instead of several small, easy ones.
 - **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/getting-started/branching-and-commits/) for why this is expected behavior.
 
-## Quick Reference
-
+## Key Takeaways
 - Shopify's GitHub app connects a **branch** to a **theme** in your store. Pushing to that branch updates the theme automatically.
 - Editing the theme in Shopify admin (theme editor or code editor) commits back to that same branch automatically, too. It's a two-way sync.
 - Know which branch is connected to which theme before pushing.

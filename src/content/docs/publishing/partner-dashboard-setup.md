@@ -3,6 +3,8 @@ title: Partner Dashboard Setup
 description: The accounts and access you need before you can submit anything.
 ---
 
+**TL;DR:** The accounts and access you need before you can submit anything.
+
 The Partner Dashboard is a website where you manage everything related to your theme business: your stores, your submissions, and your account settings. Think of it as your control room. Before you can submit a theme, you need a few things set up inside it.
 
 :::note[Flagging this clearly]
@@ -50,8 +52,7 @@ Here's a common, avoidable delay: a theme sits in "changes requested" status for
 - **Turning on developer previews on the store meant to become your demo store**, then finding out it can't be transferred like you need it to be.
 - **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is just slow instead of checking the dashboard directly.
 
-## Quick Reference
-
+## Key Takeaways
 - Partner account (free) + a dev store + a Client transfer store for your demo.
 - Submission contact email is set per theme, separate from your login email. Whitelist Shopify's sender addresses.
 - Check Partner Dashboard status directly during review, don't rely on email alone.

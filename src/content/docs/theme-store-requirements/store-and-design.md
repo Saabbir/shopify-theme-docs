@@ -3,6 +3,8 @@ title: Store & Design Requirements
 description: Exclusivity, uniqueness, design/UX quality, naming, and demo stores.
 ---
 
+**TL;DR:** Exclusivity, uniqueness, design/UX quality, naming, and demo stores.
+
 ## Exclusivity
 
 You can only sell your theme through the Shopify Theme Store. You can't list it, or a near-identical version of it, on any other marketplace. Don't add designer credits or affiliate links anywhere in the theme files either.
@@ -104,8 +106,7 @@ Every preset needs its own demo store. Build it as a [Client transfer store](htt
 - **Picking a theme name that collides with an industry or Shopify term without checking first.** This usually gets caught late, forcing a rename after a lot of work already references the old name.
 - **Leaving demo store text as placeholder copy "for later."** It rarely gets fixed later, and it's an explicit reason themes get rejected.
 
-## Quick Reference
-
+## Key Takeaways
 - Aim for structural uniqueness, not a reskin, and use Skeleton Theme or fully original code as your base.
 - Design is judged on visual quality, layout, consistency, and shopping-flow clarity.
 - Theme names: 1 or 2 words, under 30 characters, not a Shopify, industry, or SEO term.

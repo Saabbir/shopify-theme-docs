@@ -3,6 +3,8 @@ title: Writing Prompts That Work
 description: Prompt patterns that consistently produce code that meets Theme Store requirements.
 ---
 
+**TL;DR:** Prompt patterns that consistently produce code that meets Theme Store requirements.
+
 The rule files covered in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) set standing context. That's information the AI tool always has, in every conversation. The patterns on this page are different: they're for the prompt, the instructions you type in the moment you ask for something.
 
 ## The four things every theme-code prompt should state
@@ -110,8 +112,7 @@ When a prompt is vague and the output doesn't work, the tempting quick fix is to
 - **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-versus-actual correction.
 - **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like, unless you point it there directly.
 
-## Quick Reference
-
+## Key Takeaways
 - State: object type, editable versus fixed, unusual-content behavior, and which existing file to match.
 - Point at real files, not vague descriptions ("like the other one").
 - When correcting output, state expected versus actual, not just "this is wrong."

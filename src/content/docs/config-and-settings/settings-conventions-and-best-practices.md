@@ -3,6 +3,8 @@ title: Settings Conventions & Best Practices
 description: "Day-to-day rules for managing settings_schema.json and settings_data.json together, where t: strings resolve, and a pre-ship checklist."
 ---
 
+**TL;DR:** Day-to-day rules for managing settings_schema.json and settings_data.json together, where t: strings resolve, and a pre-ship checklist.
+
 [settings_schema.json](/config-and-settings/settings-schema-json/) and [settings_data.json](/config-and-settings/settings-data-json/) each get their own deep dive. This page is the day-to-day operating manual: the habits that keep both files consistent with each other as a theme grows past its first few settings.
 
 ## Where `t:` strings actually resolve
@@ -25,7 +27,7 @@ Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:l
 | Add a new theme-wide setting | `settings_schema.json`: add the setting, and add its default to every preset in `settings_data.json` | Forgetting to add a default to *every* preset (not just "Default") leaves other presets with a missing or undefined value |
 | Change a setting's default | `settings_schema.json`'s `"default"` field | This only affects *fresh* installs — see [settings_data.json: a changed default doesn't reach existing merchants](/config-and-settings/settings-data-json/#a-changed-schema-default-doesnt-reach-existing-merchants) |
 | Remove a setting | Remove it from both files | Removing it from `settings_schema.json` without removing the now-orphaned key from every preset in `settings_data.json` leaves dead data lying around (harmless, but untidy) |
-| Add a new preset | `settings_data.json`'s `"presets"` object | See [Theme Presets](/config-and-settings/theme-presets/) for the full workflow, including the 5-preset limit and the Theme Store submission structure |
+| Add a new preset | `settings_data.json`'s `"presets"` object | See [Theme Presets](/presets/theme-presets/) for the full workflow, including the 5-preset limit and the Theme Store submission structure |
 
 ## Checking your changes before shipping
 
@@ -50,8 +52,7 @@ Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:l
 - **Referencing a setting `id` in Liquid that doesn't exist in the schema** (usually a typo). It renders blank silently instead of throwing an error, so it's easy to miss without testing.
 - **Adding a `t:` key to a setting without adding its counterpart to `en.default.schema.json`.** The theme editor shows the raw key text instead of a real label, with nothing flagging the mismatch.
 
-## Quick Reference
-
+## Key Takeaways
 - Every `t:` string in `settings_schema.json` resolves against `locales/en.default.schema.json`, not the storefront's `en.default.json`.
 - Adding a setting: update the schema *and* every preset. Removing a setting: remove it from both, in every preset.
 - A schema default change only reaches fresh installs, never retroactively updates existing merchant stores.
@@ -59,6 +60,6 @@ Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:l
 
 ## Further Reading
 
-- [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) · [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/) · [Theme Presets](/config-and-settings/theme-presets/)
+- [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) · [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/) · [Theme Presets](/presets/theme-presets/)
 - [Managing Locale Files](/internationalization-and-locales/managing-locale-files/): the full picture on schema locale resolution
 - [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) (shopify.dev)

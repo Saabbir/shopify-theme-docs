@@ -3,6 +3,8 @@ title: Liquid Style Guide
 description: Objects, filters, whitespace control, snippet rules, and formatting for writing clean Liquid code.
 ---
 
+**TL;DR:** Objects, filters, whitespace control, snippet rules, and formatting for writing clean Liquid code.
+
 This page is your day-to-day style guide for writing Liquid in a clean, consistent way. If you want to know when to use a snippet versus a theme block, check out [Codebase Structure](/codebase-structure/) instead. This page is only about how the Liquid code itself should look and perform.
 
 ## Whitespace control
@@ -177,8 +179,7 @@ Also, always paginate large collections with `{% paginate collection.products by
 - **Formatting currency or building URLs by hand** instead of using `money`, `url`, or `routes`. This breaks the moment the store's currency format or URL structure turns out to be different from what you assumed.
 - **Using `{% include %}`** out of habit from an older codebase. It's deprecated, and it leaks scope in a way `{% render %}` deliberately avoids.
 
-## Quick Reference
-
+## Key Takeaways
 - Use whitespace control (`{%-`/`-%}`) on logic tags by default.
 - Guard nested object access. Never assume a property exists.
 - Use `money`/`url`/`routes` instead of manual formatting or hardcoded paths.

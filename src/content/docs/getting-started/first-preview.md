@@ -3,6 +3,8 @@ title: Your First Preview
 description: Get a theme running locally in under ten minutes.
 ---
 
+**TL;DR:** Get a theme running locally in under ten minutes.
+
 This page walks you through cloning our scaffold (a starter template we build every theme from) and seeing it live in your browser. It doesn't teach you how everything is built yet. That part comes in [Section 3](/codebase-structure/) and [Section 4](/scaffold-setup/). For now, this page is just about checking that your setup works.
 
 ## 1. Clone the scaffold
@@ -73,8 +75,7 @@ If you make a change and nothing happens, don't assume you broke something. Rest
 - **Running `shopify theme dev` against a live or published theme by accident.** Always confirm the `--store` flag points at your personal dev store, not a shared or production store.
 - **Opening the preview in a browser other than Chrome and reporting it as broken.** This is expected. Hot reload previews only work in Chrome.
 
-## Quick Reference
-
+## Key Takeaways
 - `shopify theme init`: clone the scaffold (new project only, use `git clone` for an existing one).
 - `shopify theme dev --store <store>`: local preview with hot reload (Chrome only).
 - Schema and file-structure changes sometimes need a dev server restart. Try that before debugging.

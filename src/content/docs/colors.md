@@ -3,6 +3,8 @@ title: Colors
 description: Everything about managing color in Solis — settings, tokens, code, and accessibility, from both a developer and merchant perspective.
 ---
 
+**TL;DR:** Everything about managing color in Solis — settings, tokens, code, and accessibility, from both a developer and merchant perspective.
+
 Everything about color, in one place. If you have a question about how color works in Solis, whether you're a developer wiring up settings or a merchant picking brand colors in the theme editor, it should be answered somewhere in this section.
 
 ## What's in this section

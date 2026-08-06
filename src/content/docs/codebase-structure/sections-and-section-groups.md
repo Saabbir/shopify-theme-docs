@@ -3,6 +3,8 @@ title: Sections & Section Groups
 description: The difference between a section and a section group, and why headers and footers are special.
 ---
 
+**TL;DR:** The difference between a section and a section group, and why headers and footers are special.
+
 ## Sections
 
 A section is a Liquid file that includes a `{% schema %}` block. That schema is what lets merchants add, remove, reorder, and configure the section from the theme editor. Any JSON template can include as many sections as it needs.
@@ -111,8 +113,7 @@ Each of those three pieces is its own section file (`sections/footer-menu.liquid
 - **Building one large section that does several jobs** (menu, newsletter, and social all in one file) instead of letting merchants control each piece on its own through a section group.
 - **Forgetting to update the `order` array** when you add a new section to an existing group. The new section still renders, just not where you expect it to.
 
-## Quick Reference
-
+## Key Takeaways
 - A section is the basic unit of page content. A section group manages sections within the header or footer.
 - Header and footer must use section groups. Hardcoding them into `theme.liquid` fails Theme Store review.
 - `{% sections 'group-name' %}` renders a section group from the layout file.

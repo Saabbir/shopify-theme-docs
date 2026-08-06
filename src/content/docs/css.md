@@ -3,6 +3,8 @@ title: CSS
 description: Everything about writing CSS in Solis — units, variables, cascade, architecture, Shopify-specific mechanics, modern features, and performance, all in one place.
 ---
 
+**TL;DR:** Everything about writing CSS in Solis — units, variables, cascade, architecture, Shopify-specific mechanics, modern features, and performance, all in one place.
+
 Everything about CSS, in one place. If you have a question about how to write, structure, or reason about CSS in Solis, it should be answered somewhere in this section.
 
 ## What's in this section
@@ -41,4 +43,4 @@ Start with [units](/css/css-units-rem-em/): almost every value in this handbook'
 
 - [Style Guides](/style-guides/): the broader section this one was split out of, covering JavaScript, Web Components, and Liquid style too
 - [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/): the token domains built on the mechanisms covered here
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the full performance picture beyond CSS
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the full performance picture beyond CSS

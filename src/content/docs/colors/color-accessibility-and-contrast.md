@@ -3,7 +3,9 @@ title: Color Accessibility & Contrast
 description: WCAG 2.1 AA contrast ratios, testing every color scheme a merchant can pick, and the common ways color accessibility breaks.
 ---
 
-Color choices are one of the few places in a theme where "it looks fine to me" isn't good enough evidence. Contrast is a hard number, not a judgment call, and it's one of the nine checkable items in Shopify's [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) requirements. This page is the color-specific half of that broader accessibility bar. For the other eight items, keyboard access, alt text, focus order, and so on, see that page and [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/).
+**TL;DR:** WCAG 2.1 AA contrast ratios, testing every color scheme a merchant can pick, and the common ways color accessibility breaks.
+
+Color choices are one of the few places in a theme where "it looks fine to me" isn't good enough evidence. Contrast is a hard number, not a judgment call, and it's one of the nine checkable items in Shopify's [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) requirements. This page is the color-specific half of that broader accessibility bar. For the other eight items, keyboard access, alt text, focus order, and so on, see that page and [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/).
 
 ## The actual contrast ratios required
 
@@ -90,8 +92,7 @@ button:focus-visible { outline: 2px solid var(--color-focus); }
 - **Treating `color_brightness`'s 0–255 output as a WCAG contrast ratio.** It's a different number, measuring a different thing.
 - **Shipping a background color setting with no paired text color setting**, which makes contrast impossible to check or guarantee. See [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule).
 
-## Quick Reference
-
+## Key Takeaways
 - 4.5:1 for body text, 3:1 for large text (18pt+/14pt+ bold), icons, and UI borders.
 - Test every color scheme a merchant can pick, not just the default.
 - Automate what you can (axe/Lighthouse in CI), manually verify the rest with a contrast checker.
@@ -101,7 +102,7 @@ button:focus-visible { outline: 2px solid var(--color-focus); }
 ## Further Reading
 
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the full nine-item checklist this page's contrast rules belong to
-- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/): the process for keeping accessibility (including contrast) correct across a whole theme project
+- [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/): the process for keeping accessibility (including contrast) correct across a whole theme project
 - [Color Schemes](/colors/color-schemes/): the paired background/text roles this page's testing approach relies on
 - [Color in Liquid & CSS](/colors/color-in-liquid-and-css/): `color_brightness` and other filters referenced above
 - [Accessibility best practices](https://shopify.dev/docs/storefronts/themes/best-practices/accessibility) (shopify.dev)

@@ -3,6 +3,8 @@ title: Color Design Tokens
 description: The three-tier model for structuring color, naming rules, and mapping a Figma color collection onto it.
 ---
 
+**TL;DR:** The three-tier model for structuring color, naming rules, and mapping a Figma color collection onto it.
+
 This page is about how you build your color token system, not how you pull it from Figma or expose it to merchants. See [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) for the general token-pulling workflow, and [Color Palettes](/colors/color-palettes/) / [Color Schemes](/colors/color-schemes/) for the settings that expose color to merchants.
 
 Getting this structure right decides whether your color system still makes sense after 40 sections and three redesigns. Get it wrong, and you quietly end up with colors defined in three different places that don't quite agree with each other.
@@ -162,8 +164,7 @@ Brand colors (primary, secondary, accent) are typically merchant-editable, since
 - **Turning a color that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
 - **Using different semantic role names in different schemes or components** instead of one consistent set, which forces scheme-specific branching everywhere a color is used.
 
-## Quick Reference
-
+## Key Takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.
 - Name color tokens after their role, never their appearance or current hex value.
 - Pull tokens from Figma's Variables panel, not the design canvas.

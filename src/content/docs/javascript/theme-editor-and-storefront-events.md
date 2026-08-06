@@ -3,6 +3,8 @@ title: Theme Editor & Storefront Events
 description: Shopify's built-in JavaScript events for the theme editor, and how to listen for them correctly.
 ---
 
+**TL;DR:** Shopify's built-in JavaScript events for the theme editor, and how to listen for them correctly.
+
 When a merchant customizes a section or block in the theme editor, Shopify swaps the changed HTML straight into the existing page. It does not reload the page. That means any JavaScript that ran when the page first loaded **does not run again** for that new markup, unless you explicitly listen for the events described on this page and rerun your code yourself.
 
 ## The event table
@@ -143,8 +145,7 @@ if (Shopify.inspectMode) {
 - **Setting up a listener, observer, or interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup.** This causes duplicates to pile up across repeated edits in one editor session.
 - **Forgetting to keep a selected section or block scrolled into view,** leaving merchants editing something they can't actually see on screen.
 
-## Quick Reference
-
+## Key Takeaways
 - `shopify:section:load`/`unload`: set up/clean up JS when a section re-renders.
 - `shopify:section:select`/`deselect`, `shopify:block:select`/`deselect`: keep the selected section or block visible, and pause/resume things like autoplay accordingly.
 - `request.design_mode` / `Shopify.designMode`: true anywhere in the theme editor.

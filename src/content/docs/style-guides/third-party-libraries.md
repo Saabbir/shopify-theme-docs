@@ -3,6 +3,8 @@ title: Third-Party Libraries
 description: How to decide whether to add any third-party JS/CSS library, and how to do it correctly if the answer is yes.
 ---
 
+**TL;DR:** How to decide whether to add any third-party JS/CSS library, and how to do it correctly if the answer is yes.
+
 Adding a third-party library sounds free, but it isn't. Every library you add is an ongoing cost, not a one-time convenience.
 
 It needs updating. It can introduce a security hole. It can break when a browser updates. And it adds to the load time of every single page it appears on. This page walks you through how to decide when that trade-off is actually worth it, and how to add a library the right way once you've decided it is.
@@ -24,7 +26,7 @@ Our baseline approach (see [JavaScript Architecture](/javascript/javascript-arch
 
 Sometimes native HTML, CSS, and JavaScript really can't do the job. Think of a rich text editor, a complex date-range picker, or a payment SDK that a payment provider requires you to use. In cases like that, work through the questions below **in order**. Stop as soon as one question rules the library out.
 
-1. **Is it actually required, or does it just save some development time?** A library that saves you a day of work but costs every future page load isn't usually a good trade. See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for why every added script has a real, ongoing cost, not a one-time cost.
+1. **Is it actually required, or does it just save some development time?** A library that saves you a day of work but costs every future page load isn't usually a good trade. See [Performance Strategy](/performance/performance-strategy/) for why every added script has a real, ongoing cost, not a one-time cost.
 2. **What's its actual bundle size, and does it tree-shake?** A library advertised as "lightweight" that still pulls in 200KB of code you never use isn't actually lightweight. Check the real transferred size, not the marketing claim.
 3. **Is it actively maintained?** Look at the last commit or release date, and the number of open issues. A library with no updates in two or more years is a risk, whether or not it currently seems to work, because no one may be around to fix a future browser change or security issue.
 4. **Does it have a license compatible with a commercial Theme Store product?** Confirm the license type. MIT, Apache 2.0, and similar permissive licenses are generally fine. Anything with attribution requirements, copyleft clauses, or unclear commercial terms needs a real check before you ship it in a paid theme.
@@ -82,8 +84,7 @@ If it clears all six questions, go ahead: vendor it into `assets/`, pin the vers
 - **Loading from an unpinned third-party CDN** instead of vendoring a specific, pinned version into `assets/`.
 - **Never revisiting an existing dependency** to check whether it's still maintained or whether a native alternative has since made it unnecessary.
 
-## Quick Reference
-
+## Key Takeaways
 - Default answer: no. Check for a native solution first (`<dialog>`, `scroll-snap`, native form validation, View Transitions).
 - If genuinely needed: check necessity, real bundle size, maintenance status, license, platform conflicts, and whether it can be scoped, in that order.
 - Vendor into `assets/` with a pinned version, loaded `defer` or as a module, scoped to only the section or template that needs it.
@@ -92,4 +93,4 @@ If it clears all six questions, go ahead: vendor it into `assets/`, pin the vers
 ## Further Reading
 
 - [JavaScript](/javascript/) - the native-first baseline this framework supports
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/) - the ongoing cost every added script carries
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/) - the ongoing cost every added script carries

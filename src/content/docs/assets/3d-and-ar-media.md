@@ -3,6 +3,8 @@ title: 3D & AR Media
 description: model_viewer_tag, gating a 3D model's load cost, and adding AR Quick Look / Scene Viewer support via the Shopify-XR library.
 ---
 
+**TL;DR:** model_viewer_tag, gating a 3D model's load cost, and adding AR Quick Look / Scene Viewer support via the Shopify-XR library.
+
 A 3D model is the heaviest media type a Shopify theme can render. It's usually a much larger download than an equivalent product image, and the viewer component itself takes real time to load and parse. This page covers how to render 3D product media correctly, keep its cost under control, and add AR support on top of it. Facts on this page are verified directly against [shopify.dev's `model_viewer_tag` filter reference](https://shopify.dev/docs/api/liquid/filters/model_viewer_tag) and [Support product media](https://shopify.dev/docs/storefronts/themes/product-merchandising/media/support-media).
 
 ## `model_viewer_tag`
@@ -129,8 +131,7 @@ The `shopify-xr` library scans the DOM for `[data-shopify-xr]` elements and atta
 - **Using a fixed 16:9 container for a 3D model**, when a model has no predefined aspect ratio and a square container is the common, correct default.
 - **Building a custom AR integration from scratch** instead of using the `shopify-xr` library, which already handles the iOS/`.usdz` vs. Android/`.glb` device split.
 
-## Quick Reference
-
+## Key Takeaways
 - `model_viewer_tag`: renders a `<model-viewer>` web component with `src`/`alt`/`poster`/`camera-controls` set up automatically.
 - Default `reveal: 'interaction'`, not `auto`. Always a sized `image_size` poster.
 - Square aspect-ratio container (no predefined aspect ratio for 3D models).

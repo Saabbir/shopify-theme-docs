@@ -3,6 +3,8 @@ title: Theme Check & Linting
 description: Automated tools that catch mistakes before a human has to.
 ---
 
+**TL;DR:** Automated tools that catch mistakes before a human has to.
+
 ## Theme Check
 
 Theme Check is Shopify's official linter for Liquid, JSON schema, and theme structure. A linter is a tool that scans your code and flags mistakes automatically, before a real person ever has to spot them by eye. Skeleton Theme already ships with a `.theme-check.yml` config file (a settings file that tells Theme Check which rules to apply), so start from that instead of writing your own rules from scratch.
@@ -74,8 +76,7 @@ If you find yourself turning off the same rule again and again across your codeb
 - **Only running Theme Check right before opening a PR**, instead of running it continuously during development. This turns a five-second fix into a much bigger cleanup job later.
 - **Letting formatting stay inconsistent across contributors** because Prettier isn't set up project-wide. This creates noisy diffs that hide the actual code change during review.
 
-## Quick Reference
-
+## Key Takeaways
 - `shopify theme check`: run it locally, and it runs again automatically in CI.
 - Start from Skeleton Theme's `.theme-check.yml` instead of a blank config.
 - Prettier's official Liquid plugin keeps formatting consistent across contributors (and AI tools too).

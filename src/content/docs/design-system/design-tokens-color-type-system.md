@@ -3,6 +3,8 @@ title: "Design Tokens: The Three-Tier Model"
 description: The general raw-value/semantic-role/component-usage token structure every domain (color, type, spacing) in this handbook builds on.
 ---
 
+**TL;DR:** The general raw-value/semantic-role/component-usage token structure every domain (color, type, spacing) in this handbook builds on.
+
 [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) covers pulling tokens *from* Figma. This article is about something different: the general structure behind the tokens themselves, the same structure color, type, and spacing tokens all follow.
 
 That means the naming and structure choices that decide whether your token system still makes sense after 40 sections and three redesigns. Get it wrong, and you quietly end up with several overlapping systems that don't quite agree with each other.
@@ -100,8 +102,7 @@ Once you allow one exception, the scale stops accurately describing what the the
 - **Letting one-off values pile up** outside the defined scale, until the scale no longer describes what the theme actually uses.
 - **Exposing every token as a merchant setting** just "to be flexible." This creates an overwhelming settings panel and a design that's easier to break than to usefully customize.
 
-## Quick Reference
-
+## Key Takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.
 - Name tokens after their role, never their appearance or current value.
 - Use a defined scale for values that come in a range, not one-off values invented per component.

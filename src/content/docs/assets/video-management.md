@@ -3,6 +3,8 @@ title: Video Management
 description: video_tag and external_video_tag, adaptive HLS streaming, autoplay rules, poster images, and responsive video containers.
 ---
 
+**TL;DR:** video_tag and external_video_tag, adaptive HLS streaming, autoplay rules, poster images, and responsive video containers.
+
 Shopify handles two different kinds of product video: video files a merchant uploads directly (`media_type == 'video'`), and externally-hosted YouTube or Vimeo videos a merchant links (`media_type == 'external_video'`). Each has its own Liquid filter, and treating them the same way loses real functionality. Facts on this page are verified directly against [shopify.dev's `video_tag` filter reference](https://shopify.dev/docs/api/liquid/filters/video_tag) and [Support product media](https://shopify.dev/docs/storefronts/themes/product-merchandising/media/support-media).
 
 ## `video_tag` for Shopify-hosted video
@@ -116,8 +118,7 @@ A product can have multiple videos. If your theme shows a thumbnail view for eac
 - **Not wrapping an external (`iframe`-based) video in an aspect-ratio container**, since it isn't responsive by default the way a Shopify-hosted video is.
 - **Letting a background video keep playing in an inactive carousel slide.**
 
-## Quick Reference
-
+## Key Takeaways
 - `video_tag` for Shopify-hosted video (gets adaptive HLS automatically, unless `loop` is set); `external_video_tag` for YouTube/Vimeo.
 - Lazy-loading defaults to `lazy` below the fold automatically — override only when needed.
 - Autoplay only muted, only deliberately; every HTML5 video attribute is available as a parameter.
@@ -128,6 +129,6 @@ A product can have multiple videos. If your theme shows a thumbnail view for eac
 
 - [Responsive Images](/assets/responsive-images/): the same sizing discipline applied to poster images
 - [3D & AR Media](/assets/3d-and-ar-media/): the same aspect-ratio-container pattern applied to 3D product media
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the lazy-loading and preload discussion this builds on
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the lazy-loading and preload discussion this builds on
 - [`video_tag`](https://shopify.dev/docs/api/liquid/filters/video_tag) (shopify.dev)
 - [Support product media](https://shopify.dev/docs/storefronts/themes/product-merchandising/media/support-media) (shopify.dev)

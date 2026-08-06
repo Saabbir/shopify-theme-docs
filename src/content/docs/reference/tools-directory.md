@@ -3,6 +3,8 @@ title: Tools Directory
 description: Which tool to use for which job, a short list we picked, not a complete one.
 ---
 
+**TL;DR:** Which tool to use for which job, a short list we picked, not a complete one.
+
 This list is short on purpose. It only covers tools we actually use, or have tried ourselves, and we've organized it by the job each tool solves. It's not a full survey of everything on the market.
 
 ## Local development & preview
@@ -78,8 +80,7 @@ This isn't the project's default setup. Before you add it to a project, read [Ta
 - **Using a browser other than Chrome for `theme dev`, then wondering why hot-reload doesn't work.** This is a known Chrome-only limitation, not a bug.
 - **Skipping axe or manual accessibility checks just because Lighthouse passed.** Lighthouse's accessibility score is automated, so it misses things a real audit would catch (see [Accessibility](/theme-store-requirements/accessibility/)).
 
-## Quick Reference
-
+## Key Takeaways
 - Local dev: Shopify CLI + Chrome. AI: Claude Code, Cursor, or Copilot, kept in sync with AGENTS.md. Design: Figma + Dev Mode + MCP. Quality checks: Theme Check + Lighthouse + axe. Optional build tools: Vite + Tailwind + Alpine.
 
 ## Further Reading

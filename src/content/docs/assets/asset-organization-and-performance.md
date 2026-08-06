@@ -3,6 +3,8 @@ title: Asset Organization & Performance
 description: The rules shared across every media type — reserving space, hosting on Shopify's CDN, naming and pruning assets, and auditing for bloat over time.
 ---
 
+**TL;DR:** The rules shared across every media type — reserving space, hosting on Shopify's CDN, naming and pruning assets, and auditing for bloat over time.
+
 [Icon Management](/assets/icon-management/), [Responsive Images](/assets/responsive-images/), [Video Management](/assets/video-management/), and [3D & AR Media](/assets/3d-and-ar-media/) each cover one media type in depth. This page covers what's shared across all of them: the one performance rule that applies no matter the media type, how Shopify's CDN hosting actually works, and the organizational habits that keep a theme's asset footprint maintainable as it grows past its first few sections.
 
 ## The one rule that applies to every media type: reserve its space
@@ -62,7 +64,7 @@ You can add up to two resource hints per template, using the [`preload_tag` filt
 {{ section.settings.hero_image | image_url: width: 1600 | image_tag: preload: true, loading: 'eager', fetchpriority: 'high' }}
 ```
 
-See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for the fuller preload/prefetch/preconnect discussion — the same "use sparingly" rule that applies to CSS and JS resource hints applies here too.
+See [Performance Strategy](/performance/performance-strategy/) for the fuller preload/prefetch/preconnect discussion — the same "use sparingly" rule that applies to CSS and JS resource hints applies here too.
 
 ## Naming and organizing assets so they scale
 
@@ -83,7 +85,7 @@ A theme's media footprint tends to grow in one direction, additively, unless som
 - **Grep for `render 'icon-`** across the codebase before deleting a section or feature, and remove any icon snippet nothing renders anymore in the same PR. See [Icon Management: keeping the icon set maintainable](/assets/icon-management/#keeping-the-icon-set-maintainable-as-it-grows) for the full habit.
 - **Check `assets/` for orphaned static files** — an old hero background image or a logo variant from a since-reverted design change, still sitting in the folder and still shipping in every theme package even though nothing references it anymore.
 - **Re-check `reveal: 'interaction'` and lazy-loading defaults after a redesign.** A section that moves from below the fold to above it (or vice versa) needs its loading behavior re-verified, not left on whatever default it happened to load with originally.
-- **Run Lighthouse after adding any new media-heavy section**, not just at the pre-submission audit. A single unsized image or a missed `reveal: 'interaction'` default is a much smaller fix caught immediately than it is three sections later. See [Performance Strategy: phase by phase](/performance-and-accessibility/performance-strategy/#a-performance-plan-phase-by-phase) for the full milestone-audit habit this applies to media specifically.
+- **Run Lighthouse after adding any new media-heavy section**, not just at the pre-submission audit. A single unsized image or a missed `reveal: 'interaction'` default is a much smaller fix caught immediately than it is three sections later. See [Performance Strategy: phase by phase](/performance/performance-strategy/#a-performance-plan-phase-by-phase) for the full milestone-audit habit this applies to media specifically.
 
 ## Best practices
 
@@ -101,8 +103,7 @@ A theme's media footprint tends to grow in one direction, additively, unless som
 - **Never re-checking a media element's loading defaults after a redesign moves it above or below the fold.**
 - **Treating a media-heavy section's performance impact as something to check only at the pre-submission Lighthouse run**, instead of at the milestone it was actually added.
 
-## Quick Reference
-
+## Key Takeaways
 - Reserve space for every media type before it loads: explicit dimensions or `aspect-ratio`.
 - Host static assets (`assets/` folder) on Shopify's own CDN; product/variant/collection media is already CDN-hosted via the Admin.
 - `preload_tag` / `image_tag`'s `preload` param: at most one or two per template, reserved for the real LCP candidate.
@@ -112,6 +113,6 @@ A theme's media footprint tends to grow in one direction, additively, unless som
 ## Further Reading
 
 - [Icon Management](/assets/icon-management/) · [Responsive Images](/assets/responsive-images/) · [Video Management](/assets/video-management/) · [3D & AR Media](/assets/3d-and-ar-media/)
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the theme-wide performance plan this page's media-specific rules plug into
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the theme-wide performance plan this page's media-specific rules plug into
 - [Performance best practices for Shopify themes](https://shopify.dev/docs/storefronts/themes/best-practices/performance) (shopify.dev)
 - [`preload_tag`](https://shopify.dev/docs/api/liquid/filters/preload_tag) (shopify.dev)

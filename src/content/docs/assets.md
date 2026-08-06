@@ -3,6 +3,8 @@ title: Assets Management
 description: Everything media in one place — icons, responsive images, video, and 3D/AR product media, with maintainability and performance as the throughline.
 ---
 
+**TL;DR:** Everything media in one place — icons, responsive images, video, and 3D/AR product media, with maintainability and performance as the throughline.
+
 This section covers every kind of media asset in this theme: icons, product and static images, video, and 3D/AR models. Each media type gets its own dedicated page, and one shared page ties together the rules that apply no matter which type you're working with. Facts throughout this section are verified directly against Shopify's own Liquid filter references and best-practices documentation, not just general web knowledge.
 
 ## Quick answers
@@ -41,6 +43,6 @@ Every page in this section could stop at "here's the Liquid filter that renders 
 
 ## Further Reading
 
-- [Performance & Accessibility](/performance-and-accessibility/): the theme-wide performance and accessibility strategy this section's media-specific pages plug into
+- [Performance](/performance/) and [Accessibility](/accessibility/): the theme-wide performance and accessibility strategy this section's media-specific pages plug into
 - [Design System & Configuration](/design-system/): the tokens and settings architecture icons and other assets are configured through
 - [Performance best practices for Shopify themes](https://shopify.dev/docs/storefronts/themes/best-practices/performance) (shopify.dev)

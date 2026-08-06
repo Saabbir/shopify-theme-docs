@@ -3,7 +3,9 @@ title: "AI Coding Concepts: Agents, MCP, Skills, Commands & Plugins"
 description: A plain-language guide to the words used in this section. Read this one first if any of them are new to you.
 ---
 
-The rest of this section uses words like MCP, skill, subagent, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 16 builds on the five ideas below.
+**TL;DR:** A plain-language guide to the words used in this section. Read this one first if any of them are new to you.
+
+The rest of this section uses words like MCP, skill, subagent, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 18 builds on the five ideas below.
 
 ## What makes a tool "agentic" — Claude Code, Cursor, Copilot
 
@@ -99,7 +101,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 ## Best practices
 
-- Read this page once, all the way through, before you move on to the rest of section 16. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which.
+- Read this page once, all the way through, before you move on to the rest of section 18. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which.
 - When you're deciding how to automate something you keep doing, ask yourself a few questions. Does it need to apply to *everything*? Use `AGENTS.md`. Does it need to trigger *automatically* on relevant tasks? Use a skill. Do you want to trigger it *by name*? Use a command. Is it noisy, or does it need a limited set of tools? Use a subagent.
 - Don't confuse "installed a plugin" with "wrote a skill." A plugin is just how you install things. The skill, command, subagent, or MCP connection inside it is what actually does the work.
 
@@ -110,8 +112,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 - **Assuming a subagent is just "a slower command."** The point isn't speed. It's keeping your main conversation clean and limiting which tools the subagent can use.
 - **Treating `AGENTS.md` as one of these four mechanisms.** It's static, always-loaded context. It doesn't turn on conditionally, and nothing needs to trigger it.
 
-## Quick Reference
-
+## Key Takeaways
 - **MCP server** = a connection to outside data or services. **Skill** = instructions that turn on automatically. **Command** = a saved prompt you trigger by hand. **Subagent** = a separate worker with limited tools. **Plugin** = a bundle of any or all of the above, installed as one unit.
 - `AGENTS.md` is none of these. It's always-loaded, static context.
 - This handbook's examples: Figma MCP server and Shopify Dev MCP server (MCP), `shopify-liquid` (skill), `/figma-to-liquid` and others (commands), `theme-check-fixer` (subagent), Shopify AI Toolkit and Figma's plugin (plugins).

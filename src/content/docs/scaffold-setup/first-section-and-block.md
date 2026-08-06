@@ -3,6 +3,8 @@ title: Your First Section & Block
 description: A worked example of a testimonial section with a nestable quote block.
 ---
 
+**TL;DR:** A worked example of a testimonial section with a nestable quote block.
+
 In this guide, you'll build something real: a "Testimonials" section that merchants can add to any page of their store, with "Quote" blocks merchants can add, remove, and reorder.
 
 Let's build the block first, then the section that holds it.
@@ -177,8 +179,7 @@ Here's one more way to handle that case: hide the whole section when there are n
 - **Forgetting blank checks around optional settings.** This leaves empty tags in the final HTML, which a real accessibility or HTML validator would flag as a problem.
 - **Using `@theme` on a purpose-built section "just in case."** It's better to limit the section to the exact block types it's actually designed for.
 
-## Quick Reference
-
+## Key Takeaways
 - Block file → `{% schema %}` with settings + presets → done.
 - Section file → `{% content_for 'blocks' %}` + a `"blocks"` array in its schema → hosts the block.
 - Restrict a section to specific block types instead of `@theme` when it has one clear purpose.

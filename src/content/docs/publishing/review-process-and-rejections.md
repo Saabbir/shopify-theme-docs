@@ -3,6 +3,8 @@ title: Review Process & Rejections
 description: Shopify's 5-stage review, and how to handle a rejection without getting suspended.
 ---
 
+**TL;DR:** Shopify's 5-stage review, and how to handle a rejection without getting suspended.
+
 ## The 5 stages
 
 Shopify's review team checks these stages in order, one after another, and if you fail one stage, the review stops right there. You don't move on to the next one until you fix it and resubmit.
@@ -64,8 +66,7 @@ The review team mainly works EST business hours, Monday through Friday. If a cha
 - **Resubmitting right after the first fix**, without doing a fresh full QA pass, risking a second rejection for something unrelated that never actually got re-checked.
 - **Guessing at unclear feedback instead of asking.** The reply channel exists specifically for clarifying questions.
 
-## Quick Reference
-
+## Key Takeaways
 - 5 sequential stages: Features/OS 2.0 → Lighthouse → Technical → Design/UX → Pre-launch.
 - A rejection email lists the exact changes required. Fix those specifically, and check for the same pattern elsewhere before resubmitting.
 - Resubmitting without addressing rejection reasons risks a submission suspension.

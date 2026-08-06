@@ -3,6 +3,8 @@ title: Store Setup for Submission
 description: The step-by-step checklist for setting up a demo store correctly, separate from account setup and content quality.
 ---
 
+**TL;DR:** The step-by-step checklist for setting up a demo store correctly, separate from account setup and content quality.
+
 A demo store is a real, working Shopify store that you set up just to show off your theme. Shoppers browsing the Theme Store, and Shopify's reviewers, click through it like a real customer would, so it needs to look and behave like one.
 
 [Partner Dashboard Setup](/publishing/partner-dashboard-setup/) covers the *accounts* you need. [Store & Design Requirements](/theme-store-requirements/store-and-design/) covers the *quality bar* your demo store's photos and copy need to meet. This page is the checklist in between: how to actually set up a demo store so it's ready for a reviewer to open and test.
@@ -77,8 +79,7 @@ Only install apps on a demo store if they're incidental to showing off the theme
 - **Submitting against a stale demo store** that doesn't reflect the actual version under review.
 - **Leaving policy pages as placeholder text**, which undermines the "realistic store" impression the whole requirement is about.
 
-## Quick Reference
-
+## Key Takeaways
 - One demo store per preset, matching its positioning; same storefront password across all of them.
 - Show real catalog variety: on-sale, sold-out, multi-variant, gift card, and a long title.
 - Keep the demo store's theme version current, and its admin presentable. Reviewers may access both.

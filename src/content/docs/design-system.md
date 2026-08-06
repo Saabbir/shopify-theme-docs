@@ -3,6 +3,8 @@ title: Design System & Configuration
 description: How Figma design tokens become theme settings that are easy to maintain and easy for merchants to use.
 ---
 
+**TL;DR:** How Figma design tokens become theme settings that are easy to maintain and easy for merchants to use.
+
 Every theme has two different people who care about its design choices. There's you, the developer who writes the CSS. And there's the merchant, who uses Shopify's theme editor to pick colors and fonts without touching any code.
 
 This section is about the layer that serves both of you: the general design token model, and how a Figma token becomes a real theme setting.
@@ -35,8 +37,7 @@ Read this section fully before your theme grows past a handful of sections. Addi
 
 - **Building sections before you settle on a token system.** You end up adding tokens later, on top of a growing pile of hardcoded values.
 
-## Quick Reference
-
+## Key Takeaways
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/)
 - For color, fonts, spacing, assets, or settings_schema.json/presets specifically: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/), [Assets Management](/assets/), [Config & Global Settings](/config-and-settings/).
 

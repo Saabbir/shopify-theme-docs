@@ -3,6 +3,8 @@ title: "Color Palettes: the color_palette Setting"
 description: Shopify's newer color_palette setting, one shared grid of brand colors that merchants edit directly, instead of separate color settings.
 ---
 
+**TL;DR:** Shopify's newer color_palette setting, one shared grid of brand colors that merchants edit directly, instead of separate color settings.
+
 Shopify added a new theme setting type called `color_palette` in the [Spring '26 Edition](https://shopify.dev/changelog/color-palettes) (June 17, 2026). This one is brand new, not a renamed version of something that already existed.
 
 It changes how you should think about a theme's color system going forward, so it gets its own page here. Keep in mind that this handbook's [Color Design Tokens](/colors/color-design-tokens/) and [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) pages were written before `color_palette` existed.
@@ -198,8 +200,7 @@ In practice, that means:
 - **Migrating already-shipped `color` settings to reference the palette as a quick, unplanned change.** Treat this as its own deliberate, reviewed change instead, since it touches shipped setting defaults that merchants may have already customized.
 - **Assuming Skeleton Theme, our scaffold, already includes this.** Check the live repo before assuming. As of this writing, it doesn't.
 
-## Quick Reference
-
+## Key Takeaways
 - One `color_palette` per theme, and it only lives in `settings_schema.json`. Only `id` (required) and `default` (required, 2 to 20 hex-color pairs, no alpha) are supported. No `label`, `info`, or `visible_if`.
 - Read it with `settings.<id>.<key>`. It returns a full `color` object, so every color filter still works.
 - `color`/`color_background` settings can default to a palette entry, like `"default": "{{ settings.colors.primary }}"`. Only palette references work as dynamic defaults.

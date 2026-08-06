@@ -3,6 +3,8 @@ title: Getting Started
 description: What this handbook is, who it's for, and how to use it.
 ---
 
+**TL;DR:** What this handbook is, who it's for, and how to use it.
+
 This handbook is the one place our team goes to learn how to build a Shopify theme from scratch. It also covers how to get that theme approved on the [Shopify Theme Store](https://themes.shopify.com/). It walks you through everything, from your first day on the project to the day you submit the finished theme for review.
 
 This handbook is written for developers who've already worked on a Shopify theme: you know Liquid, you've built sections, snippets, and blocks, and you're comfortable in the Shopify admin. It's not a Shopify or Liquid tutorial. It's the specific conventions, stricter Theme Store bar, and AI-assisted workflow this team uses. See [What This Handbook Covers](/getting-started/how-to-use-this-handbook/) for the full picture of who this is (and isn't) for. The examples use **Solis**, our current Theme Store project, but everything here applies to any Shopify theme we build in the future. This handbook won't get retired once Solis ships.
@@ -35,13 +37,14 @@ Be careful with older Shopify tutorials or blog posts you find online. Many of t
 | 4 | [Scaffold Setup Guide](/scaffold-setup/) | Step-by-step: build your first section and block. |
 | 5 | [Design System & Configuration](/design-system/) | Figma tokens, color/type system, presets, icons. |
 | 6 | [Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid conventions. |
-| 7 | [Performance & Accessibility](/performance-and-accessibility/) | Accessibility, performance strategy, media optimization. |
-| 8 | [AI-Assisted Development](/ai-assisted-development/) | How we use Cursor / Claude Code, and how we go from Figma to code. |
-| 9 | [GitHub Workflow](/github-workflow/) | Pull requests, review, and CI on this project. |
-| 10 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
-| 11 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
-| 12 | [Tooling & Config](/tooling-config/) | Project files, packaging exclusions, optional build setups. |
-| 13 | [Learning Articles](/learning-articles/) | Deeper dives on CSS, JS, Liquid, locales, maintainable code. |
+| 7 | [Performance](/performance/) | Performance strategy, the critical rendering path, budgets and audits. |
+| 8 | [Accessibility](/accessibility/) | Building accessibility into a section from the start, and keeping it consistent theme-wide. |
+| 9 | [AI-Assisted Development](/ai-assisted-development/) | How we use Cursor / Claude Code, and how we go from Figma to code. |
+| 10 | [GitHub Workflow](/github-workflow/) | Pull requests, review, and CI on this project. |
+| 11 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
+| 12 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
+| 13 | [Tooling & Config](/tooling-config/) | Project files, packaging exclusions, optional build setups. |
+| 14 | [Learning Articles](/learning-articles/) | Deeper dives on CSS, JS, Liquid, locales, maintainable code. |
 | 14 | [Reference](/reference/) | Cheatsheet, glossary, tools directory. |
 
 Read section 1 in full before you touch any code, it's the setup you need in place first. Then read sections 2 to 4 in order, once, at the start of the project. After that, use this handbook as a reference instead of reading it front to back. Jump to whatever section answers your current question, or use the search bar (top left) to find a topic fast.
@@ -72,8 +75,7 @@ If you're joining the Solis project without any background on it, here's roughly
 - **Assuming "it works on my dev store" means "it's done."** A change that works with your test data can still fail Theme Store review the moment it hits an empty collection or a 200-character title. Check [Theme Store Requirements](/theme-store-requirements/) before you call anything finished.
 - **Not asking when you're uncertain.** If a requirement or pattern in this handbook seems to conflict with what you're being asked to build, flag it. Don't quietly guess and hope it's fine.
 
-## Quick Reference
-
+## Key Takeaways
 - This handbook follows **Horizon's way of building things**, but we scaffold from **Skeleton Theme**, never Dawn, and never Horizon directly.
 - Written for developers who already know Liquid, sections/snippets/blocks, and the Shopify admin. This handbook covers our project-specific conventions and stricter Theme Store bar, not Shopify or Liquid fundamentals.
 - Section 1 is setup, do it first. Sections 2–4 are read-once onboarding after that. Everything from section 5 onward is a reference you come back to as needed.

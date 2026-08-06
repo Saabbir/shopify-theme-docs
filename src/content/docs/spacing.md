@@ -3,6 +3,8 @@ title: Spacing
 description: Everything about managing spacing in Solis — the scale, settings, and code, from both a developer and merchant perspective.
 ---
 
+**TL;DR:** Everything about managing spacing in Solis — the scale, settings, and code, from both a developer and merchant perspective.
+
 Everything about spacing, in one place. If you have a question about how spacing works in Solis, whether you're a developer defining the scale or deciding whether a value should be merchant-editable, it should be answered somewhere in this section.
 
 ## What's in this section

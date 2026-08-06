@@ -3,6 +3,8 @@ title: Prerequisites & Setup
 description: Everything you need installed, connected, and verified (accounts, editor, and AI tooling) before writing a single line of code.
 ---
 
+**TL;DR:** Everything you need installed, connected, and verified (accounts, editor, and AI tooling) before writing a single line of code.
+
 This page is your full setup checklist. It covers accounts, core software, your editor (VS Code and/or Cursor), and the AI tools this handbook assumes you have (Claude Code, the Shopify AI Toolkit, and MCP).
 
 Work through this page from top to bottom, once. Then run the [pre-flight checklist](#the-pre-flight-checklist) at the end. That confirms everything actually works together, not just that each piece installed on its own.
@@ -179,8 +181,7 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 - **Copy-pasting an MCP config between VS Code and Cursor/Claude Code without changing the root key.** VS Code uses `servers`. Cursor and Claude Code use `mcpServers`. This is the most common reason a pasted MCP config silently does nothing.
 - **Assuming Cursor's Extensions panel has every VS Code extension.** It doesn't always have everything the full Marketplace has. Confirm the Shopify Liquid extension is actually active in a `.liquid` file instead of assuming the install worked.
 
-## Quick Reference
-
+## Key Takeaways
 - You need: a Partner account, a dev store, Shopify CLI, Node, Git, Chrome, and one AI-assisted editor (Claude Code, Cursor, and/or VS Code + Copilot).
 - VS Code: `Shopify.theme-check-vscode` + Prettier + `anthropic.claude-code` (or Copilot). MCP config: `.vscode/mcp.json`, key `servers`.
 - Cursor: agent mode built in, reads `AGENTS.md` natively, Shopify Liquid extension may need manual VSIX install. MCP config: project-level `.cursor/mcp.json` (committed, key `mcpServers`) for team-shared servers, and global `~/.cursor/mcp.json` only for personal, non-project servers. Never commit literal secrets, use env vars instead.

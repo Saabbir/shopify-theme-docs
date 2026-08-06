@@ -3,6 +3,8 @@ title: Shopify Theme Store Requirements
 description: What Shopify requires before it will list your theme, in plain English.
 ---
 
+**TL;DR:** What Shopify requires before it will list your theme, in plain English.
+
 Shopify's [official requirements page](https://shopify.dev/docs/storefronts/themes/store/requirements) lists 22 numbered rules. Think of this page as a map. Each sub-page below covers a group of those rules in depth. You'll get the reason behind each rule, a code example, and a link back to the exact official rule.
 
 :::caution[Read this first]
@@ -57,8 +59,7 @@ Short on time? Triple-check these before you submit Solis. These are the things 
 - **Assuming something "basically" meets a requirement.** Shopify's review is pass or fail per rule. There's no partial credit for an accessibility rule you "mostly" followed.
 - **Not re-reading updated requirements.** Shopify keeps changing this list on its end. Check the [official page](https://shopify.dev/docs/storefronts/themes/store/requirements) every so often, not just once.
 
-## Quick Reference
-
+## Key Takeaways
 - 22 official requirement categories, all listed at [shopify.dev/.../store/requirements](https://shopify.dev/docs/storefronts/themes/store/requirements).
 - Miss even one requirement and your submission gets rejected. None of these are optional.
 - Test thoroughly before submitting. Shopify rejects poorly-tested themes without further review.

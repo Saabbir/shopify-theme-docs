@@ -3,6 +3,8 @@ title: Managing Locale Files
 description: How to keep translation files organized and complete as your theme grows to support more languages.
 ---
 
+**TL;DR:** How to keep translation files organized and complete as your theme grows to support more languages.
+
 Shopify has a rule about translation. Every piece of text in your theme must be translatable into another language. This rule is called internationalization (see [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/)).
 
 This article covers the everyday work of keeping your `locales/` files correct and complete. As your theme grows past its first language, you need a clear system for managing these files, and that's what this article walks you through.
@@ -375,8 +377,7 @@ Don't assume a country implies a language, or the other way around. A Canadian s
 - **Assuming the storefront's active language also controls what a merchant sees in the theme editor.** They're two independent settings, shopper language vs. merchant admin language, backed by two separate files.
 - **Adding a `t:` key to `settings_schema.json` without a matching entry in `en.default.schema.json`, or using `t:` on a property that isn't actually translatable.** Both fail silently, the editor just shows raw text or the literal key instead of erroring.
 
-## Quick Reference
-
+## Key Takeaways
 - Two file types: `<lang>.json` (storefront) and `<lang>.schema.json` (theme editor). Both need translating.
 - File naming is IETF language tags: `bn.json` for a language, `en-GB.json` when you need a region. Exactly one pair per type gets `.default.`.
 - Limits: 3,400 keys per locale file, 1,000 characters per value.

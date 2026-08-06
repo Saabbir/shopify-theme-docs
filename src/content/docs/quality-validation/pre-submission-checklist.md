@@ -3,6 +3,8 @@ title: Pre-Submission Checklist
 description: The final gate before you submit to the Shopify Theme Store.
 ---
 
+**TL;DR:** The final gate before you submit to the Shopify Theme Store.
+
 Run this checklist once, all the way through, right before you submit. It highlights the highest-risk items from all 22 official requirements. See [Theme Store Requirements](/theme-store-requirements/) for the full detail behind each line.
 
 ## Structural
@@ -74,8 +76,7 @@ A checklist this long is easy to skim past under deadline pressure. Here's a mor
 - **Running this checklist only once, early on**, and assuming later changes don't affect what you already checked.
 - **Having the same person who built a feature be the only one who checks it off here.** Self-review misses the same blind spots that let the issue into the code in the first place.
 
-## Quick Reference
-
+## Key Takeaways
 - This is the last gate, not the first pass. Everything here should already be true well before submission day. You're just confirming it one more time.
 - A single missing item can cause full rejection. Treat every checkbox as required, not optional.
 - Have someone other than the feature's builder run the final pass.

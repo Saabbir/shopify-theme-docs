@@ -3,6 +3,8 @@ title: App Compatibility (App Blocks)
 description: How your theme must make room for merchant apps, without depending on any.
 ---
 
+**TL;DR:** How your theme must make room for merchant apps, without depending on any.
+
 Shopify draws a firm line here. Your theme must let merchant apps plug in, but your theme itself must never depend on an app to work. An "app block" is a slot in a section where a merchant's installed app can add its own content, like a reviews widget, without the merchant touching any code.
 
 ## What you must support
@@ -126,8 +128,7 @@ A merchant who installs a reviews app can now drag its app block in below the de
 - **Assuming the Custom Liquid section alone satisfies the requirement.** The Custom Liquid *block* is a separate, additional requirement, you need both.
 - **Forgetting to test with zero apps installed.** A feature that silently breaks without a specific app is exactly the problem this requirement exists to prevent.
 
-## Quick Reference
-
+## Key Takeaways
 - `@app` blocks required in the main product section and featured product section.
 - A Custom Liquid section + block required, both with a `liquid`-type setting.
 - Never make a feature depend on an app being installed.

@@ -3,6 +3,8 @@ title: "Packaging: Theme Store-Only Directories"
 description: How to submit only the 8 required theme folders, and keep every dev tooling file out of the zip.
 ---
 
+**TL;DR:** How to submit only the 8 required theme folders, and keep every dev tooling file out of the zip.
+
 Your working repo holds far more than Shopify wants to see in a submission. It has Git config, AI rule files, CI workflows, and maybe a whole Tailwind or Alpine build setup too.
 
 None of that extra stuff should end up in your submission zip. This page walks you through the steps for making sure only the required theme files end up in the zip you submit.
@@ -98,8 +100,7 @@ So check that your bundler's output path is actually `assets/`, or that your bui
 - **Letting `.shopifyignore` go stale** as you add new tooling over the life of a project. Often the only sign is a reviewer spotting a `node_modules` folder in your submitted zip.
 - **Assuming that ignoring a build setup's source folder also handles the compiled output.** Excluding the source and getting the output into `assets/` are two different jobs. You need to check both.
 
-## Quick Reference
-
+## Key Takeaways
 - Only `assets/`, `blocks/`, `config/`, `layout/`, `locales/`, `sections/`, `snippets/`, `templates/` should reach a submission.
 - `.shopifyignore` is how you enforce that. List every dev-tooling file and folder there, and keep it current as your tooling changes.
 - Package from a clean clone, then unzip and check it by hand before every submission.

@@ -3,6 +3,8 @@ title: Publishing to Shopify Theme Store
 description: How to set up your Partner Dashboard, package your theme, submit it for review, and handle what happens after approval.
 ---
 
+**TL;DR:** How to set up your Partner Dashboard, package your theme, submit it for review, and handle what happens after approval.
+
 This is the last section of the handbook. Every other section is about building your theme. This section is about the final step: getting your theme in front of real merchants.
 
 ## What's on this page group
@@ -38,8 +40,7 @@ Leave room in your project timeline for at least one round of rejection and resu
 - **Treating submission as a one-shot event**, with no plan for handling a rejection. Build the possibility of a fix-and-resubmit cycle into your timeline from the start.
 - **Not reading [After Approval](/publishing/after-approval/) until after you're approved.** The update and versioning rules affect decisions you should make before you submit, like how you structure your first release.
 
-## Quick Reference
-
+## Key Takeaways
 - Submission happens through your Partner Dashboard, not a code push.
 - Review has 5 stages, one after another. If you fail a stage, the review stops there.
 - Approval isn't the finish line. You're committing to keep updating and supporting the theme.

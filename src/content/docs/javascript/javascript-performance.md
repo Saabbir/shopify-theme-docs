@@ -3,6 +3,8 @@ title: JavaScript Performance
 description: Deferring and scoping scripts, avoiding layout thrashing, and preventing the memory leaks that build up across theme editor sessions.
 ---
 
+**TL;DR:** Deferring and scoping scripts, avoiding layout thrashing, and preventing the memory leaks that build up across theme editor sessions.
+
 Most of a Shopify theme's JavaScript performance problem is solved before you optimize a single line of code, just by scoping scripts correctly with `{% javascript %}` (see [JavaScript in Shopify](/javascript/javascript-in-shopify/)). This page covers what's left: loading scripts without blocking, avoiding layout thrashing, and preventing the slow leaks that build up over a long theme editor session.
 
 ## Deferring and scoping — the two changes that matter most
@@ -107,8 +109,7 @@ The fastest JavaScript is JavaScript that never loads. Before optimizing a scrip
 - **Setting up an observer, interval, or listener with no cleanup**, which is invisible in a single test but compounds across a real theme editor editing session.
 - **Loading a script globally** when only one section on one template actually uses it.
 
-## Quick Reference
-
+## Key Takeaways
 - `type="module"` scripts defer automatically; combine with `{% javascript %}` scoping for the biggest wins.
 - Batch DOM reads, then DOM writes — never alternate them in a loop.
 - Debounce "wait until it stops"; throttle "steady stream"; prefer `IntersectionObserver`/`ResizeObserver` where they fit instead of either.
@@ -119,5 +120,5 @@ The fastest JavaScript is JavaScript that never loads. Before optimizing a scrip
 - [JavaScript in Shopify](/javascript/javascript-in-shopify/): the `{% javascript %}` scoping mechanism this page builds on
 - [Theme Editor & Storefront Events](/javascript/theme-editor-and-storefront-events/): the full cleanup pattern for `shopify:section:unload`
 - [Modern JavaScript Features](/javascript/modern-javascript-features/): `IntersectionObserver`/`ResizeObserver` as alternatives to manual event handling
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the theme-wide performance plan this page is one part of
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the theme-wide performance plan this page is one part of
 - [Performance best practices](https://shopify.dev/docs/storefronts/themes/best-practices/performance) (shopify.dev)

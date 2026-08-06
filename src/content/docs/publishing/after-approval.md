@@ -3,6 +3,8 @@ title: After Approval
 description: How to version your theme, write release notes, and follow the update schedule you're committing to.
 ---
 
+**TL;DR:** How to version your theme, write release notes, and follow the update schedule you're committing to.
+
 Getting approved is not the end of the work. It's the start of an ongoing commitment. Shopify requires Theme Partners (that's you, as the theme's developer) to keep updating and supporting their theme after it's live.
 
 ## Versioning (semantic versioning, `X.Y.Z`)
@@ -101,8 +103,7 @@ You must wait at least **4 weeks** between updates. The one exception is your fi
 - **Writing release notes in developer language**, like "refactored the cart total calculation," instead of describing the impact for merchants, like "fixed an issue where the cart total didn't update immediately."
 - **Reducing a section or block limit** in an update, without realizing this alone will get the update rejected.
 
-## Quick Reference
-
+## Key Takeaways
 - Semantic versioning uses `X.Y.Z`: major (breaking change), minor (compatible addition), patch (fix). The highest-impact change in a release sets the version bump.
 - `release-notes.md` is required starting with your first update, and it should be written for merchants.
 - Automated updates are easier on merchants. Batch schema-breaking changes together instead of spreading them out.

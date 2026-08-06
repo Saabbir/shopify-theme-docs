@@ -3,6 +3,8 @@ title: Cheatsheet
 description: Day-to-day commands, objects, filters, and syntax, in a quick-lookup format.
 ---
 
+**TL;DR:** Day-to-day commands, objects, filters, and syntax, in a quick-lookup format.
+
 ## Shopify CLI commands
 
 | Command | Does |

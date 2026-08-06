@@ -3,6 +3,8 @@ title: Clean Code Principles
 description: What clean, modular, readable code looks like in a Shopify theme, with one complete worked example.
 ---
 
+**TL;DR:** What clean, modular, readable code looks like in a Shopify theme, with one complete worked example.
+
 "Clean code" is a phrase people use a lot, but it's hard to pin down. It becomes clear once you see two versions of the same code side by side, and you can point at exactly what makes one harder to work with than the other.
 
 This page does that for you. First, it lists the principles briefly. Then it walks through one full example from start to finish: a messy version of a section, and a clean version of the same section, so every principle is tied to something real you can see.
@@ -174,10 +176,9 @@ Notice that the clean version isn't cleverer than the messy one. If anything, it
 
 - **Optimizing for fewer lines instead of faster understanding.** Clean code is judged by how quickly the next person gets it, not by how few characters it uses.
 - **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS. This makes a section's visual behavior harder to find, override, or make responsive.
-- **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/) both warn about.
+- **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/) both warn about.
 
-## Quick Reference
-
+## Key Takeaways
 - Readable over clever, modular over monolithic, named for meaning, consistent, and guarded: five principles you can actually check for, not just a vague feeling.
 - The worked example above is the concrete reference. When you're not sure what "clean" means here, compare your code against it.
 - Clean code is judged by how fast the next reader understands it, not by how short it is.

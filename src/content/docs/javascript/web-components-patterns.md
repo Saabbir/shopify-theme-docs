@@ -3,6 +3,8 @@ title: "Web Components: Two Patterns"
 description: Two valid patterns for a theme Web Component, a simple one and Horizon's advanced one, and how to choose between them.
 ---
 
+**TL;DR:** Two valid patterns for a theme Web Component, a simple one and Horizon's advanced one, and how to choose between them.
+
 [JavaScript Architecture](/javascript/javascript-architecture-state-and-events/) covers the basic rules: build with progressive enhancement, use `CustomEvent` instead of coupling components directly together, and clean up after yourself. This page goes a step further.
 
 It covers two real patterns for structuring what's inside a component. We checked both against what Shopify's own Horizon theme actually ships, and this page shows you how to decide which one a given component needs.
@@ -186,8 +188,7 @@ Reach for Shadow DOM only when you specifically need style or DOM isolation stro
 - **Attaching Shadow DOM out of habit,** thinking "that's what real Web Components do," when light DOM would have kept global styles and accessibility tools working with zero extra effort.
 - **Forgetting the `customElements.get` guard,** which causes an "already defined" error the first time a component's module happens to run twice.
 
-## Quick Reference
-
+## Key Takeaways
 - Two valid patterns: simple (`HTMLElement`, manual `querySelector`/`addEventListener`) and advanced (shared `Component` base class, `ref` attributes, declarative `on:*` event binding). Pick based on how much repeated code the theme actually has, not by default.
 - Tag names: kebab-case. `ref` names: camelCase. Use `data-testid` for external test hooks, kept separate from `ref`.
 - Use light DOM by default. Reach for Shadow DOM only when you genuinely need isolation.

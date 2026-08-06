@@ -3,9 +3,11 @@ title: Accessibility (WCAG 2.1 AA)
 description: Shopify's concrete, checkable accessibility requirements.
 ---
 
+**TL;DR:** Shopify's concrete, checkable accessibility requirements.
+
 Shopify's accessibility bar is concrete and easy to check. It's not a vague "be inclusive" statement. For each item below, you can test whether you pass or fail.
 
-Here's every checkable item, with the right way and the wrong way to build it. This page covers the checklist. For the process behind meeting this bar consistently, see [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/).
+Here's every checkable item, with the right way and the wrong way to build it. This page covers the checklist. For the process behind meeting this bar consistently, see [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/).
 
 ## The checklist
 
@@ -97,8 +99,7 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 - **Writing alt text that describes nothing useful** (`alt="image1.jpg"`, `alt="photo"`). This technically has an alt attribute, but it misses the point of the requirement.
 - **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
 
-## Quick Reference
-
+## Key Takeaways
 - 9 concrete, testable rules, see the checklist above.
 - Contrast: 4.5:1 body text, 3:1 large text/icons/borders.
 - Touch targets: 24×24px minimum.
@@ -106,7 +107,7 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 
 ## Further Reading
 
-- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/), the process behind this checklist
+- [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/), the process behind this checklist
 - [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/), the full color-specific contrast rules and testing approach
 - [Accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#12-accessibility) (shopify.dev)
 - [Accessibility best practices](https://shopify.dev/docs/storefronts/themes/best-practices/accessibility) (shopify.dev)

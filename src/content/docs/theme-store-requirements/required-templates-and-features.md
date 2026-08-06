@@ -3,6 +3,8 @@ title: Required Templates & Features
 description: Every template, page requirement, feature, browser, and SEO rule Shopify checks.
 ---
 
+**TL;DR:** Every template, page requirement, feature, browser, and SEO rule Shopify checks.
+
 ## Required templates
 
 | Template | Format |
@@ -174,8 +176,7 @@ Test in an actual webview, not just the desktop version of the same browser engi
 - **Testing only in desktop Chrome**, and only finding webview-specific bugs (autoplay, viewport quirks) during review.
 - **Treating documentation and support setup as a launch-day task** instead of having it ready ahead of time.
 
-## Quick Reference
-
+## Key Takeaways
 - 14 required templates, see the table above.
 - Product/collection/cart/search/404 pages each have their own must-have field list, see the tables above for the full ✅/❌ breakdown.
 - Browser support spans 4 desktop browsers, 3 mobile browsers, 3 webview apps.

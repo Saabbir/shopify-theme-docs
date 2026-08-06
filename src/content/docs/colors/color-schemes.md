@@ -3,6 +3,8 @@ title: "Color Schemes: color_scheme_group & color_scheme"
 description: Defining swappable color schemes, applying them per section, and how they relate to color_palette.
 ---
 
+**TL;DR:** Defining swappable color schemes, applying them per section, and how they relate to color_palette.
+
 `color_scheme_group` is the standard way to let a merchant pick between full **color schemes**, like "Scheme 1," "Scheme 2," or a dark version of the theme, applied per section. It's older than [`color_palette`](/colors/color-palettes/), still fully valid, and it's the mechanism every existing Shopify theme's color system is built on.
 
 ## What it actually is
@@ -35,7 +37,7 @@ Two settings work together to make this happen:
 
 `definition` is a plain array of settings, the same setting types you'd use anywhere else in `settings_schema.json` (`color`, `color_background`, and a handful of others). This array is the **shape** every scheme has to follow. It doesn't set any actual color values itself.
 
-The actual schemes ("Scheme 1," "Scheme 2," a dark scheme) and their real color values are presets, defined in `settings_data.json` alongside the rest of your theme's presets (see [Theme Presets](/config-and-settings/theme-presets/)):
+The actual schemes ("Scheme 1," "Scheme 2," a dark scheme) and their real color values are presets, defined in `settings_data.json` alongside the rest of your theme's presets (see [Theme Presets](/presets/theme-presets/)):
 
 ```json
 // config/settings_data.json (excerpt)
@@ -143,8 +145,7 @@ A `color_scheme_group` naturally satisfies the "paired" part of this rule, since
 - **Giving each scheme's CSS class different custom property names** instead of a consistent set. This forces components to branch on which scheme is active, defeating the point of the shared shape.
 - **Assuming `color_scheme_group` and `color_palette` are alternatives.** They solve different problems and are commonly used together.
 
-## Quick Reference
-
+## Key Takeaways
 - `color_scheme_group` (in `settings_schema.json`) defines the *shape* every scheme follows. Actual scheme presets and their color values live in `settings_data.json`.
 - A section picks its active scheme with its own `color_scheme` setting.
 - Apply a scheme via a CSS class exposing consistent custom property names, so markup never needs to know which scheme is active.
@@ -156,5 +157,5 @@ A `color_scheme_group` naturally satisfies the "paired" part of this rule, since
 - [Color palettes](/colors/color-palettes/): the newer, complementary `color_palette` setting
 - [Color Design Tokens](/colors/color-design-tokens/): the three-tier model and naming rules this page's CSS custom properties follow
 - [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/): why pairing background/text colors and testing every scheme matters
-- [Theme Presets](/config-and-settings/theme-presets/): how scheme presets fit into the broader presets workflow
+- [Theme Presets](/presets/theme-presets/): how scheme presets fit into the broader presets workflow
 - [Color schemes](https://shopify.dev/docs/storefronts/themes/architecture/settings/color-schemes) (shopify.dev)

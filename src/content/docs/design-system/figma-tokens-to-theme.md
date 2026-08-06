@@ -3,6 +3,8 @@ title: "Figma Tokens → Theme Settings"
 description: How to take a Figma variable collection and turn it into settings_schema.json entries and CSS custom properties, the right way.
 ---
 
+**TL;DR:** How to take a Figma variable collection and turn it into settings_schema.json entries and CSS custom properties, the right way.
+
 A Figma file has a **Variables** panel. It holds colors, spacing, type, and radii, all organized into collections and modes. This panel is the real source of truth for a theme's design tokens, not a developer's guess based on looking at the design canvas.
 
 This article shows you the exact mapping from "what's in Figma" to "what's in the theme."
@@ -54,7 +56,7 @@ Design tokens can drift out of sync with your code. This happens the moment some
 
 - Treat a Figma variable rename as a reminder to check whether the matching setting's `id` (its unique name) or label needs updating too. This doesn't automatically mean you should change the `id` itself. See [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/) for why setting IDs shouldn't change casually.
 - If your team maintains **Figma Code Connect** (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)), link components that use tokens back to their Figma source. This lets an AI tool or a developer trace a component back to Figma quickly.
-- When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Theme Presets](/config-and-settings/theme-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
+- When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Theme Presets](/presets/theme-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
 
 ## Best practices
 
@@ -67,8 +69,7 @@ Design tokens can drift out of sync with your code. This happens the moment some
 - **Turning a value that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
 - **Naming a setting after Figma's current value** instead of its role, so the name becomes misleading the moment the design changes.
 
-## Quick Reference
-
+## Key Takeaways
 - Tokens come from Figma's Variables panel, not the design canvas. That's where the "reusable decision" has already been made.
 - Map collections and modes to settings schema groups. Decide merchant-editable vs. fixed for each token type.
 - Keep Figma and the theme in sync on purpose. A renamed variable or a changed value is a reminder to check the matching setting. It doesn't sync automatically.

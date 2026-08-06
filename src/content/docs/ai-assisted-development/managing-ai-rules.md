@@ -3,6 +3,8 @@ title: Managing & Amending AI Rules
 description: How to change AGENTS.md's Custom rules section over time, including order, format, sourcing, and how to check a change actually works.
 ---
 
+**TL;DR:** How to change AGENTS.md's Custom rules section over time, including order, format, sourcing, and how to check a change actually works.
+
 `AGENTS.md` (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)) isn't a file you write once and forget. It changes as the codebase changes, as Shopify's platform changes, and as your team's own rules change. This page explains how to update it properly, so a change actually works (it really changes what the AI tool does) and stays safe (it doesn't contradict Shopify's own generated content or drift from what a fresh scaffold produces).
 
 ## The one boundary that matters: two authors, one file
@@ -88,8 +90,7 @@ This is the same test described in [Setting Up AI Rules](/getting-started/settin
 - **Repeating content Shopify's file already covers** instead of checking first and linking out if more context is needed.
 - **Assuming a clearly-written rule works** without testing it against an actual generation task.
 
-## Quick Reference
-
+## Key Takeaways
 - Two authors, one file: Shopify owns everything above `## Custom rules`; we own that section and nothing else.
 - Section order within `## Custom rules`: general or governing rules first, then project constraints, then process, then final checks last.
 - Format: `##` and `###` headings, specific and checkable rules, no repeating what Shopify's content already says.

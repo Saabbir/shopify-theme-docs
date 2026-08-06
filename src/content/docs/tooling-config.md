@@ -3,6 +3,8 @@ title: Tooling & Config
 description: The dev tooling files that sit alongside your theme, and how to keep them out of your Theme Store submission.
 ---
 
+**TL;DR:** The dev tooling files that sit alongside your theme, and how to keep them out of your Theme Store submission.
+
 A real theme repo holds more than the 8 folders Shopify actually reads: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, and `templates`. Your repo also holds other files, like Git settings, AI rule files, CI workflows, and maybe a full frontend build setup.
 
 None of those extra files should end up in your Theme Store submission. This section covers two things: how to manage these dev tooling files day to day, and how to correctly leave them out when you package your theme.
@@ -29,8 +31,7 @@ It's easy to mix the two up. For example, you might accidentally commit a `node_
 - **Assuming `.gitignore` also protects a Theme Store submission.** It doesn't. A build setup folder that's committed to Git could still end up in a theme zip if you don't handle packaging separately.
 - **Adding a new dev tooling file and forgetting to add it to `.shopifyignore`** on the same day. Even a short delay leaves a window where it could ship inside a submission zip.
 
-## Quick Reference
-
+## Key Takeaways
 - [Project Files Explained](/tooling-config/project-files/) · [Packaging Exclusions](/tooling-config/packaging-exclusions/) · [Tailwind & Alpine Build Setup](/tooling-config/tailwind-and-alpine-build-setup/)
 - Dev tooling files make the repo better to work in. Only the 8 theme folders go to the Theme Store. Keep the two concerns separate.
 

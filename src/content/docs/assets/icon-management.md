@@ -3,6 +3,8 @@ title: Icon Management
 description: Inline SVG snippets vs. sprites, how to theme icons with currentColor, accessibility basics, and settings-driven icon pickers.
 ---
 
+**TL;DR:** Inline SVG snippets vs. sprites, how to theme icons with currentColor, accessibility basics, and settings-driven icon pickers.
+
 Icons show up everywhere in a theme. You'll find them in the navigation menu, the cart, social links, payment badges, star ratings, and the small arrows that open and close menus.
 
 Because icons appear in so many places, it's easy for them to look inconsistent if you don't follow one clear pattern. This article shows you the one pattern to use for icons across your whole theme, so they always look and work the same way.
@@ -183,8 +185,7 @@ A small theme might ship 15 icons. A mature one, after a year of feature request
 - **Sizing every icon with a fixed pixel value** instead of `em`. This makes icons look mismatched next to text at different sizes.
 - **Letting unused or duplicate icon snippets pile up** as sections and features change over time.
 
-## Quick Reference
-
+## Key Takeaways
 - Inline SVG snippets, named `icon-*`, live in `snippets/`. This is the default pattern for this theme.
 - Use `fill="currentColor"` or `stroke="currentColor"` for automatic theming, and size icons in `em` units so they scale with text.
 - Add `aria-hidden="true"` and `focusable="false"` on the icon itself. Put the accessible name on the wrapping button or link when it's needed.
@@ -195,4 +196,4 @@ A small theme might ship 15 icons. A mature one, after a year of feature request
 
 - [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/): the file naming conventions this pattern follows
 - [Asset Organization & Performance](/assets/asset-organization-and-performance/): the theme-wide asset-maintainability habits this page's icon-specific advice fits into
-- [Accessibility Deep Dive](/performance-and-accessibility/accessibility-deep-dive/): the broader accessible naming principles this page uses
+- [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/): the broader accessible naming principles this page uses

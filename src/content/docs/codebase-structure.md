@@ -3,6 +3,8 @@ title: Codebase Structure
 description: How a Shopify theme's files fit together.
 ---
 
+**TL;DR:** How a Shopify theme's files fit together.
+
 Every Shopify theme is built the same way. It has a set folder structure, and its pieces render in a clear, fixed order.
 
 Think of it like a set of nested boxes. A layout holds a template. A template holds sections. Sections hold blocks. And now, blocks can even hold other blocks inside them.
@@ -46,8 +48,7 @@ If your prior theme experience is Dawn-era, the one structural shift to internal
 - **Treating `snippets/` as a catch-all for anything reusable**, when some of that content should really be a theme block with settings a merchant can edit.
 - **Assuming old Dawn-theme patterns still apply.** The biggest change here (blocks nested inside other blocks) changes how you should build new code, not just what's technically possible.
 
-## Quick Reference
-
+## Key Takeaways
 - Rendering order: layout → template → sections → blocks → nested blocks.
 - The big change from Dawn-era themes: blocks can now contain other blocks, several levels deep.
 - Merchants edit sections and blocks visually, so the schema (the settings they see) matters just as much as the markup.

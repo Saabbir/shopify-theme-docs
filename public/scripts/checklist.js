@@ -91,7 +91,7 @@
           item.li.classList.add('checklist-item--checked');
         }
 
-        item.cb.addEventListener('change', function () {
+        function applyState() {
           item.li.classList.toggle('checklist-item--checked', item.cb.checked);
           try {
             localStorage.setItem(key, item.cb.checked ? '1' : '0');
@@ -99,6 +99,22 @@
             // localStorage unavailable (private browsing, quota) — state just won't persist.
           }
           update();
+        }
+
+        // Fires for a direct click on the checkbox itself, and for keyboard
+        // toggling (Space) once it's focused.
+        item.cb.addEventListener('change', applyState);
+
+        // Make the whole list item clickable, not just the small checkbox
+        // square, without double-toggling when the checkbox itself is the
+        // click target (that click already fires its own 'change' event
+        // above) and without hijacking clicks on a link inside the item.
+        item.li.addEventListener('click', function (event) {
+          if (event.target === item.cb) return;
+          if (event.target.closest && event.target.closest('a')) return;
+          event.preventDefault();
+          item.cb.checked = !item.cb.checked;
+          applyState();
         });
       });
 

@@ -3,6 +3,8 @@ title: Glossary
 description: Every term this handbook uses, explained once, grouped by topic.
 ---
 
+**TL;DR:** Every term this handbook uses, explained once, grouped by topic.
+
 ## How a Shopify theme is put together
 
 **Skeleton Theme**: Shopify's official starter theme. It's simple and bare-bones, and it's the only Shopify-made theme you're allowed to start from for a Theme Store submission. See [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/).

@@ -3,6 +3,8 @@ title: Snippets & Naming Conventions
 description: Reusable Liquid partials, and how we name files across the theme.
 ---
 
+**TL;DR:** Reusable Liquid partials, and how we name files across the theme.
+
 ## Snippets
 
 Merchants never see a snippet in the theme editor, since it has no schema and no settings screen. Use a snippet for logic you'd otherwise copy and paste over and over, like a price formatter, a product card, or an SVG icon.
@@ -118,8 +120,7 @@ The `{%- doc -%}` tag you see above is called [LiquidDoc](https://shopify.dev/do
 - **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
 - **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up.
 
-## Quick Reference
-
+## Key Takeaways
 - Snippets receive variables you pass explicitly. Blocks only see `block` and `section`.
 - Use `{% render %}`, never the deprecated `{% include %}`.
 - File names use `kebab-case`. Schema `id`s use `snake_case`.

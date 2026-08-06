@@ -3,6 +3,8 @@ title: AI-Assisted Development
 description: How we use Cursor and Claude Code, and how we go from Figma to shipped code.
 ---
 
+**TL;DR:** How we use Cursor and Claude Code, and how we go from Figma to shipped code.
+
 Most of our theme code is written with help from an AI coding tool, like Cursor, Claude Code, or GitHub Copilot. This section shows you how to use these tools well.
 
 We'll start with the basic words you need to know, like agent, MCP, skill, command, subagent, and plugin. Don't worry if these sound strange right now, we'll explain each one in plain English.
@@ -41,8 +43,7 @@ The pages in this section help you handle both risks. We use rule files to point
 - **Not noticing when AI code falls back to old, Dawn-era patterns**, just because it still works. It runs fine, but it's not how we build things here, and it makes the codebase less consistent over time.
 - **Skipping edge-case testing just because "the AI wrote it."** AI-written sections break on empty or very long content just as often as a person's first draft. Sometimes they break even more, since the AI can't see your real merchant data.
 
-## Quick Reference
-
+## Key Takeaways
 - Every AI tool reads the same rules. Each tool just gets them written in its own file format.
 - AI-written code gets reviewed the same as any other pull request. See [GitHub Workflow](/github-workflow/) for details.
 - Watch for two things: old Dawn-era patterns, and code copied from Horizon or Dawn.

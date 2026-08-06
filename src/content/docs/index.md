@@ -24,23 +24,25 @@ hero:
 | [3. Codebase Structure](/codebase-structure/) | Folders, theme blocks, sections, naming conventions, modern platform features |
 | [4. Scaffold Setup Guide](/scaffold-setup/) | Step by step: empty folder → working section and block |
 | [5. Design System & Configuration](/design-system/) | Figma tokens, the three-tier token model |
-| [6. Config & Global Settings](/config-and-settings/) | settings_schema.json & settings_data.json rules/conventions, theme presets, section/block presets, what's required vs. optional |
-| [7. Colors](/colors/) | Color palettes, color schemes, color tokens, Liquid color filters, color accessibility — everything color, dev and merchant perspective |
-| [8. Fonts](/fonts/) | font_picker settings, the type scale, the font object and font_face/font_modify, font accessibility & performance |
-| [9. Spacing](/spacing/) | The spacing scale, range settings, logical properties — everything spacing, dev and merchant perspective |
-| [10. CSS](/css/) | Units (rem/em/62.5%), cascade & specificity, custom properties, architecture & naming, stylesheet/style tags, modern features, performance |
-| [11. JavaScript](/javascript/) | Architecture & state/events, Web Components (both patterns), the `{% javascript %}` tag, theme editor events, modern features, performance |
-| [12. Assets Management](/assets/) | Icons, responsive images, video, 3D/AR media — rendering, performance, and maintainability for every media type |
-| [13. Internationalization & Locales](/internationalization-and-locales/) | i18n/RTL requirements, locale file management, and how settings_schema.json's t: keys resolve into them |
-| [14. Style Guides](/style-guides/) | Liquid, clean code, third-party libraries |
-| [15. Performance & Accessibility](/performance-and-accessibility/) | Accessibility and performance, built in from the start, not added later |
-| [16. AI-Assisted Development](/ai-assisted-development/) | AGENTS.md, Figma MCP, Claude commands, Shopify's own AI Toolkit |
-| [17. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
-| [18. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
-| [19. Publishing](/publishing/) | Partner Dashboard, store setup, packaging, review, life after approval |
-| [20. Tooling & Config](/tooling-config/) | Project files, Theme-Store-only packaging, optional Tailwind/Alpine setup |
-| [21. Learning Articles](/learning-articles/) | Step-by-step deep dives: Liquid objects, maintainable code |
-| [22. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
+| [6. Config & Global Settings](/config-and-settings/) | settings_schema.json & settings_data.json rules/conventions, what's required vs. optional |
+| [7. Presets](/presets/) | Theme, section, and block presets — real-world examples, benefits, and every rule marked mandatory or optional |
+| [8. Colors](/colors/) | Color palettes, color schemes, color tokens, Liquid color filters, color accessibility — everything color, dev and merchant perspective |
+| [9. Fonts](/fonts/) | font_picker settings, the type scale, the font object and font_face/font_modify, font accessibility & performance |
+| [10. Spacing](/spacing/) | The spacing scale, range settings, logical properties — everything spacing, dev and merchant perspective |
+| [11. CSS](/css/) | Units (rem/em/62.5%), cascade & specificity, custom properties, architecture & naming, stylesheet/style tags, modern features, performance |
+| [12. JavaScript](/javascript/) | Architecture & state/events, Web Components (both patterns), the `{% javascript %}` tag, theme editor events, modern features, performance |
+| [13. Assets Management](/assets/) | Icons, responsive images, video, 3D/AR media — rendering, performance, and maintainability for every media type |
+| [14. Internationalization & Locales](/internationalization-and-locales/) | i18n/RTL requirements, locale file management, and how settings_schema.json's t: keys resolve into them |
+| [15. Style Guides](/style-guides/) | Liquid, clean code, third-party libraries |
+| [16. Performance](/performance/) | Performance strategy, the critical rendering path, budgets, built in from the start, not added later |
+| [17. Accessibility](/accessibility/) | Accessibility built into a section from the start, and kept consistent theme-wide |
+| [18. AI-Assisted Development](/ai-assisted-development/) | AGENTS.md, Figma MCP, Claude commands, Shopify's own AI Toolkit |
+| [19. GitHub Workflow](/github-workflow/) | Branching, PR review, CI automation |
+| [20. Quality & Validation](/quality-validation/) | Linting, manual QA, the pre-submission checklist |
+| [21. Publishing](/publishing/) | Partner Dashboard, store setup, packaging, review, life after approval |
+| [22. Tooling & Config](/tooling-config/) | Project files, Theme-Store-only packaging, optional Tailwind/Alpine setup |
+| [23. Learning Articles](/learning-articles/) | Step-by-step deep dives: Liquid objects, maintainable code |
+| [24. Reference](/reference/) | Cheatsheet, glossary, and a curated tools directory |
 
 New here? Start with sections 1 to 4, in order. After that, use search (**⌘K**) to find whatever you need.
 

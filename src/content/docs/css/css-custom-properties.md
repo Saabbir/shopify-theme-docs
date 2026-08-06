@@ -3,6 +3,8 @@ title: CSS Custom Properties (Variables)
 description: How custom properties actually work, runtime vs. compile-time, fallback values, and using them as the bridge between Liquid settings and CSS.
 ---
 
+**TL;DR:** How custom properties actually work, runtime vs. compile-time, fallback values, and using them as the bridge between Liquid settings and CSS.
+
 Custom properties (informally, "CSS variables") are the mechanism that holds every design token in this handbook together, color, type, spacing, radii. This page covers how they actually behave, which is different from how a Sass variable behaves, in ways that matter for a Shopify theme specifically.
 
 ## Runtime, not compile-time
@@ -142,8 +144,7 @@ Treat `@property` as progressive enhancement: browsers that don't support it sim
 - **Exposing five separate custom properties for one coherent layout state**, instead of a single class.
 - **Assuming a custom property is automatically animatable.** Without `@property`, the browser can't interpolate between two arbitrary string values.
 
-## Quick Reference
-
+## Key Takeaways
 - Custom properties resolve at render time (unlike Sass variables), so they can be set dynamically, per-instance, from Liquid.
 - Scope: `:root` for global tokens, a specific selector for component-scoped values.
 - Always provide a `var()` fallback for conditionally-set properties.

@@ -3,6 +3,8 @@ title: CSS Architecture, Naming & Logical Properties
 description: Global vs. component-scoped CSS, BEM-ish naming, and logical properties for RTL support.
 ---
 
+**TL;DR:** Global vs. component-scoped CSS, BEM-ish naming, and logical properties for RTL support.
+
 We write plain, native CSS only. No Sass or SCSS, no CSS-in-JS. Modern CSS already gives us everything those tools used to be needed for: custom properties, container queries, `:has()`, and nesting, all covered elsewhere in this section. This page covers how we organize and name what we write.
 
 ## Global CSS vs. component-scoped CSS
@@ -80,8 +82,7 @@ Test new sections with `dir="rtl"` in your browser's dev tools regularly, not ju
 - **Using physical properties (`margin-left`) out of habit.** This passes review fine in English, then breaks silently the first time the theme runs in a right-to-left market.
 - **Giving a component's root element a generic class** (`.wrapper`, `.container`) with no relation to what it actually is.
 
-## Quick Reference
-
+## Key Takeaways
 - Global tokens (custom properties) live in `assets/base.css`. Component CSS lives in `{% stylesheet %}`, next to its markup.
 - Naming: kebab-case, BEM-shaped (`block__element--modifier`).
 - Use logical properties everywhere a physical/logical pair exists. This is what makes RTL work.

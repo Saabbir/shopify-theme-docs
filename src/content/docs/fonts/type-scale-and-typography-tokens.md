@@ -3,6 +3,8 @@ title: Type Scale & Typography Tokens
 description: A defined scale instead of one-off sizes, fluid type with clamp(), and how a Figma type collection maps onto theme settings.
 ---
 
+**TL;DR:** A defined scale instead of one-off sizes, fluid type with clamp(), and how a Figma type collection maps onto theme settings.
+
 Once a typeface is chosen (see [Font Settings](/fonts/font-settings/)), the next decision is sizing: what sizes exist, how they scale across screen widths, and where those numbers actually live in code. Get this structured, and a theme stays consistent after 40 sections. Get it wrong, and every developer who touches a heading picks their own one-off size.
 
 ## A scale, not a pile of one-off sizes
@@ -86,8 +88,7 @@ Most themes expose the font *family* as a setting (via `font_picker`) but keep t
 - **Writing a separate font-size override per breakpoint** instead of one `clamp()` declaration.
 - **Exposing every individual size in the scale as its own setting**, which lets a merchant break the scale's internal consistency one field at a time.
 
-## Quick Reference
-
+## Key Takeaways
 - Use a defined scale (`--font-size-xs` through `--font-size-2xl`, or similar), not one-off values.
 - Name tokens after their role, never their current size.
 - `clamp()` for fluid type, not per-breakpoint overrides.

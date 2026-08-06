@@ -3,6 +3,8 @@ title: Metafields & Metaobjects
 description: Using custom data safely in a theme meant for any merchant.
 ---
 
+**TL;DR:** Using custom data safely in a theme meant for any merchant.
+
 Metafields and metaobjects are powerful, but a Theme Store theme has to use them more carefully than a one-off client theme does.
 
 ## The rule that trips people up
@@ -82,8 +84,7 @@ If you genuinely want to pull from Shopify's own **standard** product metafields
 - **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store.** Same failure, just on a different setting type.
 - **Assuming any use of metafields is off-limits.** The restriction only covers custom or app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings, standard metafields elsewhere are fine.
 
-## Quick Reference
-
+## Key Takeaways
 - `metaobject`/`metaobject_list` settings: standard definitions only, never custom or app-owned ones.
 - Don't default a setting to a resource that only exists in your own demo store.
 - Need custom data? Make it a merchant-facing setting, not a hardcoded metaobject reference.

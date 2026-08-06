@@ -3,6 +3,8 @@ title: Schema.json Best Practices
 description: Writing settings that merchants can actually understand and use.
 ---
 
+**TL;DR:** Writing settings that merchants can actually understand and use.
+
 Shopify doesn't just check whether your code works. Reviewers also check whether merchants can understand your settings without guessing. This review focuses on your `{% schema %}` block. Here's what reviewers look for.
 
 ## Wording rules
@@ -128,8 +130,7 @@ Notice three things in this example. Every string uses a `t:` locale key. The co
 - **Adding a background color without a matching foreground color.** This risks text and background combinations that are hard to read.
 - **Hardcoding English text "temporarily" and forgetting to translate it** before submission.
 
-## Quick Reference
-
+## Key Takeaways
 - American English, sentence case, plain statements (not questions), active voice, verbs on buttons.
 - At least 4 colors, each with a matching foreground color. See [Colors](/colors/).
 - Font settings: use `font_picker`, set a real default, pick an available font, and use `font_modify` for variants. See [Fonts](/fonts/).

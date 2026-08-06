@@ -3,6 +3,8 @@ title: Cascade, Specificity & the Box Model
 description: How the cascade actually resolves conflicts, specificity calculated by hand, and why box-sizing border-box matters.
 ---
 
+**TL;DR:** How the cascade actually resolves conflicts, specificity calculated by hand, and why box-sizing border-box matters.
+
 Most "why isn't my CSS working" problems are really specificity or source-order problems in disguise. This page explains the mechanics behind them, not just rules to memorize.
 
 ## The cascade is a conflict-resolution system
@@ -93,8 +95,7 @@ This one global rule (part of most themes' CSS reset) is why width math "just wo
 - **Forgetting `box-sizing: border-box`**, especially in a hand-written component that bypasses the global reset, causing size math to be off by the padding/border amount.
 - **Reaching for `!important`** as the first fix for a specificity conflict, instead of fixing the actual selector.
 
-## Quick Reference
-
+## Key Takeaways
 - Cascade order: origin/importance, then specificity, then source order.
 - Specificity: (IDs, classes, elements), compared left to right. Avoid ID selectors for styling.
 - `:is()` takes the specificity of its most specific argument. `:where()` always has zero.

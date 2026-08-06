@@ -3,11 +3,29 @@ title: Editor & Formatting Setup
 description: The one Prettier config and editor settings everyone on the project uses, so formatting never shows up as noise in a PR diff.
 ---
 
+**TL;DR:** The one Prettier config and editor settings everyone on the project uses, so formatting never shows up as noise in a PR diff.
+
 [Theme Check & Linting](/quality-validation/theme-check-and-linting/) covers *what* Prettier is and that we use Shopify's official Liquid plugin. This page covers the part that actually makes it a team-wide convention instead of a suggestion: one committed config, one settings.json, and where formatting is actually enforced versus just encouraged.
+
+## Why this project uses npm instead of just an editor extension
+
+Neither Dawn nor Skeleton Theme ship a `package.json`. Both just commit a `.prettierrc.json` and lean on editor extensions (format-on-save, or the Shopify Liquid extension's bundled formatter) to apply it, and neither runs a Prettier check in CI at all. That's a reasonable baseline for a solo developer or a small, disciplined team.
+
+It doesn't hold up here, for one specific reason: `.vscode/extensions.json` only *recommends* an extension to a human who opens the folder in VS Code. It doesn't install anything, doesn't cover teammates on a different editor, and, most importantly, can't apply to code an AI agent writes. Claude Code and Cursor's agent mode write files through file-edit tools directly, not by typing into an open editor buffer and triggering a save, so format-on-save structurally never fires for that code, no matter how correctly everyone's editor is configured. Since a real share of this project's Liquid/CSS/JS comes from an agent, we need something a CI job can actually invoke and gate a PR on, not just an editor convenience. That requires an installable, pinned `prettier` binary, which is what the `package.json` below is for.
+
+(If you want CI enforcement without a committed `package.json` at all, `npx --yes prettier@<version> @shopify/prettier-plugin-liquid@<version> --check .` in a CI step gets you there too, at the cost of no lockfile-pinned versions and no local `npm run format` script. We're not using that here, but it's a legitimate alternative if your project's constraints differ from this one.)
 
 ## The project's `.prettierrc`
 
-Install Prettier and Shopify's official Liquid plugin as dev dependencies:
+A plain Shopify theme repo (scaffolded from Skeleton Theme) has no `package.json` by default, since a theme is just Liquid, JSON, CSS, and JS files, no Node build step required. You still need one to install Prettier as a dev dependency. If your repo doesn't have one yet, create it first:
+
+```bash
+npm init -y
+```
+
+This `package.json` (and the `node_modules/` it creates) lives in your git repo for tooling only. It never reaches your Theme Store submission, [Packaging: Theme Store-Only Directories](/tooling-config/packaging-exclusions/) already lists it in `.shopifyignore` alongside `node_modules/`, the same way a [Tailwind/Alpine build setup](/tooling-config/tailwind-and-alpine-build-setup/) excludes its own tooling. Adding it doesn't change what you submit.
+
+Then install Prettier and Shopify's official Liquid plugin as dev dependencies:
 
 ```bash
 npm install --save-dev prettier @shopify/prettier-plugin-liquid
@@ -122,17 +140,7 @@ Add scripts so the same formatting anyone (or any AI tool) can run manually, wit
 Use `format:check` in two places:
 
 - **A pre-commit hook**, so a badly formatted file never gets committed in the first place. See [Prettier's own pre-commit documentation](https://prettier.io/docs/en/precommit.html) for setting one up.
-- **CI**, as a step alongside the existing Theme Check action (see [CI Automation](/github-workflow/ci-automation/)):
-
-```yaml
-- uses: actions/checkout@v4
-- uses: actions/setup-node@v4
-  with:
-    node-version: 22
-- run: npm ci
-- run: npm run format:check
-- uses: Shopify/theme-check-action@v3
-```
+- **CI**, as a step in the project's one workflow file, [`ci.yml`](/templates/github/workflows/ci.yml), alongside the existing Theme Check action. Full walkthrough of every step, including `npm ci` and `github.token`, is on [CI Automation](/github-workflow/ci-automation/) — that's the page to check whenever you're wondering exactly what runs automatically and why.
 
 CI is the one check here that's actually unconditional. It doesn't depend on anyone's local editor settings, whether format-on-save is on, or whether a human or an AI tool wrote the code.
 
@@ -149,8 +157,7 @@ CI is the one check here that's actually unconditional. It doesn't depend on any
 - **Leaving both the Shopify Liquid extension and the Prettier extension registered as formatters for `.liquid` without the `[liquid]` override.** Different teammates get prompted to pick a formatter and don't all pick the same one.
 - **Gitignoring all of `.vscode/` instead of allow-listing the two files that should be shared.** This is the single change that turns "we have a formatting convention" into "everyone actually has the same settings."
 
-## Quick Reference
-
+## Key Takeaways
 - `.prettierrc.json`: [download it](/templates/prettierrc.json). Must declare `"plugins": ["@shopify/prettier-plugin-liquid"]` — Prettier 3+ won't infer it.
 - Standardize on the **Prettier extension** (`esbenp.prettier-vscode`) as the default formatter for every file type, including `.liquid` — not the Shopify Liquid extension's bundled formatter, since only a real `prettier` binary also works from the CLI, pre-commit, and CI.
 - `.vscode/settings.json` and `.vscode/extensions.json`: [download](/templates/vscode/settings.json) [both](/templates/vscode/extensions.json), commit them, and un-ignore just those two files in `.gitignore`.

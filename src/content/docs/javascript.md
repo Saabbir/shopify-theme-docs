@@ -3,6 +3,8 @@ title: JavaScript
 description: Everything JavaScript in one place — architecture, Web Components, the {% javascript %} tag, modern features, and performance.
 ---
 
+**TL;DR:** Everything JavaScript in one place — architecture, Web Components, the {% javascript %} tag, modern features, and performance.
+
 This section covers everything JavaScript in this theme: how it's organized, how Web Components are built and structured, how the `{% javascript %}` tag actually compiles and loads, which modern browser APIs are safe to reach for, and how to keep it fast. If you're new to any of the ideas used throughout (Custom Elements, `CustomEvent`, `{% javascript %}`), this section builds them up from first principles rather than assuming you already know them.
 
 ## Quick answers
@@ -43,4 +45,4 @@ Native ES modules and Web Components, no bundler, no framework. Every page in th
 
 - [Style Guides](/style-guides/): Liquid, clean code, and third-party library guidance that sits alongside this section
 - [CSS](/css/): the CSS-side equivalent of this section's depth and structure
-- [Performance & Accessibility](/performance-and-accessibility/): the theme-wide performance and accessibility strategy this section's JS-specific pages plug into
+- [Performance](/performance/) and [Accessibility](/accessibility/): the theme-wide performance and accessibility strategy this section's JS-specific pages plug into

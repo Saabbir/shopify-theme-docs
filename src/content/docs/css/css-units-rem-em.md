@@ -3,6 +3,8 @@ title: "CSS Units: rem, em & the 62.5% Technique"
 description: When to use rem vs em vs px, the 62.5% font-size trick for easy mental math, and where viewport units fit in.
 ---
 
+**TL;DR:** When to use rem vs em vs px, the 62.5% font-size trick for easy mental math, and where viewport units fit in.
+
 Picking a unit isn't a style preference, it decides whether your sizing respects a visitor's own font-size settings or silently ignores them. This page covers the units that actually matter in theme CSS, and the classic technique for making `rem` math easy.
 
 ## rem vs em vs px, in one table
@@ -141,8 +143,7 @@ Viewport units are rarely the right choice for font sizes on their own (a headin
 - **Using `em` for everything**, which compounds unpredictably through nested components and becomes hard to reason about.
 - **Using plain `vh` for full-height mobile sections**, which can be taller than what's actually visible once mobile browser chrome is accounted for.
 
-## Quick Reference
-
+## Key Takeaways
 - `rem`: relative to root, predictable, the default choice for most sizing.
 - `em`: relative to the current element, compounds through nesting, right for component-internal scaling (like button padding).
 - `px`: absolute, right for hairline borders and shadow details that shouldn't scale.

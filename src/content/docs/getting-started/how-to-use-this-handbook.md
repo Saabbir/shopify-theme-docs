@@ -3,6 +3,8 @@ title: What This Handbook Covers
 description: Who this is for and how to get the most out of it.
 ---
 
+**TL;DR:** Who this is for and how to get the most out of it.
+
 ## Who this is for
 
 This handbook is for developers who've already shipped work on a Shopify theme: you've built or edited sections, snippets, and blocks, you know your way around Liquid, and you're comfortable in the Shopify admin. It's not an introduction to Shopify theming, and it's not written for a frontend developer who hasn't touched Liquid before.
@@ -53,8 +55,7 @@ None of these are just decoration. If something is marked ❌ Wrong or flagged i
 - **Skimming past the ✅/❌ code pairs.** They're not filler. They usually show the single most common mistake on that topic.
 - **Ignoring a `:::danger` or `:::caution` box because the text around it seems optional.** These boxes are reserved for things that cause real failures, like a rejected Theme Store submission or a broken merchant install. They're flagged that strongly on purpose.
 
-## Quick Reference
-
+## Key Takeaways
 - New here? Read Getting Started → Theme Store Requirements → Codebase Structure → Scaffold Setup Guide, in that order.
 - Everything after that is a reference, so use search, not linear reading.
 - Look for ✅/❌ pairs and colored asides. They carry the highest-signal information on each page.

@@ -3,6 +3,8 @@ title: Scaffolding From Horizon
 description: Why we clone Skeleton Theme instead of Horizon, in detail.
 ---
 
+**TL;DR:** Why we clone Skeleton Theme instead of Horizon, in detail.
+
 ## The short version
 
 We build things the same way **Horizon** does. That means nested theme blocks, `@theme`/`@app` targeting, and `{% stylesheet %}`/`{% javascript %}` tags, because that's Shopify's current recommended pattern. But we start our project (we "scaffold" it) from **Skeleton Theme**, a different repository. We do this because Horizon itself can't legally be the starting point for a Theme Store submission.
@@ -82,8 +84,7 @@ Here's a useful gut check. Put a piece of Solis code side by side with the Horiz
 - **Copying a specific Horizon section's code and modifying it**, instead of using it purely as a reference for ideas.
 - **Assuming AI-generated code is automatically safe from this problem.** AI tools are often trained on public theme source code and can reproduce patterns from Horizon or Dawn that a reviewer would recognize. Keep this risk in mind when you review AI output (see [AI-Assisted Development](/ai-assisted-development/)).
 
-## Quick Reference
-
+## Key Takeaways
 - Reference for patterns: Horizon (look at it, never clone it).
 - Actual scaffold: Skeleton Theme, via `shopify theme init`.
 - Skeleton Theme gives you structure, not design. The design work is still 100% ours.

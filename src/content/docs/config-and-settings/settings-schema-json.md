@@ -3,6 +3,8 @@ title: "settings_schema.json: Rules & Conventions"
 description: "The definition file for theme-wide settings — required structure, theme_info, setting groups, conditional settings, and the t: locale convention."
 ---
 
+**TL;DR:** The definition file for theme-wide settings — required structure, theme_info, setting groups, conditional settings, and the t: locale convention.
+
 `config/settings_schema.json` is the single most consequential file in a theme's `config/` folder. It defines every theme-wide setting a merchant can see and change in the theme editor's "Theme settings" panel, and every setting `id` you'll reference from Liquid via `{{ settings.x }}`. Get its structure and conventions right early, because every setting you ship becomes something you're committed to supporting. Facts on this page are verified directly against [shopify.dev's `settings_schema.json` reference](https://shopify.dev/docs/storefronts/themes/architecture/config/settings-schema-json) and [Settings](https://shopify.dev/docs/storefronts/themes/architecture/settings).
 
 ## What it is, in one sentence
@@ -154,8 +156,7 @@ A `liquid`-type setting's value is **not** translatable through Translate & Adap
 - **Rendering a resource-based setting without a `blank` check**, breaking silently if a merchant never selected one or later deleted it.
 - **Confusing schema-label translation (`t:` keys) with merchant-content translation (Translate & Adapt).** They're two entirely different systems for two different kinds of text.
 
-## Quick Reference
-
+## Key Takeaways
 - `settings_schema.json`: array of category objects, each requiring `name` and `settings`.
 - `theme_info`: `name`, `theme_name`, `theme_author`, `theme_version`, `theme_documentation_url` all required, plus exactly one of `theme_support_email`/`theme_support_url`.
 - Use flat `t:` namespaces (`t:general.*`, `t:labels.*`), never deeply nested paths.

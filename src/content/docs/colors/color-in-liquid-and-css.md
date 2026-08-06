@@ -3,6 +3,8 @@ title: Color in Liquid & CSS
 description: Deriving shades, tints, and formats from a base color at render time with Liquid's color filters, instead of hardcoding them.
 ---
 
+**TL;DR:** Deriving shades, tints, and formats from a base color at render time with Liquid's color filters, instead of hardcoding them.
+
 Once a color exists as a token (see [Color Design Tokens](/colors/color-design-tokens/)), you rarely need just that one value. A button needs a hover state a shade darker. A badge needs a translucent background. A design spec might hand you an OKLCH value when your CSS needs hex. This page covers Liquid's built-in color filters, which derive all of these from one stored value instead of you hardcoding every variant by hand.
 
 ## Why derive colors instead of hardcoding variants
@@ -103,8 +105,7 @@ This is a runtime brightness check for picking between two fixed text colors, no
 - **Recalculating the same derived value in multiple files** instead of computing it once into a shared CSS custom property.
 - **Treating `color_brightness` as a WCAG contrast checker.** It returns a raw brightness number, not a contrast ratio against a specific background.
 
-## Quick Reference
-
+## Key Takeaways
 - Derive shades, tints, and translucent variants from one stored color with `color_darken`, `color_lighten`, `color_mix`, and `color_modify`, instead of adding separate settings.
 - Convert formats with `color_to_hex`, `color_to_hsl`, `color_to_rgb`, `color_to_oklch` only when a specific format is actually required.
 - `color_brightness` returns 0–255, useful for a light-vs-dark text runtime decision, not a WCAG contrast check.

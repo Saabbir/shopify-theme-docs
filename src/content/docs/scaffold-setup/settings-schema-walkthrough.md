@@ -3,6 +3,8 @@ title: Settings Schema Walkthrough
 description: Theme-level settings vs. section/block settings, and when to use which.
 ---
 
+**TL;DR:** Theme-level settings vs. section/block settings, and when to use which.
+
 Shopify has three separate places where settings can live. Mixing them up is a common mistake even for experienced theme developers moving between projects, so here's how we draw the line on Solis.
 
 ## The three levels
@@ -158,8 +160,7 @@ If you find yourself adding a third or fourth CSS variable to control what's rea
 - **Hardcoding schema label/content strings "temporarily"** and never coming back to add the `t:` prefix.
 - **Overusing CSS custom properties for something that should be a class-based variant setting.** This leads to a tangle of variables that can end up set in combinations that don't make sense together.
 
-## Quick Reference
-
+## Key Takeaways
 - Theme-wide settings go in `config/settings_schema.json`. Per-instance settings go in the section or block's own schema.
 - Always add `t:` to schema strings. Never hardcode English text.
 - One CSS property changing means use a CSS variable. Several properties changing together means use a CSS class via a `select` setting.

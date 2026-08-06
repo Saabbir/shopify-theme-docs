@@ -3,6 +3,8 @@ title: Theme Blocks & Nesting
 description: The biggest change since Dawn, blocks that contain other blocks.
 ---
 
+**TL;DR:** The biggest change since Dawn, blocks that contain other blocks.
+
 This is the single biggest difference between our theme and older Dawn-era themes. It's worth taking the time to understand it well.
 
 ## Old pattern vs. current pattern
@@ -199,8 +201,7 @@ Deeply nested structures are harder for merchants to navigate in the theme edito
 - **Trying to pass a variable into a block like you would a snippet**, thinking in terms of `{% render_block %}`. Blocks only ever see `block` and `section`, never any data you pass in directly.
 - **Defining blocks inline in a section's schema "because it's simpler for now."** This is the old Dawn-era pattern, and it locks that block to one section instead of letting you reuse it.
 
-## Quick Reference
-
+## Key Takeaways
 - Blocks live in `/blocks`, are reusable across sections, and can nest inside each other.
 - A section either defines blocks inline or accepts theme blocks, never both.
 - `{% content_for 'blocks' %}` renders whatever blocks were added, in the order stored in the JSON template.

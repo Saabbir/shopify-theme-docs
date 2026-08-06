@@ -3,6 +3,8 @@ title: Responsive Images
 description: image_url and image_tag in full — sizing, cropping, format selection, srcset/sizes, focal points, and above/below-the-fold handling.
 ---
 
+**TL;DR:** image_url and image_tag in full — sizing, cropping, format selection, srcset/sizes, focal points, and above/below-the-fold handling.
+
 Every image in this theme should go through Shopify's own `image_url` and `image_tag` filters, not a hand-written `<img>` tag. These two filters handle resizing, format selection, and responsive markup correctly by default, in ways that are easy to get subtly wrong if you write them yourself. Facts on this page are verified directly against [shopify.dev's `image_url`](https://shopify.dev/docs/api/liquid/filters/image_url) and [`image_tag`](https://shopify.dev/docs/api/liquid/filters/image_tag) filter references.
 
 ## The baseline pattern
@@ -68,7 +70,7 @@ Where you *do* need to be explicit is above-the-fold content, especially your La
 {{ section.settings.hero_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high' }}
 ```
 
-If the automatic default doesn't match your theme's actual layout (for example, a below-the-fold image that's still visible on load on a short page), override `loading` explicitly rather than relying on the default. See [Performance Strategy](/performance-and-accessibility/performance-strategy/) for the fuller lazy-loading and preload discussion — the same above-the-fold/below-the-fold logic applies to every media type, not just images.
+If the automatic default doesn't match your theme's actual layout (for example, a below-the-fold image that's still visible on load on a short page), override `loading` explicitly rather than relying on the default. See [Performance Strategy](/performance/performance-strategy/) for the fuller lazy-loading and preload discussion — the same above-the-fold/below-the-fold logic applies to every media type, not just images.
 
 ## Focal points
 
@@ -128,8 +130,7 @@ This works identically whether the underlying media is an image, a video, or a 3
 - **Providing a custom `widths` list with no matching `sizes` value**, leaving the browser to guess how large the image actually renders.
 - **A generic `alt="image"` or `alt="photo"` placeholder**, which tells a screen reader nothing useful.
 
-## Quick Reference
-
+## Key Takeaways
 - `image_url`: needs `width` and/or `height`; max 5760px; never upscales; `crop` (`top`/`center`/`bottom`/`left`/`right`/`region`); `pad_color` for padding instead of cropping; `format` only for explicit `jpg`/`pjpg` conversion (auto WebP/AVIF needs no parameter).
 - `image_tag`: auto-generates `srcset`/`width`/`height`; `widths` for custom breakpoints (pair with `sizes`); defaults `loading` to `lazy` below the fold automatically; any HTML attribute passes through.
 - Focal points apply automatically via `object-position` — just use `object-fit: cover` on the container.
@@ -140,6 +141,6 @@ This works identically whether the underlying media is an image, a video, or a 3
 
 - [Video Management](/assets/video-management/): the same responsive/lazy-loading principles applied to video
 - [3D & AR Media](/assets/3d-and-ar-media/): the same principles applied to 3D product media
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the broader lazy-loading and preload strategy this page's image-specific rules fit into
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the broader lazy-loading and preload strategy this page's image-specific rules fit into
 - [`image_url`](https://shopify.dev/docs/api/liquid/filters/image_url) (shopify.dev)
 - [`image_tag`](https://shopify.dev/docs/api/liquid/filters/image_tag) (shopify.dev)

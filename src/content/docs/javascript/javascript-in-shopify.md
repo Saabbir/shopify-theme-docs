@@ -3,6 +3,8 @@ title: "JavaScript in Shopify: the {% javascript %} Tag & Asset Scripts"
 description: How the {% javascript %} tag compiles, concatenates, and loads — and how it compares to a plain asset script tag.
 ---
 
+**TL;DR:** How the {% javascript %} tag compiles, concatenates, and loads — and how it compares to a plain asset script tag.
+
 Shopify gives you two ways to ship JavaScript in a theme: the `{% javascript %}` tag, scoped to a section, block, or snippet, and a plain script loaded from `assets/` via `asset_url`. Picking the right one, and understanding exactly what Shopify does with `{% javascript %}` under the hood, avoids a category of bugs that only show up once a page has more than one component on it. Facts on this page are verified directly against [shopify.dev's JavaScript and stylesheet tags documentation](https://shopify.dev/docs/storefronts/themes/best-practices/javascript-and-stylesheet-tags).
 
 ## `{% javascript %}` vs. an asset script tag
@@ -95,8 +97,7 @@ class TestimonialCarousel extends HTMLElement {
 - **Expecting `{{ liquid_variable }}` to interpolate inside `{% javascript %}`.** It doesn't render — pass data through a `data-*` attribute instead.
 - **Using a module-level variable for state that should be per-instance,** which breaks the moment a section or block renders more than once on the same page.
 
-## Quick Reference
-
+## Key Takeaways
 - One `{% javascript %}` tag per file, concatenated by file type (`scripts.js` / `block-scripts.js` / `snippet-scripts.js`), injected via `content_for_header`, loaded with `<script defer>`.
 - Each tag's content runs inside its own self-executing anonymous function — one section's error doesn't break another's script.
 - Liquid isn't rendered inside `{% javascript %}`. Pass data via `data-*` attributes.

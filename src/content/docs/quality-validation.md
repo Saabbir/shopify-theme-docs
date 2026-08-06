@@ -3,6 +3,8 @@ title: Quality & Validation
 description: Linting, manual QA, and the final pre-submission pass.
 ---
 
+**TL;DR:** Linting, manual QA, and the final pre-submission pass.
+
 When you build a Shopify theme, you check its quality in three stages. Each stage runs at a different point in your workflow, and each one catches a different kind of problem. Here's the order you usually run them in:
 
 1. **Linting**: this runs constantly while you code, and it runs again automatically every time you open a pull request, via CI.
@@ -39,8 +41,7 @@ A theme can pass linting and still fail manual QA. It can also pass manual QA on
 - **Running manual QA once, early in a section's development, and never again.** This misses bugs that show up later, even from changes that seem unrelated.
 - **Skipping the pre-submission checklist because you think you already checked everything along the way.** Requirements depend on each other. A late change can quietly break something you checked off weeks earlier.
 
-## Quick Reference
-
+## Key Takeaways
 - Linting catches syntax and style mistakes automatically. It can't tell you if a layout breaks with a 200-character title (that's manual QA's job).
 - Manual QA catches layout bugs and content-handling problems. It doesn't guarantee you meet every Theme Store requirement (that's the pre-submission checklist's job).
 - Run all three layers. Each one catches something the others miss.

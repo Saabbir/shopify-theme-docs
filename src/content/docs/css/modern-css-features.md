@@ -3,6 +3,8 @@ title: Modern CSS Features
 description: Container queries, :has(), native nesting, cascade layers, subgrid, and other features every modern browser now supports.
 ---
 
+**TL;DR:** Container queries, :has(), native nesting, cascade layers, subgrid, and other features every modern browser now supports.
+
 CSS gained a wave of genuinely useful features over the past few years, and by 2026 all of them are Baseline "widely available," meaning every major browser engine has shipped them for long enough that you can use them without a fallback or a polyfill. This page covers the ones actually worth reaching for in theme work.
 
 ## Container queries: respond to a component's own size
@@ -158,8 +160,7 @@ If CSS can do it without a script, use CSS:
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this can break the experience instead of simply skipping the animation.
 - **Reaching for a JS carousel library or resize-observer workaround** for something `scroll-snap` or a container query already does natively.
 
-## Quick Reference
-
+## Key Takeaways
 - Container queries respond to a component's own size. Media queries respond to the viewport.
 - `:has()` enables parent/sibling-conditional styling natively, no JS class-toggling needed.
 - Native nesting is fine, kept shallow and component-scoped. `@layer` gives explicit, declared control over which rules win, useful for large shared stylesheets.

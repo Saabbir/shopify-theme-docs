@@ -3,6 +3,8 @@ title: Fonts
 description: Everything about managing typography in Solis — settings, tokens, code, accessibility, and performance, from both a developer and merchant perspective.
 ---
 
+**TL;DR:** Everything about managing typography in Solis — settings, tokens, code, accessibility, and performance, from both a developer and merchant perspective.
+
 Everything about fonts and typography, in one place. If you have a question about how type works in Solis, whether you're a developer wiring up `font_picker` settings or a merchant choosing a typeface in the theme editor, it should be answered somewhere in this section.
 
 ## What's in this section

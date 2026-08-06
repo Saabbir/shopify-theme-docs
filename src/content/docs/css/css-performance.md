@@ -3,7 +3,9 @@ title: CSS Performance
 description: How Shopify's stylesheet subsetting affects critical CSS strategy, plus containment, selector cost, and other CSS-specific performance levers.
 ---
 
-The [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/) article covers the full picture: images, JavaScript, preload/prefetch. This page is the CSS-specific half, going deeper on the levers that are purely about how you write and structure stylesheets.
+**TL;DR:** How Shopify's stylesheet subsetting affects critical CSS strategy, plus containment, selector cost, and other CSS-specific performance levers.
+
+The [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/) article covers the full picture: images, JavaScript, preload/prefetch. This page is the CSS-specific half, going deeper on the levers that are purely about how you write and structure stylesheets.
 
 ## Subsetting already does most of your "critical CSS" work
 
@@ -99,8 +101,7 @@ Use `will-change` sparingly, only on elements that are actually about to animate
 - **Applying `will-change` permanently to every instance of a component**, creating unnecessary compositor layers and using more memory than the optimization saves.
 - **Using `content-visibility: auto` without `contain-intrinsic-size`**, causing visible layout shift as content scrolls into view.
 
-## Quick Reference
-
+## Key Takeaways
 - Stylesheet subsetting already gives you most of critical CSS's benefit. Keep the global stylesheet lean instead of building a separate pipeline.
 - Selector performance is rarely a real bottleneck. Write for readability first.
 - `content-visibility: auto` (with `contain-intrinsic-size`) defers rendering work for long, off-screen content.
@@ -110,6 +111,6 @@ Use `will-change` sparingly, only on elements that are actually about to animate
 ## Further Reading
 
 - [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/): the subsetting mechanism this page's critical-CSS section builds on
-- [Performance Strategy & Critical Rendering Path](/performance-and-accessibility/performance-strategy/): the full performance picture beyond CSS
+- [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the full performance picture beyond CSS
 - [CSS containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment) (MDN)
 - [`will-change`](https://developer.mozilla.org/en-US/docs/Web/CSS/will-change) (MDN)

@@ -3,6 +3,8 @@ title: Tailwind CSS & Alpine.js Build Setup
 description: An optional alternative build setup some agencies use, what it looks like, and the trade-offs against this handbook's default (native CSS/JS).
 ---
 
+**TL;DR:** An optional alternative build setup some agencies use, what it looks like, and the trade-offs against this handbook's default (native CSS/JS).
+
 This handbook's default, and what every other page in it assumes, is native CSS and native Web Components, with no build step. Some agencies instead build Shopify themes with **Tailwind CSS** (a CSS approach built around small utility classes like `flex` or `gap-4`, instead of custom class names) and **Alpine.js** (a small, reactive JavaScript layer for adding interactivity), compiled through **Vite**.
 
 This page documents that setup so you know about it. It's not a recommendation to switch, but it's a real, fairly common pattern, worth understanding in case you run into it during a client handoff, or hear about it from a new hire's past experience.
@@ -87,8 +89,7 @@ On top of that, this handbook's other pages (accessibility, RTL, performance) ar
 - **Mixing this setup into an otherwise-native-CSS section "just this once."** This creates two different styling approaches in one theme, which confuses whoever maintains it next.
 - **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) exists to prevent.
 
-## Quick Reference
-
+## Key Takeaways
 - Optional, not this project's default: Vite + Tailwind CSS + Alpine.js, compiling into `assets/`.
 - The trade-off: faster utility-class writing and less custom JS, in exchange for a build step, a dependency, and extra packaging discipline.
 - If you use it: exclude the source tree via `.shopifyignore`, check that the compiled output lands in `assets/`, and still meet every Theme Store requirement on the compiled result.

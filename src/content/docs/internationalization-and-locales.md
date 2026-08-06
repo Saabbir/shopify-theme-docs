@@ -3,6 +3,8 @@ title: Internationalization & Locales
 description: Everything about translating a theme and supporting multiple languages and regions, in one place.
 ---
 
+**TL;DR:** Everything about translating a theme and supporting multiple languages and regions, in one place.
+
 Translation and locale work touches several parts of a theme at once: what's required for the Theme Store, the actual `locales/*.json` files, and how those files connect back to `config/settings_schema.json`. This section gathers all of it together instead of leaving it spread across the requirements list and the deep-dive articles.
 
 ## What's on this page group
@@ -26,8 +28,7 @@ Locale files aren't isolated from the rest of a theme's config. [settings_schema
 - **Assuming one locale file pair covers both the storefront and the theme editor.** They're separate files, translated separately, and read by two different audiences.
 - **Adding a `t:` key without its counterpart in `en.default.schema.json`.** Nothing errors. The theme editor just shows the raw key text instead of a real label.
 
-## Quick Reference
-
+## Key Takeaways
 - [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/) · [Managing Locale Files](/internationalization-and-locales/managing-locale-files/)
 - Storefront strings live in `<lang>.json`. Theme editor labels live in `<lang>.schema.json`. Different files, different audiences, different language settings.
 - `settings_schema.json`'s `t:` keys are dot-path lookups into `<lang>.schema.json`, same mechanics as the `t` filter, different file.

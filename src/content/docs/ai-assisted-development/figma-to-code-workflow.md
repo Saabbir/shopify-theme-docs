@@ -3,6 +3,8 @@ title: Figma to Code Workflow
 description: A repeatable process for turning a Figma frame into a working section, with Cursor or Claude Code.
 ---
 
+**TL;DR:** A repeatable process for turning a Figma frame into a working section, with Cursor or Claude Code.
+
 A Figma frame shows one possible version of your content, filled in with example text and images. It isn't a strict spec.
 
 That difference matters a lot. A real merchant might type a 200-character product title, leave a collection empty, or delete every block but one. If your code only works for the neat example in the Figma frame, it will break the moment real data touches it. This page gives you a repeatable process so that doesn't happen.
@@ -139,8 +141,7 @@ Treat AI-generated Liquid, CSS, or JS exactly like a human's first draft. See [A
 - **Accepting a section that looks pixel-perfect without testing how it handles different content.** It often looks done because the demo data happens to fit well, not because the section actually handles variation.
 - **Not pulling out design values**, which leads to the same spacing or color value hardcoded in several places. Over time, one gets tweaked and the others don't, and they drift apart.
 
-## Quick Reference
-
+## Key Takeaways
 - The loop, every time: **plan, build, check, fix (handed off), document, report.** See the table at the top of this page.
 - Break it down before prompting: content versus structure, block breakdown, responsive versions.
 - Pull out design values (color, spacing, type) before writing CSS. A Figma MCP connection gives you exact values instead of eyeballing them.

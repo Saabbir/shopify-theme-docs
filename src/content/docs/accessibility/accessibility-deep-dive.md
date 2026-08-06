@@ -3,6 +3,8 @@ title: Accessibility Deep Dive
 description: How to build accessibility into a section from the start, and keep that discipline across a whole theme project.
 ---
 
+**TL;DR:** How to build accessibility into a section from the start, and keep that discipline across a whole theme project.
+
 The [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) page is the checklist. It lists nine clear, testable rules. This article explains the process behind meeting those rules every time, not just once. You'll see how to build a section with accessibility in mind from the very first line of code, and how to keep that same care going across a whole theme project with multiple developers and dozens of sections.
 
 ## Part 1: building a single section with a11y in mind
@@ -124,8 +126,7 @@ If a change removes a focus style, breaks a modal's focus trap, or removes an `a
 - **Relying entirely on automated tools,** which don't catch broken tab order, keyboard traps, or content that reads confusingly out loud.
 - **Treating accessibility as "everyone's responsibility" without naming an owner** for the manual checks that don't happen automatically. In practice, this means nobody runs them.
 
-## Quick Reference
-
+## Key Takeaways
 - Semantic HTML first, ARIA only when no native element fits.
 - Keyboard interaction written alongside mouse interaction, not after.
 - Contrast checked against every color scheme, not just the default.

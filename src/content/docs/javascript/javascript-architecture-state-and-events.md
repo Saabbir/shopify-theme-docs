@@ -3,6 +3,8 @@ title: "JavaScript Architecture: Global vs. Scoped, State & Events"
 description: How JavaScript is organized in this theme — global.js vs. {% javascript %}, DOM as source of truth, and CustomEvent for communication.
 ---
 
+**TL;DR:** How JavaScript is organized in this theme — global.js vs. {% javascript %}, DOM as source of truth, and CustomEvent for communication.
+
 This theme has one policy for JavaScript: **native ES modules and Web Components, no bundler, no framework.** Everything else on this page follows from that one decision.
 
 ## Global JS vs. component-scoped JS
@@ -133,8 +135,7 @@ Everything on this page works with a `<script type="module">` tag and nothing el
 - **Tight coupling via direct method calls between components**, which breaks the moment either component's internals change.
 - **Forgetting `bubbles: true`** on a `CustomEvent`, so a listener higher up the DOM never receives it.
 
-## Quick Reference
-
+## Key Takeaways
 - Global JS (`assets/global.js`): needed on every page. Scoped JS (`{% javascript %}`): needed on this section/block only.
 - State hierarchy: DOM attributes → component properties → shared module-level store (last resort).
 - Cross-component communication: `CustomEvent` with `bubbles: true` (and `composed: true` if Shadow DOM is involved), not direct coupling.

@@ -3,6 +3,8 @@ title: Modern JavaScript Features to Use
 description: Browser-native JavaScript APIs that are Baseline widely available in 2026 — no polyfill, no library needed.
 ---
 
+**TL;DR:** Browser-native JavaScript APIs that are Baseline widely available in 2026 — no polyfill, no library needed.
+
 Every API on this page is native, well-supported across current browsers, and needs no polyfill or third-party library for a Shopify theme's actual audience. Reach for these before adding a dependency — see [Third-Party Libraries](/style-guides/third-party-libraries/) for the decision framework around when a library is still worth it.
 
 ## Observing things, instead of polling or listening to `scroll`/`resize`
@@ -132,8 +134,7 @@ See [Third-Party Libraries](/style-guides/third-party-libraries/#the-default-ans
 - **Building a custom modal from a styled `<div>`** instead of `<dialog>`, and having to hand-roll focus trapping and Escape-to-close as a result.
 - **Tracking multiple cleanup functions separately** when a single shared `AbortController` and `signal` would cancel all of them together.
 
-## Quick Reference
-
+## Key Takeaways
 - `IntersectionObserver` for visibility changes, `ResizeObserver` for size changes — not `scroll`/`resize` listeners.
 - `AbortController`: one `signal`, passed to multiple listeners and fetches, cancelled with one `abort()` call.
 - `structuredClone(value)` for a real deep clone.

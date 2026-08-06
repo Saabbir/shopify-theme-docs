@@ -3,6 +3,8 @@ title: Folder Structure
 description: The required top-level directories in a Shopify theme.
 ---
 
+**TL;DR:** The required top-level directories in a Shopify theme.
+
 Every Shopify theme uses this exact folder layout at the top level. This includes Skeleton, Horizon, Dawn, and our own theme too. No other top-level folders are allowed.
 
 ```
@@ -64,8 +66,7 @@ Let's say you're building a Solis feature that shows a "recently viewed products
 - **Overloading `config/settings_schema.json`** with settings that really belong to just one section. This clutters the global theme settings panel and confuses merchants.
 - **Creating extra top-level folders** on your own, like `components/` or `styles/`. Only the 8 folders listed above are supported. Shopify silently ignores anything else.
 
-## Quick Reference
-
+## Key Takeaways
 - 8 top-level folders, no others allowed: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, `templates`.
 - Only `layout/theme.liquid` is strictly required.
 - `blocks/` is the newest addition. It didn't exist in Dawn-era themes.

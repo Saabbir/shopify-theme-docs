@@ -3,6 +3,8 @@ title: Spacing in Liquid & CSS
 description: Logical properties for RTL, and deciding between a custom property and a class for spacing that varies.
 ---
 
+**TL;DR:** Logical properties for RTL, and deciding between a custom property and a class for spacing that varies.
+
 Two rules decide most of how spacing actually gets written in a section's CSS: use logical properties instead of physical ones, and know when a varying value belongs in a custom property versus a class. Both come up constantly, and both are easy to get backwards out of habit.
 
 ## Logical properties (required for RTL)
@@ -92,8 +94,7 @@ For spacing between repeated sibling elements (cards in a grid, items in a list)
 - **Reaching for margin-plus-`:last-child`-exception** instead of `gap` for spacing between repeated siblings.
 - **Exposing several spacing properties as separate custom properties** when they really represent one coherent layout state that should be a class.
 
-## Quick Reference
-
+## Key Takeaways
 - Logical properties everywhere a physical/logical pair exists: this is what makes RTL work.
 - `gap` on the container for spacing between siblings, not margin-with-exceptions.
 - One varying property → custom property. Several varying together → class.

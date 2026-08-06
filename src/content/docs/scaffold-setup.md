@@ -3,6 +3,8 @@ title: Scaffold Setup Guide
 description: Going from an empty folder to a working first section and block.
 ---
 
+**TL;DR:** Going from an empty folder to a working first section and block.
+
 In Section 1, you got a Shopify theme running on your own computer. This section walks through why we scaffold from Skeleton Theme specifically, then through building your first real Solis section and block, step by step, using our conventions.
 
 ## What's on this page group
@@ -34,8 +36,7 @@ If you're missing any of these, work through the three pages in this section bef
 - **Copying patterns from another theme's public source code without changing them.** It's tempting because it's quicker, but it risks breaking the uniqueness rule. You can also end up with patterns that don't match our style.
 - **Adding settings at the wrong level.** This means making something theme-wide when it should be per-section, or the other way around. See [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for help deciding.
 
-## Quick Reference
-
+## Key Takeaways
 - Scaffold: `shopify theme init` (clones Skeleton Theme).
 - Then: build sections in `/sections`, reusable blocks in `/blocks`, and set up `config/settings_schema.json` for global settings.
 - Build one small, low-risk section first, so you can practice the whole workflow before you tackle a real feature.

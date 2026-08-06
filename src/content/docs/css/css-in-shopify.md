@@ -3,6 +3,8 @@ title: "CSS in Shopify: stylesheet, style & Subsetting"
 description: The three ways CSS gets into a theme, how Shopify subsets stylesheet output per page, and the Theme Check rule that catches broken cross-file dependencies.
 ---
 
+**TL;DR:** The three ways CSS gets into a theme, how Shopify subsets stylesheet output per page, and the Theme Check rule that catches broken cross-file dependencies.
+
 Shopify has three distinct ways to ship CSS in a theme, and they behave differently enough that picking the wrong one causes real bugs, not just style preferences. This page covers all three, plus the subsetting mechanism that makes `{% stylesheet %}` fast.
 
 ## The three mechanisms
@@ -170,8 +172,7 @@ Both `{% stylesheet %}` and `{% javascript %}` output are injected **once per fi
 - **Defining a class in one file and using it in an unrelated file**, which breaks silently the moment a page doesn't render the defining file.
 - **Adding a second `{% stylesheet %}` or `{% javascript %}` tag to one file.** Each file gets exactly one; a second is a syntax error.
 
-## Quick Reference
-
+## Key Takeaways
 - `{% stylesheet %}`: static, subsetted per render tree, no Liquid rendering, one per file.
 - `{% style %}`: live-updating (color settings especially), full Liquid rendering, not subsetted, use sparingly.
 - Asset stylesheets: truly global CSS, not subsetted, cached like any static file.

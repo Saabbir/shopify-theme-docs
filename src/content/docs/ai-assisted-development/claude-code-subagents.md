@@ -3,6 +3,8 @@ title: Claude Code Subagents
 description: A dedicated theme-check-fixer subagent, and the day-to-day workflow that ties skills, commands, and subagents together.
 ---
 
+**TL;DR:** A dedicated theme-check-fixer subagent, and the day-to-day workflow that ties skills, commands, and subagents together.
+
 [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) ships **skills**, which turn on automatically and belong to Shopify. [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) covers **commands**, which you trigger yourself by typing `/`, and which are ours. This page covers the third piece, **subagents**, and shows how all three fit together in a normal day of work.
 
 ## What a subagent actually is
@@ -110,8 +112,7 @@ If a future need is more about "apply this knowledge automatically, every time, 
 - **A vague `description`** that Claude can't reliably match against, so it either never hands off the task, or hands off the wrong ones.
 - **Duplicating a command's job as a subagent, or the other way around, without a reason.** Keep both only when the separation and tool-limiting trade-off genuinely matters for that job, as it does for `theme-check-fixer`.
 
-## Quick Reference
-
+## Key Takeaways
 - Subagent = its own conversation, limited tools, and hands off automatically or by name. Command = same kind of job, runs inline, manual `/trigger`. Skill = Shopify's, automatic, about getting Liquid right.
 - `.claude/agents/<name>.md` (project, committed) or `~/.claude/agents/<name>.md` (personal). Frontmatter: `name`, `description` (both required), `tools`, `model` (both optional, and leaving `tools` unset means it inherits everything).
 - Our one subagent so far: `theme-check-fixer`. [Download it](/templates/claude-agents/theme-check-fixer.md).

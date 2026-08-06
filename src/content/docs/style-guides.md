@@ -3,6 +3,8 @@ title: Style Guides
 description: Our rules for writing Liquid and clean code, plus when (and how) to add a third-party dependency.
 ---
 
+**TL;DR:** Our rules for writing Liquid and clean code, plus when (and how) to add a third-party dependency.
+
 The rest of this handbook explains how we build things in Shopify. It covers folders, blocks, schema (the settings a merchant can edit), and Theme Store rules. This section is different. It's a **standalone style guide** for the languages we write every day, and it doesn't belong to any one section or feature.
 
 Read it once, start to finish, when you're new. After that, use it as a reference whenever you need it.
@@ -36,8 +38,7 @@ Both matter, but we keep them on separate pages. That way, each one is faster to
 - **Skimming this section once and never coming back to it.** Rules like logical properties and `{% stylesheet %}` scoping are easy to forget once you're under deadline pressure, so it's worth rereading them now and then.
 - **Treating style guide rules as optional suggestions** instead of requirements, the same way you'd treat the architecture rules. Small inconsistencies in CSS and JS habits add up into real maintenance work over the years a theme stays in use.
 
-## Quick Reference
-
+## Key Takeaways
 - [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/)
 - For CSS specifically: see [CSS](/css/). For JavaScript specifically: see [JavaScript](/javascript/).
 - This section covers *how* to write code. [Codebase Structure](/codebase-structure/) covers *where* it goes.
