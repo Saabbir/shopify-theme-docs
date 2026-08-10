@@ -121,3 +121,17 @@
 .sl-markdown-content a[target='_blank'] code::after {
   content: none;
 }
+
+/* Inline code spans (e.g. `rem`) must never break mid-word onto two lines.
+   Narrow table columns are the usual trigger: without this, a short token
+   like `rem` can wrap into "re" / "m" inside a tight cell. Table cells also
+   get lower priority for breaking elsewhere in the cell, so code isn't the
+   only thing forced to wrap first. */
+.sl-markdown-content code {
+  white-space: nowrap;
+}
+
+.sl-markdown-content td,
+.sl-markdown-content th {
+  overflow-wrap: break-word;
+}

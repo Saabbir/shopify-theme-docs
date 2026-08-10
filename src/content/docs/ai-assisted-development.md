@@ -20,6 +20,7 @@ After that, you'll learn how to keep every tool's rules the same, and how to mak
 - [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/): our repeatable steps, plan, build, check, fix, report.
 - [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/): how we turn those steps into one command, `/figma-to-liquid`.
 - [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/): meet our `theme-check-fixer` helper, which handles the messy cleanup step on its own.
+- [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/): `/figma-to-feature`, a heavier, hook-gated pipeline that won't write theme code until a plan is approved, and runs full QA before calling a feature done.
 - [Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): how to ask for code in a way that gets good results.
 
 ## Why this section exists

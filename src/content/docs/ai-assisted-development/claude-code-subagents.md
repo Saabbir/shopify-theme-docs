@@ -21,7 +21,7 @@ Claude Code also comes with several built-in subagents, like `Explore`, `Plan`, 
 
 ## Our subagent: `theme-check-fixer`
 
-We have one project subagent so far, and it does exactly what its name says. It runs `shopify theme check`, fixes every issue it reports, and reports back to you.
+We have two project subagents so far. This one does exactly what its name says: it runs `shopify theme check`, fixes every issue it reports, and reports back to you. The second, `sol-builder`, is a heavier one that builds actual theme features — see [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/) for that one, since it only makes sense alongside the hooks and command it's dispatched from.
 
 [Download `theme-check-fixer.md`](/templates/claude-agents/theme-check-fixer.md) into `.claude/agents/` at your repo root:
 
@@ -79,6 +79,7 @@ Not every recurring need calls for a subagent, and not every subagent candidate 
 | A specific fact or pattern you want applied automatically, without asking every time (e.g. "always check the current filter syntax before writing Liquid") | A **skill**. But this is Shopify's territory via the AI Toolkit. We don't currently write our own skills, see the note below |
 | A multi-step process you run the same way every time, and want to trigger on purpose | A **command** (`.claude/commands/<name>.md`). See [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) for the full guide |
 | A sub-task that's noisy (many files, many rounds of edits) or that should run with limited tool access, whether or not you ask for it directly | A **subagent** (`.claude/agents/<name>.md`). See this page |
+| A rule that must be enforced no matter what, not just followed when the AI remembers to | A **hook** (`.claude/hooks/<name>.sh`). See [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/) |
 | Something so simple it's not worth automating | Neither. A one-off prompt is fine |
 
 ### Could we write our own skill instead of a subagent?
@@ -115,7 +116,7 @@ If a future need is more about "apply this knowledge automatically, every time, 
 ## Key Takeaways
 - Subagent = its own conversation, limited tools, and hands off automatically or by name. Command = same kind of job, runs inline, manual `/trigger`. Skill = Shopify's, automatic, about getting Liquid right.
 - `.claude/agents/<name>.md` (project, committed) or `~/.claude/agents/<name>.md` (personal). Frontmatter: `name`, `description` (both required), `tools`, `model` (both optional, and leaving `tools` unset means it inherits everything).
-- Our one subagent so far: `theme-check-fixer`. [Download it](/templates/claude-agents/theme-check-fixer.md).
+- Our two subagents so far: `theme-check-fixer` ([download](/templates/claude-agents/theme-check-fixer.md)) and `sol-builder` (see [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/)).
 - Both load `AGENTS.md`/`CLAUDE.md` automatically at startup, so there's no need to repeat Solis's rules in the subagent's own instructions.
 
 ## Further Reading
@@ -123,3 +124,4 @@ If a future need is more about "apply this knowledge automatically, every time, 
 - [Create custom subagents](https://code.claude.com/docs/en/sub-agents) (code.claude.com, the full frontmatter reference)
 - [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) (the command mechanism this page compares against)
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) (the skills mechanism this page compares against)
+- [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/) (`sol-builder`, our second subagent, and the hooks it runs alongside)

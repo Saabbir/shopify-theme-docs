@@ -71,6 +71,8 @@ Reference $ARGUMENTS to insert whatever the user typed after the command name.
 
 Download all three into `.claude/commands/` at your repo root, then commit them. This is the same idea as the AI rule files. Check them in, so every teammate gets the same commands the moment they clone the repo.
 
+There's a fourth command, `/figma-to-feature`, that isn't in this table on purpose. It's not just a saved prompt: it dispatches a dedicated subagent per phase and refuses to write theme files at all until a plan is explicitly approved, enforced by a hook rather than by instruction. That's a meaningfully heavier mechanism than the three above, so it gets its own page: [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/).
+
 ## Deciding what deserves a command
 
 Not every repeated prompt is worth turning into a command. A rough test:
@@ -119,3 +121,4 @@ A command runs its instructions **inline**, right in your main conversation. Tha
 
 - [Extend Claude with skills](https://code.claude.com/docs/en/slash-commands) (code.claude.com)
 - [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) (the isolated-context alternative to a command, and how the two work together)
+- [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/) (`/figma-to-feature`, the fourth, hook-gated command mentioned above)

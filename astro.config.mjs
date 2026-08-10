@@ -240,7 +240,8 @@ export default defineConfig({
             { label: '18.5. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
             { label: '18.6. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
             { label: '18.7. Claude Code Subagents', slug: 'ai-assisted-development/claude-code-subagents' },
-            { label: '18.8. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
+            { label: '18.8. Claude Code Hooks & the Feature Pipeline', slug: 'ai-assisted-development/hooks-and-feature-pipeline' },
+            { label: '18.9. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
           ],
         },
         {

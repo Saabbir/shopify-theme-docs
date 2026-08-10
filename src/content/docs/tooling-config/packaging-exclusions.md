@@ -29,7 +29,7 @@ Check out [Folder Structure](/codebase-structure/folder-structure/) to see what 
 | Category | Examples |
 |---|---|
 | Version control | `.git/`, `.gitignore` |
-| AI tooling | `AGENTS.md`, `CLAUDE.md`, `.cursor/`, `.claude/`, `.cursorrules`, `.mcp.json` |
+| AI tooling | `AGENTS.md`, `CLAUDE.md`, `.cursor/`, `.claude/`, `.cursorrules`, `.mcp.json`, `.sol-workflow/` (build plans and QA reports from [the `/figma-to-feature` pipeline](/ai-assisted-development/hooks-and-feature-pipeline/), if you use it) |
 | CI/CD and repo metadata | `.github/` |
 | Linter config | `.theme-check.yml` |
 | Build setup (if using one) | `package.json`, `node_modules/`, `src/`, `vite.config.js`, `tailwind.config.js`, `postcss.config.js`, any `.env*` |
@@ -45,6 +45,7 @@ Check out [Folder Structure](/codebase-structure/folder-structure/) to see what 
 .github/
 .cursor/
 .claude/
+.sol-workflow/
 AGENTS.md
 CLAUDE.md
 .cursorrules
