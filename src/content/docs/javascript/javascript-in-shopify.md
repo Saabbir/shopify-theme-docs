@@ -97,13 +97,13 @@ class TestimonialCarousel extends HTMLElement {
 - **Expecting `{{ liquid_variable }}` to interpolate inside `{% javascript %}`.** It doesn't render — pass data through a `data-*` attribute instead.
 - **Using a module-level variable for state that should be per-instance,** which breaks the moment a section or block renders more than once on the same page.
 
-## Key Takeaways
+## Key takeaways
 - One `{% javascript %}` tag per file, concatenated by file type (`scripts.js` / `block-scripts.js` / `snippet-scripts.js`), injected via `content_for_header`, loaded with `<script defer>`.
 - Each tag's content runs inside its own self-executing anonymous function — one section's error doesn't break another's script.
 - Liquid isn't rendered inside `{% javascript %}`. Pass data via `data-*` attributes.
 - A section's compiled script loads once per file, regardless of how many times that section/block appears on the page — keep state per-instance, not module-level.
 
-## Further Reading
+## Further reading
 
 - [JavaScript Architecture: Global vs. Scoped, State & Events](/javascript/javascript-architecture-state-and-events/): when to use `{% javascript %}` vs. an asset script
 - [Theme Editor & Storefront Events](/javascript/theme-editor-and-storefront-events/): the JS events that fire as the theme editor re-renders your sections

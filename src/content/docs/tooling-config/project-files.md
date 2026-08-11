@@ -127,7 +127,7 @@ No tool reads this file. It's purely for people. A good theme repo README briefl
 - **Mixing up what `.gitignore` and `.shopifyignore` each cover.** Excluding something from Git history doesn't exclude it from a CLI push or package operation, and the other way around isn't true either.
 - **Letting `README.md` and this handbook drift apart.** A stale local README that contradicts the current handbook confuses new developers about which one to trust.
 
-## Key Takeaways
+## Key takeaways
 - `.gitignore` covers Git history. `.shopifyignore` covers CLI push/pull/package operations. They do different jobs, and you need both.
 - `.theme-check.yml` sets the linter's rules and which paths it ignores.
 - `.github/` holds CI, the pull request template, and Copilot's rule file (a symlink to `AGENTS.md`).
@@ -135,7 +135,7 @@ No tool reads this file. It's purely for people. A good theme repo README briefl
 - `.mcp.json` / `.cursor/mcp.json` / `.vscode/mcp.json` are committed, project-scoped MCP server config (see Figma MCP & Dev Mode). Each person still approves and authenticates once.
 - `README.md` is a quick-start for people, not a copy of this handbook.
 
-## Further Reading
+## Further reading
 
 - [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)
 - [Theme Check configuration](https://shopify.dev/docs/storefronts/themes/tools/theme-check) (shopify.dev)

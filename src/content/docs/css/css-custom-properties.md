@@ -144,14 +144,14 @@ Treat `@property` as progressive enhancement: browsers that don't support it sim
 - **Exposing five separate custom properties for one coherent layout state**, instead of a single class.
 - **Assuming a custom property is automatically animatable.** Without `@property`, the browser can't interpolate between two arbitrary string values.
 
-## Key Takeaways
+## Key takeaways
 - Custom properties resolve at render time (unlike Sass variables), so they can be set dynamically, per-instance, from Liquid.
 - Scope: `:root` for global tokens, a specific selector for component-scoped values.
 - Always provide a `var()` fallback for conditionally-set properties.
 - One varying property → custom property. Several together → class.
 - `@property` adds a type, enabling smooth animation, and degrades gracefully where unsupported.
 
-## Further Reading
+## Further reading
 
 - [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/): the token structure custom properties implement
 - [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/): where custom properties can and can't be set from Liquid

@@ -104,14 +104,14 @@ You still need the breakdown step from [Figma to Code Workflow](/ai-assisted-dev
 - **Assuming the MCP connection alone tells the AI tool what should be a setting.** It doesn't. That's still on you, in the prompt.
 - **Not keeping Code Connect up to date**, so the AI tool has no way to know a component already exists, and ends up regenerating near-duplicates.
 
-## Key Takeaways
+## Key takeaways
 - Dev Mode = design inspector for people. MCP server = design data for AI tools. Related, but not the same thing.
 - Recommended: commit [`.mcp.json`](/templates/mcp.json), [`.cursor/mcp.json`](/templates/cursor/mcp.json), and [`.vscode/mcp.json`](/templates/vscode/mcp.json) so the whole team gets the Figma connection automatically. Each person still approves it once (Claude Code) and signs in with their own Figma account.
 - Manual per-editor setup: Claude Code plugin (`claude plugin install figma@claude-plugins-official`, adds Agent Skills too) or `claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp`. Cursor: **MCP: Add Server** → HTTP → `https://mcp.figma.com/mcp`.
 - Prefer a Figma link or selection over a screenshot whenever possible.
 - MCP gives you accurate design data, but it doesn't replace the breakdown step in the Figma-to-code workflow.
 
-## Further Reading
+## Further reading
 
 - [Figma MCP server guide](https://github.com/figma/mcp-server-guide) (Figma)
 - [Guide to the Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server) (Figma Help Center)

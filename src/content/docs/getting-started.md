@@ -75,13 +75,13 @@ If you're joining the Solis project without any background on it, here's roughly
 - **Assuming "it works on my dev store" means "it's done."** A change that works with your test data can still fail Theme Store review the moment it hits an empty collection or a 200-character title. Check [Theme Store Requirements](/theme-store-requirements/) before you call anything finished.
 - **Not asking when you're uncertain.** If a requirement or pattern in this handbook seems to conflict with what you're being asked to build, flag it. Don't quietly guess and hope it's fine.
 
-## Key Takeaways
+## Key takeaways
 - This handbook follows **Horizon's way of building things**, but we scaffold from **Skeleton Theme**, never Dawn, and never Horizon directly.
 - Written for developers who already know Liquid, sections/snippets/blocks, and the Shopify admin. This handbook covers our project-specific conventions and stricter Theme Store bar, not Shopify or Liquid fundamentals.
 - Section 1 is setup, do it first. Sections 2–4 are read-once onboarding after that. Everything from section 5 onward is a reference you come back to as needed.
 - Examples use "Solis" as the working theme name, but this handbook applies to any theme project.
 
-## Further Reading
+## Further reading
 
 - [Shopify themes overview](https://shopify.dev/docs/storefronts/themes) (shopify.dev)
 - [Theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

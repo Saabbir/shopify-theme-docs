@@ -183,7 +183,7 @@ None of `.sol-workflow/`'s content, plan files, QA reports, or state, is theme c
 - **Copying the original command file's Figma tool names without checking your own install method.** `mcp__plugin_figma_figma__*` only works if Figma MCP was installed via the plugin route. See the reconciliation section above.
 - **Forgetting `.sol-workflow/` in `.shopifyignore`.** It's easy to overlook a directory this handbook didn't previously ask you to exclude.
 
-## Key Takeaways
+## Key takeaways
 - `/figma-to-feature` = coordinator command + `sol-builder` subagent + two hooks + a plan template + `.sol-workflow/` state. Heavier than `/figma-to-liquid`, worth it when you want a hard pre-code gate and integrated QA.
 - The gate is real because a `PreToolUse` hook (`require-plan.sh`) blocks writes to theme folders until the plan says `Status: approved` — not because the command politely asks first.
 - `restore-index.sh` cleans up an orphaned QA preview swap on session `Stop`/`SessionStart`, in case a run is interrupted mid-QA.
@@ -191,7 +191,7 @@ None of `.sol-workflow/`'s content, plan files, QA reports, or state, is theme c
 - Two things to reconcile before trusting this as-is: Figma tool names depend on install method (plugin vs. committed `.mcp.json`), and the `sol-` prefix convention isn't yet documented on this handbook's CSS naming page.
 - Add `.sol-workflow/` to `.shopifyignore` — it wasn't covered before this page.
 
-## Further Reading
+## Further reading
 
 - [AI Coding Concepts](/ai-assisted-development/ai-coding-concepts/) — what a hook is, and the other five mechanisms this pipeline builds on
 - [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) — the lighter `/figma-to-liquid` alternative

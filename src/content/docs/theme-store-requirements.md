@@ -59,13 +59,13 @@ Short on time? Triple-check these before you submit Solis. These are the things 
 - **Assuming something "basically" meets a requirement.** Shopify's review is pass or fail per rule. There's no partial credit for an accessibility rule you "mostly" followed.
 - **Not re-reading updated requirements.** Shopify keeps changing this list on its end. Check the [official page](https://shopify.dev/docs/storefronts/themes/store/requirements) every so often, not just once.
 
-## Key Takeaways
+## Key takeaways
 - 22 official requirement categories, all listed at [shopify.dev/.../store/requirements](https://shopify.dev/docs/storefronts/themes/store/requirements).
 - Miss even one requirement and your submission gets rejected. None of these are optional.
 - Test thoroughly before submitting. Shopify rejects poorly-tested themes without further review.
 - Build requirements in as you develop, not in a last-minute scramble before submission.
 
-## Further Reading
+## Further reading
 
 - [Theme Store requirements (full list)](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)
 - [Submitting your theme](https://shopify.dev/docs/storefronts/themes/store/review-process/submit-theme) (shopify.dev)

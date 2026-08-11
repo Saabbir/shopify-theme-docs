@@ -84,13 +84,13 @@ If it clears all six questions, go ahead: vendor it into `assets/`, pin the vers
 - **Loading from an unpinned third-party CDN** instead of vendoring a specific, pinned version into `assets/`.
 - **Never revisiting an existing dependency** to check whether it's still maintained or whether a native alternative has since made it unnecessary.
 
-## Key Takeaways
+## Key takeaways
 - Default answer: no. Check for a native solution first (`<dialog>`, `scroll-snap`, native form validation, View Transitions).
 - If genuinely needed: check necessity, real bundle size, maintenance status, license, platform conflicts, and whether it can be scoped, in that order.
 - Vendor into `assets/` with a pinned version, loaded `defer` or as a module, scoped to only the section or template that needs it.
 - Revisit existing dependencies now and then. "Justified once" isn't the same as "justified forever."
 
-## Further Reading
+## Further reading
 
 - [JavaScript](/javascript/) - the native-first baseline this framework supports
 - [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/) - the ongoing cost every added script carries

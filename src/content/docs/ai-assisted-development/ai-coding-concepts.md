@@ -145,12 +145,12 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 - **Reaching for `AGENTS.md` instructions or a subagent's own good judgement where a hard rule is actually needed.** Telling the AI "don't write theme files before the plan is approved" in prose is a request, not an enforcement. A `PreToolUse` hook is the only one of these six that can actually block the tool call.
 - **Treating `AGENTS.md` as one of these six mechanisms.** It's static, always-loaded context. It doesn't turn on conditionally, and nothing needs to trigger it.
 
-## Key Takeaways
+## Key takeaways
 - **MCP server** = a connection to outside data or services. **Skill** = instructions that turn on automatically. **Command** = a saved prompt you trigger by hand. **Subagent** = a separate worker with limited tools. **Hook** = a script Claude Code runs automatically on an event, and the only one of the six that can actually block an action. **Plugin** = a bundle of any or all of the above, installed as one unit.
 - `AGENTS.md` is none of these. It's always-loaded, static context.
 - This handbook's examples: Figma MCP server and Shopify Dev MCP server (MCP), `shopify-liquid` (skill), `/figma-to-liquid` and `/figma-to-feature` (commands), `theme-check-fixer` and `sol-builder` (subagents), `require-plan.sh` and `restore-index.sh` (hooks), Shopify AI Toolkit and Figma's plugin (plugins).
 
-## Further Reading
+## Further reading
 
 - [Claude Code overview](https://code.claude.com/docs/en/overview) (code.claude.com)
 - [Model Context Protocol](https://modelcontextprotocol.io) (the open spec)

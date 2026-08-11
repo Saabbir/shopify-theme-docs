@@ -79,13 +79,13 @@ Only install apps on a demo store if they're incidental to showing off the theme
 - **Submitting against a stale demo store** that doesn't reflect the actual version under review.
 - **Leaving policy pages as placeholder text**, which undermines the "realistic store" impression the whole requirement is about.
 
-## Key Takeaways
+## Key takeaways
 - One demo store per preset, matching its positioning; same storefront password across all of them.
 - Show real catalog variety: on-sale, sold-out, multi-variant, gift card, and a long title.
 - Keep the demo store's theme version current, and its admin presentable. Reviewers may access both.
 - Test-mode payments only; real policy pages; realistic, populated navigation menus.
 
-## Further Reading
+## Further reading
 
 - [Store & Design Requirements](/theme-store-requirements/store-and-design/) (the content quality bar this checklist supports)
 - [Partner Dashboard Setup](/publishing/partner-dashboard-setup/) (the account/access layer beneath this)

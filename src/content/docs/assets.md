@@ -41,7 +41,7 @@ Every page in this section could stop at "here's the Liquid filter that renders 
 - Always reach for Shopify's own filters (`image_tag`, `video_tag`, `model_viewer_tag`) instead of hand-writing markup. They handle responsive sizing, format selection, and adaptive streaming correctly by default.
 - Treat "reserve the media's space before it loads" as a non-negotiable rule, not a nice-to-have, for every single media element you ship.
 
-## Further Reading
+## Further reading
 
 - [Performance](/performance/) and [Accessibility](/accessibility/): the theme-wide performance and accessibility strategy this section's media-specific pages plug into
 - [Design System & Configuration](/design-system/): the tokens and settings architecture icons and other assets are configured through

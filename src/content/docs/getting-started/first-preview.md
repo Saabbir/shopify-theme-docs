@@ -75,12 +75,12 @@ If you make a change and nothing happens, don't assume you broke something. Rest
 - **Running `shopify theme dev` against a live or published theme by accident.** Always confirm the `--store` flag points at your personal dev store, not a shared or production store.
 - **Opening the preview in a browser other than Chrome and reporting it as broken.** This is expected. Hot reload previews only work in Chrome.
 
-## Key Takeaways
+## Key takeaways
 - `shopify theme init`: clone the scaffold (new project only, use `git clone` for an existing one).
 - `shopify theme dev --store <store>`: local preview with hot reload (Chrome only).
 - Schema and file-structure changes sometimes need a dev server restart. Try that before debugging.
 - Nothing here touches the store's live theme.
 
-## Further Reading
+## Further reading
 
 - [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) (shopify.dev)

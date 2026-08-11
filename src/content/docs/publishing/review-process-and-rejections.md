@@ -66,11 +66,11 @@ The review team mainly works EST business hours, Monday through Friday. If a cha
 - **Resubmitting right after the first fix**, without doing a fresh full QA pass, risking a second rejection for something unrelated that never actually got re-checked.
 - **Guessing at unclear feedback instead of asking.** The reply channel exists specifically for clarifying questions.
 
-## Key Takeaways
+## Key takeaways
 - 5 sequential stages: Features/OS 2.0 → Lighthouse → Technical → Design/UX → Pre-launch.
 - A rejection email lists the exact changes required. Fix those specifically, and check for the same pattern elsewhere before resubmitting.
 - Resubmitting without addressing rejection reasons risks a submission suspension.
 
-## Further Reading
+## Further reading
 
 - [Submitting a theme, review process](https://shopify.dev/docs/storefronts/themes/store/review-process/submit-theme) (shopify.dev)

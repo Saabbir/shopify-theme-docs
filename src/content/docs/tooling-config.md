@@ -31,10 +31,10 @@ It's easy to mix the two up. For example, you might accidentally commit a `node_
 - **Assuming `.gitignore` also protects a Theme Store submission.** It doesn't. A build setup folder that's committed to Git could still end up in a theme zip if you don't handle packaging separately.
 - **Adding a new dev tooling file and forgetting to add it to `.shopifyignore`** on the same day. Even a short delay leaves a window where it could ship inside a submission zip.
 
-## Key Takeaways
+## Key takeaways
 - [Project Files Explained](/tooling-config/project-files/) · [Packaging Exclusions](/tooling-config/packaging-exclusions/) · [Tailwind & Alpine Build Setup](/tooling-config/tailwind-and-alpine-build-setup/)
 - Dev tooling files make the repo better to work in. Only the 8 theme folders go to the Theme Store. Keep the two concerns separate.
 
-## Further Reading
+## Further reading
 
 - [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)

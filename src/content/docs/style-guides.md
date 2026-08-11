@@ -38,12 +38,12 @@ Both matter, but we keep them on separate pages. That way, each one is faster to
 - **Skimming this section once and never coming back to it.** Rules like logical properties and `{% stylesheet %}` scoping are easy to forget once you're under deadline pressure, so it's worth rereading them now and then.
 - **Treating style guide rules as optional suggestions** instead of requirements, the same way you'd treat the architecture rules. Small inconsistencies in CSS and JS habits add up into real maintenance work over the years a theme stays in use.
 
-## Key Takeaways
+## Key takeaways
 - [Liquid Style Guide](/style-guides/liquid/) · [Clean Code Principles](/style-guides/clean-code-principles/) · [Third-Party Libraries](/style-guides/third-party-libraries/)
 - For CSS specifically: see [CSS](/css/). For JavaScript specifically: see [JavaScript](/javascript/).
 - This section covers *how* to write code. [Codebase Structure](/codebase-structure/) covers *where* it goes.
 
-## Further Reading
+## Further reading
 
 - [CSS](/css/), the dedicated section for everything CSS-related
 - [JavaScript](/javascript/), the dedicated section for everything JS-related

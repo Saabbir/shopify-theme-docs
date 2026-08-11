@@ -82,12 +82,12 @@ Test new sections with `dir="rtl"` in your browser's dev tools regularly, not ju
 - **Using physical properties (`margin-left`) out of habit.** This passes review fine in English, then breaks silently the first time the theme runs in a right-to-left market.
 - **Giving a component's root element a generic class** (`.wrapper`, `.container`) with no relation to what it actually is.
 
-## Key Takeaways
+## Key takeaways
 - Global tokens (custom properties) live in `assets/base.css`. Component CSS lives in `{% stylesheet %}`, next to its markup.
 - Naming: kebab-case, BEM-shaped (`block__element--modifier`).
 - Use logical properties everywhere a physical/logical pair exists. This is what makes RTL work.
 
-## Further Reading
+## Further reading
 
 - [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/): how component-scoped CSS is loaded and subsetted per page
 - [Cascade, Specificity & the Box Model](/css/cascade-specificity-and-box-model/): why avoiding ID selectors and keeping naming flat matters

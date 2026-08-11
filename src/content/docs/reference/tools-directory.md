@@ -80,9 +80,9 @@ This isn't the project's default setup. Before you add it to a project, read [Ta
 - **Using a browser other than Chrome for `theme dev`, then wondering why hot-reload doesn't work.** This is a known Chrome-only limitation, not a bug.
 - **Skipping axe or manual accessibility checks just because Lighthouse passed.** Lighthouse's accessibility score is automated, so it misses things a real audit would catch (see [Accessibility](/theme-store-requirements/accessibility/)).
 
-## Key Takeaways
+## Key takeaways
 - Local dev: Shopify CLI + Chrome. AI: Claude Code, Cursor, or Copilot, kept in sync with AGENTS.md. Design: Figma + Dev Mode + MCP. Quality checks: Theme Check + Lighthouse + axe. Optional build tools: Vite + Tailwind + Alpine.
 
-## Further Reading
+## Further reading
 
 - [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)

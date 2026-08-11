@@ -103,12 +103,12 @@ You must wait at least **4 weeks** between updates. The one exception is your fi
 - **Writing release notes in developer language**, like "refactored the cart total calculation," instead of describing the impact for merchants, like "fixed an issue where the cart total didn't update immediately."
 - **Reducing a section or block limit** in an update, without realizing this alone will get the update rejected.
 
-## Key Takeaways
+## Key takeaways
 - Semantic versioning uses `X.Y.Z`: major (breaking change), minor (compatible addition), patch (fix). The highest-impact change in a release sets the version bump.
 - `release-notes.md` is required starting with your first update, and it should be written for merchants.
 - Automated updates are easier on merchants. Batch schema-breaking changes together instead of spreading them out.
 - There's a 4-week minimum gap between updates (2 weeks for your first two months).
 
-## Further Reading
+## Further reading
 
 - [Updating your theme](https://shopify.dev/docs/storefronts/themes/store/success/updates) (shopify.dev)

@@ -105,7 +105,7 @@ A human reviewer still needs to check all of these. Think of CI as the minimum b
 - **Turning off a Theme Check rule with an ignore comment without understanding why it exists.** Several rules exist because they map directly to a Theme Store requirement (see [Theme Store Requirements](/theme-store-requirements/)).
 - **Relying on CI instead of doing manual QA (quality assurance testing).** CI is deliberately narrow. It only checks lint-level issues. Treating a green CI run (meaning all checks passed) as "fully tested" misses everything listed above in "What CI does not replace."
 
-## Key Takeaways
+## Key takeaways
 - One file, [`ci.yml`](/templates/github/workflows/ci.yml), runs both checks: `npm run format:check` (Prettier) and `Shopify/theme-check-action` (Theme Check).
 - `github.token` is generated automatically by GitHub Actions for every run — you never create or store it yourself.
 - `npm ci` installs exact locked versions from `package-lock.json` and fails if it's out of sync, instead of quietly resolving new ones like `npm install` would.
@@ -113,7 +113,7 @@ A human reviewer still needs to check all of these. Think of CI as the minimum b
 - Read and fix CI failures the same way you would fix a local one. Don't guess-fix or suppress them.
 - When a future config file gets added to the project, it gets its own `ci.yml` step added here, not a second workflow file.
 
-## Further Reading
+## Further reading
 
 - [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) (shopify.dev)
 - [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action) (GitHub)

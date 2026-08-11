@@ -128,13 +128,13 @@ A rule nobody has ever checked against real output is just wishful thinking writ
 - **Assuming `.cursor/rules/*.mdc` is still the main approach.** It's optional and old fashioned now that Cursor reads `AGENTS.md` directly. Only bring it back for a specific, deliberate reason.
 - **Writing rules that are technically true but useless**, like "be accessible" or "write clean code." These almost never change what the model actually produces.
 
-## Key Takeaways
+## Key takeaways
 - `shopify theme init` with AI agent support turned on generates `AGENTS.md`, plus `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at it. Cursor reads `AGENTS.md` directly, no extra file needed.
 - Only edit the `## Custom rules` section at the bottom of `AGENTS.md`. Everything above it belongs to Shopify's generator.
 - There's no regeneration step. The name tags always reflect whatever the real file currently says.
 - `.cursor/rules/*.mdc` is optional and old fashioned, meant for teams that specifically want rules to load only for certain file types.
 
-## Further Reading
+## Further reading
 
 - [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/), the guide for changing `## Custom rules` well
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/), the `learn_shopify_api` instruction and what it connects to

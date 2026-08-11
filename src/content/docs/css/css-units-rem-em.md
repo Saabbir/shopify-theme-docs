@@ -143,14 +143,14 @@ Viewport units are rarely the right choice for font sizes on their own (a headin
 - **Using `em` for everything**, which compounds unpredictably through nested components and becomes hard to reason about.
 - **Using plain `vh` for full-height mobile sections**, which can be taller than what's actually visible once mobile browser chrome is accounted for.
 
-## Key Takeaways
+## Key takeaways
 - `rem`: relative to root, predictable, the default choice for most sizing.
 - `em`: relative to the current element, compounds through nesting, right for component-internal scaling (like button padding).
 - `px`: absolute, right for hairline borders and shadow details that shouldn't scale.
 - 62.5% technique: `:root { font-size: 62.5%; }` makes `1rem = 10px` for easy mental math, but always reset `body`'s font size afterward.
 - `dvh`/`svh` over `vh` for mobile-safe full-height layouts.
 
-## Further Reading
+## Further reading
 
 - [CSS Custom Properties (Variables)](/css/css-custom-properties/): storing these unit values as reusable tokens
 - [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/) and [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/): the scales built on top of `rem`

@@ -200,7 +200,7 @@ In practice, that means:
 - **Migrating already-shipped `color` settings to reference the palette as a quick, unplanned change.** Treat this as its own deliberate, reviewed change instead, since it touches shipped setting defaults that merchants may have already customized.
 - **Assuming Skeleton Theme, our scaffold, already includes this.** Check the live repo before assuming. As of this writing, it doesn't.
 
-## Key Takeaways
+## Key takeaways
 - One `color_palette` per theme, and it only lives in `settings_schema.json`. Only `id` (required) and `default` (required, 2 to 20 hex-color pairs, no alpha) are supported. No `label`, `info`, or `visible_if`.
 - Read it with `settings.<id>.<key>`. It returns a full `color` object, so every color filter still works.
 - `color`/`color_background` settings can default to a palette entry, like `"default": "{{ settings.colors.primary }}"`. Only palette references work as dynamic defaults.
@@ -208,7 +208,7 @@ In practice, that means:
 - New palette keys show up automatically after a theme update. Merchant customizations always win. Deleting a palette color prompts the merchant for a replacement and keeps existing references working.
 - Skeleton Theme doesn't use it yet, we checked directly. Horizon 4.0.0 does. Adopt it deliberately for new Solis settings work.
 
-## Further Reading
+## Further reading
 
 - [Color palettes in Themes](https://shopify.dev/changelog/color-palettes), the shopify.dev developer changelog with the original announcement
 - [`color_palette` developer documentation](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette), the full shopify.dev input-settings reference

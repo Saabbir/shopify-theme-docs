@@ -56,7 +56,7 @@ A preset turns "configure this from nothing" into "adjust this from something re
 - Reach for a second preset, at any scope, only when there's a genuinely distinct real-world use case behind it, not as a way to expose every settings combination.
 - Read [Real-World Preset Examples](/presets/real-world-preset-examples/) before planning your own multi-preset strategy, it walks through the business reasoning, not just the schema syntax.
 
-## Further Reading
+## Further reading
 
 - [Config & Global Settings](/config-and-settings/): the `settings_schema.json`/`settings_data.json` architecture theme presets are built on
 - [Codebase Structure](/codebase-structure/): where sections and theme blocks (and their local presets) live

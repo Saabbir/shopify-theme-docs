@@ -157,14 +157,14 @@ CI is the one check here that's actually unconditional. It doesn't depend on any
 - **Leaving both the Shopify Liquid extension and the Prettier extension registered as formatters for `.liquid` without the `[liquid]` override.** Different teammates get prompted to pick a formatter and don't all pick the same one.
 - **Gitignoring all of `.vscode/` instead of allow-listing the two files that should be shared.** This is the single change that turns "we have a formatting convention" into "everyone actually has the same settings."
 
-## Key Takeaways
+## Key takeaways
 - `.prettierrc.json`: [download it](/templates/prettierrc.json). Must declare `"plugins": ["@shopify/prettier-plugin-liquid"]` — Prettier 3+ won't infer it.
 - Standardize on the **Prettier extension** (`esbenp.prettier-vscode`) as the default formatter for every file type, including `.liquid` — not the Shopify Liquid extension's bundled formatter, since only a real `prettier` binary also works from the CLI, pre-commit, and CI.
 - `.vscode/settings.json` and `.vscode/extensions.json`: [download](/templates/vscode/settings.json) [both](/templates/vscode/extensions.json), commit them, and un-ignore just those two files in `.gitignore`.
 - Cursor generally honors these settings since it's a VS Code fork, but confirm it's actually reformatting on save rather than assuming.
 - Format-on-save is a convenience. `npm run format:check` in a pre-commit hook and in CI is the real enforcement — it's the only one of the three that AI-written code can't bypass.
 
-## Further Reading
+## Further reading
 
 - [Shopify Liquid Prettier Plugin](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin) (shopify.dev), the full configuration option reference this page's defaults come from
 - [Prettier pre-commit documentation](https://prettier.io/docs/en/precommit.html) (prettier.io)

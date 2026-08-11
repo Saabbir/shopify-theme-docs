@@ -18,7 +18,7 @@ The CSS deep dive (cascade, specificity, and the box model) moved into its own [
 
 These are not reference pages you bookmark for quick daily lookups. That's what [Reference](/reference/) is for. These pages are meant to be read start to finish, once, when you want to really understand a topic instead of just checking a rule. If you're a new teammate, try reading these in roughly the order listed above during your onboarding, alongside [Getting Started](/getting-started/).
 
-## Key Takeaways
+## Key takeaways
 - [Liquid Global Objects](/learning-articles/liquid-global-objects/) · [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/)
 - For the CSS deep dive: see [CSS](/css/). For the JS & Web Components deep dive: see [JavaScript](/javascript/).
 - This section helps you understand *why* something works the way it does. [Style Guides](/style-guides/) gives you the rule. [Reference](/reference/) is for quick lookups.

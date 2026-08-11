@@ -39,7 +39,7 @@ Start with [units](/css/css-units-rem-em/): almost every value in this handbook'
 
 **"Do I need a critical-CSS build step?"** No. Shopify's stylesheet subsetting already does the equivalent job, as long as `{% stylesheet %}` scoping stays disciplined. See [CSS Performance](/css/css-performance/).
 
-## Further Reading
+## Further reading
 
 - [Style Guides](/style-guides/): the broader section this one was split out of, covering JavaScript, Web Components, and Liquid style too
 - [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/): the token domains built on the mechanisms covered here

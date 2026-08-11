@@ -76,12 +76,12 @@ A checklist this long is easy to skim past under deadline pressure. Here's a mor
 - **Running this checklist only once, early on**, and assuming later changes don't affect what you already checked.
 - **Having the same person who built a feature be the only one who checks it off here.** Self-review misses the same blind spots that let the issue into the code in the first place.
 
-## Key Takeaways
+## Key takeaways
 - This is the last gate, not the first pass. Everything here should already be true well before submission day. You're just confirming it one more time.
 - A single missing item can cause full rejection. Treat every checkbox as required, not optional.
 - Have someone other than the feature's builder run the final pass.
 
-## Further Reading
+## Further reading
 
 - [Full Theme Store requirements](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)
 - [Submitting your theme](/publishing/packaging-and-submitting/) (from this handbook)

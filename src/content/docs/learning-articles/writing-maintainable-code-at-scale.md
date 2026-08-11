@@ -102,14 +102,14 @@ The discipline here isn't "review everything on a schedule." That's unrealistic 
 - **Relying on memory for anything more than one person needs to remember.** This is exactly where a checklist, a lint rule, or a CI check pays for itself.
 - **Letting a first wrong-pattern instance stand** "just this once," which becomes the template the next developer copies.
 
-## Key Takeaways
+## Key takeaways
 - Consistency compounds, and so does inconsistency. Fix the first wrong instance, don't let it become precedent.
 - Extract abstractions from a third real occurrence, not a second guess.
 - Name for role, not current appearance.
 - Comment the *why*. The *what* is already in the code.
 - Convert tribal knowledge into mechanical checks (lint rules, CI, checklists) as soon as it matters to more than one person.
 
-## Further Reading
+## Further reading
 
 - [Setting Up AI Rules](/getting-started/setting-up-ai-rules/): an example of converting a manual sync process into a mechanical one
 - [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/): an example of converting "remember every requirement" into a checklist

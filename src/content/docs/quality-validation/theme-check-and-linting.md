@@ -76,13 +76,13 @@ If you find yourself turning off the same rule again and again across your codeb
 - **Only running Theme Check right before opening a PR**, instead of running it continuously during development. This turns a five-second fix into a much bigger cleanup job later.
 - **Letting formatting stay inconsistent across contributors** because Prettier isn't set up project-wide. This creates noisy diffs that hide the actual code change during review.
 
-## Key Takeaways
+## Key takeaways
 - `shopify theme check`: run it locally, and it runs again automatically in CI.
 - Start from Skeleton Theme's `.theme-check.yml` instead of a blank config.
 - Prettier's official Liquid plugin keeps formatting consistent across contributors (and AI tools too).
 - Look up offenses you don't recognize instead of silencing them without thinking it through.
 
-## Further Reading
+## Further reading
 
 - [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check): shopify.dev
 - [Prettier plugin for Liquid](https://shopify.dev/docs/storefronts/themes/tools/liquid-prettier-plugin): shopify.dev

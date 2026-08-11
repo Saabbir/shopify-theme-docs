@@ -201,7 +201,7 @@ Deeply nested structures are harder for merchants to navigate in the theme edito
 - **Trying to pass a variable into a block like you would a snippet**, thinking in terms of `{% render_block %}`. Blocks only ever see `block` and `section`, never any data you pass in directly.
 - **Defining blocks inline in a section's schema "because it's simpler for now."** This is the old Dawn-era pattern, and it locks that block to one section instead of letting you reuse it.
 
-## Key Takeaways
+## Key takeaways
 - Blocks live in `/blocks`, are reusable across sections, and can nest inside each other.
 - A section either defines blocks inline or accepts theme blocks, never both.
 - `{% content_for 'blocks' %}` renders whatever blocks were added, in the order stored in the JSON template.
@@ -209,7 +209,7 @@ Deeply nested structures are harder for merchants to navigate in the theme edito
 - A block can't receive variables like a snippet can. It only sees `block` and `section`.
 - Keep nesting to 1-2 levels for most content. Deeper nesting is a signal to reconsider the design.
 
-## Further Reading
+## Further reading
 
 - [Theme blocks quick start](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start) (shopify.dev)
 - [Theme block schema](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/schema) (shopify.dev)

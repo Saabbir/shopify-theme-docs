@@ -66,12 +66,12 @@ Let's say you're building a Solis feature that shows a "recently viewed products
 - **Overloading `config/settings_schema.json`** with settings that really belong to just one section. This clutters the global theme settings panel and confuses merchants.
 - **Creating extra top-level folders** on your own, like `components/` or `styles/`. Only the 8 folders listed above are supported. Shopify silently ignores anything else.
 
-## Key Takeaways
+## Key takeaways
 - 8 top-level folders, no others allowed: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, `templates`.
 - Only `layout/theme.liquid` is strictly required.
 - `blocks/` is the newest addition. It didn't exist in Dawn-era themes.
 - When you're unsure where something goes, ask yourself: does a merchant edit it visually? Is it reused with different data each time? Does it need its own settings?
 
-## Further Reading
+## Further reading
 
 - [Theme architecture, directory structure](https://shopify.dev/docs/storefronts/themes/architecture#directory-structure-and-component-types) (shopify.dev)

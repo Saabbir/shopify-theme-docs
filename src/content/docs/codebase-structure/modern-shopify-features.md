@@ -91,13 +91,13 @@ Not every new Shopify feature is automatically worth using in every theme. Here'
 - **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
 
-## Key Takeaways
+## Key takeaways
 - Metaobjects and dynamic sources: write generic settings, and let merchants connect any compatible metaobject field in the editor.
 - `{% style %}` vs `{% stylesheet %}`: see [CSS in Shopify](/css/css-in-shopify/).
 - View Transitions API: check for support first, and always provide a fallback.
 - A "modern feature" is worth adopting when it replaces something you'd otherwise have to hand-build, not just because it's new.
 
-## Further Reading
+## Further reading
 
 - [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/), the full `{% style %}`/`{% stylesheet %}` comparison
 - [Dynamic data sources](https://shopify.dev/docs/storefronts/themes/architecture/settings/dynamic-sources) (shopify.dev)

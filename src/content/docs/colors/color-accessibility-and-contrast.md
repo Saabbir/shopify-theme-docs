@@ -92,14 +92,14 @@ button:focus-visible { outline: 2px solid var(--color-focus); }
 - **Treating `color_brightness`'s 0–255 output as a WCAG contrast ratio.** It's a different number, measuring a different thing.
 - **Shipping a background color setting with no paired text color setting**, which makes contrast impossible to check or guarantee. See [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule).
 
-## Key Takeaways
+## Key takeaways
 - 4.5:1 for body text, 3:1 for large text (18pt+/14pt+ bold), icons, and UI borders.
 - Test every color scheme a merchant can pick, not just the default.
 - Automate what you can (axe/Lighthouse in CI), manually verify the rest with a contrast checker.
 - Derive focus outline colors per scheme so they stay visible everywhere.
 - `color_brightness` picks between light/dark text at render time. It doesn't verify a WCAG ratio.
 
-## Further Reading
+## Further reading
 
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the full nine-item checklist this page's contrast rules belong to
 - [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/): the process for keeping accessibility (including contrast) correct across a whole theme project

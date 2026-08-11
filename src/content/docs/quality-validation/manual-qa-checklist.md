@@ -110,11 +110,11 @@ Don't try to run the whole list above for every single PR. If you do, the checkl
 - **Skipping the general "Sections" checklist because a change "is small."** Small changes are exactly where an overlooked edge case, like a missing blank check or a broken empty state, tends to slip through.
 - **Treating feature-specific checks (unit pricing, selling plans) as a one-time setup check**, instead of re-running them whenever the surrounding code changes, even if that feature wasn't the target of the change.
 
-## Key Takeaways
+## Key takeaways
 - Test every section with zero, one, and many blocks, and with unusually long text. This is the single most common thing that breaks, and it usually gets caught late.
 - Test features (local pickup, unit pricing, selling plans, rich media) with real settings turned on, not just by looking at them in isolation.
 - Build reusable "torture test" data once in your dev store, instead of making it up for each QA pass.
 
-## Further Reading
+## Further reading
 
 - [Theme Store requirements: Features & Pages](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)

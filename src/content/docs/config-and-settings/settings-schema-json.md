@@ -156,14 +156,14 @@ A `liquid`-type setting's value is **not** translatable through Translate & Adap
 - **Rendering a resource-based setting without a `blank` check**, breaking silently if a merchant never selected one or later deleted it.
 - **Confusing schema-label translation (`t:` keys) with merchant-content translation (Translate & Adapt).** They're two entirely different systems for two different kinds of text.
 
-## Key Takeaways
+## Key takeaways
 - `settings_schema.json`: array of category objects, each requiring `name` and `settings`.
 - `theme_info`: `name`, `theme_name`, `theme_author`, `theme_version`, `theme_documentation_url` all required, plus exactly one of `theme_support_email`/`theme_support_url`.
 - Use flat `t:` namespaces (`t:general.*`, `t:labels.*`), never deeply nested paths.
 - `visible_if` works on a specific list of types — verify before relying on it.
 - Always `blank`-check a setting before using its value, especially resource-based settings.
 
-## Further Reading
+## Further reading
 
 - [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/): the file this one's values get saved into
 - [Settings Conventions & Best Practices](/config-and-settings/settings-conventions-and-best-practices/): the id-permanence rule and pre-ship checklist

@@ -141,7 +141,7 @@ Treat AI-generated Liquid, CSS, or JS exactly like a human's first draft. See [A
 - **Accepting a section that looks pixel-perfect without testing how it handles different content.** It often looks done because the demo data happens to fit well, not because the section actually handles variation.
 - **Not pulling out design values**, which leads to the same spacing or color value hardcoded in several places. Over time, one gets tweaked and the others don't, and they drift apart.
 
-## Key Takeaways
+## Key takeaways
 - The loop, every time: **plan, build, check, fix (handed off), document, report.** See the table at the top of this page.
 - Break it down before prompting: content versus structure, block breakdown, responsive versions.
 - Pull out design values (color, spacing, type) before writing CSS. A Figma MCP connection gives you exact values instead of eyeballing them.
@@ -149,6 +149,6 @@ Treat AI-generated Liquid, CSS, or JS exactly like a human's first draft. See [A
 - Stress-test with empty, very-long, and very-many-blocks content before calling it done.
 - Use [`/figma-to-liquid`](/ai-assisted-development/claude-code-custom-commands/) to run this whole loop as one command instead of typing it out each time.
 
-## Further Reading
+## Further reading
 
 - [Theme blocks quick start](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start) (shopify.dev)

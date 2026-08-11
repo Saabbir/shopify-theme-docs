@@ -90,13 +90,13 @@ This is the same test described in [Setting Up AI Rules](/getting-started/settin
 - **Repeating content Shopify's file already covers** instead of checking first and linking out if more context is needed.
 - **Assuming a clearly-written rule works** without testing it against an actual generation task.
 
-## Key Takeaways
+## Key takeaways
 - Two authors, one file: Shopify owns everything above `## Custom rules`; we own that section and nothing else.
 - Section order within `## Custom rules`: general or governing rules first, then project constraints, then process, then final checks last.
 - Format: `##` and `###` headings, specific and checkable rules, no repeating what Shopify's content already says.
 - Process: check it's not already covered, base it on an official source, write it specifically, test against real output, commit `AGENTS.md` (nothing to regenerate), write a specific PR description.
 
-## Further Reading
+## Further reading
 
 - [Setting Up AI Rules (AGENTS.md)](/getting-started/setting-up-ai-rules/) - the base mechanism this page assumes
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) - a doc-search tool that helps you base changes on current, official sources

@@ -28,12 +28,12 @@ The [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) page
 - **Treating accessibility as something to check only before submission,** instead of a habit for every section. Fixing 40 sections at once is a much bigger job than fixing them one at a time as you go.
 - **Reading only the compliance checklist page and skipping the deep dive.** The checklist tells you the bar. [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/) tells you how to clear it every time, without redoing work later.
 
-## Key Takeaways
+## Key takeaways
 - [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/)
 - Domain-specific accessibility: [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/), [Font Accessibility & Performance](/fonts/font-accessibility-and-performance/).
 - This section explains the process. [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/) is the compliance bar it helps you clear.
 
-## Further Reading
+## Further reading
 
 - [Performance](/performance/): the other quality bar every section must meet, covered in its own dedicated section
 - [Accessibility requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#12-accessibility) (shopify.dev)

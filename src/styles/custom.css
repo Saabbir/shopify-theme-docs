@@ -131,6 +131,15 @@
   white-space: nowrap;
 }
 
+/* ...but NOT inside a fenced code block. `white-space: nowrap` collapses
+   runs of whitespace same as `normal` does, which was flattening every
+   multi-line code example's leading indentation to nothing. Fenced blocks
+   need `pre` (preserve whitespace, don't force a single line) restored,
+   overriding the rule above via higher selector specificity. */
+.sl-markdown-content pre code {
+  white-space: pre;
+}
+
 .sl-markdown-content td,
 .sl-markdown-content th {
   overflow-wrap: break-word;

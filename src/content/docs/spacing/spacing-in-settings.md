@@ -86,13 +86,13 @@ Setting `step` to match your spacing scale's own increments (say, multiples of 8
 - **Forgetting the `default` attribute**, which is required and errors without one.
 - **Not providing a CSS fallback** for a spacing custom property, so a missing value silently collapses to `0` instead of the intended default.
 
-## Key Takeaways
+## Key takeaways
 - `range` needs `min`, `max`, and `default`. `step` defaults to `1`, `unit` is display-only.
 - Most spacing should stay fixed in CSS. Section-level padding is the most common spacing value that's actually worth exposing.
 - The test: would every value across the range still look like a reasonably designed page?
 - Bound tightly, align `step` to your scale, and provide a CSS fallback.
 
-## Further Reading
+## Further reading
 
 - [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/): the fixed scale this page's settings sit alongside
 - [Spacing in Liquid & CSS](/spacing/spacing-in-liquid-and-css/): logical properties and the custom-property-vs-class rule

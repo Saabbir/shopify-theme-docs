@@ -103,14 +103,14 @@ A theme's media footprint tends to grow in one direction, additively, unless som
 - **Never re-checking a media element's loading defaults after a redesign moves it above or below the fold.**
 - **Treating a media-heavy section's performance impact as something to check only at the pre-submission Lighthouse run**, instead of at the milestone it was actually added.
 
-## Key Takeaways
+## Key takeaways
 - Reserve space for every media type before it loads: explicit dimensions or `aspect-ratio`.
 - Host static assets (`assets/` folder) on Shopify's own CDN; product/variant/collection media is already CDN-hosted via the Admin.
 - `preload_tag` / `image_tag`'s `preload` param: at most one or two per template, reserved for the real LCP candidate.
 - Consistent naming (`icon-*.liquid`, descriptive kebab-case for static files) keeps a growing asset footprint navigable.
 - Audit for unused icons, orphaned assets, and stale loading defaults on a regular cadence, not just at launch.
 
-## Further Reading
+## Further reading
 
 - [Icon Management](/assets/icon-management/) · [Responsive Images](/assets/responsive-images/) · [Video Management](/assets/video-management/) · [3D & AR Media](/assets/3d-and-ar-media/)
 - [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the theme-wide performance plan this page's media-specific rules plug into

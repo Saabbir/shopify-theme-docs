@@ -31,7 +31,7 @@ Spacing starts as a fixed scale in CSS (see [Spacing Scale & Tokens](/spacing/sp
 
 **"One custom property or a class?"** One property varying → custom property. Several varying together → class. See [Spacing in Liquid & CSS](/spacing/spacing-in-liquid-and-css/#one-property-varies--a-custom-property-several-vary-together--a-class).
 
-## Further Reading
+## Further reading
 
 - [Design System & Configuration](/design-system/): the broader section this one was split out of
 - [Fonts](/fonts/): the companion section for typography tokens and settings

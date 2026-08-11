@@ -118,14 +118,14 @@ A product can have multiple videos. If your theme shows a thumbnail view for eac
 - **Not wrapping an external (`iframe`-based) video in an aspect-ratio container**, since it isn't responsive by default the way a Shopify-hosted video is.
 - **Letting a background video keep playing in an inactive carousel slide.**
 
-## Key Takeaways
+## Key takeaways
 - `video_tag` for Shopify-hosted video (gets adaptive HLS automatically, unless `loop` is set); `external_video_tag` for YouTube/Vimeo.
 - Lazy-loading defaults to `lazy` below the fold automatically — override only when needed.
 - Autoplay only muted, only deliberately; every HTML5 video attribute is available as a parameter.
 - Always a sized poster image; always an aspect-ratio container.
 - Only the active video plays when multiple are present on a page.
 
-## Further Reading
+## Further reading
 
 - [Responsive Images](/assets/responsive-images/): the same sizing discipline applied to poster images
 - [3D & AR Media](/assets/3d-and-ar-media/): the same aspect-ratio-container pattern applied to 3D product media

@@ -130,13 +130,13 @@ Notice three things in this example. Every string uses a `t:` locale key. The co
 - **Adding a background color without a matching foreground color.** This risks text and background combinations that are hard to read.
 - **Hardcoding English text "temporarily" and forgetting to translate it** before submission.
 
-## Key Takeaways
+## Key takeaways
 - American English, sentence case, plain statements (not questions), active voice, verbs on buttons.
 - At least 4 colors, each with a matching foreground color. See [Colors](/colors/).
 - Font settings: use `font_picker`, set a real default, pick an available font, and use `font_modify` for variants. See [Fonts](/fonts/).
 - Every setting has a `label`, and every resource default actually exists on a brand new store.
 
-## Further Reading
+## Further reading
 
 - [Colors](/colors/), the dedicated section for color settings rules, tokens, and accessibility
 - [Fonts](/fonts/), the dedicated section for font settings rules, the type scale, and typography in code

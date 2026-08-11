@@ -110,12 +110,12 @@ Always pair `font_modify` with `default` (falling back to a variant you already 
 - **Assuming every font family has a bold and italic variant.** `font_modify` returns `nil` for a variant that doesn't exist, and an un-handled `nil` produces broken CSS.
 - **Treating the `font` object like a plain string.** It's an object with `family`, `weight`, `style`, and other properties, not a CSS-ready value on its own.
 
-## Key Takeaways
+## Key takeaways
 - `font_picker` returns a `font` object: `family`, `fallback_families`, `weight`, `style`, `system?`, `variants`, `baseline_ratio`.
 - `font_face` generates the `@font-face` declaration for non-system fonts; pass `font_display: 'swap'` to avoid invisible text during load.
 - `font_modify` derives a different weight or style from the base font. Always pair it with `default` or a `nil` check.
 
-## Further Reading
+## Further reading
 
 - [Font Settings](/fonts/font-settings/): the `font_picker` setting that produces this object
 - [Font Accessibility & Performance](/fonts/font-accessibility-and-performance/): `font-display`, avoiding extra font loads, and readable sizing

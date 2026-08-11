@@ -88,13 +88,13 @@ Most themes expose the font *family* as a setting (via `font_picker`) but keep t
 - **Writing a separate font-size override per breakpoint** instead of one `clamp()` declaration.
 - **Exposing every individual size in the scale as its own setting**, which lets a merchant break the scale's internal consistency one field at a time.
 
-## Key Takeaways
+## Key takeaways
 - Use a defined scale (`--font-size-xs` through `--font-size-2xl`, or similar), not one-off values.
 - Name tokens after their role, never their current size.
 - `clamp()` for fluid type, not per-breakpoint overrides.
 - Expose the font *family* as a setting; keep the *scale* fixed in CSS by default.
 
-## Further Reading
+## Further reading
 
 - [Font Settings](/fonts/font-settings/): the `font_picker` setting this page's scale pairs with
 - [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/): reading the chosen font and generating actual CSS

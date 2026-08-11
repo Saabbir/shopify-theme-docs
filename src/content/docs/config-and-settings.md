@@ -51,7 +51,7 @@ Think of `settings_schema.json` as a blank form: it defines what fields exist, l
 - Treat every setting `id` as permanent the moment it ships to a real merchant.
 - Plan your preset strategy around the hard 5-preset limit and the presentational-settings-only preset-switch behavior from day one, not after building around a wrong assumption. See [Presets](/presets/) for the full strategy.
 
-## Further Reading
+## Further reading
 
 - [Presets](/presets/): theme, section, and block presets, real-world examples, and every rule marked mandatory or optional
 - [Design System & Configuration](/design-system/): the token model and Figma-to-settings workflow this section's files ultimately expose to merchants

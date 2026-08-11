@@ -135,13 +135,13 @@ Only files that actually differ from the base go in each preset's folder — see
 
 One codebase, two presets, now shows up in Theme Store search results under two different industry/catalog-size groupings, with a demo store and screenshots tuned to each. A merchant lands on the preset that already looks close to what they want, customizes less, and is more likely to convert. None of that required building or maintaining a second theme, only a second set of presentational settings, a couple of section presets, and one shared block preset that happens to serve both audiences equally well.
 
-## Key Takeaways
+## Key takeaways
 - A multi-preset strategy pays off when two segments are different enough to matter (industry, catalog size, tone) but similar enough structurally to share one codebase.
 - Presentational settings (colors, fonts, radii) switch automatically between theme presets; section arrangement and content need explicit `"sections"` data per preset.
 - Section and block presets compound the benefit: they tune the *starting point* a merchant gets within each theme preset, not just the theme-wide style.
 - The packaging, demo store, and listing-submission steps are separate deliverables from the code, budget time for all three, not just the schema work.
 
-## Further Reading
+## Further reading
 
 - [Theme Presets](/presets/theme-presets/), [Section Presets](/presets/section-presets/), [Block Presets](/presets/block-presets/): the underlying mechanics used throughout this example
 - [Preset Rules & Theme Store Requirements](/presets/preset-rules-and-theme-store-requirements/): the full mandatory-vs-optional rule set

@@ -172,14 +172,14 @@ Both `{% stylesheet %}` and `{% javascript %}` output are injected **once per fi
 - **Defining a class in one file and using it in an unrelated file**, which breaks silently the moment a page doesn't render the defining file.
 - **Adding a second `{% stylesheet %}` or `{% javascript %}` tag to one file.** Each file gets exactly one; a second is a syntax error.
 
-## Key Takeaways
+## Key takeaways
 - `{% stylesheet %}`: static, subsetted per render tree, no Liquid rendering, one per file.
 - `{% style %}`: live-updating (color settings especially), full Liquid rendering, not subsetted, use sparingly.
 - Asset stylesheets: truly global CSS, not subsetted, cached like any static file.
 - Keep a file's `{% stylesheet %}` classes self-contained to that file or its rendered children. Cross-file dependencies break when the defining file isn't in the render tree.
 - `shopify theme check`'s `ValidScopedCSSClass` rule catches broken cross-file dependencies automatically.
 
-## Further Reading
+## Further reading
 
 - [CSS Performance](/css/css-performance/): why subsetting matters for load time, and how it fits into critical CSS strategy
 - [CSS Custom Properties (Variables)](/css/css-custom-properties/): the `var()`-based bridge between `{% style %}`/inline values and `{% stylesheet %}` CSS

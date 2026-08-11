@@ -106,14 +106,14 @@ Every preset needs its own demo store. Build it as a [Client transfer store](htt
 - **Picking a theme name that collides with an industry or Shopify term without checking first.** This usually gets caught late, forcing a rename after a lot of work already references the old name.
 - **Leaving demo store text as placeholder copy "for later."** It rarely gets fixed later, and it's an explicit reason themes get rejected.
 
-## Key Takeaways
+## Key takeaways
 - Aim for structural uniqueness, not a reskin, and use Skeleton Theme or fully original code as your base.
 - Design is judged on visual quality, layout, consistency, and shopping-flow clarity.
 - Theme names: 1 or 2 words, under 30 characters, not a Shopify, industry, or SEO term.
 - Every preset needs a realistic demo store.
 - Test every layout against a 200-character title and an empty collection before calling it done.
 
-## Further Reading
+## Further reading
 
 - [Fonts](/fonts/) and [Colors](/colors/), the dedicated sections behind this checklist's font pairing and color system rules
 - [Theme Store requirements, sections 1-3, 18, 20](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev)

@@ -133,14 +133,14 @@ A merchant who installed the theme last month, and never touched the color setti
 - **Renaming a setting `id`** without a migration plan, silently discarding merchant customizations.
 - **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs.
 
-## Key Takeaways
+## Key takeaways
 - Required: `current`, `presets`. Optional, Shopify-managed: `platform_customizations`.
 - Hard limits: 5 presets max, 1.5MB file size max.
 - A preset switch changes only presentational settings (`color`, `color_background`, `color_palette`, `color_scheme`, `color_scheme_group`, `font_picker`, `checkbox`, `number`, `radio`, `range`, `select`) — never content settings.
 - Never touch the platform-controlled `custom_css`/`platform_customizations` setting yourself.
 - A setting `id` links schema, data, and Liquid together — treat it as permanent once shipped.
 
-## Further Reading
+## Further reading
 
 - [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/): the definition file these values are shaped by
 - [Theme Presets](/presets/theme-presets/): extending `presets` to support more than one theme style

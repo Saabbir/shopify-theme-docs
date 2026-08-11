@@ -130,14 +130,14 @@ This works identically whether the underlying media is an image, a video, or a 3
 - **Providing a custom `widths` list with no matching `sizes` value**, leaving the browser to guess how large the image actually renders.
 - **A generic `alt="image"` or `alt="photo"` placeholder**, which tells a screen reader nothing useful.
 
-## Key Takeaways
+## Key takeaways
 - `image_url`: needs `width` and/or `height`; max 5760px; never upscales; `crop` (`top`/`center`/`bottom`/`left`/`right`/`region`); `pad_color` for padding instead of cropping; `format` only for explicit `jpg`/`pjpg` conversion (auto WebP/AVIF needs no parameter).
 - `image_tag`: auto-generates `srcset`/`width`/`height`; `widths` for custom breakpoints (pair with `sizes`); defaults `loading` to `lazy` below the fold automatically; any HTML attribute passes through.
 - Focal points apply automatically via `object-position` — just use `object-fit: cover` on the container.
 - `preview_image` works the same way across images, video, and 3D media for thumbnails.
 - Always real, specific alt text, or an explicit `alt: ''` for decorative images.
 
-## Further Reading
+## Further reading
 
 - [Video Management](/assets/video-management/): the same responsive/lazy-loading principles applied to video
 - [3D & AR Media](/assets/3d-and-ar-media/): the same principles applied to 3D product media

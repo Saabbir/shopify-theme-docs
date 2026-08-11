@@ -105,13 +105,13 @@ This is a runtime brightness check for picking between two fixed text colors, no
 - **Recalculating the same derived value in multiple files** instead of computing it once into a shared CSS custom property.
 - **Treating `color_brightness` as a WCAG contrast checker.** It returns a raw brightness number, not a contrast ratio against a specific background.
 
-## Key Takeaways
+## Key takeaways
 - Derive shades, tints, and translucent variants from one stored color with `color_darken`, `color_lighten`, `color_mix`, and `color_modify`, instead of adding separate settings.
 - Convert formats with `color_to_hex`, `color_to_hsl`, `color_to_rgb`, `color_to_oklch` only when a specific format is actually required.
 - `color_brightness` returns 0–255, useful for a light-vs-dark text runtime decision, not a WCAG contrast check.
 - Compute derived CSS custom properties once, in a shared location, not per-section.
 
-## Further Reading
+## Further reading
 
 - [Color Design Tokens](/colors/color-design-tokens/): the token structure these filters operate on
 - [Color Palettes](/colors/color-palettes/) and [Color Schemes](/colors/color-schemes/): where the base colors these filters derive from actually come from

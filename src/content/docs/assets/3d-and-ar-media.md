@@ -131,13 +131,13 @@ The `shopify-xr` library scans the DOM for `[data-shopify-xr]` elements and atta
 - **Using a fixed 16:9 container for a 3D model**, when a model has no predefined aspect ratio and a square container is the common, correct default.
 - **Building a custom AR integration from scratch** instead of using the `shopify-xr` library, which already handles the iOS/`.usdz` vs. Android/`.glb` device split.
 
-## Key Takeaways
+## Key takeaways
 - `model_viewer_tag`: renders a `<model-viewer>` web component with `src`/`alt`/`poster`/`camera-controls` set up automatically.
 - Default `reveal: 'interaction'`, not `auto`. Always a sized `image_size` poster.
 - Square aspect-ratio container (no predefined aspect ratio for 3D models).
 - AR support: the `shopify-xr` library, `data-shopify-xr` button attributes — automatic `.usdz` (iOS)/`.glb` (Android/web) format selection, no custom code needed.
 
-## Further Reading
+## Further reading
 
 - [Responsive Images](/assets/responsive-images/): the same poster-image sizing discipline applied here
 - [Video Management](/assets/video-management/): the same aspect-ratio-container and interactive-media-in-a-carousel concerns

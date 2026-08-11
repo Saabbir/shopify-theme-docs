@@ -181,7 +181,7 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 - **Copy-pasting an MCP config between VS Code and Cursor/Claude Code without changing the root key.** VS Code uses `servers`. Cursor and Claude Code use `mcpServers`. This is the most common reason a pasted MCP config silently does nothing.
 - **Assuming Cursor's Extensions panel has every VS Code extension.** It doesn't always have everything the full Marketplace has. Confirm the Shopify Liquid extension is actually active in a `.liquid` file instead of assuming the install worked.
 
-## Key Takeaways
+## Key takeaways
 - You need: a Partner account, a dev store, Shopify CLI, Node, Git, Chrome, and one AI-assisted editor (Claude Code, Cursor, and/or VS Code + Copilot).
 - VS Code: `Shopify.theme-check-vscode` + Prettier + `anthropic.claude-code` (or Copilot). MCP config: `.vscode/mcp.json`, key `servers`.
 - Cursor: agent mode built in, reads `AGENTS.md` natively, Shopify Liquid extension may need manual VSIX install. MCP config: project-level `.cursor/mcp.json` (committed, key `mcpServers`) for team-shared servers, and global `~/.cursor/mcp.json` only for personal, non-project servers. Never commit literal secrets, use env vars instead.
@@ -189,7 +189,7 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 - `shopify theme dev` preview only works in Chrome.
 - Run the full [pre-flight checklist](#the-pre-flight-checklist) before your first real task. Verify the whole chain works, not just each tool in isolation.
 
-## Further Reading
+## Further reading
 
 - [Shopify CLI documentation](https://shopify.dev/docs/api/shopify-cli) (shopify.dev)
 - [Development stores](https://shopify.dev/docs/storefronts/themes/tools/development-stores) (shopify.dev)

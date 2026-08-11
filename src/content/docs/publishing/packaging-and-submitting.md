@@ -77,13 +77,13 @@ You can upload a revised ZIP (using **Upload new zip**) any time before Shopify'
 - **Setting a resource default (a product ID, a metaobject reference) that only exists on the demo store.** This breaks that setting on every fresh install.
 - **Copying every template file into every preset folder** instead of only including overrides. This bloats the ZIP and makes it harder for reviewers, and future you, to see what's actually preset-specific.
 
-## Key Takeaways
+## Key takeaways
 - One preset → plain structure. Multiple presets → `/listings/<preset-name>/` overrides.
 - No `release-notes.md` on your first submission.
 - No `config/markets.json` in the zip, ever.
 - You can replace your ZIP right up until review actually begins, but not after.
 
-## Further Reading
+## Further reading
 
 - [Submitting a theme](https://shopify.dev/docs/storefronts/themes/store/review-process/submit-theme) (shopify.dev)
 - [Structuring your theme zip](https://shopify.dev/docs/storefronts/themes/store/success/updates#best-practices-on-structuring-your-theme-zip) (shopify.dev)

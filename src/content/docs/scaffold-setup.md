@@ -36,11 +36,11 @@ If you're missing any of these, work through the three pages in this section bef
 - **Copying patterns from another theme's public source code without changing them.** It's tempting because it's quicker, but it risks breaking the uniqueness rule. You can also end up with patterns that don't match our style.
 - **Adding settings at the wrong level.** This means making something theme-wide when it should be per-section, or the other way around. See [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for help deciding.
 
-## Key Takeaways
+## Key takeaways
 - Scaffold: `shopify theme init` (clones Skeleton Theme).
 - Then: build sections in `/sections`, reusable blocks in `/blocks`, and set up `config/settings_schema.json` for global settings.
 - Build one small, low-risk section first, so you can practice the whole workflow before you tackle a real feature.
 
-## Further Reading
+## Further reading
 
 - [Create a theme](https://shopify.dev/docs/storefronts/themes/getting-started/create) (shopify.dev)

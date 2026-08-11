@@ -128,13 +128,13 @@ A merchant who installs a reviews app can now drag its app block in below the de
 - **Assuming the Custom Liquid section alone satisfies the requirement.** The Custom Liquid *block* is a separate, additional requirement, you need both.
 - **Forgetting to test with zero apps installed.** A feature that silently breaks without a specific app is exactly the problem this requirement exists to prevent.
 
-## Key Takeaways
+## Key takeaways
 - `@app` blocks required in the main product section and featured product section.
 - A Custom Liquid section + block required, both with a `liquid`-type setting.
 - Never make a feature depend on an app being installed.
 - Never build app-like functionality (wishlists, Instagram feeds, etc.) into the theme itself, use a Custom Liquid or app block slot instead.
 
-## Further Reading
+## Further reading
 
 - [App blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks/app-blocks) (shopify.dev)
 - [Best practices for sections and blocks](https://shopify.dev/docs/storefronts/themes/best-practices/templates-sections-blocks) (shopify.dev)

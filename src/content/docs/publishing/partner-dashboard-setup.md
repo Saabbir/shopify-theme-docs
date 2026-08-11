@@ -52,12 +52,12 @@ Here's a common, avoidable delay: a theme sits in "changes requested" status for
 - **Turning on developer previews on the store meant to become your demo store**, then finding out it can't be transferred like you need it to be.
 - **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is just slow instead of checking the dashboard directly.
 
-## Key Takeaways
+## Key takeaways
 - Partner account (free) + a dev store + a Client transfer store for your demo.
 - Submission contact email is set per theme, separate from your login email. Whitelist Shopify's sender addresses.
 - Check Partner Dashboard status directly during review, don't rely on email alone.
 
-## Further Reading
+## Further reading
 
 - [Shopify Partners](https://www.shopify.com/partners) (shopify.com)
 - [Development stores](https://shopify.dev/docs/storefronts/themes/tools/development-stores) (shopify.dev)

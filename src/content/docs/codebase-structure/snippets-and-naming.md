@@ -120,13 +120,13 @@ The `{%- doc -%}` tag you see above is called [LiquidDoc](https://shopify.dev/do
 - **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
 - **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up.
 
-## Key Takeaways
+## Key takeaways
 - Snippets receive variables you pass explicitly. Blocks only see `block` and `section`.
 - Use `{% render %}`, never the deprecated `{% include %}`.
 - File names use `kebab-case`. Schema `id`s use `snake_case`.
 - Write LiquidDoc comments on any snippet meant to be reused by someone else, human or AI.
 
-## Further Reading
+## Further reading
 
 - [Snippets](https://shopify.dev/docs/storefronts/themes/architecture/snippets) (shopify.dev)
 - [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) (shopify.dev)

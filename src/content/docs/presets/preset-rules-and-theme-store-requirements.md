@@ -48,14 +48,14 @@ Submitting more than one theme preset changes your zip's folder structure: each 
 - **Forgetting the demo store and listing information are separate deliverables from the code.** A perfectly coded second preset that never gets a demo store or listing submission never becomes visible to merchants.
 - **Applying the mandatory `t:` and sentence-case rules to a section's own settings but forgetting they apply equally to preset `name` and `category` strings.**
 
-## Key Takeaways
+## Key takeaways
 - Mandatory, hard platform limits: at least one theme preset, max 5 theme presets, `settings_data.json` under 1.5MB.
 - Mandatory for any dynamic block you want merchants to find: at least one block preset.
 - Mandatory for every preset you submit: its own demo store, a cohesive look across every template, and listing information in the Partner Dashboard.
 - Optional everywhere else: extra theme presets, extra section/block presets, and `category` grouping, all genuinely optional, reach for them only when there's a real, distinct use case.
 - Static blocks are the one place `"presets"` isn't a visibility requirement at all, they render from Liquid regardless.
 
-## Further Reading
+## Further reading
 
 - [Theme Presets](/presets/theme-presets/), [Section Presets](/presets/section-presets/), [Block Presets](/presets/block-presets/): the full detail behind every rule summarized here
 - [Real-World Preset Examples](/presets/real-world-preset-examples/): worked examples applying these rules

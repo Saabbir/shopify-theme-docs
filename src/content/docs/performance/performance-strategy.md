@@ -119,14 +119,14 @@ If you're improving the performance of a theme that already exists, instead of b
 - **Discovering performance problems only at the pre-submission Lighthouse run**, when a per-milestone audit habit would have caught each regression while it was still a one-section fix.
 - **Building a separate hand-maintained "critical.css" file** that drifts from the actual above-the-fold content, instead of relying on disciplined `{% stylesheet %}` scoping.
 
-## Key Takeaways
+## Key takeaways
 - Plan performance in phases: budget → per-section discipline → milestone audits → pre-submission audit → post-launch monitoring.
 - Critical CSS in a Shopify theme mostly means disciplined `{% stylesheet %}` scoping plus a lean global stylesheet.
 - `preload` the LCP candidate only (1–2 hints per page); `preconnect` for origins you'll definitely use; `prefetch` sparingly for predictable next-navigation resources.
 - Never `loading="lazy"` above the fold; always lazy-load below it.
 - Module scripts (`type="module"`) defer automatically. Prefer them over blocking `<script>` tags.
 
-## Further Reading
+## Further reading
 
 - [Performance & Lighthouse](/theme-store-requirements/performance/): the compliance bar this strategy targets
 - [Assets Management](/assets/): the media-specific half of this same strategy — images, video, and 3D/AR

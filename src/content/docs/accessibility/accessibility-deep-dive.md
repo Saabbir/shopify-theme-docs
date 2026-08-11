@@ -126,14 +126,14 @@ If a change removes a focus style, breaks a modal's focus trap, or removes an `a
 - **Relying entirely on automated tools,** which don't catch broken tab order, keyboard traps, or content that reads confusingly out loud.
 - **Treating accessibility as "everyone's responsibility" without naming an owner** for the manual checks that don't happen automatically. In practice, this means nobody runs them.
 
-## Key Takeaways
+## Key takeaways
 - Semantic HTML first, ARIA only when no native element fits.
 - Keyboard interaction written alongside mouse interaction, not after.
 - Contrast checked against every color scheme, not just the default.
 - Automate missing-label and contrast checks in CI; keep keyboard and focus-trap testing manual, with a named owner.
 - A regression here is a broken build, not a cosmetic note.
 
-## Further Reading
+## Further reading
 
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the compliance checklist this process supports
 - [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/): the full color-specific contrast rules and testing approach

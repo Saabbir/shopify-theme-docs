@@ -322,14 +322,14 @@ See [Config & Global Settings](/config-and-settings/) for the full difference be
 - **Forgetting the block's `presets` array.** The block still works fine if it's manually added through `@theme`, but it never appears in the picker on its own.
 - **Putting a sitewide choice in one section's own schema** instead of `config/settings_schema.json`. That forces a merchant to set the same value on every section, one by one.
 
-## Key Takeaways
+## Key takeaways
 - Snippet: reusable rendering with clear, named parameters. Block: editable by merchants, and can be added, removed, and reordered. A block wraps a snippet when the rendering itself is shared.
 - `{% schema %}` blocks array: use a specific type by default, `@theme` only for general-purpose containers, and always include `@app`.
 - One CSS property that varies becomes a custom property. Several properties that vary together become a class.
 - `en.default.json` (storefront text): nest by feature. `en.default.schema.json` (editor labels): flat, shared namespaces grouped by purpose, verified against Horizon/Skeleton.
 - A theme-wide choice belongs in `config/settings_schema.json`, referenced through the global `settings` object, not duplicated in every section.
 
-## Further Reading
+## Further reading
 
 - [AGENTS.md "Horizon-verified conventions"](/getting-started/setting-up-ai-rules/): where each convention on this page was checked against real shipped source
 - [Theme Blocks & Nesting](/codebase-structure/theme-blocks/): the full `@theme`/`@app` targeting decision

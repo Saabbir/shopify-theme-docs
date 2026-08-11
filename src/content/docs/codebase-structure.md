@@ -48,11 +48,11 @@ If your prior theme experience is Dawn-era, the one structural shift to internal
 - **Treating `snippets/` as a catch-all for anything reusable**, when some of that content should really be a theme block with settings a merchant can edit.
 - **Assuming old Dawn-theme patterns still apply.** The biggest change here (blocks nested inside other blocks) changes how you should build new code, not just what's technically possible.
 
-## Key Takeaways
+## Key takeaways
 - Rendering order: layout → template → sections → blocks → nested blocks.
 - The big change from Dawn-era themes: blocks can now contain other blocks, several levels deep.
 - Merchants edit sections and blocks visually, so the schema (the settings they see) matters just as much as the markup.
 
-## Further Reading
+## Further reading
 
 - [Theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

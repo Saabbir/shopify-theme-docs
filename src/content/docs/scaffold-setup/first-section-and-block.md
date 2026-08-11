@@ -179,13 +179,13 @@ Here's one more way to handle that case: hide the whole section when there are n
 - **Forgetting blank checks around optional settings.** This leaves empty tags in the final HTML, which a real accessibility or HTML validator would flag as a problem.
 - **Using `@theme` on a purpose-built section "just in case."** It's better to limit the section to the exact block types it's actually designed for.
 
-## Key Takeaways
+## Key takeaways
 - Block file → `{% schema %}` with settings + presets → done.
 - Section file → `{% content_for 'blocks' %}` + a `"blocks"` array in its schema → hosts the block.
 - Restrict a section to specific block types instead of `@theme` when it has one clear purpose.
 - Always test zero/one/many blocks and blank optional settings before calling a section finished.
 
-## Further Reading
+## Further reading
 
 - [Theme blocks quick start](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start) (shopify.dev)
 - [Section schema reference](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema) (shopify.dev)

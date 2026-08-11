@@ -112,12 +112,12 @@ When a prompt is vague and the output doesn't work, the tempting quick fix is to
 - **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-versus-actual correction.
 - **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like, unless you point it there directly.
 
-## Key Takeaways
+## Key takeaways
 - State: object type, editable versus fixed, unusual-content behavior, and which existing file to match.
 - Point at real files, not vague descriptions ("like the other one").
 - When correcting output, state expected versus actual, not just "this is wrong."
 - Resist "just make it work" loops. Stop and write a specific correction instead.
 
-## Further Reading
+## Further reading
 
 - [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) - this handbook

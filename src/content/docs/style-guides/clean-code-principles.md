@@ -178,12 +178,12 @@ Notice that the clean version isn't cleverer than the messy one. If anything, it
 - **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS. This makes a section's visual behavior harder to find, override, or make responsive.
 - **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/) both warn about.
 
-## Key Takeaways
+## Key takeaways
 - Readable over clever, modular over monolithic, named for meaning, consistent, and guarded: five principles you can actually check for, not just a vague feeling.
 - The worked example above is the concrete reference. When you're not sure what "clean" means here, compare your code against it.
 - Clean code is judged by how fast the next reader understands it, not by how short it is.
 
-## Further Reading
+## Further reading
 
 - [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) (the longer-term version of this same discipline)
 - [Liquid Style Guide](/style-guides/liquid/) · [CSS](/css/) · [JavaScript](/javascript/)

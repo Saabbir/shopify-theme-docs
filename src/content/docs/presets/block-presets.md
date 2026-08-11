@@ -178,14 +178,14 @@ A merchant building a trust-badge row now picks "Free shipping," "Easy returns,"
 - **Assuming a static block needs a preset entry to render.** It doesn't; static blocks render from their `content_for "block"` placement in Liquid regardless of the preset.
 - **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset instead of realistic example content a merchant can actually evaluate.
 
-## Key Takeaways
+## Key takeaways
 - Block presets live in a theme block's own `{% schema %}` → `"presets"` array.
 - A **dynamic** block with zero presets never appears in the "Add block" picker — effectively required for any merchant-addable block.
 - **Static** blocks (placed via `content_for "block"`) render regardless of presets; a preset entry for one only overrides its default settings, using `"static": true` and a matching `id`.
 - A block preset can nest child blocks, pre-assembling a small structure, not just its own settings.
 - Use `category` to group presets once a block offers more than two or three.
 
-## Further Reading
+## Further reading
 
 - [Theme Presets](/presets/theme-presets/) and [Section Presets](/presets/section-presets/): the other two kinds of preset
 - [Preset Rules & Theme Store Requirements](/presets/preset-rules-and-theme-store-requirements/): every preset rule, mandatory vs. optional, in one place

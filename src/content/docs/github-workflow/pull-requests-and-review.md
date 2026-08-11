@@ -65,11 +65,11 @@ Once this becomes routine, it only takes about five minutes. It's not a heavy pr
 - **Reviewing only the diff and never opening the live preview.** This is exactly how empty-state bugs (what a section looks like with no content) and long-content bugs slip through.
 - **Approving AI-generated code faster than human-written code**, assuming it's "probably fine." In practice, it needs the same amount of scrutiny, or more, especially for old Dawn-era patterns and extra scope nobody asked for.
 
-## Key Takeaways
+## Key takeaways
 - PR template lives at `.github/PULL_REQUEST_TEMPLATE.md`.
 - AI-assisted code gets reviewed just as carefully as human code, maybe more, since it's more likely to fall back on Dawn-era patterns or add scope nobody asked for.
 - Always click through the preview link, not just the diff.
 
-## Further Reading
+## Further reading
 
 - [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/) (this handbook)

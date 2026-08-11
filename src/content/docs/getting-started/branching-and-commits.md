@@ -111,7 +111,7 @@ Admin edits create real commits. That means the Git history on a connected branc
 - **Force-pushing or rebasing a connected branch** without thinking about whether Shopify's sync depends on the existing commit history.
 - **Assuming a branch picks up the same theme after you disconnect and reconnect it.** It doesn't. It creates a new theme instead, which can be a confusing surprise in the middle of a project.
 
-## Key Takeaways
+## Key takeaways
 - Branch names follow `namespace/branch-name/collaborator-id`, for example `feat/testimonials-section/jsmith`. Use the same `namespace` values as commit types, lowercase kebab-case for `branch-name`, and your GitHub username as the id.
 - A branch and a theme stay in a two-way sync. Admin edits create commits automatically.
 - Only a repo with the standard [theme folder structure](/codebase-structure/folder-structure/) can be connected. Other folders are ignored.
@@ -119,7 +119,7 @@ Admin edits create real commits. That means the Git history on a connected branc
 - Commits follow Conventional Commits: `type(scope): summary`.
 - Avoid rewriting history on a theme-connected branch.
 
-## Further Reading
+## Further reading
 
 - [Shopify GitHub integration](https://shopify.dev/docs/storefronts/themes/tools/github) (shopify.dev)
 - [Conventional Commits](https://www.conventionalcommits.org/) (conventionalcommits.org)

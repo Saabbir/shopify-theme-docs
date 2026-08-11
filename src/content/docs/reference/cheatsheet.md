@@ -150,7 +150,7 @@ customElements.define('my-component', MyComponent);
 
 See [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/).
 
-## Further Reading
+## Further reading
 
 - [Liquid reference](https://shopify.dev/docs/api/liquid) (shopify.dev)
 - [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)

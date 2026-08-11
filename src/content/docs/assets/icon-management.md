@@ -185,14 +185,14 @@ A small theme might ship 15 icons. A mature one, after a year of feature request
 - **Sizing every icon with a fixed pixel value** instead of `em`. This makes icons look mismatched next to text at different sizes.
 - **Letting unused or duplicate icon snippets pile up** as sections and features change over time.
 
-## Key Takeaways
+## Key takeaways
 - Inline SVG snippets, named `icon-*`, live in `snippets/`. This is the default pattern for this theme.
 - Use `fill="currentColor"` or `stroke="currentColor"` for automatic theming, and size icons in `em` units so they scale with text.
 - Add `aria-hidden="true"` and `focusable="false"` on the icon itself. Put the accessible name on the wrapping button or link when it's needed.
 - Keep any settings-driven icon picker small and focused.
 - Audit for duplicates and dead icon snippets regularly; keep the whole set on one consistent grid.
 
-## Further Reading
+## Further reading
 
 - [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/): the file naming conventions this pattern follows
 - [Asset Organization & Performance](/assets/asset-organization-and-performance/): the theme-wide asset-maintainability habits this page's icon-specific advice fits into

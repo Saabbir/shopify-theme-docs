@@ -377,7 +377,7 @@ Don't assume a country implies a language, or the other way around. A Canadian s
 - **Assuming the storefront's active language also controls what a merchant sees in the theme editor.** They're two independent settings, shopper language vs. merchant admin language, backed by two separate files.
 - **Adding a `t:` key to `settings_schema.json` without a matching entry in `en.default.schema.json`, or using `t:` on a property that isn't actually translatable.** Both fail silently, the editor just shows raw text or the literal key instead of erroring.
 
-## Key Takeaways
+## Key takeaways
 - Two file types: `<lang>.json` (storefront) and `<lang>.schema.json` (theme editor). Both need translating.
 - File naming is IETF language tags: `bn.json` for a language, `en-GB.json` when you need a region. Exactly one pair per type gets `.default.`.
 - Limits: 3,400 keys per locale file, 1,000 characters per value.
@@ -389,7 +389,7 @@ Don't assume a country implies a language, or the other way around. A Canadian s
 - Add `_html` to a key's description segment only when its value needs to contain real markup.
 - Language and country are independent settings. Don't assume one implies the other.
 
-## Further Reading
+## Further reading
 
 - [Config & Global Settings](/config-and-settings/): what settings_schema.json itself is for, and how it relates to settings_data.json
 - [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/): the Theme Store requirement this supports

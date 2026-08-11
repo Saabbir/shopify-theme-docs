@@ -37,11 +37,11 @@ Read this section fully before your theme grows past a handful of sections. Addi
 
 - **Building sections before you settle on a token system.** You end up adding tokens later, on top of a growing pile of hardcoded values.
 
-## Key Takeaways
+## Key takeaways
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/)
 - For color, fonts, spacing, assets, or settings_schema.json/presets specifically: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/), [Assets Management](/assets/), [Config & Global Settings](/config-and-settings/).
 
-## Further Reading
+## Further reading
 
 - [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/), [Assets Management](/assets/), [Config & Global Settings](/config-and-settings/), the dedicated sections for each domain
 - [Settings (concept overview)](https://shopify.dev/docs/storefronts/themes/architecture/settings), from shopify.dev

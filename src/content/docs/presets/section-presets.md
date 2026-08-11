@@ -138,14 +138,14 @@ A merchant who only cares about one trust signal gets the single-banner preset w
 - **Shipping a `"presets"` array on a statically rendered section**, where it's simply never used, instead of `"default"`.
 - **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset's blocks instead of realistic example copy.
 
-## Key Takeaways
+## Key takeaways
 - Section presets live in a section's own `{% schema %}` → `"presets"` array, not in `config/`.
 - Attributes: `name` (required), `category`, `settings`, `blocks` (all optional).
 - Presets sort alphabetically by name; `category` groups them into a collapsible group; uncategorized presets show first.
 - A statically rendered section should use `"default"`, not `"presets"`.
 - Add a second preset only for a genuinely distinct starting point, not a minor variation.
 
-## Further Reading
+## Further reading
 
 - [Theme Presets](/presets/theme-presets/) and [Block Presets](/presets/block-presets/): the other two kinds of preset
 - [Preset Rules & Theme Store Requirements](/presets/preset-rules-and-theme-store-requirements/): every preset rule, mandatory vs. optional, in one place

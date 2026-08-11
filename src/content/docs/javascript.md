@@ -41,7 +41,7 @@ Native ES modules and Web Components, no bundler, no framework. Every page in th
 - Default to the simple Web Component pattern and native browser APIs. Reach for the advanced `Component` pattern or a third-party library only once there's a real, repeated cost to not having one.
 - Treat the theme editor as a first-class environment your JS runs in, not an edge case. Test every interactive component by editing it repeatedly, not just by loading the page once.
 
-## Further Reading
+## Further reading
 
 - [Style Guides](/style-guides/): Liquid, clean code, and third-party library guidance that sits alongside this section
 - [CSS](/css/): the CSS-side equivalent of this section's depth and structure

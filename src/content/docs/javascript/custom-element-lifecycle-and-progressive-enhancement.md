@@ -224,13 +224,13 @@ Notice this is still small and specific: a `Set` of listener functions and two f
 - **Building interactive markup entirely in JavaScript** instead of enhancing real HTML, so a JS failure means a completely broken feature instead of a degraded one.
 - **Reaching for a shared store for state only one component actually uses.**
 
-## Key Takeaways
+## Key takeaways
 - Lifecycle: `constructor` (call `super()`, nothing else) → `connectedCallback` (setup, can run more than once) → `disconnectedCallback` (teardown) → `attributeChangedCallback` (reacts to observed attribute changes).
 - Progressive enhancement: start from working HTML, layer richer behavior on top in `connectedCallback`.
 - Events: `CustomEvent` with `bubbles: true` (add `composed: true` for Shadow DOM), not direct method calls between components.
 - State: DOM attributes first; a shared store only for genuinely cross-component state like cart contents.
 
-## Further Reading
+## Further reading
 
 - [JavaScript Architecture: Global vs. Scoped, State & Events](/javascript/javascript-architecture-state-and-events/): the policy this article explains in depth
 - [Web Components: Two Patterns](/javascript/web-components-patterns/): how to structure a component's internals once you understand the lifecycle

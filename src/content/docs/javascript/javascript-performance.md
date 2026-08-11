@@ -109,13 +109,13 @@ The fastest JavaScript is JavaScript that never loads. Before optimizing a scrip
 - **Setting up an observer, interval, or listener with no cleanup**, which is invisible in a single test but compounds across a real theme editor editing session.
 - **Loading a script globally** when only one section on one template actually uses it.
 
-## Key Takeaways
+## Key takeaways
 - `type="module"` scripts defer automatically; combine with `{% javascript %}` scoping for the biggest wins.
 - Batch DOM reads, then DOM writes — never alternate them in a loop.
 - Debounce "wait until it stops"; throttle "steady stream"; prefer `IntersectionObserver`/`ResizeObserver` where they fit instead of either.
 - Every setup (`connectedCallback`, `shopify:section:load`) needs a matching teardown (`disconnectedCallback`, `shopify:section:unload`).
 
-## Further Reading
+## Further reading
 
 - [JavaScript in Shopify](/javascript/javascript-in-shopify/): the `{% javascript %}` scoping mechanism this page builds on
 - [Theme Editor & Storefront Events](/javascript/theme-editor-and-storefront-events/): the full cleanup pattern for `shopify:section:unload`

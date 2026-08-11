@@ -162,12 +162,12 @@ This object holds the data behind menus that a merchant sets up in the Shopify a
 - **Forgetting `block.shopify_attributes`** on a block's root element, which breaks theme editor selection for that block.
 - **Using stale `cart` data after an AJAX add-to-cart** instead of updating the UI from the Cart AJAX API's response.
 
-## Key Takeaways
+## Key takeaways
 - `product`, `collection`, `cart`, `section`/`block`, `shop`, `routes`, `settings`, `request`, `localization`, `customer`, and `linklists` are the objects you'll touch daily.
 - `settings` is not the same as `section.settings`. `product.price` is not the same as the selected variant's price.
 - Always paginate `collection.products`. Always guard `customer` and any optional nested object with a nil check.
 
-## Further Reading
+## Further reading
 
 - [Liquid Style Guide](/style-guides/liquid/): the day-to-day rules.
 - [Liquid objects reference](https://shopify.dev/docs/api/liquid/objects): the shopify.dev reference page.

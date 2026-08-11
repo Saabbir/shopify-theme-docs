@@ -32,7 +32,7 @@ A merchant picks a typeface through a `font_picker` setting (see [Font Settings]
 
 **"Does Theme Store review check my fonts?"** Yes: a required `default` on every `font_picker`, only currently available fonts, and one consistent font pairing across the whole theme. See [Font Settings](/fonts/font-settings/#the-theme-stores-font-pairing-rule).
 
-## Further Reading
+## Further reading
 
 - [Design System & Configuration](/design-system/): the broader section this one was split out of, covering settings architecture beyond just typography
 - [Spacing](/spacing/): the companion section for spacing tokens and settings

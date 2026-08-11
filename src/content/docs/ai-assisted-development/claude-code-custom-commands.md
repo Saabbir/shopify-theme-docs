@@ -106,7 +106,7 @@ Not every repeated prompt is worth turning into a command. A rough test:
 - **Not restricting `allowed-tools`** on a command that's meant to be read-only, like `/pr-prep`. This leaves room for it to make edits you didn't want.
 - **Keeping a useful command personal** (`~/.claude/commands/`) when it's actually specific to this project. The rest of the team would benefit from it being committed to the repo.
 
-## Key Takeaways
+## Key takeaways
 - Rules go in `AGENTS.md` (always loaded, "what correct code looks like"). Steps go in a command (manual `/trigger`, "what order to do things in"). A command points to `AGENTS.md`, and never forks its own copy of the rules.
 - `.claude/commands/<name>.md` becomes `/<name>`. Project-level means committed and shared with the team. Personal (`~/.claude/commands/`) means yours only.
 - Frontmatter fields: `description`, `argument-hint`, `allowed-tools`, `model`. All of them are optional.
@@ -117,7 +117,7 @@ Not every repeated prompt is worth turning into a command. A rough test:
 
 A command runs its instructions **inline**, right in your main conversation. That's good for a process you want to watch step by step. When the job is noisy, meaning it touches many files or takes many rounds of edits, or when it should run with deliberately limited tool access, a **subagent** is the better fit. A subagent runs in its own separate conversation and returns only a summary. See [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) for our `theme-check-fixer` subagent and a full comparison.
 
-## Further Reading
+## Further reading
 
 - [Extend Claude with skills](https://code.claude.com/docs/en/slash-commands) (code.claude.com)
 - [Claude Code Subagents](/ai-assisted-development/claude-code-subagents/) (the isolated-context alternative to a command, and how the two work together)

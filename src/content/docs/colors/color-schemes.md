@@ -145,14 +145,14 @@ A `color_scheme_group` naturally satisfies the "paired" part of this rule, since
 - **Giving each scheme's CSS class different custom property names** instead of a consistent set. This forces components to branch on which scheme is active, defeating the point of the shared shape.
 - **Assuming `color_scheme_group` and `color_palette` are alternatives.** They solve different problems and are commonly used together.
 
-## Key Takeaways
+## Key takeaways
 - `color_scheme_group` (in `settings_schema.json`) defines the *shape* every scheme follows. Actual scheme presets and their color values live in `settings_data.json`.
 - A section picks its active scheme with its own `color_scheme` setting.
 - Apply a scheme via a CSS class exposing consistent custom property names, so markup never needs to know which scheme is active.
 - Theme Store review requires at least 4 color settings total, with every background paired to a text/foreground color.
 - Works alongside `color_palette`, not instead of it. See [Color Palettes](/colors/color-palettes/).
 
-## Further Reading
+## Further reading
 
 - [Color palettes](/colors/color-palettes/): the newer, complementary `color_palette` setting
 - [Color Design Tokens](/colors/color-design-tokens/): the three-tier model and naming rules this page's CSS custom properties follow

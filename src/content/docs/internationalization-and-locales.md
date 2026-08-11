@@ -28,12 +28,12 @@ Locale files aren't isolated from the rest of a theme's config. [settings_schema
 - **Assuming one locale file pair covers both the storefront and the theme editor.** They're separate files, translated separately, and read by two different audiences.
 - **Adding a `t:` key without its counterpart in `en.default.schema.json`.** Nothing errors. The theme editor just shows the raw key text instead of a real label.
 
-## Key Takeaways
+## Key takeaways
 - [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/) · [Managing Locale Files](/internationalization-and-locales/managing-locale-files/)
 - Storefront strings live in `<lang>.json`. Theme editor labels live in `<lang>.schema.json`. Different files, different audiences, different language settings.
 - `settings_schema.json`'s `t:` keys are dot-path lookups into `<lang>.schema.json`, same mechanics as the `t` filter, different file.
 
-## Further Reading
+## Further reading
 
 - [Locale files](https://shopify.dev/docs/storefronts/themes/architecture/locales) (shopify.dev)
 - [Theme Store requirements](https://shopify.dev/docs/storefronts/themes/store/requirements) (shopify.dev), current policy on RTL and i18n

@@ -160,12 +160,12 @@ If you find yourself adding a third or fourth CSS variable to control what's rea
 - **Hardcoding schema label/content strings "temporarily"** and never coming back to add the `t:` prefix.
 - **Overusing CSS custom properties for something that should be a class-based variant setting.** This leads to a tangle of variables that can end up set in combinations that don't make sense together.
 
-## Key Takeaways
+## Key takeaways
 - Theme-wide settings go in `config/settings_schema.json`. Per-instance settings go in the section or block's own schema.
 - Always add `t:` to schema strings. Never hardcode English text.
 - One CSS property changing means use a CSS variable. Several properties changing together means use a CSS class via a `select` setting.
 
-## Further Reading
+## Further reading
 
 - [Config & Global Settings](/config-and-settings/): the full deep dive on both files, including how they interact and what breaks a merchant's data
 - [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/): mapping a design system onto exactly the settings this page describes

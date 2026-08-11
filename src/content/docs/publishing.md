@@ -40,12 +40,12 @@ Leave room in your project timeline for at least one round of rejection and resu
 - **Treating submission as a one-shot event**, with no plan for handling a rejection. Build the possibility of a fix-and-resubmit cycle into your timeline from the start.
 - **Not reading [After Approval](/publishing/after-approval/) until after you're approved.** The update and versioning rules affect decisions you should make before you submit, like how you structure your first release.
 
-## Key Takeaways
+## Key takeaways
 - Submission happens through your Partner Dashboard, not a code push.
 - Review has 5 stages, one after another. If you fail a stage, the review stops there.
 - Approval isn't the finish line. You're committing to keep updating and supporting the theme.
 - Plan for at least one round of rejection and resubmission in your project timeline.
 
-## Further Reading
+## Further reading
 
 - [Submitting a theme](https://shopify.dev/docs/storefronts/themes/store/review-process/submit-theme) (shopify.dev)

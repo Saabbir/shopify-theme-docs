@@ -52,13 +52,13 @@ Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:l
 - **Referencing a setting `id` in Liquid that doesn't exist in the schema** (usually a typo). It renders blank silently instead of throwing an error, so it's easy to miss without testing.
 - **Adding a `t:` key to a setting without adding its counterpart to `en.default.schema.json`.** The theme editor shows the raw key text instead of a real label, with nothing flagging the mismatch.
 
-## Key Takeaways
+## Key takeaways
 - Every `t:` string in `settings_schema.json` resolves against `locales/en.default.schema.json`, not the storefront's `en.default.json`.
 - Adding a setting: update the schema *and* every preset. Removing a setting: remove it from both, in every preset.
 - A schema default change only reaches fresh installs, never retroactively updates existing merchant stores.
 - Before shipping: check every Liquid setting reference exists in the schema, every preset has every key, every `t:` key has a locale entry, and run `shopify theme check`.
 
-## Further Reading
+## Further reading
 
 - [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) · [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/) · [Theme Presets](/presets/theme-presets/)
 - [Managing Locale Files](/internationalization-and-locales/managing-locale-files/): the full picture on schema locale resolution

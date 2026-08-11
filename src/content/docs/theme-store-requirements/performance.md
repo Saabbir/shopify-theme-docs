@@ -74,13 +74,13 @@ Run a Lighthouse audit against Shopify's benchmark dataset before you submit. Do
 - **Forgetting `width`/`height` on images.** This causes layout shift, which Lighthouse penalizes even when the image itself loads quickly.
 - **Not re-testing after a late design change.** A last-minute hero video or carousel is a common way a passing score turns into a failing one right before submission.
 
-## Key Takeaways
+## Key takeaways
 - Performance ≥ 60, Accessibility ≥ 90, averaged across product/collection/home, desktop + mobile.
 - Sections must have real content when tested, empty sections don't count.
 - Responsive images with explicit `width`/`height` are the single biggest performance lever.
 - Test against the benchmark dataset before you submit, not after rejection.
 
-## Further Reading
+## Further reading
 
 - [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/), a full plan and roadmap for hitting this bar deliberately
 - [Assets Management](/assets/), the media-specific half of that strategy — images, video, and 3D/AR

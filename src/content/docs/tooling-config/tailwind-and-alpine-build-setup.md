@@ -89,12 +89,12 @@ On top of that, this handbook's other pages (accessibility, RTL, performance) ar
 - **Mixing this setup into an otherwise-native-CSS section "just this once."** This creates two different styling approaches in one theme, which confuses whoever maintains it next.
 - **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) exists to prevent.
 
-## Key Takeaways
+## Key takeaways
 - Optional, not this project's default: Vite + Tailwind CSS + Alpine.js, compiling into `assets/`.
 - The trade-off: faster utility-class writing and less custom JS, in exchange for a build step, a dependency, and extra packaging discipline.
 - If you use it: exclude the source tree via `.shopifyignore`, check that the compiled output lands in `assets/`, and still meet every Theme Store requirement on the compiled result.
 
-## Further Reading
+## Further reading
 
 - [Guide to the Figma MCP server](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server): not directly related, but see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) for the design-tooling equivalent of knowing about an alternative even when it's not our default
 - [Tailwind CSS documentation](https://tailwindcss.com/docs) (tailwindcss.com)

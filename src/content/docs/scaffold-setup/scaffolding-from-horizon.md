@@ -84,13 +84,13 @@ Here's a useful gut check. Put a piece of Solis code side by side with the Horiz
 - **Copying a specific Horizon section's code and modifying it**, instead of using it purely as a reference for ideas.
 - **Assuming AI-generated code is automatically safe from this problem.** AI tools are often trained on public theme source code and can reproduce patterns from Horizon or Dawn that a reviewer would recognize. Keep this risk in mind when you review AI output (see [AI-Assisted Development](/ai-assisted-development/)).
 
-## Key Takeaways
+## Key takeaways
 - Reference for patterns: Horizon (look at it, never clone it).
 - Actual scaffold: Skeleton Theme, via `shopify theme init`.
 - Skeleton Theme gives you structure, not design. The design work is still 100% ours.
 - Learn from Horizon's patterns; never copy its markup, CSS, or specific design decisions.
 
-## Further Reading
+## Further reading
 
 - [Horizon theme source](https://github.com/Shopify/horizon): GitHub
 - [Skeleton Theme source](https://github.com/Shopify/skeleton-theme): GitHub

@@ -102,13 +102,13 @@ Once you allow one exception, the scale stops accurately describing what the the
 - **Letting one-off values pile up** outside the defined scale, until the scale no longer describes what the theme actually uses.
 - **Exposing every token as a merchant setting** just "to be flexible." This creates an overwhelming settings panel and a design that's easier to break than to usefully customize.
 
-## Key Takeaways
+## Key takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.
 - Name tokens after their role, never their appearance or current value.
 - Use a defined scale for values that come in a range, not one-off values invented per component.
 - Not every token should be merchant-editable. Decide this on purpose, per domain: see [Colors](/colors/), [Fonts](/fonts/), and [Spacing](/spacing/).
 
-## Further Reading
+## Further reading
 
 - [Colors](/colors/), the dedicated section for color tokens, `color_palette`, `color_scheme_group`, and color accessibility
 - [Fonts](/fonts/), the dedicated section for typography tokens, `font_picker`, and font accessibility/performance

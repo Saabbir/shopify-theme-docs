@@ -84,12 +84,12 @@ If you genuinely want to pull from Shopify's own **standard** product metafields
 - **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store.** Same failure, just on a different setting type.
 - **Assuming any use of metafields is off-limits.** The restriction only covers custom or app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings, standard metafields elsewhere are fine.
 
-## Key Takeaways
+## Key takeaways
 - `metaobject`/`metaobject_list` settings: standard definitions only, never custom or app-owned ones.
 - Don't default a setting to a resource that only exists in your own demo store.
 - Need custom data? Make it a merchant-facing setting, not a hardcoded metaobject reference.
 
-## Further Reading
+## Further reading
 
 - [Metaobject input setting](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) (shopify.dev)
 - [Settings requirements](https://shopify.dev/docs/storefronts/themes/store/requirements#14-settings) (shopify.dev)

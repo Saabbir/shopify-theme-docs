@@ -135,13 +135,13 @@ Everything on this page works with a `<script type="module">` tag and nothing el
 - **Tight coupling via direct method calls between components**, which breaks the moment either component's internals change.
 - **Forgetting `bubbles: true`** on a `CustomEvent`, so a listener higher up the DOM never receives it.
 
-## Key Takeaways
+## Key takeaways
 - Global JS (`assets/global.js`): needed on every page. Scoped JS (`{% javascript %}`): needed on this section/block only.
 - State hierarchy: DOM attributes → component properties → shared module-level store (last resort).
 - Cross-component communication: `CustomEvent` with `bubbles: true` (and `composed: true` if Shadow DOM is involved), not direct coupling.
 - No bundler, no framework — native ES modules and Web Components are the whole toolchain.
 
-## Further Reading
+## Further reading
 
 - [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/): why setup belongs in `connectedCallback`, and the full state/events walkthrough
 - [Web Components: Two Patterns](/javascript/web-components-patterns/): the simple pattern vs. the advanced `refs`/declarative-event pattern

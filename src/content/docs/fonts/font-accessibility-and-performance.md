@@ -72,13 +72,13 @@ Without `font_display: 'swap'`, some browsers hide text entirely until the custo
 - **Generating `font_face` for every possible weight and style** instead of only the ones the theme's CSS actually references.
 - **Omitting `font_display: 'swap'`**, which can leave text invisible during font load on some browsers.
 
-## Key Takeaways
+## Key takeaways
 - Body text: 16px+ minimum, 1.4–1.6 line-height, ~65ch max line length.
 - Every heading level visually distinct from its neighbors.
 - Use `font_picker`/`font_face`, never a custom `@import` or external font host.
 - Generate `@font-face` only for weights/styles actually used, with `font_display: 'swap'`.
 
-## Further Reading
+## Further reading
 
 - [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/): the `font_face`/`font_modify` filters referenced above
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the broader accessibility checklist this page's readability section belongs to

@@ -71,6 +71,6 @@ description: Every term this handbook uses, explained once, grouped by topic.
 
 **App block**: A block type that an app can add into a section that accepts `@app` targeting. Theme Store review requires that your main product section and featured product section both accept app blocks.
 
-## Further Reading
+## Further reading
 
 - [Shopify theme architecture](https://shopify.dev/docs/storefronts/themes/architecture) (shopify.dev)

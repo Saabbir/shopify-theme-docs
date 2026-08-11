@@ -122,11 +122,11 @@ RTL stands for "right-to-left" — Arabic, Hebrew, and other right-to-left langu
 - **Forgetting to mirror directional icons.** A "next" chevron pointing the wrong way in RTL is a subtle but very visible bug.
 - **Hardcoding internal links with `/` prefixes.** These quietly break the moment a store adds a second language, because Shopify starts prefixing localized URLs.
 
-## Key Takeaways
+## Key takeaways
 - Required: locale files, dynamic `lang` attribute, language/country selectors (if multi-language/currency), `routes` object for all links.
 - Not a documented hard requirement, but our recommendation: RTL support via CSS logical properties (`margin-inline-start`, `text-align: start`) and mirrored directional icons.
 
-## Further Reading
+## Further reading
 
 - [Selling in multiple languages](https://shopify.dev/docs/storefronts/themes/markets/multiple-currencies-languages) (shopify.dev)
 - [Country/language selector UX](https://shopify.dev/docs/storefronts/themes/markets/country-language-ux) (shopify.dev)

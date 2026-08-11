@@ -101,14 +101,14 @@ Use `will-change` sparingly, only on elements that are actually about to animate
 - **Applying `will-change` permanently to every instance of a component**, creating unnecessary compositor layers and using more memory than the optimization saves.
 - **Using `content-visibility: auto` without `contain-intrinsic-size`**, causing visible layout shift as content scrolls into view.
 
-## Key Takeaways
+## Key takeaways
 - Stylesheet subsetting already gives you most of critical CSS's benefit. Keep the global stylesheet lean instead of building a separate pipeline.
 - Selector performance is rarely a real bottleneck. Write for readability first.
 - `content-visibility: auto` (with `contain-intrinsic-size`) defers rendering work for long, off-screen content.
 - Animate `transform`/`opacity`. Avoid animating layout-affecting properties.
 - `will-change` is a targeted, temporary hint, not a permanent blanket setting.
 
-## Further Reading
+## Further reading
 
 - [CSS in Shopify: stylesheet, style & Subsetting](/css/css-in-shopify/): the subsetting mechanism this page's critical-CSS section builds on
 - [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/): the full performance picture beyond CSS

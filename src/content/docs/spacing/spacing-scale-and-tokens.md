@@ -105,13 +105,13 @@ Most spacing values stay fixed in CSS rather than becoming merchant-facing setti
 - **Skipping the semantic layer** for spacing that's reused for one specific purpose, making a later change to "section spacing" a find-and-replace job instead of a one-line edit.
 - **Writing a separate padding/margin override per breakpoint** instead of one `clamp()` declaration.
 
-## Key Takeaways
+## Key takeaways
 - Define a raw spacing scale (`--space-3xs` through `--space-3xl`, or similar) before writing section CSS.
 - Add semantic roles for spacing reused for one specific purpose.
 - Name tokens after their role or scale position, never their current value.
 - `clamp()` works for spacing exactly as it does for type, for smooth cross-viewport scaling.
 
-## Further Reading
+## Further reading
 
 - [Spacing in Settings](/spacing/spacing-in-settings/): when a spacing value should become a merchant-facing `range` setting
 - [Spacing in Liquid & CSS](/spacing/spacing-in-liquid-and-css/): logical properties, and the custom-property-vs-class rule for spacing

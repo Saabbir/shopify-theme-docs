@@ -95,13 +95,13 @@ This one global rule (part of most themes' CSS reset) is why width math "just wo
 - **Forgetting `box-sizing: border-box`**, especially in a hand-written component that bypasses the global reset, causing size math to be off by the padding/border amount.
 - **Reaching for `!important`** as the first fix for a specificity conflict, instead of fixing the actual selector.
 
-## Key Takeaways
+## Key takeaways
 - Cascade order: origin/importance, then specificity, then source order.
 - Specificity: (IDs, classes, elements), compared left to right. Avoid ID selectors for styling.
 - `:is()` takes the specificity of its most specific argument. `:where()` always has zero.
 - `box-sizing: border-box` makes width/height math include padding and border.
 
-## Further Reading
+## Further reading
 
 - [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/): the naming conventions that keep specificity manageable in the first place
 - [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade) (MDN)

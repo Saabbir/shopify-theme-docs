@@ -99,13 +99,13 @@ If any answer is "no," that's a real accessibility bug, not an edge case.
 - **Writing alt text that describes nothing useful** (`alt="image1.jpg"`, `alt="photo"`). This technically has an alt attribute, but it misses the point of the requirement.
 - **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
 
-## Key Takeaways
+## Key takeaways
 - 9 concrete, testable rules, see the checklist above.
 - Contrast: 4.5:1 body text, 3:1 large text/icons/borders.
 - Touch targets: 24×24px minimum.
 - Test both automated (axe/Lighthouse) and manual (keyboard-only navigation, including modal focus trapping).
 
-## Further Reading
+## Further reading
 
 - [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/), the process behind this checklist
 - [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/), the full color-specific contrast rules and testing approach

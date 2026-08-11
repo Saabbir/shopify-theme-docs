@@ -28,7 +28,7 @@ Whenever a code example needs a real theme name, we use "Solis." For example, yo
 - **Section 1** is setup. Finish it first, it's what everything else depends on: editor and Prettier, AI rules, Git basics, and your first preview.
 - **Sections 2–4** are onboarding. Read them once, in order, right after section 1.
 - **Everything from section 5 onward** is a reference you'll come back to throughout the project: design system, internationalization & locales, style guides, performance & accessibility, AI-assisted development, GitHub workflow, QA, and the Theme Store submission process.
-- Every major page ends with a **Quick Reference** (the key takeaways in one glance) and **Further Reading** (official Shopify docs to go deeper).
+- Every major page ends with **Key takeaways** (the main points in one glance) and **Further reading** (official Shopify docs to go deeper).
 - Code examples always show the current, Horizon-era pattern. Sometimes an older ("legacy") pattern is worth knowing about, because you'll run into it in existing code or old tutorials. When that happens, it's labeled **Old pattern** right next to the current one. It's shown so you can recognize it, never so you write it today.
 - Wherever a rule has a right way and a wrong way, we show both side by side, labeled **✅ Right** and **❌ Wrong** (or **Do** / **Avoid**), instead of just describing the right way in words. If you only remember one thing from this handbook, remember to look for these pairs. They're the fastest way to learn a rule.
 
@@ -55,11 +55,11 @@ None of these are just decoration. If something is marked ❌ Wrong or flagged i
 - **Skimming past the ✅/❌ code pairs.** They're not filler. They usually show the single most common mistake on that topic.
 - **Ignoring a `:::danger` or `:::caution` box because the text around it seems optional.** These boxes are reserved for things that cause real failures, like a rejected Theme Store submission or a broken merchant install. They're flagged that strongly on purpose.
 
-## Key Takeaways
+## Key takeaways
 - New here? Read Getting Started → Theme Store Requirements → Codebase Structure → Scaffold Setup Guide, in that order.
 - Everything after that is a reference, so use search, not linear reading.
 - Look for ✅/❌ pairs and colored asides. They carry the highest-signal information on each page.
 
-## Further Reading
+## Further reading
 
 - [Shopify themes overview](https://shopify.dev/docs/storefronts/themes) (shopify.dev)

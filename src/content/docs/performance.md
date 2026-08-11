@@ -28,12 +28,12 @@ The [Performance & Lighthouse](/theme-store-requirements/performance/) page tell
 - **Treating performance as something to check only before submission,** instead of a habit for every section. Fixing 40 sections at once is a much bigger job than fixing them one at a time as you go.
 - **Reading only the compliance checklist page and skipping the deep dive.** The checklist tells you the bar. [Performance Strategy](/performance/performance-strategy/) tells you how to clear it every time, without redoing work later.
 
-## Key Takeaways
+## Key takeaways
 - [Performance Strategy & Critical Rendering Path](/performance/performance-strategy/)
 - Domain-specific performance: [CSS Performance](/css/css-performance/), [JavaScript Performance](/javascript/javascript-performance/), [Asset Organization & Performance](/assets/asset-organization-and-performance/).
 - This section explains the process. [Performance & Lighthouse](/theme-store-requirements/performance/) is the compliance bar it helps you clear.
 
-## Further Reading
+## Further reading
 
 - [Accessibility](/accessibility/): the other quality bar every section must meet, covered in its own dedicated section
 - [Assets Management](/assets/), the dedicated section for icons, images, video, and 3D media

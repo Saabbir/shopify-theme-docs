@@ -160,14 +160,14 @@ If CSS can do it without a script, use CSS:
 - **Using the View Transitions API with no fallback.** In browsers that don't support it, this can break the experience instead of simply skipping the animation.
 - **Reaching for a JS carousel library or resize-observer workaround** for something `scroll-snap` or a container query already does natively.
 
-## Key Takeaways
+## Key takeaways
 - Container queries respond to a component's own size. Media queries respond to the viewport.
 - `:has()` enables parent/sibling-conditional styling natively, no JS class-toggling needed.
 - Native nesting is fine, kept shallow and component-scoped. `@layer` gives explicit, declared control over which rules win, useful for large shared stylesheets.
 - `subgrid` aligns a nested grid's tracks to its parent's, keeping cards' internal rows aligned across a grid.
 - All of these are Baseline widely available in 2026, safe to use without polyfills. The View Transitions API is the one exception worth a support check.
 
-## Further Reading
+## Further reading
 
 - [Cascade, Specificity & the Box Model](/css/cascade-specificity-and-box-model/): the specificity mechanics `:is()`/`:where()` interact with
 - [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/): how nesting fits alongside BEM naming

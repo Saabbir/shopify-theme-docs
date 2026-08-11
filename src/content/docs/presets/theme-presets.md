@@ -104,7 +104,7 @@ On the Theme submission form, you enter listing information for the theme *and* 
 - **Polishing only the index template** for a new preset's screenshots, and shipping an inconsistent cart or search page underneath it.
 - **Forgetting to submit a new preset's listing information** after adding it post-launch, so it never actually appears on the Theme Store despite being in the code.
 
-## Key Takeaways
+## Key takeaways
 - Theme presets live in `settings_data.json`'s `"presets"` object; `"current"` tracks which is active (or a merchant's custom edits).
 - Hard limit: 5 presets max, 1.5MB file size max.
 - A preset switch changes presentational settings only — content settings (text, images, links) need explicit `"sections"` data edits.
@@ -112,7 +112,7 @@ On the Theme submission form, you enter listing information for the theme *and* 
 - Multiple presets map to `/listings/<preset-name>/` in a Theme Store submission zip, each with its own dedicated listing page.
 - Always test every preset on a genuinely fresh store install before shipping.
 
-## Further Reading
+## Further reading
 
 - [Section Presets](/presets/section-presets/) and [Block Presets](/presets/block-presets/): the other two kinds of preset, at a smaller scope
 - [Preset Rules & Theme Store Requirements](/presets/preset-rules-and-theme-store-requirements/): every preset rule, mandatory vs. optional, in one place

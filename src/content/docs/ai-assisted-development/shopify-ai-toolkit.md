@@ -145,14 +145,14 @@ The toolkit's search and validation scripts send usage data to Shopify (`shopify
 - **Assuming the toolkit knows Solis-specific rules** (Skeleton Theme base, our naming rules). It only knows Shopify's platform facts; those project decisions live in `## Custom rules`.
 - **Mixing up skills, our custom commands, and Claude Code subagents.** They're three different things with three different owners (see the table above).
 
-## Key Takeaways
+## Key takeaways
 - Three install methods: plugin (recommended, updates itself, per-person), agent skills (`npx skills add Shopify/shopify-ai-toolkit`, manual updates, per-person), Dev MCP server (`claude mcp add --scope project ...`, provides `learn_shopify_api` plus `validate_theme`, committable via [`.mcp.json`](/templates/mcp.json)). Full current commands: [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit).
 - The Dev MCP server now lists Liquid among its supported APIs, and ships `validate_theme` (whole-theme validation, on by default) and `validate_theme_codeblocks` (single-snippet validation, needs `LIQUID_VALIDATION_MODE=partial`). This is a change from earlier — don't assume theme coverage is fixed, confirm against the live docs.
 - Shopify ships skills only, no bundled subagents or slash commands. Our `/figma-to-liquid` and similar commands are a separate, Solis-specific layer on top.
 - Solis-specific rules still live only in `## Custom rules`. The toolkit only knows Shopify's platform facts.
 - Telemetry is on by default; set `OPT_OUT_INSTRUMENTATION=true` to turn it off.
 
-## Further Reading
+## Further reading
 
 - [Shopify AI Toolkit](https://github.com/Shopify/Shopify-AI-Toolkit) - GitHub
 - [AI Toolkit documentation](https://shopify.dev/docs/apps/build/ai-toolkit) - shopify.dev, the authoritative install instructions

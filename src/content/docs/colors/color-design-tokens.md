@@ -164,14 +164,14 @@ Brand colors (primary, secondary, accent) are typically merchant-editable, since
 - **Turning a color that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
 - **Using different semantic role names in different schemes or components** instead of one consistent set, which forces scheme-specific branching everywhere a color is used.
 
-## Key Takeaways
+## Key takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.
 - Name color tokens after their role, never their appearance or current hex value.
 - Pull tokens from Figma's Variables panel, not the design canvas.
 - Map a Figma color collection onto one `color_palette` setting, not separate `color` settings per variable.
 - Keep semantic role names consistent across every scheme and every reference, so components never branch on which scheme or palette entry is active.
 
-## Further Reading
+## Further reading
 
 - [Color Palettes](/colors/color-palettes/): the `color_palette` setting this page's worked example builds toward
 - [Color Schemes](/colors/color-schemes/): the `color_scheme_group` mechanism this page's semantic tier maps onto

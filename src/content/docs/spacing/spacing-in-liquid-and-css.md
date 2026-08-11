@@ -94,12 +94,12 @@ For spacing between repeated sibling elements (cards in a grid, items in a list)
 - **Reaching for margin-plus-`:last-child`-exception** instead of `gap` for spacing between repeated siblings.
 - **Exposing several spacing properties as separate custom properties** when they really represent one coherent layout state that should be a class.
 
-## Key Takeaways
+## Key takeaways
 - Logical properties everywhere a physical/logical pair exists: this is what makes RTL work.
 - `gap` on the container for spacing between siblings, not margin-with-exceptions.
 - One varying property → custom property. Several varying together → class.
 
-## Further Reading
+## Further reading
 
 - [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/): the token scale these properties reference
 - [Spacing in Settings](/spacing/spacing-in-settings/): the `range` setting this page's custom-property example reads from

@@ -13,6 +13,6 @@ Most of this handbook is meant to be read from start to finish. This section is 
 - [Glossary](/reference/glossary/): every term this handbook uses, explained once and grouped by topic.
 - [Tools Directory](/reference/tools-directory/): a short list that tells you which tool to use for which job.
 
-## Key Takeaways
+## Key takeaways
 - [Cheatsheet](/reference/cheatsheet/) · [Glossary](/reference/glossary/) · [Tools Directory](/reference/tools-directory/)
 - This section is for quick lookups. If you want to actually understand a topic, read [Learning Articles](/learning-articles/) instead. Looking for our rules? Check [Style Guides](/style-guides/).

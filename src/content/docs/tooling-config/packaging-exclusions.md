@@ -101,13 +101,13 @@ So check that your bundler's output path is actually `assets/`, or that your bui
 - **Letting `.shopifyignore` go stale** as you add new tooling over the life of a project. Often the only sign is a reviewer spotting a `node_modules` folder in your submitted zip.
 - **Assuming that ignoring a build setup's source folder also handles the compiled output.** Excluding the source and getting the output into `assets/` are two different jobs. You need to check both.
 
-## Key Takeaways
+## Key takeaways
 - Only `assets/`, `blocks/`, `config/`, `layout/`, `locales/`, `sections/`, `snippets/`, `templates/` should reach a submission.
 - `.shopifyignore` is how you enforce that. List every dev-tooling file and folder there, and keep it current as your tooling changes.
 - Package from a clean clone, then unzip and check it by hand before every submission.
 - A build setup adds two things to check: its source tree is ignored, and its compiled output actually lands in `assets/`.
 
-## Further Reading
+## Further reading
 
 - [Shopify CLI for themes](https://shopify.dev/docs/storefronts/themes/tools/cli) (shopify.dev)
 - [Structuring your theme zip](https://shopify.dev/docs/storefronts/themes/store/success/updates#best-practices-on-structuring-your-theme-zip) (shopify.dev)

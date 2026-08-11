@@ -134,14 +134,14 @@ See [Third-Party Libraries](/style-guides/third-party-libraries/#the-default-ans
 - **Building a custom modal from a styled `<div>`** instead of `<dialog>`, and having to hand-roll focus trapping and Escape-to-close as a result.
 - **Tracking multiple cleanup functions separately** when a single shared `AbortController` and `signal` would cancel all of them together.
 
-## Key Takeaways
+## Key takeaways
 - `IntersectionObserver` for visibility changes, `ResizeObserver` for size changes — not `scroll`/`resize` listeners.
 - `AbortController`: one `signal`, passed to multiple listeners and fetches, cancelled with one `abort()` call.
 - `structuredClone(value)` for a real deep clone.
 - `Array.at(-1)` for negative indexing; `Object.groupBy()` for grouping without a manual `reduce`.
 - `<dialog>` + `showModal()` for modals; the `popover` attribute for non-modal overlays.
 
-## Further Reading
+## Further reading
 
 - [JavaScript Architecture: Global vs. Scoped, State & Events](/javascript/javascript-architecture-state-and-events/): where these APIs fit into a component's lifecycle
 - [Third-Party Libraries](/style-guides/third-party-libraries/): the decision framework for when a native API isn't enough

@@ -179,7 +179,7 @@ Also, always paginate large collections with `{% paginate collection.products by
 - **Formatting currency or building URLs by hand** instead of using `money`, `url`, or `routes`. This breaks the moment the store's currency format or URL structure turns out to be different from what you assumed.
 - **Using `{% include %}`** out of habit from an older codebase. It's deprecated, and it leaks scope in a way `{% render %}` deliberately avoids.
 
-## Key Takeaways
+## Key takeaways
 - Use whitespace control (`{%-`/`-%}`) on logic tags by default.
 - Guard nested object access. Never assume a property exists.
 - Use `money`/`url`/`routes` instead of manual formatting or hardcoded paths.
@@ -187,7 +187,7 @@ Also, always paginate large collections with `{% paginate collection.products by
 - Add a `{%- doc -%}` block to every snippet.
 - Use `snake_case` for assigned variables, and name booleans so they read as yes/no questions.
 
-## Further Reading
+## Further reading
 
 - [Liquid reference](https://shopify.dev/docs/api/liquid) - shopify.dev
 - [LiquidDoc](https://shopify.dev/docs/storefronts/themes/tools/liquid-doc) - shopify.dev

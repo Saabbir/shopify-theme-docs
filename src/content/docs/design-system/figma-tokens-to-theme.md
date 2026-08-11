@@ -69,13 +69,13 @@ Design tokens can drift out of sync with your code. This happens the moment some
 - **Turning a value that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
 - **Naming a setting after Figma's current value** instead of its role, so the name becomes misleading the moment the design changes.
 
-## Key Takeaways
+## Key takeaways
 - Tokens come from Figma's Variables panel, not the design canvas. That's where the "reusable decision" has already been made.
 - Map collections and modes to settings schema groups. Decide merchant-editable vs. fixed for each token type.
 - Keep Figma and the theme in sync on purpose. A renamed variable or a changed value is a reminder to check the matching setting. It doesn't sync automatically.
 - Color, type, and spacing each have their own dedicated section: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/).
 
-## Further Reading
+## Further reading
 
 - [Colors](/colors/), the dedicated section for `color_palette`, `color_scheme_group`, color tokens, and color filters
 - [Fonts](/fonts/), the dedicated section for `font_picker`, the type scale, and font accessibility/performance

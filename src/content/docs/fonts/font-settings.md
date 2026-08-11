@@ -67,13 +67,13 @@ This is a design-consistency rule as much as a technical one. A theme is easy to
 - **Adding a `font_picker` per section instead of per role.** This lets a merchant unintentionally combine four unrelated typefaces on one page, and fails Theme Store review's pairing rule.
 - **Defaulting to a font that isn't in the current font library**, which breaks on fresh installs and in presets.
 
-## Key Takeaways
+## Key takeaways
 - `font_picker` returns a `font` object, populated from Shopify's font library (system fonts + curated Google Fonts).
 - `default` is required, must be a real, currently available font library value.
 - One `font_picker` per role (heading, body), not one per section.
 - Theme Store review checks for one consistent font pairing across the whole theme, not competing typefaces.
 
-## Further Reading
+## Further reading
 
 - [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/): sizing and line-height, once the typeface itself is chosen
 - [Typography in Liquid & CSS](/fonts/typography-in-liquid-and-css/): turning a `font` object into real CSS

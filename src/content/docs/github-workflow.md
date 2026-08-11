@@ -37,12 +37,12 @@ Here's how a single Solis change moves from your machine to the live store. Thin
 - **Letting feature branches go stale for weeks.** The eventual PR becomes one big, hard-to-review change instead of several small, easy ones.
 - **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/getting-started/branching-and-commits/) for why this is expected behavior.
 
-## Key Takeaways
+## Key takeaways
 - Shopify's GitHub app connects a **branch** to a **theme** in your store. Pushing to that branch updates the theme automatically.
 - Editing the theme in Shopify admin (theme editor or code editor) commits back to that same branch automatically, too. It's a two-way sync.
 - Know which branch is connected to which theme before pushing.
 
-## Further Reading
+## Further reading
 
 - [Shopify GitHub integration for themes](https://shopify.dev/docs/storefronts/themes/tools/github) (shopify.dev)
 - [Version control best practices](https://shopify.dev/docs/storefronts/themes/best-practices/version-control) (shopify.dev)

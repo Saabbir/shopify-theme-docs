@@ -113,13 +113,13 @@ Each of those three pieces is its own section file (`sections/footer-menu.liquid
 - **Building one large section that does several jobs** (menu, newsletter, and social all in one file) instead of letting merchants control each piece on its own through a section group.
 - **Forgetting to update the `order` array** when you add a new section to an existing group. The new section still renders, just not where you expect it to.
 
-## Key Takeaways
+## Key takeaways
 - A section is the basic unit of page content. A section group manages sections within the header or footer.
 - Header and footer must use section groups. Hardcoding them into `theme.liquid` fails Theme Store review.
 - `{% sections 'group-name' %}` renders a section group from the layout file.
 - Split "kitchen sink" sections into smaller ones inside a group when merchants would want independent control.
 
-## Further Reading
+## Further reading
 
 - [Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) (shopify.dev)
 - [Section groups](https://shopify.dev/docs/storefronts/themes/architecture/section-groups) (shopify.dev)

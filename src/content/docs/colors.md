@@ -45,7 +45,7 @@ A merchant sets colors through `color_palette` and/or `color_scheme_group` setti
 
 **"Does Theme Store review check my colors?"** Yes: at least 4 color settings total, every background paired with a text/foreground color, and WCAG contrast on every scheme. See [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule) and [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
 
-## Further Reading
+## Further reading
 
 - [Design System & Configuration](/design-system/): the broader section this one was split out of, covering settings architecture beyond just color
 - [Accessibility (WCAG 2.1 AA)](/theme-store-requirements/accessibility/): the full nine-item accessibility checklist, of which color contrast is one part

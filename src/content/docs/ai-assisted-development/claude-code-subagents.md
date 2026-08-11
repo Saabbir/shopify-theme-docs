@@ -113,13 +113,13 @@ If a future need is more about "apply this knowledge automatically, every time, 
 - **A vague `description`** that Claude can't reliably match against, so it either never hands off the task, or hands off the wrong ones.
 - **Duplicating a command's job as a subagent, or the other way around, without a reason.** Keep both only when the separation and tool-limiting trade-off genuinely matters for that job, as it does for `theme-check-fixer`.
 
-## Key Takeaways
+## Key takeaways
 - Subagent = its own conversation, limited tools, and hands off automatically or by name. Command = same kind of job, runs inline, manual `/trigger`. Skill = Shopify's, automatic, about getting Liquid right.
 - `.claude/agents/<name>.md` (project, committed) or `~/.claude/agents/<name>.md` (personal). Frontmatter: `name`, `description` (both required), `tools`, `model` (both optional, and leaving `tools` unset means it inherits everything).
 - Our two subagents so far: `theme-check-fixer` ([download](/templates/claude-agents/theme-check-fixer.md)) and `sol-builder` (see [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/)).
 - Both load `AGENTS.md`/`CLAUDE.md` automatically at startup, so there's no need to repeat Solis's rules in the subagent's own instructions.
 
-## Further Reading
+## Further reading
 
 - [Create custom subagents](https://code.claude.com/docs/en/sub-agents) (code.claude.com, the full frontmatter reference)
 - [Claude Code Custom Commands](/ai-assisted-development/claude-code-custom-commands/) (the command mechanism this page compares against)

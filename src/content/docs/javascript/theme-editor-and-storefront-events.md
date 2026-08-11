@@ -145,14 +145,14 @@ if (Shopify.inspectMode) {
 - **Setting up a listener, observer, or interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup.** This causes duplicates to pile up across repeated edits in one editor session.
 - **Forgetting to keep a selected section or block scrolled into view,** leaving merchants editing something they can't actually see on screen.
 
-## Key Takeaways
+## Key takeaways
 - `shopify:section:load`/`unload`: set up/clean up JS when a section re-renders.
 - `shopify:section:select`/`deselect`, `shopify:block:select`/`deselect`: keep the selected section or block visible, and pause/resume things like autoplay accordingly.
 - `request.design_mode` / `Shopify.designMode`: true anywhere in the theme editor.
 - `request.visual_preview_mode` / `Shopify.visualPreviewMode`: true specifically when previewing a preset before adding it.
 - All events bubble and can't be cancelled.
 
-## Further Reading
+## Further reading
 
 - [JavaScript in Shopify](/javascript/javascript-in-shopify/): the `{% javascript %}` tag mechanics these events complement
 - [Custom Element Lifecycle & Progressive Enhancement](/javascript/custom-element-lifecycle-and-progressive-enhancement/): the component lifecycle these events complement
