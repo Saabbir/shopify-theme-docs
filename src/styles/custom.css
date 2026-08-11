@@ -123,21 +123,20 @@
 }
 
 /* Inline code spans (e.g. `rem`) must never break mid-word onto two lines.
-   Narrow table columns are the usual trigger: without this, a short token
-   like `rem` can wrap into "re" / "m" inside a tight cell. Table cells also
-   get lower priority for breaking elsewhere in the cell, so code isn't the
-   only thing forced to wrap first. */
-.sl-markdown-content code {
-  white-space: nowrap;
-}
+   Narrow table columns are the usual trigger: `overflow-wrap: break-word`
+   below (needed so long plain text/URLs don't overflow a tight cell) is
+   inherited by code spans too, and without this override a short token
+   like `rem` can split into "re" / "m" inside a tight cell.
 
-/* ...but NOT inside a fenced code block. `white-space: nowrap` collapses
-   runs of whitespace same as `normal` does, which was flattening every
-   multi-line code example's leading indentation to nothing. Fenced blocks
-   need `pre` (preserve whitespace, don't force a single line) restored,
-   overriding the rule above via higher selector specificity. */
-.sl-markdown-content pre code {
-  white-space: pre;
+   This only blocks *mid-word* breaks — it still allows wrapping at spaces,
+   so a longer, multi-word code span (a full commit message example, say)
+   can wrap across lines like normal text instead of forcing its column
+   wide enough to fit on one unbroken line. An earlier version of this rule
+   used `white-space: nowrap`, which fixed `rem` but broke exactly that:
+   longer code spans got forced onto one line, squeezing neighboring table
+   columns. `overflow-wrap: normal` is the narrower, correct fix. */
+.sl-markdown-content code {
+  overflow-wrap: normal;
 }
 
 .sl-markdown-content td,
