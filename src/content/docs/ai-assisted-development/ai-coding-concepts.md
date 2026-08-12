@@ -5,7 +5,7 @@ description: A plain-language guide to the words used in this section. Read this
 
 **TL;DR:** A plain-language guide to the words used in this section. Read this one first if any of them are new to you.
 
-The rest of this section uses words like MCP, skill, subagent, hook, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 18 builds on the six ideas below.
+The rest of this section uses words like MCP, skill, subagent, hook, and plugin. We won't explain them again each time, so it helps to learn them here first. If you're new to AI-assisted coding (people also call this "agentic coding"), this is the right place to start. Everything else in section 5 builds on the six ideas below.
 
 ## What makes a tool "agentic" — Claude Code, Cursor, Copilot
 
@@ -135,7 +135,7 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Read this page once, all the way through, before you move on to the rest of section 18. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which. | **Using "MCP," "skill," and "plugin" as if they mean the same thing.** They don't. MCP is a connection, a skill is packaged instructions, and a plugin is a bundle that can hold skills, commands, subagents, and MCP connections together. |
+| Read this page once, all the way through, before you move on to the rest of section 5. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which. | **Using "MCP," "skill," and "plugin" as if they mean the same thing.** They don't. MCP is a connection, a skill is packaged instructions, and a plugin is a bundle that can hold skills, commands, subagents, and MCP connections together. |
 | When you're deciding how to automate something you keep doing, ask yourself a few questions. Does it need to apply to *everything*? Use `AGENTS.md`. Does it need to trigger *automatically* on relevant tasks? Use a skill. Do you want to trigger it *by name*? Use a command. Is it noisy, or does it need a limited set of tools? Use a subagent. Does it need to be genuinely unskippable, enforced no matter what the AI decides? Use a hook. | **Expecting a skill to need manual triggering.** That's a command's job. A skill turns on by itself. |
 | Don't confuse "installed a plugin" with "wrote a skill." A plugin is just how you install things. The skill, command, subagent, or MCP connection inside it is what actually does the work. | **Assuming a subagent is just "a slower command."** The point isn't speed. It's keeping your main conversation clean and limiting which tools the subagent can use. |
 | — | **Reaching for `AGENTS.md` instructions or a subagent's own good judgement where a hard rule is actually needed.** Telling the AI "don't write theme files before the plan is approved" in prose is a request, not an enforcement. A `PreToolUse` hook is the only one of these six that can actually block the tool call. |

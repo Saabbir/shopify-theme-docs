@@ -32,20 +32,29 @@ Be careful with older Shopify tutorials or blog posts you find online. Many of t
 | # | Section | What it answers |
 |---|---|---|
 | 1 | Getting Started | You're here. Everything you need to set up before you write any code: editor, Prettier, AI rules, Git. |
-| 2 | [Theme Store Requirements](/theme-store-requirements/) | What Shopify requires before they'll list your theme. |
+| 2 | [Theme Store Requirements](/theme-store-requirements/) | What Shopify requires before they'll list your theme. Bookmark this one, you'll come back to it constantly. |
 | 3 | [Codebase Structure](/codebase-structure/) | How a theme's files and folders fit together. |
-| 4 | [Scaffold Setup Guide](/scaffold-setup/) | Step-by-step: build your first section and block. |
-| 5 | [Design System & Configuration](/design-system/) | Figma tokens, color/type system, presets, icons. |
-| 6 | [Style Guides](/style-guides/) | CSS, JavaScript & Web Components, Liquid conventions. |
-| 7 | [Performance](/performance/) | Performance strategy, the critical rendering path, budgets and audits. |
-| 8 | [Accessibility](/accessibility/) | Building accessibility into a section from the start, and keeping it consistent theme-wide. |
-| 9 | [AI-Assisted Development](/ai-assisted-development/) | How we use Cursor / Claude Code, and how we go from Figma to code. |
-| 10 | [GitHub Workflow](/github-workflow/) | Pull requests, review, and CI on this project. |
-| 11 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
-| 12 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
-| 13 | [Tooling & Config](/tooling-config/) | Project files, packaging exclusions, optional build setups. |
-| 14 | [Learning Articles](/learning-articles/) | Deeper dives on CSS, JS, Liquid, locales, maintainable code. |
-| 14 | [Reference](/reference/) | Cheatsheet, glossary, tools directory. |
+| 4 | [Scaffold Setup Guide](/scaffold-setup/) | Step-by-step: build your first section and block by hand. |
+| 5 | [AI-Assisted Development](/ai-assisted-development/) | How we actually build most things from here on: Claude Code, Figma to code, custom commands, subagents, hooks. |
+| 6 | [GitHub Workflow](/github-workflow/) | Branch off, open a PR, review, and CI, the loop you'll use for everything from here on. |
+| 7 | [CSS](/css/) | Units, cascade, custom properties, and CSS inside a Shopify theme. |
+| 8 | [JavaScript](/javascript/) | State, events, web components, and the `{% javascript %}` tag. |
+| 9 | [Style Guides](/style-guides/) | Liquid conventions, clean code principles, third-party libraries. |
+| 10 | [Design System & Configuration](/design-system/) | Figma tokens and the three-tier token model. |
+| 11 | [Config & Global Settings](/config-and-settings/) | `settings_schema.json`, `settings_data.json`, and the conventions around both. |
+| 12 | [Presets](/presets/) | Default values for themes, sections, and blocks. |
+| 13 | [Colors](/colors/) | Palettes, color schemes, design tokens, contrast. |
+| 14 | [Fonts](/fonts/) | Font settings, type scale, typography tokens. |
+| 15 | [Spacing](/spacing/) | Spacing scale and tokens, in settings and in CSS. |
+| 16 | [Assets Management](/assets/) | Icons, responsive images, video, 3D/AR, and asset performance. |
+| 17 | [Internationalization & Locales](/internationalization-and-locales/) | RTL, locale files, and translation. |
+| 18 | [Performance](/performance/) | Performance strategy, the critical rendering path, budgets and audits. |
+| 19 | [Accessibility](/accessibility/) | Building accessibility into a section from the start, and keeping it consistent theme-wide. |
+| 20 | [Quality & Validation](/quality-validation/) | Linting, testing, and the checklist before you open a PR. |
+| 21 | [Publishing to Theme Store](/publishing/) | Packaging, submitting, and what happens after. |
+| 22 | [Tooling & Config](/tooling-config/) | Project files, packaging exclusions, optional build setups. |
+| 23 | [Learning Articles](/learning-articles/) | Deeper dives on CSS, JS, Liquid, locales, maintainable code. |
+| 24 | [Reference](/reference/) | Cheatsheet, glossary, tools directory. |
 
 Read section 1 in full before you touch any code, it's the setup you need in place first. Then read sections 2 to 4 in order, once, at the start of the project. After that, use this handbook as a reference instead of reading it front to back. Jump to whatever section answers your current question, or use the search bar (top left) to find a topic fast.
 

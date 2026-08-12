@@ -104,152 +104,152 @@ export default defineConfig({
           ],
         },
         {
-          label: '5. Design System & Configuration',
-          items: [
-            { label: 'Overview', slug: 'design-system' },
-            { label: '5.1. Figma Tokens → Theme Settings', slug: 'design-system/figma-tokens-to-theme' },
-            { label: '5.2. Design Tokens: The Three-Tier Model', slug: 'design-system/design-tokens-color-type-system' },
-          ],
-        },
-        {
-          label: '6. Config & Global Settings',
-          items: [
-            { label: 'Overview', slug: 'config-and-settings' },
-            { label: '6.1. settings_schema.json: Rules & Conventions', slug: 'config-and-settings/settings-schema-json' },
-            { label: '6.2. settings_data.json: Storage & Presets', slug: 'config-and-settings/settings-data-json' },
-            { label: '6.3. Settings Conventions & Best Practices', slug: 'config-and-settings/settings-conventions-and-best-practices' },
-          ],
-        },
-        {
-          label: '7. Presets',
-          items: [
-            { label: 'Overview', slug: 'presets' },
-            { label: '7.1. Theme Presets', slug: 'presets/theme-presets' },
-            { label: '7.2. Section Presets', slug: 'presets/section-presets' },
-            { label: '7.3. Block Presets', slug: 'presets/block-presets' },
-            { label: '7.4. Preset Rules & Theme Store Requirements', slug: 'presets/preset-rules-and-theme-store-requirements' },
-            { label: '7.5. Real-World Preset Examples', slug: 'presets/real-world-preset-examples' },
-          ],
-        },
-        {
-          label: '8. Colors',
-          items: [
-            { label: 'Overview', slug: 'colors' },
-            { label: '8.1. Color Palettes', slug: 'colors/color-palettes' },
-            { label: '8.2. Color Schemes', slug: 'colors/color-schemes' },
-            { label: '8.3. Color Design Tokens', slug: 'colors/color-design-tokens' },
-            { label: '8.4. Color in Liquid & CSS', slug: 'colors/color-in-liquid-and-css' },
-            { label: '8.5. Color Accessibility & Contrast', slug: 'colors/color-accessibility-and-contrast' },
-          ],
-        },
-        {
-          label: '9. Fonts',
-          items: [
-            { label: 'Overview', slug: 'fonts' },
-            { label: '9.1. Font Settings (font_picker)', slug: 'fonts/font-settings' },
-            { label: '9.2. Type Scale & Typography Tokens', slug: 'fonts/type-scale-and-typography-tokens' },
-            { label: '9.3. Typography in Liquid & CSS', slug: 'fonts/typography-in-liquid-and-css' },
-            { label: '9.4. Font Accessibility & Performance', slug: 'fonts/font-accessibility-and-performance' },
-          ],
-        },
-        {
-          label: '10. Spacing',
-          items: [
-            { label: 'Overview', slug: 'spacing' },
-            { label: '10.1. Spacing Scale & Tokens', slug: 'spacing/spacing-scale-and-tokens' },
-            { label: '10.2. Spacing in Settings', slug: 'spacing/spacing-in-settings' },
-            { label: '10.3. Spacing in Liquid & CSS', slug: 'spacing/spacing-in-liquid-and-css' },
-          ],
-        },
-        {
-          label: '11. CSS',
-          items: [
-            { label: 'Overview', slug: 'css' },
-            { label: '11.1. CSS Units: rem, em & the 62.5% Technique', slug: 'css/css-units-rem-em' },
-            { label: '11.2. Cascade, Specificity & the Box Model', slug: 'css/cascade-specificity-and-box-model' },
-            { label: '11.3. CSS Custom Properties (Variables)', slug: 'css/css-custom-properties' },
-            { label: '11.4. CSS Architecture, Naming & Logical Properties', slug: 'css/css-architecture-naming-and-logical-properties' },
-            { label: '11.5. CSS in Shopify: stylesheet, style & Subsetting', slug: 'css/css-in-shopify' },
-            { label: '11.6. Modern CSS Features', slug: 'css/modern-css-features' },
-            { label: '11.7. CSS Performance', slug: 'css/css-performance' },
-          ],
-        },
-        {
-          label: '12. JavaScript',
-          items: [
-            { label: 'Overview', slug: 'javascript' },
-            { label: '12.1. JavaScript Architecture: State & Events', slug: 'javascript/javascript-architecture-state-and-events' },
-            { label: '12.2. Custom Element Lifecycle & Progressive Enhancement', slug: 'javascript/custom-element-lifecycle-and-progressive-enhancement' },
-            { label: '12.3. Web Components: Two Patterns', slug: 'javascript/web-components-patterns' },
-            { label: '12.4. JavaScript in Shopify: the {% javascript %} Tag', slug: 'javascript/javascript-in-shopify' },
-            { label: '12.5. Theme Editor & Storefront Events', slug: 'javascript/theme-editor-and-storefront-events' },
-            { label: '12.6. Modern JavaScript Features', slug: 'javascript/modern-javascript-features' },
-            { label: '12.7. JavaScript Performance', slug: 'javascript/javascript-performance' },
-          ],
-        },
-        {
-          label: '13. Assets Management',
-          items: [
-            { label: 'Overview', slug: 'assets' },
-            { label: '13.1. Icon Management', slug: 'assets/icon-management' },
-            { label: '13.2. Responsive Images', slug: 'assets/responsive-images' },
-            { label: '13.3. Video Management', slug: 'assets/video-management' },
-            { label: '13.4. 3D & AR Media', slug: 'assets/3d-and-ar-media' },
-            { label: '13.5. Asset Organization & Performance', slug: 'assets/asset-organization-and-performance' },
-          ],
-        },
-        {
-          label: '14. Internationalization & Locales',
-          items: [
-            { label: 'Overview', slug: 'internationalization-and-locales' },
-            { label: '14.1. Internationalization & RTL', slug: 'internationalization-and-locales/internationalization-and-rtl' },
-            { label: '14.2. Managing Locale Files', slug: 'internationalization-and-locales/managing-locale-files' },
-          ],
-        },
-        {
-          label: '15. Style Guides',
-          items: [
-            { label: 'Overview', slug: 'style-guides' },
-            { label: '15.1. Liquid Style Guide', slug: 'style-guides/liquid' },
-            { label: '15.2. Clean Code Principles', slug: 'style-guides/clean-code-principles' },
-            { label: '15.3. Third-Party Libraries', slug: 'style-guides/third-party-libraries' },
-          ],
-        },
-        {
-          label: '16. Performance',
-          items: [
-            { label: 'Overview', slug: 'performance' },
-            { label: '16.1. Performance Strategy & Critical Rendering Path', slug: 'performance/performance-strategy' },
-          ],
-        },
-        {
-          label: '17. Accessibility',
-          items: [
-            { label: 'Overview', slug: 'accessibility' },
-            { label: '17.1. Accessibility Deep Dive', slug: 'accessibility/accessibility-deep-dive' },
-          ],
-        },
-        {
-          label: '18. AI-Assisted Development',
+          label: '5. AI-Assisted Development',
           items: [
             { label: 'Overview', slug: 'ai-assisted-development' },
-            { label: '18.1. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)', slug: 'ai-assisted-development/ai-coding-concepts' },
-            { label: '18.2. Managing & Amending AI Rules', slug: 'ai-assisted-development/managing-ai-rules' },
-            { label: "18.3. Shopify's Official AI Toolkit", slug: 'ai-assisted-development/shopify-ai-toolkit' },
-            { label: '18.4. Figma MCP & Dev Mode', slug: 'ai-assisted-development/figma-mcp-and-dev-mode' },
-            { label: '18.5. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
-            { label: '18.6. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
-            { label: '18.7. Claude Code Subagents', slug: 'ai-assisted-development/claude-code-subagents' },
-            { label: '18.8. Claude Code Hooks & the Feature Pipeline', slug: 'ai-assisted-development/hooks-and-feature-pipeline' },
-            { label: '18.9. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
+            { label: '5.1. AI Coding Concepts (Agents, MCP, Skills, Commands, Plugins)', slug: 'ai-assisted-development/ai-coding-concepts' },
+            { label: '5.2. Managing & Amending AI Rules', slug: 'ai-assisted-development/managing-ai-rules' },
+            { label: "5.3. Shopify's Official AI Toolkit", slug: 'ai-assisted-development/shopify-ai-toolkit' },
+            { label: '5.4. Figma MCP & Dev Mode', slug: 'ai-assisted-development/figma-mcp-and-dev-mode' },
+            { label: '5.5. Figma to Code Workflow', slug: 'ai-assisted-development/figma-to-code-workflow' },
+            { label: '5.6. Claude Code Custom Commands', slug: 'ai-assisted-development/claude-code-custom-commands' },
+            { label: '5.7. Claude Code Subagents', slug: 'ai-assisted-development/claude-code-subagents' },
+            { label: '5.8. Claude Code Hooks & the Feature Pipeline', slug: 'ai-assisted-development/hooks-and-feature-pipeline' },
+            { label: '5.9. Writing Prompts That Work', slug: 'ai-assisted-development/writing-prompts-that-work' },
           ],
         },
         {
-          label: '19. GitHub Workflow',
+          label: '6. GitHub Workflow',
           items: [
             { label: 'Overview', slug: 'github-workflow' },
-            { label: '19.1. Pull Requests & Review', slug: 'github-workflow/pull-requests-and-review' },
-            { label: '19.2. CI Automation', slug: 'github-workflow/ci-automation' },
+            { label: '6.1. Pull Requests & Review', slug: 'github-workflow/pull-requests-and-review' },
+            { label: '6.2. CI Automation', slug: 'github-workflow/ci-automation' },
+          ],
+        },
+        {
+          label: '7. CSS',
+          items: [
+            { label: 'Overview', slug: 'css' },
+            { label: '7.1. CSS Units: rem, em & the 62.5% Technique', slug: 'css/css-units-rem-em' },
+            { label: '7.2. Cascade, Specificity & the Box Model', slug: 'css/cascade-specificity-and-box-model' },
+            { label: '7.3. CSS Custom Properties (Variables)', slug: 'css/css-custom-properties' },
+            { label: '7.4. CSS Architecture, Naming & Logical Properties', slug: 'css/css-architecture-naming-and-logical-properties' },
+            { label: '7.5. CSS in Shopify: stylesheet, style & Subsetting', slug: 'css/css-in-shopify' },
+            { label: '7.6. Modern CSS Features', slug: 'css/modern-css-features' },
+            { label: '7.7. CSS Performance', slug: 'css/css-performance' },
+          ],
+        },
+        {
+          label: '8. JavaScript',
+          items: [
+            { label: 'Overview', slug: 'javascript' },
+            { label: '8.1. JavaScript Architecture: State & Events', slug: 'javascript/javascript-architecture-state-and-events' },
+            { label: '8.2. Custom Element Lifecycle & Progressive Enhancement', slug: 'javascript/custom-element-lifecycle-and-progressive-enhancement' },
+            { label: '8.3. Web Components: Two Patterns', slug: 'javascript/web-components-patterns' },
+            { label: '8.4. JavaScript in Shopify: the {% javascript %} Tag', slug: 'javascript/javascript-in-shopify' },
+            { label: '8.5. Theme Editor & Storefront Events', slug: 'javascript/theme-editor-and-storefront-events' },
+            { label: '8.6. Modern JavaScript Features', slug: 'javascript/modern-javascript-features' },
+            { label: '8.7. JavaScript Performance', slug: 'javascript/javascript-performance' },
+          ],
+        },
+        {
+          label: '9. Style Guides',
+          items: [
+            { label: 'Overview', slug: 'style-guides' },
+            { label: '9.1. Liquid Style Guide', slug: 'style-guides/liquid' },
+            { label: '9.2. Clean Code Principles', slug: 'style-guides/clean-code-principles' },
+            { label: '9.3. Third-Party Libraries', slug: 'style-guides/third-party-libraries' },
+          ],
+        },
+        {
+          label: '10. Design System & Configuration',
+          items: [
+            { label: 'Overview', slug: 'design-system' },
+            { label: '10.1. Figma Tokens → Theme Settings', slug: 'design-system/figma-tokens-to-theme' },
+            { label: '10.2. Design Tokens: The Three-Tier Model', slug: 'design-system/design-tokens-color-type-system' },
+          ],
+        },
+        {
+          label: '11. Config & Global Settings',
+          items: [
+            { label: 'Overview', slug: 'config-and-settings' },
+            { label: '11.1. settings_schema.json: Rules & Conventions', slug: 'config-and-settings/settings-schema-json' },
+            { label: '11.2. settings_data.json: Storage & Presets', slug: 'config-and-settings/settings-data-json' },
+            { label: '11.3. Settings Conventions & Best Practices', slug: 'config-and-settings/settings-conventions-and-best-practices' },
+          ],
+        },
+        {
+          label: '12. Presets',
+          items: [
+            { label: 'Overview', slug: 'presets' },
+            { label: '12.1. Theme Presets', slug: 'presets/theme-presets' },
+            { label: '12.2. Section Presets', slug: 'presets/section-presets' },
+            { label: '12.3. Block Presets', slug: 'presets/block-presets' },
+            { label: '12.4. Preset Rules & Theme Store Requirements', slug: 'presets/preset-rules-and-theme-store-requirements' },
+            { label: '12.5. Real-World Preset Examples', slug: 'presets/real-world-preset-examples' },
+          ],
+        },
+        {
+          label: '13. Colors',
+          items: [
+            { label: 'Overview', slug: 'colors' },
+            { label: '13.1. Color Palettes', slug: 'colors/color-palettes' },
+            { label: '13.2. Color Schemes', slug: 'colors/color-schemes' },
+            { label: '13.3. Color Design Tokens', slug: 'colors/color-design-tokens' },
+            { label: '13.4. Color in Liquid & CSS', slug: 'colors/color-in-liquid-and-css' },
+            { label: '13.5. Color Accessibility & Contrast', slug: 'colors/color-accessibility-and-contrast' },
+          ],
+        },
+        {
+          label: '14. Fonts',
+          items: [
+            { label: 'Overview', slug: 'fonts' },
+            { label: '14.1. Font Settings (font_picker)', slug: 'fonts/font-settings' },
+            { label: '14.2. Type Scale & Typography Tokens', slug: 'fonts/type-scale-and-typography-tokens' },
+            { label: '14.3. Typography in Liquid & CSS', slug: 'fonts/typography-in-liquid-and-css' },
+            { label: '14.4. Font Accessibility & Performance', slug: 'fonts/font-accessibility-and-performance' },
+          ],
+        },
+        {
+          label: '15. Spacing',
+          items: [
+            { label: 'Overview', slug: 'spacing' },
+            { label: '15.1. Spacing Scale & Tokens', slug: 'spacing/spacing-scale-and-tokens' },
+            { label: '15.2. Spacing in Settings', slug: 'spacing/spacing-in-settings' },
+            { label: '15.3. Spacing in Liquid & CSS', slug: 'spacing/spacing-in-liquid-and-css' },
+          ],
+        },
+        {
+          label: '16. Assets Management',
+          items: [
+            { label: 'Overview', slug: 'assets' },
+            { label: '16.1. Icon Management', slug: 'assets/icon-management' },
+            { label: '16.2. Responsive Images', slug: 'assets/responsive-images' },
+            { label: '16.3. Video Management', slug: 'assets/video-management' },
+            { label: '16.4. 3D & AR Media', slug: 'assets/3d-and-ar-media' },
+            { label: '16.5. Asset Organization & Performance', slug: 'assets/asset-organization-and-performance' },
+          ],
+        },
+        {
+          label: '17. Internationalization & Locales',
+          items: [
+            { label: 'Overview', slug: 'internationalization-and-locales' },
+            { label: '17.1. Internationalization & RTL', slug: 'internationalization-and-locales/internationalization-and-rtl' },
+            { label: '17.2. Managing Locale Files', slug: 'internationalization-and-locales/managing-locale-files' },
+          ],
+        },
+        {
+          label: '18. Performance',
+          items: [
+            { label: 'Overview', slug: 'performance' },
+            { label: '18.1. Performance Strategy & Critical Rendering Path', slug: 'performance/performance-strategy' },
+          ],
+        },
+        {
+          label: '19. Accessibility',
+          items: [
+            { label: 'Overview', slug: 'accessibility' },
+            { label: '19.1. Accessibility Deep Dive', slug: 'accessibility/accessibility-deep-dive' },
           ],
         },
         {
