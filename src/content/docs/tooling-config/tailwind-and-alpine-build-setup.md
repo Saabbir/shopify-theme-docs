@@ -77,17 +77,13 @@ On top of that, this handbook's other pages (accessibility, RTL, performance) ar
 - Check that the compiled output actually lands in `assets/` (via the Vite plugin's configuration). Don't assume a successful local build means the right files are in the right place for `shopify theme push`.
 - Still apply this handbook's Theme Store requirements (accessibility, RTL, and Lighthouse) to the compiled output. Using utility classes doesn't excuse a component from needing a visible focus state or a logical-property equivalent.
 
-## Best practices
+## Do / Don't
 
-- If a project already uses this setup (a client handoff, an acquired codebase), write that choice down explicitly in its `README.md` instead of quietly drifting from this handbook's native-CSS default.
-- Use Tailwind's logical-property utilities (`ms-*`/`me-*` instead of `ml-*`/`mr-*`) on purpose if you adopt this setup. Nothing forces you to use them automatically.
-- Confirm the build output path before your first Theme Store submission from a project using this setup. This is the single most common integration mistake.
-
-## Common mistakes
-
-- **Assuming a working local dev build means submission packaging is fine.** The source tree still needs explicit exclusion, and you still need to verify where the compiled output ends up.
-- **Mixing this setup into an otherwise-native-CSS section "just this once."** This creates two different styling approaches in one theme, which confuses whoever maintains it next.
-- **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) exists to prevent.
+| ✅ Do | ❌ Don't |
+|---|---|
+| If a project already uses this setup (a client handoff, an acquired codebase), write that choice down explicitly in its `README.md` instead of quietly drifting from this handbook's native-CSS default. | **Assuming a working local dev build means submission packaging is fine.** The source tree still needs explicit exclusion, and you still need to verify where the compiled output ends up. |
+| Use Tailwind's logical-property utilities (`ms-*`/`me-*` instead of `ml-*`/`mr-*`) on purpose if you adopt this setup. Nothing forces you to use them automatically. | **Mixing this setup into an otherwise-native-CSS section "just this once."** This creates two different styling approaches in one theme, which confuses whoever maintains it next. |
+| Confirm the build output path before your first Theme Store submission from a project using this setup. This is the single most common integration mistake. | **Reaching for Tailwind's physical-direction utilities out of habit** (`ml-4`) instead of the logical ones (`ms-4`). This brings back the exact RTL problem [CSS Architecture, Naming & Logical Properties](/css/css-architecture-naming-and-logical-properties/) exists to prevent. |
 
 ## Key takeaways
 - Optional, not this project's default: Vite + Tailwind CSS + Alpine.js, compiling into `assets/`.

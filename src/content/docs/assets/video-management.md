@@ -102,21 +102,15 @@ An autoplaying hero video looks great, but it can become the page's Largest Cont
 
 A product can have multiple videos. If your theme shows a thumbnail view for each media element, or displays several at once (a carousel, for example), make sure only the currently active video is actually playing. A background video that keeps playing in a hidden carousel slide wastes bandwidth and CPU for no visible benefit.
 
-## Best practices
+## Do / Don't
 
-- Use `video_tag` for Shopify-hosted video and `external_video_tag` for YouTube/Vimeo — never a hand-written `<video>`/`<iframe>` from the raw media URL.
-- Always set a sized poster image, following the same sizing discipline as [Responsive Images](/assets/responsive-images/).
-- Autoplay only muted, and only when there's a deliberate reason (a decorative loop, not a default).
-- Wrap every video, Shopify-hosted or external, in an aspect-ratio container to prevent layout shift.
-- Pause every video except the one actually visible/active when multiple videos exist on one page.
-
-## Common mistakes
-
-- **Hand-writing a `<video>` tag from a raw media URL** instead of `video_tag`, losing the adaptive HLS source Shopify generates automatically.
-- **Autoplaying an unmuted video** — browsers block this outright, so it silently fails to autoplay at all.
-- **Omitting a poster image**, leaving blank space or forcing an unnecessary early download just to show something.
-- **Not wrapping an external (`iframe`-based) video in an aspect-ratio container**, since it isn't responsive by default the way a Shopify-hosted video is.
-- **Letting a background video keep playing in an inactive carousel slide.**
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `video_tag` for Shopify-hosted video and `external_video_tag` for YouTube/Vimeo — never a hand-written `<video>`/`<iframe>` from the raw media URL. | **Hand-writing a `<video>` tag from a raw media URL** instead of `video_tag`, losing the adaptive HLS source Shopify generates automatically. |
+| Always set a sized poster image, following the same sizing discipline as [Responsive Images](/assets/responsive-images/). | **Autoplaying an unmuted video** — browsers block this outright, so it silently fails to autoplay at all. |
+| Autoplay only muted, and only when there's a deliberate reason (a decorative loop, not a default). | **Omitting a poster image**, leaving blank space or forcing an unnecessary early download just to show something. |
+| Wrap every video, Shopify-hosted or external, in an aspect-ratio container to prevent layout shift. | **Not wrapping an external (`iframe`-based) video in an aspect-ratio container**, since it isn't responsive by default the way a Shopify-hosted video is. |
+| Pause every video except the one actually visible/active when multiple videos exist on one page. | **Letting a background video keep playing in an inactive carousel slide.** |
 
 ## Key takeaways
 - `video_tag` for Shopify-hosted video (gets adaptive HLS automatically, unless `loop` is set); `external_video_tag` for YouTube/Vimeo.

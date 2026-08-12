@@ -121,19 +121,14 @@ document.addEventListener('variant:change', (event) => {
 
 Everything on this page works with a `<script type="module">` tag and nothing else. There's no build step translating this JS into something else, and no framework runtime shipped to every visitor to manage state or diff a virtual DOM. If you find yourself wanting a framework's specific feature (say, reactive computed values), check [Third-Party Libraries](/style-guides/third-party-libraries/) for the decision framework before reaching for one — most of what a framework gives you, a Web Component and a `CustomEvent` already cover for the scale of interactivity a Shopify theme needs.
 
-## Best practices
+## Do / Don't
 
-- Default new interactive UI to component-scoped JS (`{% javascript %}`), not `global.js`. Promote to global only once something is genuinely needed everywhere.
-- Model state as DOM attributes first, component properties second, and a shared store only as a last resort.
-- Communicate between components with `CustomEvent`, not direct method calls or `document.querySelector` reaching into another component's internals.
-- Always pair `addEventListener` with `removeEventListener` in `disconnectedCallback`.
-
-## Common mistakes
-
-- **Defaulting everything to `global.js`** "just in case," which grows every page's JS payload with code most pages never use.
-- **A JS variable holding state the DOM doesn't reflect**, so CSS and dev tools can't see it and it drifts out of sync.
-- **Tight coupling via direct method calls between components**, which breaks the moment either component's internals change.
-- **Forgetting `bubbles: true`** on a `CustomEvent`, so a listener higher up the DOM never receives it.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default new interactive UI to component-scoped JS (`{% javascript %}`), not `global.js`. Promote to global only once something is genuinely needed everywhere. | **Defaulting everything to `global.js`** "just in case," which grows every page's JS payload with code most pages never use. |
+| Model state as DOM attributes first, component properties second, and a shared store only as a last resort. | **A JS variable holding state the DOM doesn't reflect**, so CSS and dev tools can't see it and it drifts out of sync. |
+| Communicate between components with `CustomEvent`, not direct method calls or `document.querySelector` reaching into another component's internals. | **Tight coupling via direct method calls between components**, which breaks the moment either component's internals change. |
+| Always pair `addEventListener` with `removeEventListener` in `disconnectedCallback`. | **Forgetting `bubbles: true`** on a `CustomEvent`, so a listener higher up the DOM never receives it. |
 
 ## Key takeaways
 - Global JS (`assets/global.js`): needed on every page. Scoped JS (`{% javascript %}`): needed on this section/block only.

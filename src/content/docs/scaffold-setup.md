@@ -24,22 +24,13 @@ Before you move on to building real Solis features, check that you have all of t
 
 If you're missing any of these, work through the three pages in this section before you start a real ticket. The first section you build sets the pattern for everything you build after it, so it's worth getting right from the start.
 
-## Best practices
+## Do / Don't
 
-- Build one small, low-risk section first. See [Your First Section & Block](/scaffold-setup/first-section-and-block/) for a full example. Use it to practice the whole process: writing the code, building the schema, previewing it, and opening a pull request. Do this before you take on a real feature.
-- Don't copy an existing theme's section code just to save time. Read [Store & Design Requirements](/theme-store-requirements/store-and-design/) to understand why your code needs to be original, then build your own pattern from scratch.
-- Keep a running list of the settings you add to `config/settings_schema.json`. If the theme-wide settings panel grows without a clear pattern, merchants find it confusing fast.
-
-## Common mistakes
-
-- **Skipping straight to a real, complex feature as your first section.** A testimonials section or a simple banner is a much better first exercise than a full product page.
-- **Copying patterns from another theme's public source code without changing them.** It's tempting because it's quicker, but it risks breaking the uniqueness rule. You can also end up with patterns that don't match our style.
-- **Adding settings at the wrong level.** This means making something theme-wide when it should be per-section, or the other way around. See [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for help deciding.
-
-## Key takeaways
-- Scaffold: `shopify theme init` (clones Skeleton Theme).
-- Then: build sections in `/sections`, reusable blocks in `/blocks`, and set up `config/settings_schema.json` for global settings.
-- Build one small, low-risk section first, so you can practice the whole workflow before you tackle a real feature.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build one small, low-risk section first. See [Your First Section & Block](/scaffold-setup/first-section-and-block/) for a full example. Use it to practice the whole process: writing the code, building the schema, previewing it, and opening a pull request. Do this before you take on a real feature. | **Skipping straight to a real, complex feature as your first section.** A testimonials section or a simple banner is a much better first exercise than a full product page. |
+| Don't copy an existing theme's section code just to save time. Read [Store & Design Requirements](/theme-store-requirements/store-and-design/) to understand why your code needs to be original, then build your own pattern from scratch. | **Copying patterns from another theme's public source code without changing them.** It's tempting because it's quicker, but it risks breaking the uniqueness rule. You can also end up with patterns that don't match our style. |
+| Keep a running list of the settings you add to `config/settings_schema.json`. If the theme-wide settings panel grows without a clear pattern, merchants find it confusing fast. | **Adding settings at the wrong level.** This means making something theme-wide when it should be per-section, or the other way around. See [Settings Schema Walkthrough](/scaffold-setup/settings-schema-walkthrough/) for help deciding. |
 
 ## Further reading
 

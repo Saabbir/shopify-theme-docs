@@ -157,20 +157,15 @@ Treat this warning as a real bug, not noise. It means the flagged class will be 
 
 Both `{% stylesheet %}` and `{% javascript %}` output are injected **once per file**, not once per instance of that file on the page. If a section is rendered twice on one page and needs per-instance CSS values (not just per-instance JS data attributes), use an inline `style` attribute or `{% style %}` with `{{ section.id }}` in the selector, exactly as shown in the `{% style %}` example above.
 
-## Best practices
+## Do / Don't
 
-- Default to `{% stylesheet %}` for a component's CSS. Reach for `{% style %}` only for the specific values that need theme-editor live preview, mainly colors.
-- Never write `{{ }}` Liquid interpolation directly inside `{% stylesheet %}`. Set a custom property outside it instead, and consume it with `var()` inside.
-- Keep a `{% stylesheet %}` file's classes self-contained, used only within that file or files it directly renders, so subsetting works correctly.
-- Move truly global, cross-page CSS (resets, utility classes) to an asset stylesheet, not a shared `{% stylesheet %}` dependency.
-- Run `shopify theme check` and treat `ValidScopedCSSClass` warnings as real bugs.
-
-## Common mistakes
-
-- **Writing Liquid interpolation directly inside `{% stylesheet %}`.** It isn't rendered there and can cause a syntax error.
-- **Using `{% style %}` for a component's entire CSS** instead of just the live-preview-relevant values, which bloats every page's HTML with CSS that should have been static and subsetted.
-- **Defining a class in one file and using it in an unrelated file**, which breaks silently the moment a page doesn't render the defining file.
-- **Adding a second `{% stylesheet %}` or `{% javascript %}` tag to one file.** Each file gets exactly one; a second is a syntax error.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to `{% stylesheet %}` for a component's CSS. Reach for `{% style %}` only for the specific values that need theme-editor live preview, mainly colors. | **Writing Liquid interpolation directly inside `{% stylesheet %}`.** It isn't rendered there and can cause a syntax error. |
+| Never write `{{ }}` Liquid interpolation directly inside `{% stylesheet %}`. Set a custom property outside it instead, and consume it with `var()` inside. | **Using `{% style %}` for a component's entire CSS** instead of just the live-preview-relevant values, which bloats every page's HTML with CSS that should have been static and subsetted. |
+| Keep a `{% stylesheet %}` file's classes self-contained, used only within that file or files it directly renders, so subsetting works correctly. | **Defining a class in one file and using it in an unrelated file**, which breaks silently the moment a page doesn't render the defining file. |
+| Move truly global, cross-page CSS (resets, utility classes) to an asset stylesheet, not a shared `{% stylesheet %}` dependency. | **Adding a second `{% stylesheet %}` or `{% javascript %}` tag to one file.** Each file gets exactly one; a second is a syntax error. |
+| Run `shopify theme check` and treat `ValidScopedCSSClass` warnings as real bugs. | — |
 
 ## Key takeaways
 - `{% stylesheet %}`: static, subsetted per render tree, no Liquid rendering, one per file.

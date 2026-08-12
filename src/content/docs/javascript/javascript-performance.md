@@ -95,19 +95,14 @@ The fastest JavaScript is JavaScript that never loads. Before optimizing a scrip
 | A third-party library is loaded on every page but only used on one template | Load it conditionally, only where it's needed |
 | A `{% javascript %}` tag does more than the one section it belongs to needs | Split the unrelated logic into its own component |
 
-## Best practices
+## Do / Don't
 
-- Load scripts as `type="module"` (deferred by default), and scope with `{% javascript %}` so pages only ship JS for what they actually render.
-- Batch DOM reads and writes separately in any loop over multiple elements, instead of alternating them.
-- Debounce "wait until it stops" events (typing, resizing); throttle "steady stream" events. Prefer `IntersectionObserver`/`ResizeObserver` over either, where they fit.
-- Pair every `connectedCallback`/`shopify:section:load` setup with a `disconnectedCallback`/`shopify:section:unload` teardown, without exception.
-
-## Common mistakes
-
-- **Alternating reads and writes of layout properties in a loop**, forcing a layout recalculation on every iteration instead of once.
-- **Running an expensive handler on every `input`/`scroll`/`resize` event** with no debounce or throttle, and no `IntersectionObserver`/`ResizeObserver` alternative considered first.
-- **Setting up an observer, interval, or listener with no cleanup**, which is invisible in a single test but compounds across a real theme editor editing session.
-- **Loading a script globally** when only one section on one template actually uses it.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Load scripts as `type="module"` (deferred by default), and scope with `{% javascript %}` so pages only ship JS for what they actually render. | **Alternating reads and writes of layout properties in a loop**, forcing a layout recalculation on every iteration instead of once. |
+| Batch DOM reads and writes separately in any loop over multiple elements, instead of alternating them. | **Running an expensive handler on every `input`/`scroll`/`resize` event** with no debounce or throttle, and no `IntersectionObserver`/`ResizeObserver` alternative considered first. |
+| Debounce "wait until it stops" events (typing, resizing); throttle "steady stream" events. Prefer `IntersectionObserver`/`ResizeObserver` over either, where they fit. | **Setting up an observer, interval, or listener with no cleanup**, which is invisible in a single test but compounds across a real theme editor editing session. |
+| Pair every `connectedCallback`/`shopify:section:load` setup with a `disconnectedCallback`/`shopify:section:unload` teardown, without exception. | **Loading a script globally** when only one section on one template actually uses it. |
 
 ## Key takeaways
 - `type="module"` scripts defer automatically; combine with `{% javascript %}` scoping for the biggest wins.

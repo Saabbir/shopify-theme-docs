@@ -47,23 +47,13 @@ Short on time? Triple-check these before you submit Solis. These are the things 
 - **When you're reviewing a PR**, check it against [Accessibility](/theme-store-requirements/accessibility/) and [Performance & Lighthouse](/theme-store-requirements/performance/). These two break most often, usually because of an unrelated change somewhere else.
 - **Right before submission**, go through every sub-page here, start to finish. See [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) for the full combined list.
 
-## Best practices
+## Do / Don't
 
-- Build each requirement in as you go, section by section. Don't save this list for a "fix it before submission" pass. Adding accessibility or app-block support to 20 sections after the fact costs far more work than building it in from the first one.
-- If a requirement seems unclear for a specific design decision, go with the stricter reading. What feels like a pass to you can still read as a clear fail to Shopify's review team.
-- Re-read these pages every so often, not just once at the start of the project. Shopify updates these requirements, so a rule you memorized early on may have changed by the time you submit.
-
-## Common mistakes
-
-- **Treating requirements as a final check instead of a rule you build with from the start.** If you build 15 sections without app-block support, adding it later means touching every single one of them.
-- **Assuming something "basically" meets a requirement.** Shopify's review is pass or fail per rule. There's no partial credit for an accessibility rule you "mostly" followed.
-- **Not re-reading updated requirements.** Shopify keeps changing this list on its end. Check the [official page](https://shopify.dev/docs/storefronts/themes/store/requirements) every so often, not just once.
-
-## Key takeaways
-- 22 official requirement categories, all listed at [shopify.dev/.../store/requirements](https://shopify.dev/docs/storefronts/themes/store/requirements).
-- Miss even one requirement and your submission gets rejected. None of these are optional.
-- Test thoroughly before submitting. Shopify rejects poorly-tested themes without further review.
-- Build requirements in as you develop, not in a last-minute scramble before submission.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build each requirement in as you go, section by section. Don't save this list for a "fix it before submission" pass. Adding accessibility or app-block support to 20 sections after the fact costs far more work than building it in from the first one. | **Treating requirements as a final check instead of a rule you build with from the start.** If you build 15 sections without app-block support, adding it later means touching every single one of them. |
+| If a requirement seems unclear for a specific design decision, go with the stricter reading. What feels like a pass to you can still read as a clear fail to Shopify's review team. | **Assuming something "basically" meets a requirement.** Shopify's review is pass or fail per rule. There's no partial credit for an accessibility rule you "mostly" followed. |
+| Re-read these pages every so often, not just once at the start of the project. Shopify updates these requirements, so a rule you memorized early on may have changed by the time you submit. | **Not re-reading updated requirements.** Shopify keeps changing this list on its end. Check the [official page](https://shopify.dev/docs/storefronts/themes/store/requirements) every so often, not just once. |
 
 ## Further reading
 

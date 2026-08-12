@@ -89,17 +89,13 @@ But here's the catch. The *compiled output* (the final CSS and JS files your bui
 
 So check that your bundler's output path is actually `assets/`, or that your build step copies the files there. Don't just assume `.shopifyignore` handles this on its own. If your `dist/` folder is ignored but its files never get copied into `assets/`, your compiled CSS and JS simply won't ship.
 
-## Best practices
+## Do / Don't
 
-- Update `.shopifyignore` as soon as you add a new dev tooling file. Don't leave it as a cleanup task for "later," because later rarely comes.
-- Package from a fresh clone before every submission. This catches any untracked files that your local working directory might be quietly carrying.
-- If you use a build setup, check that the compiled output lands in `assets/`. A successful build on your machine doesn't guarantee the files end up in the right place.
-
-## Common mistakes
-
-- **Zipping your local working directory directly.** This can pull in untracked files, or files that are listed in `.gitignore` but not in `.shopifyignore`, that shouldn't ship.
-- **Letting `.shopifyignore` go stale** as you add new tooling over the life of a project. Often the only sign is a reviewer spotting a `node_modules` folder in your submitted zip.
-- **Assuming that ignoring a build setup's source folder also handles the compiled output.** Excluding the source and getting the output into `assets/` are two different jobs. You need to check both.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Update `.shopifyignore` as soon as you add a new dev tooling file. Don't leave it as a cleanup task for "later," because later rarely comes. | **Zipping your local working directory directly.** This can pull in untracked files, or files that are listed in `.gitignore` but not in `.shopifyignore`, that shouldn't ship. |
+| Package from a fresh clone before every submission. This catches any untracked files that your local working directory might be quietly carrying. | **Letting `.shopifyignore` go stale** as you add new tooling over the life of a project. Often the only sign is a reviewer spotting a `node_modules` folder in your submitted zip. |
+| If you use a build setup, check that the compiled output lands in `assets/`. A successful build on your machine doesn't guarantee the files end up in the right place. | **Assuming that ignoring a build setup's source folder also handles the compiled output.** Excluding the source and getting the output into `assets/` are two different jobs. You need to check both. |
 
 ## Key takeaways
 - Only `assets/`, `blocks/`, `config/`, `layout/`, `locales/`, `sections/`, `snippets/`, `templates/` should reach a submission.

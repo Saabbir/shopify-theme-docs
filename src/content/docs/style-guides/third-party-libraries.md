@@ -70,19 +70,14 @@ Say a merchant-requested feature needs a WYSIWYG editor for a custom app-adjacen
 
 If it clears all six questions, go ahead: vendor it into `assets/`, pin the version, and load it scoped and deferred.
 
-## Best practices
+## Do / Don't
 
-- Always check for a native HTML/CSS/JS solution before you evaluate any library at all. Most "do we need a library for this" questions in theme development turn out to be "no" once you actually check the native option.
-- Vendor approved libraries into `assets/` with a pinned version, rather than loading an unpinned copy from a third-party CDN.
-- Scope every library's script tag to the specific section or template that needs it. Never add it to the global layout "just in case."
-- Revisit the six-question framework for an *existing* dependency now and then, not just when it's first added. A library that was justified two years ago may no longer be maintained, or a native alternative may now exist.
-
-## Common mistakes
-
-- **Adding a library for something native CSS, HTML, or JS already solves,** paying an ongoing performance and maintenance cost for no real benefit.
-- **Loading a library globally in `layout/theme.liquid`** when only one section actually uses it.
-- **Loading from an unpinned third-party CDN** instead of vendoring a specific, pinned version into `assets/`.
-- **Never revisiting an existing dependency** to check whether it's still maintained or whether a native alternative has since made it unnecessary.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Always check for a native HTML/CSS/JS solution before you evaluate any library at all. Most "do we need a library for this" questions in theme development turn out to be "no" once you actually check the native option. | **Adding a library for something native CSS, HTML, or JS already solves,** paying an ongoing performance and maintenance cost for no real benefit. |
+| Vendor approved libraries into `assets/` with a pinned version, rather than loading an unpinned copy from a third-party CDN. | **Loading a library globally in `layout/theme.liquid`** when only one section actually uses it. |
+| Scope every library's script tag to the specific section or template that needs it. Never add it to the global layout "just in case." | **Loading from an unpinned third-party CDN** instead of vendoring a specific, pinned version into `assets/`. |
+| Revisit the six-question framework for an *existing* dependency now and then, not just when it's first added. A library that was justified two years ago may no longer be maintained, or a native alternative may now exist. | **Never revisiting an existing dependency** to check whether it's still maintained or whether a native alternative has since made it unnecessary. |
 
 ## Key takeaways
 - Default answer: no. Check for a native solution first (`<dialog>`, `scroll-snap`, native form validation, View Transitions).

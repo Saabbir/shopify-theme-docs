@@ -81,18 +81,14 @@ For spacing between repeated sibling elements (cards in a grid, items in a list)
 
 `gap` also respects logical direction automatically in a grid or flex container, so it doesn't need a logical-property equivalent the way margin and padding do.
 
-## Best practices
+## Do / Don't
 
-- Use logical properties (`margin-inline-start`, `padding-block`, and so on) everywhere a physical/logical pair exists. Treat a physical property in new CSS as something to double-check, not your default.
-- Reach for `gap` on the container instead of margin-with-a-last-child-exception for spacing between repeated siblings.
-- One spacing property varying → a custom property. Several varying together as a coherent state → a class.
-- Test new sections with `dir="rtl"` regularly during development, not just before submission.
-
-## Common mistakes
-
-- **Using physical properties (`margin-left`, `padding-right`) out of habit.** This passes review fine in English and breaks silently the first time the theme runs in a right-to-left market.
-- **Reaching for margin-plus-`:last-child`-exception** instead of `gap` for spacing between repeated siblings.
-- **Exposing several spacing properties as separate custom properties** when they really represent one coherent layout state that should be a class.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use logical properties (`margin-inline-start`, `padding-block`, and so on) everywhere a physical/logical pair exists. Treat a physical property in new CSS as something to double-check, not your default. | **Using physical properties (`margin-left`, `padding-right`) out of habit.** This passes review fine in English and breaks silently the first time the theme runs in a right-to-left market. |
+| Reach for `gap` on the container instead of margin-with-a-last-child-exception for spacing between repeated siblings. | **Reaching for margin-plus-`:last-child`-exception** instead of `gap` for spacing between repeated siblings. |
+| One spacing property varying → a custom property. Several varying together as a coherent state → a class. | **Exposing several spacing properties as separate custom properties** when they really represent one coherent layout state that should be a class. |
+| Test new sections with `dir="rtl"` regularly during development, not just before submission. | — |
 
 ## Key takeaways
 - Logical properties everywhere a physical/logical pair exists: this is what makes RTL work.

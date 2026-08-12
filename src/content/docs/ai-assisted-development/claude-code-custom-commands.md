@@ -91,20 +91,15 @@ Not every repeated prompt is worth turning into a command. A rough test:
 4. Add `allowed-tools` if the command should be limited. For example, a review command that must not edit files: `allowed-tools: Read, Grep, Glob`.
 5. Test it once. If Claude interprets a step differently than you meant, adjust the instructions, then commit it.
 
-## Best practices
+## Do / Don't
 
-- Keep rules in `AGENTS.md` and steps in the command. Point to the file for "what correct code looks like," and never fork a second copy of those rules into a command's instructions.
-- Keep each command focused on one repeatable job. A command that tries to do five unrelated things is harder to trust, and harder to fix when one step needs adjusting.
-- Restrict `allowed-tools` on anything meant to be read-only, like a review or check command, so it can't accidentally start editing files.
-- Commit commands to `.claude/commands/` so the whole team benefits. Use personal `~/.claude/commands/` only for things that aren't specific to Solis.
-- Update a command's instructions when the underlying process changes, for example if the Figma-to-code loop gains a new step. A stale command teaches the old process.
-
-## Common mistakes
-
-- **Repeating or forking coding rules inside a command**, instead of pointing to `AGENTS.md`. The copy inside the command silently falls out of sync the next time `AGENTS.md` is updated, and now the two disagree.
-- **Writing a command as a vague summary**, like "build a section from Figma properly," instead of spelling out the actual steps. This produces the same inconsistent results as a vague chat prompt would.
-- **Not restricting `allowed-tools`** on a command that's meant to be read-only, like `/pr-prep`. This leaves room for it to make edits you didn't want.
-- **Keeping a useful command personal** (`~/.claude/commands/`) when it's actually specific to this project. The rest of the team would benefit from it being committed to the repo.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Keep rules in `AGENTS.md` and steps in the command. Point to the file for "what correct code looks like," and never fork a second copy of those rules into a command's instructions. | **Repeating or forking coding rules inside a command**, instead of pointing to `AGENTS.md`. The copy inside the command silently falls out of sync the next time `AGENTS.md` is updated, and now the two disagree. |
+| Keep each command focused on one repeatable job. A command that tries to do five unrelated things is harder to trust, and harder to fix when one step needs adjusting. | **Writing a command as a vague summary**, like "build a section from Figma properly," instead of spelling out the actual steps. This produces the same inconsistent results as a vague chat prompt would. |
+| Restrict `allowed-tools` on anything meant to be read-only, like a review or check command, so it can't accidentally start editing files. | **Not restricting `allowed-tools`** on a command that's meant to be read-only, like `/pr-prep`. This leaves room for it to make edits you didn't want. |
+| Commit commands to `.claude/commands/` so the whole team benefits. Use personal `~/.claude/commands/` only for things that aren't specific to Solis. | **Keeping a useful command personal** (`~/.claude/commands/`) when it's actually specific to this project. The rest of the team would benefit from it being committed to the repo. |
+| Update a command's instructions when the underlying process changes, for example if the Figma-to-code loop gains a new step. A stale command teaches the old process. | — |
 
 ## Key takeaways
 - Rules go in `AGENTS.md` (always loaded, "what correct code looks like"). Steps go in a command (manual `/trigger`, "what order to do things in"). A command points to `AGENTS.md`, and never forks its own copy of the rules.

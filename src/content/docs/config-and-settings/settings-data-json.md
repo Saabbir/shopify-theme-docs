@@ -118,20 +118,15 @@ If a setting truly needs renaming, treat it as a major-version change (see [Afte
 
 A merchant who installed the theme last month, and never touched the color setting, is **still on `#1a5f4f`**. That value was already written into their store's `settings_data.json` the moment they installed the theme. Changing a schema default only affects merchants who install the theme *after* the change. If every existing merchant needs to see a new default, a schema change alone won't do it — that requires a separate migration step.
 
-## Best practices
+## Do / Don't
 
-- Plan presets with the hard 5-preset ceiling and 1.5MB file-size limit in mind, not as an afterthought.
-- Remember that switching a preset only changes presentational-type settings. Design your presets around that limitation, not around an assumption that everything switches.
-- Never add or edit the platform-controlled `custom_css`/`platform_customizations` setting yourself.
-- Treat a setting `id` as permanent once shipped, and a schema default change as something that only reaches fresh installs.
-
-## Common mistakes
-
-- **Building more than five theme presets** and discovering the platform limit only when a submission fails.
-- **Assuming a theme preset swaps out content settings** (text, images, links) the same way it swaps colors and fonts — it doesn't.
-- **Manually adding or editing a `custom_css` setting**, which conflicts with the platform-controlled mechanism Shopify already provides.
-- **Renaming a setting `id`** without a migration plan, silently discarding merchant customizations.
-- **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Plan presets with the hard 5-preset ceiling and 1.5MB file-size limit in mind, not as an afterthought. | **Building more than five theme presets** and discovering the platform limit only when a submission fails. |
+| Remember that switching a preset only changes presentational-type settings. Design your presets around that limitation, not around an assumption that everything switches. | **Assuming a theme preset swaps out content settings** (text, images, links) the same way it swaps colors and fonts — it doesn't. |
+| Never add or edit the platform-controlled `custom_css`/`platform_customizations` setting yourself. | **Manually adding or editing a `custom_css` setting**, which conflicts with the platform-controlled mechanism Shopify already provides. |
+| Treat a setting `id` as permanent once shipped, and a schema default change as something that only reaches fresh installs. | **Renaming a setting `id`** without a migration plan, silently discarding merchant customizations. |
+| — | **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs. |
 
 ## Key takeaways
 - Required: `current`, `presets`. Optional, Shopify-managed: `platform_customizations`.

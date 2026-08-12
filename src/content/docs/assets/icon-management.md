@@ -169,21 +169,15 @@ A small theme might ship 15 icons. A mature one, after a year of feature request
 - **Delete icon snippets that nothing renders anymore.** Grep for `render 'icon-x'` before removing a section or feature that used one, and remove the now-unused icon snippet in the same PR. An unused icon snippet is dead weight a future developer has to figure out is safe to delete.
 - **Keep every icon on the same visual grid.** A 24×24 `viewBox` with consistent stroke width across the whole set is what makes icons feel like one cohesive family instead of a pile of assets from different sources. Mixing a 24×24 outline icon next to a 16×16 filled one is a common way a theme starts to look inconsistent.
 
-## Best practices
+## Do / Don't
 
-- Use inline SVG snippets with `currentColor` (or `stroke="currentColor"`) by default. This one pattern handles theming, sizing, and reuse without any extra tooling.
-- Set `aria-hidden="true"` and `focusable="false"` on every icon snippet's `<svg>` tag. Put the accessible name on the button or link wrapping the icon when the icon is the only label.
-- Size icons in `em` units by default, so they scale naturally with the surrounding text.
-- Keep any merchant-facing icon picker small and focused, instead of trying to cover every possible option.
-- Audit for duplicate or unused icon snippets periodically, and keep every icon on the same visual grid (viewBox size, stroke width).
-
-## Common mistakes
-
-- **Hardcoding an icon's fill or stroke color** instead of using `currentColor`. This forces you to make a separate copy of the icon for every color context it needs to appear in.
-- **Shipping an icon-only button with no accessible name.** A screen reader user just hears an unlabeled "button," with no idea what it does.
-- **Adding an icon font or an external icon library** when a handful of your own inline SVGs would cover the same need more simply. See [Third-Party Libraries](/style-guides/third-party-libraries/) for more on this.
-- **Sizing every icon with a fixed pixel value** instead of `em`. This makes icons look mismatched next to text at different sizes.
-- **Letting unused or duplicate icon snippets pile up** as sections and features change over time.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use inline SVG snippets with `currentColor` (or `stroke="currentColor"`) by default. This one pattern handles theming, sizing, and reuse without any extra tooling. | **Hardcoding an icon's fill or stroke color** instead of using `currentColor`. This forces you to make a separate copy of the icon for every color context it needs to appear in. |
+| Set `aria-hidden="true"` and `focusable="false"` on every icon snippet's `<svg>` tag. Put the accessible name on the button or link wrapping the icon when the icon is the only label. | **Shipping an icon-only button with no accessible name.** A screen reader user just hears an unlabeled "button," with no idea what it does. |
+| Size icons in `em` units by default, so they scale naturally with the surrounding text. | **Adding an icon font or an external icon library** when a handful of your own inline SVGs would cover the same need more simply. See [Third-Party Libraries](/style-guides/third-party-libraries/) for more on this. |
+| Keep any merchant-facing icon picker small and focused, instead of trying to cover every possible option. | **Sizing every icon with a fixed pixel value** instead of `em`. This makes icons look mismatched next to text at different sizes. |
+| Audit for duplicate or unused icon snippets periodically, and keep every icon on the same visual grid (viewBox size, stroke width). | **Letting unused or duplicate icon snippets pile up** as sections and features change over time. |
 
 ## Key takeaways
 - Inline SVG snippets, named `icon-*`, live in `snippets/`. This is the default pattern for this theme.

@@ -107,18 +107,14 @@ The `{%- doc -%}` tag you see above is called [LiquidDoc](https://shopify.dev/do
 | `blocks/testimonial-quote.liquid` | `blocks/block1.liquid` | Names should describe purpose, never be generic/numbered |
 | `products.price.sale` | `sale_price_text` | Locale keys use dot notation matching the settings/UI hierarchy |
 
-## Best practices
+## Do / Don't
 
-- Write a LiquidDoc `{%- doc -%}` block on every snippet the moment you create it. Don't leave it for later cleanup. It's the difference between a teammate, or an AI tool, using your snippet correctly the first time, versus guessing.
-- Run through the snippet-vs-block decision table above every time you're about to pull out reusable logic. It's a quick check that saves you a bigger rewrite later.
-- Keep your naming consistent even when you're in a hurry. A rushed, generic name like `block1.liquid` almost always sticks around as permanent technical debt instead of getting renamed later.
-
-## Common mistakes
-
-- **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is deprecated, specifically because it doesn't keep variables separate. A snippet using it can accidentally read or overwrite variables from whatever called it.
-- **Building something as a snippet that should have been a block** (or the other way around). This usually shows up when a "just pass in a variable" snippet later needs to become something a merchant can configure, forcing you to rewrite it.
-- **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)).
-- **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Write a LiquidDoc `{%- doc -%}` block on every snippet the moment you create it. Don't leave it for later cleanup. It's the difference between a teammate, or an AI tool, using your snippet correctly the first time, versus guessing. | **Using `{% include %}` instead of `{% render %}`.** `{% include %}` is deprecated, specifically because it doesn't keep variables separate. A snippet using it can accidentally read or overwrite variables from whatever called it. |
+| Run through the snippet-vs-block decision table above every time you're about to pull out reusable logic. It's a quick check that saves you a bigger rewrite later. | **Building something as a snippet that should have been a block** (or the other way around). This usually shows up when a "just pass in a variable" snippet later needs to become something a merchant can configure, forcing you to rewrite it. |
+| Keep your naming consistent even when you're in a hurry. A rushed, generic name like `block1.liquid` almost always sticks around as permanent technical debt instead of getting renamed later. | **Skipping LiquidDoc "for now."** This is exactly the kind of thing that never actually gets done later. It's also the first thing that makes AI-assisted development slower and less reliable (see [AI-Assisted Development](/ai-assisted-development/)). |
+| — | **Inconsistent casing.** Mixing `snake_case`, `camelCase`, and `kebab-case` across a codebase makes it harder to guess a file or setting's name without looking it up. |
 
 ## Key takeaways
 - Snippets receive variables you pass explicitly. Blocks only see `block` and `section`.

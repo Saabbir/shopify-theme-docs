@@ -145,20 +145,15 @@ If CSS can do it without a script, use CSS:
 | Container-based responsive behavior | Container queries (`@container`) | A `ResizeObserver` workaround |
 | Conditional styling based on a sibling/child's state | `:has()` | Reaching for a JS framework's reactivity for a CSS-only problem |
 
-## Best practices
+## Do / Don't
 
-- Reach for a container query, not a media query, whenever the real question is "how big is this component's own space," not "how big is the screen."
-- Use `:has()` for parent/sibling-conditional styling instead of a JavaScript workaround that toggles a class.
-- Keep nesting shallow (one or two levels), scoped to a component's own selectors, not a replacement for flat BEM naming.
-- Reach for `@layer` in a large, shared base stylesheet where reset/defaults keep needing `!important` to override. Skip it for a small, self-contained component.
-- Always check current browser support and provide a fallback before using the View Transitions API specifically, since it's the one feature on this page with real fallback considerations in a Shopify context.
-
-## Common mistakes
-
-- **Reaching for a media query when a container query is the actual right tool**, coupling a component's layout to the viewport instead of its own available space.
-- **Nesting three or four levels deep to win a specificity fight** instead of fixing the underlying naming or specificity issue.
-- **Using the View Transitions API with no fallback.** In browsers that don't support it, this can break the experience instead of simply skipping the animation.
-- **Reaching for a JS carousel library or resize-observer workaround** for something `scroll-snap` or a container query already does natively.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Reach for a container query, not a media query, whenever the real question is "how big is this component's own space," not "how big is the screen." | **Reaching for a media query when a container query is the actual right tool**, coupling a component's layout to the viewport instead of its own available space. |
+| Use `:has()` for parent/sibling-conditional styling instead of a JavaScript workaround that toggles a class. | **Nesting three or four levels deep to win a specificity fight** instead of fixing the underlying naming or specificity issue. |
+| Keep nesting shallow (one or two levels), scoped to a component's own selectors, not a replacement for flat BEM naming. | **Using the View Transitions API with no fallback.** In browsers that don't support it, this can break the experience instead of simply skipping the animation. |
+| Reach for `@layer` in a large, shared base stylesheet where reset/defaults keep needing `!important` to override. Skip it for a small, self-contained component. | **Reaching for a JS carousel library or resize-observer workaround** for something `scroll-snap` or a container query already does natively. |
+| Always check current browser support and provide a fallback before using the View Transitions API specifically, since it's the one feature on this page with real fallback considerations in a Shopify context. | — |
 
 ## Key takeaways
 - Container queries respond to a component's own size. Media queries respond to the viewport.

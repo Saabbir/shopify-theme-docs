@@ -28,23 +28,13 @@ Publishing to the Theme Store takes time. It's not something you finish in a sin
 
 Leave room in your project timeline for at least one round of rejection and resubmission. This is normal for a first submission. It doesn't mean something went wrong.
 
-## Best practices
+## Do / Don't
 
-- Set up your Partner Dashboard accounts (see [Partner Dashboard Setup](/publishing/partner-dashboard-setup/)) well before you plan to submit. Account verification and store setup can take longer than you expect, so don't leave them until the last minute.
-- Set aside real calendar time for at least one round of review, not just the time it takes to build the theme.
-- Treat "submitted" as the middle of the process, not the end. See [After Approval](/publishing/after-approval/) for the ongoing work that starts once your theme is live.
-
-## Common mistakes
-
-- **Starting Partner Dashboard setup the same week you plan to submit.** You may find that account verification or store transfer takes longer than expected.
-- **Treating submission as a one-shot event**, with no plan for handling a rejection. Build the possibility of a fix-and-resubmit cycle into your timeline from the start.
-- **Not reading [After Approval](/publishing/after-approval/) until after you're approved.** The update and versioning rules affect decisions you should make before you submit, like how you structure your first release.
-
-## Key takeaways
-- Submission happens through your Partner Dashboard, not a code push.
-- Review has 5 stages, one after another. If you fail a stage, the review stops there.
-- Approval isn't the finish line. You're committing to keep updating and supporting the theme.
-- Plan for at least one round of rejection and resubmission in your project timeline.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Set up your Partner Dashboard accounts (see [Partner Dashboard Setup](/publishing/partner-dashboard-setup/)) well before you plan to submit. Account verification and store setup can take longer than you expect, so don't leave them until the last minute. | **Starting Partner Dashboard setup the same week you plan to submit.** You may find that account verification or store transfer takes longer than expected. |
+| Set aside real calendar time for at least one round of review, not just the time it takes to build the theme. | **Treating submission as a one-shot event**, with no plan for handling a rejection. Build the possibility of a fix-and-resubmit cycle into your timeline from the start. |
+| Treat "submitted" as the middle of the process, not the end. See [After Approval](/publishing/after-approval/) for the ongoing work that starts once your theme is live. | **Not reading [After Approval](/publishing/after-approval/) until after you're approved.** The update and versioning rules affect decisions you should make before you submit, like how you structure your first release. |
 
 ## Further reading
 

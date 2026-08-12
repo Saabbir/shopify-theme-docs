@@ -131,19 +131,15 @@ This is on purpose. Project-wide rules, like "no Sass" and "a section either def
 8. [Claude Code Hooks & the Feature Pipeline](/ai-assisted-development/hooks-and-feature-pipeline/): commands, subagents, and hooks combined into one gated, multi-phase build pipeline.
 9. [Writing Prompts That Work](/ai-assisted-development/writing-prompts-that-work/): getting good results out of all of the above.
 
-## Best practices
+## Do / Don't
 
-- Read this page once, all the way through, before you move on to the rest of section 18. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which.
-- When you're deciding how to automate something you keep doing, ask yourself a few questions. Does it need to apply to *everything*? Use `AGENTS.md`. Does it need to trigger *automatically* on relevant tasks? Use a skill. Do you want to trigger it *by name*? Use a command. Is it noisy, or does it need a limited set of tools? Use a subagent. Does it need to be genuinely unskippable, enforced no matter what the AI decides? Use a hook.
-- Don't confuse "installed a plugin" with "wrote a skill." A plugin is just how you install things. The skill, command, subagent, or MCP connection inside it is what actually does the work.
-
-## Common mistakes
-
-- **Using "MCP," "skill," and "plugin" as if they mean the same thing.** They don't. MCP is a connection, a skill is packaged instructions, and a plugin is a bundle that can hold skills, commands, subagents, and MCP connections together.
-- **Expecting a skill to need manual triggering.** That's a command's job. A skill turns on by itself.
-- **Assuming a subagent is just "a slower command."** The point isn't speed. It's keeping your main conversation clean and limiting which tools the subagent can use.
-- **Reaching for `AGENTS.md` instructions or a subagent's own good judgement where a hard rule is actually needed.** Telling the AI "don't write theme files before the plan is approved" in prose is a request, not an enforcement. A `PreToolUse` hook is the only one of these six that can actually block the tool call.
-- **Treating `AGENTS.md` as one of these six mechanisms.** It's static, always-loaded context. It doesn't turn on conditionally, and nothing needs to trigger it.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Read this page once, all the way through, before you move on to the rest of section 18. If MCP, skill, command, subagent, or plugin is new to you, the other pages assume you already know which is which. | **Using "MCP," "skill," and "plugin" as if they mean the same thing.** They don't. MCP is a connection, a skill is packaged instructions, and a plugin is a bundle that can hold skills, commands, subagents, and MCP connections together. |
+| When you're deciding how to automate something you keep doing, ask yourself a few questions. Does it need to apply to *everything*? Use `AGENTS.md`. Does it need to trigger *automatically* on relevant tasks? Use a skill. Do you want to trigger it *by name*? Use a command. Is it noisy, or does it need a limited set of tools? Use a subagent. Does it need to be genuinely unskippable, enforced no matter what the AI decides? Use a hook. | **Expecting a skill to need manual triggering.** That's a command's job. A skill turns on by itself. |
+| Don't confuse "installed a plugin" with "wrote a skill." A plugin is just how you install things. The skill, command, subagent, or MCP connection inside it is what actually does the work. | **Assuming a subagent is just "a slower command."** The point isn't speed. It's keeping your main conversation clean and limiting which tools the subagent can use. |
+| — | **Reaching for `AGENTS.md` instructions or a subagent's own good judgement where a hard rule is actually needed.** Telling the AI "don't write theme files before the plan is approved" in prose is a request, not an enforcement. A `PreToolUse` hook is the only one of these six that can actually block the tool call. |
+| — | **Treating `AGENTS.md` as one of these six mechanisms.** It's static, always-loaded context. It doesn't turn on conditionally, and nothing needs to trigger it. |
 
 ## Key takeaways
 - **MCP server** = a connection to outside data or services. **Skill** = instructions that turn on automatically. **Command** = a saved prompt you trigger by hand. **Subagent** = a separate worker with limited tools. **Hook** = a script Claude Code runs automatically on an event, and the only one of the six that can actually block an action. **Plugin** = a bundle of any or all of the above, installed as one unit.

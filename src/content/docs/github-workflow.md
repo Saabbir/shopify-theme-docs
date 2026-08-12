@@ -25,22 +25,13 @@ Here's how a single Solis change moves from your machine to the live store. Thin
 5. Once your PR is merged, Shopify checks whether that branch is connected to a theme. If it is, the theme updates automatically.
 6. This also works in reverse. If someone edits that connected theme in the Shopify admin (using the theme editor or code editor), those changes get committed back to the same branch automatically. This sync runs both ways, all the time, not just when you merge.
 
-## Best practices
+## Do / Don't
 
-- Know which branch is connected to which theme before you push anything. This connection is real and live, not just a technical detail you can ignore.
-- Keep your feature branches short-lived. If a branch stays connected to a development theme for weeks, it drifts further from `main`. That makes it harder to review when you finally merge.
-- If your change might cause admin-side commits (for example, a new setting a designer will configure right away), say so in your PR description. That way reviewers won't be surprised by extra commits from the `shopify` bot afterward.
-
-## Common mistakes
-
-- **Not knowing which branch is connected to which theme.** You push code and accidentally update a theme someone else is actively testing.
-- **Letting feature branches go stale for weeks.** The eventual PR becomes one big, hard-to-review change instead of several small, easy ones.
-- **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/getting-started/branching-and-commits/) for why this is expected behavior.
-
-## Key takeaways
-- Shopify's GitHub app connects a **branch** to a **theme** in your store. Pushing to that branch updates the theme automatically.
-- Editing the theme in Shopify admin (theme editor or code editor) commits back to that same branch automatically, too. It's a two-way sync.
-- Know which branch is connected to which theme before pushing.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Know which branch is connected to which theme before you push anything. This connection is real and live, not just a technical detail you can ignore. | **Not knowing which branch is connected to which theme.** You push code and accidentally update a theme someone else is actively testing. |
+| Keep your feature branches short-lived. If a branch stays connected to a development theme for weeks, it drifts further from `main`. That makes it harder to review when you finally merge. | **Letting feature branches go stale for weeks.** The eventual PR becomes one big, hard-to-review change instead of several small, easy ones. |
+| If your change might cause admin-side commits (for example, a new setting a designer will configure right away), say so in your PR description. That way reviewers won't be surprised by extra commits from the `shopify` bot afterward. | **Being surprised by automatic commits from Shopify admin edits** and mistaking them for unauthorized changes. See [Branching & Commits](/getting-started/branching-and-commits/) for why this is expected behavior. |
 
 ## Further reading
 

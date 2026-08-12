@@ -92,19 +92,14 @@ Every preset needs its own demo store. Build it as a [Client transfer store](htt
 | The unmodified `powered_by_link` | An altered or removed `powered_by_link` |
 | Realistic product variety appropriate to the preset's industry/catalog size | Apps used to fake functionality your theme doesn't actually have built in |
 
-## Best practices
+## Do / Don't
 
-- Design and build for changing content from the very first section, not just in a final polish pass. See "Layout resilience" above.
-- Pick your theme name early, and search the current Theme Store listing for name collisions before you get attached to it.
-- Build your demo store content alongside the theme, not as an afterthought right before submission. Realistic content often reveals layout bugs you wouldn't otherwise catch.
-- When you're unsure whether a design choice is unique enough, compare it against 3 or 4 current Theme Store listings directly, instead of just trusting your gut feeling.
-
-## Common mistakes
-
-- **Confusing visual polish with structural uniqueness.** A beautifully executed reskin of an existing theme is still a reskin.
-- **Designing only against your demo store's hand-picked content.** The most common way a design "looks done" in review and then fails later is content no one tested, like a long title or an empty collection.
-- **Picking a theme name that collides with an industry or Shopify term without checking first.** This usually gets caught late, forcing a rename after a lot of work already references the old name.
-- **Leaving demo store text as placeholder copy "for later."** It rarely gets fixed later, and it's an explicit reason themes get rejected.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Design and build for changing content from the very first section, not just in a final polish pass. See "Layout resilience" above. | **Confusing visual polish with structural uniqueness.** A beautifully executed reskin of an existing theme is still a reskin. |
+| Pick your theme name early, and search the current Theme Store listing for name collisions before you get attached to it. | **Designing only against your demo store's hand-picked content.** The most common way a design "looks done" in review and then fails later is content no one tested, like a long title or an empty collection. |
+| Build your demo store content alongside the theme, not as an afterthought right before submission. Realistic content often reveals layout bugs you wouldn't otherwise catch. | **Picking a theme name that collides with an industry or Shopify term without checking first.** This usually gets caught late, forcing a rename after a lot of work already references the old name. |
+| When you're unsure whether a design choice is unique enough, compare it against 3 or 4 current Theme Store listings directly, instead of just trusting your gut feeling. | **Leaving demo store text as placeholder copy "for later."** It rarely gets fixed later, and it's an explicit reason themes get rejected. |
 
 ## Key takeaways
 - Aim for structural uniqueness, not a reskin, and use Skeleton Theme or fully original code as your base.

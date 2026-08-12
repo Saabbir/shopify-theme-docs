@@ -100,17 +100,13 @@ This gets fixed correctly faster than "this section is broken, fix it" would. Th
 
 When a prompt is vague and the output doesn't work, the tempting quick fix is to say "just make it work" or "try again." But this tends to produce increasingly hacky patches instead of a real fix, because the tool still doesn't know what "correct" means for this specific case. Stopping to write the specific expected-versus-actual prompt, as shown above, is almost always faster overall than several rounds of "no, still broken, try again."
 
-## Best practices
+## Do / Don't
 
-- Write out the four required pieces (object type, editable versus fixed, unusual-content behavior, pattern to match) as an actual checklist before sending a prompt for anything non-trivial. It takes under a minute and consistently produces better first drafts.
-- Point at real file paths when asking the tool to match an existing pattern. "Like the header" is much weaker than "match the section-group pattern in sections/header-group.json."
-- When correcting output, always state expected versus actual clearly, even when it feels obvious in the moment.
-
-## Common mistakes
-
-- **Describing what you want without stating constraints** ("make a nice testimonials section") and being surprised when the result doesn't match how we build things.
-- **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-versus-actual correction.
-- **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like, unless you point it there directly.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Write out the four required pieces (object type, editable versus fixed, unusual-content behavior, pattern to match) as an actual checklist before sending a prompt for anything non-trivial. It takes under a minute and consistently produces better first drafts. | **Describing what you want without stating constraints** ("make a nice testimonials section") and being surprised when the result doesn't match how we build things. |
+| Point at real file paths when asking the tool to match an existing pattern. "Like the header" is much weaker than "match the section-group pattern in sections/header-group.json." | **Repeating "try again" or "just fix it" several times** instead of stopping to write a specific expected-versus-actual correction. |
+| When correcting output, always state expected versus actual clearly, even when it feels obvious in the moment. | **Referencing a pattern from memory instead of a real file** ("like we did for the other carousel") when the AI tool has no actual access to what "the other carousel" looked like, unless you point it there directly. |
 
 ## Key takeaways
 - State: object type, editable versus fixed, unusual-content behavior, and which existing file to match.

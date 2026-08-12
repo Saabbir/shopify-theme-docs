@@ -32,22 +32,13 @@ AI tools are a big help when you build Shopify themes. But they also bring two r
 
 The pages in this section help you handle both risks. We use rule files to point the AI toward our own rules and style. This includes Shopify's own AI Toolkit, a tool that makes sure the AI's code is based on real platform docs, not guesses. Even with all that in place, we still review the code by hand, in case the rules aren't enough on their own.
 
-## Best practices
+## Do / Don't
 
-- Set up your AI tool's rule files (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) in Getting Started) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first.
-- Treat every AI suggestion like a first draft from a fast but new teammate. It's useful, but never merge it without reading it first.
-- If AI-written code looks a lot like a pattern from a well-known theme, treat that as something worth checking. Don't just brush it off.
-
-## Common mistakes
-
-- **Thinking rule files are enough on their own**, and skipping code review on AI-written pull requests. Rules guide the AI, but they don't guarantee it followed them.
-- **Not noticing when AI code falls back to old, Dawn-era patterns**, just because it still works. It runs fine, but it's not how we build things here, and it makes the codebase less consistent over time.
-- **Skipping edge-case testing just because "the AI wrote it."** AI-written sections break on empty or very long content just as often as a person's first draft. Sometimes they break even more, since the AI can't see your real merchant data.
-
-## Key takeaways
-- Every AI tool reads the same rules. Each tool just gets them written in its own file format.
-- AI-written code gets reviewed the same as any other pull request. See [GitHub Workflow](/github-workflow/) for details.
-- Watch for two things: old Dawn-era patterns, and code copied from Horizon or Dawn.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Set up your AI tool's rule files (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) in Getting Started) *before* you write your first line of Solis code with it. If you add the rules after the tool has already picked up bad habits in a session, they work much less well than if you'd set them up first. | **Thinking rule files are enough on their own**, and skipping code review on AI-written pull requests. Rules guide the AI, but they don't guarantee it followed them. |
+| Treat every AI suggestion like a first draft from a fast but new teammate. It's useful, but never merge it without reading it first. | **Not noticing when AI code falls back to old, Dawn-era patterns**, just because it still works. It runs fine, but it's not how we build things here, and it makes the codebase less consistent over time. |
+| If AI-written code looks a lot like a pattern from a well-known theme, treat that as something worth checking. Don't just brush it off. | **Skipping edge-case testing just because "the AI wrote it."** AI-written sections break on empty or very long content just as often as a person's first draft. Sometimes they break even more, since the AI can't see your real merchant data. |
 
 ## Further reading
 

@@ -149,18 +149,14 @@ This object holds the data behind menus that a merchant sets up in the Shopify a
 
 **Gotcha**: a `linklist` setting's default should be `main-menu` or `footer`, not a handle that only exists in your demo store. See the pre-zip checklist in [Packaging & Submitting](/publishing/packaging-and-submitting/).
 
-## Best practices
+## Do / Don't
 
-- Always check for nil explicitly. This applies to `customer`, an optional metafield, or a variant with no image. Liquid just renders blank instead of throwing an error, which hides bugs instead of showing them to you.
-- Be careful to tell `settings` (theme-wide) apart from `section.settings` (just this one instance). Their similar names are a common source of silent, hard-to-spot bugs.
-- Always wrap `collection.products` in `{% paginate %}`. It matters both for correctness on large collections and for performance.
-
-## Common mistakes
-
-- **Assuming `product.price` is the currently selected variant's price.** It's actually the cheapest available variant's price.
-- **Confusing `settings.x` and `section.settings.x`.** These are different objects, and it's easy to type the wrong one by mistake.
-- **Forgetting `block.shopify_attributes`** on a block's root element, which breaks theme editor selection for that block.
-- **Using stale `cart` data after an AJAX add-to-cart** instead of updating the UI from the Cart AJAX API's response.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Always check for nil explicitly. This applies to `customer`, an optional metafield, or a variant with no image. Liquid just renders blank instead of throwing an error, which hides bugs instead of showing them to you. | **Assuming `product.price` is the currently selected variant's price.** It's actually the cheapest available variant's price. |
+| Be careful to tell `settings` (theme-wide) apart from `section.settings` (just this one instance). Their similar names are a common source of silent, hard-to-spot bugs. | **Confusing `settings.x` and `section.settings.x`.** These are different objects, and it's easy to type the wrong one by mistake. |
+| Always wrap `collection.products` in `{% paginate %}`. It matters both for correctness on large collections and for performance. | **Forgetting `block.shopify_attributes`** on a block's root element, which breaks theme editor selection for that block. |
+| — | **Using stale `cart` data after an AJAX add-to-cart** instead of updating the UI from the Cart AJAX API's response. |
 
 ## Key takeaways
 - `product`, `collection`, `cart`, `section`/`block`, `shop`, `routes`, `settings`, `request`, `localization`, `customer`, and `linklists` are the objects you'll touch daily.

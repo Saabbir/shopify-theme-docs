@@ -16,22 +16,13 @@ Translation and locale work touches several parts of a theme at once: what's req
 
 Locale files aren't isolated from the rest of a theme's config. [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/) covers what the schema file itself is for; the `t:` resolution mechanics live here instead, since they're really about locale files, not the schema's structure. [Liquid Style Guide](/style-guides/liquid/) and [Liquid Global Objects Reference](/learning-articles/liquid-global-objects/) both use the `t` filter and the `localization` object in passing; this section is where those get their full treatment.
 
-## Best practices
+## Do / Don't
 
-- Treat locale files as part of a section's initial build, not a cleanup pass at the end. Running every string through `t:`/`| t` from the start is far cheaper than finding and replacing dozens of hardcoded strings later.
-- Keep `en.default.schema.json` in sync with `settings_schema.json` as you add or rename settings. A `t:` key with nothing on the other end renders as raw text in the theme editor, silently.
-- Remember the storefront and the theme editor are translated independently: `<lang>.json` follows the shopper's storefront locale, `<lang>.schema.json` follows the merchant's Shopify admin language.
-
-## Common mistakes
-
-- **Hardcoding strings "to get something working," then leaving them for later.** They pile up, and a late translation pass is far more error-prone than translating as you go.
-- **Assuming one locale file pair covers both the storefront and the theme editor.** They're separate files, translated separately, and read by two different audiences.
-- **Adding a `t:` key without its counterpart in `en.default.schema.json`.** Nothing errors. The theme editor just shows the raw key text instead of a real label.
-
-## Key takeaways
-- [Internationalization & RTL](/internationalization-and-locales/internationalization-and-rtl/) · [Managing Locale Files](/internationalization-and-locales/managing-locale-files/)
-- Storefront strings live in `<lang>.json`. Theme editor labels live in `<lang>.schema.json`. Different files, different audiences, different language settings.
-- `settings_schema.json`'s `t:` keys are dot-path lookups into `<lang>.schema.json`, same mechanics as the `t` filter, different file.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat locale files as part of a section's initial build, not a cleanup pass at the end. Running every string through `t:`/`\| t` from the start is far cheaper than finding and replacing dozens of hardcoded strings later. | **Hardcoding strings "to get something working," then leaving them for later.** They pile up, and a late translation pass is far more error-prone than translating as you go. |
+| Keep `en.default.schema.json` in sync with `settings_schema.json` as you add or rename settings. A `t:` key with nothing on the other end renders as raw text in the theme editor, silently. | **Assuming one locale file pair covers both the storefront and the theme editor.** They're separate files, translated separately, and read by two different audiences. |
+| Remember the storefront and the theme editor are translated independently: `<lang>.json` follows the shopper's storefront locale, `<lang>.schema.json` follows the merchant's Shopify admin language. | **Adding a `t:` key without its counterpart in `en.default.schema.json`.** Nothing errors. The theme editor just shows the raw key text instead of a real label. |
 
 ## Further reading
 

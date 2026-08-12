@@ -210,19 +210,14 @@ class CartIcon extends HTMLElement {
 
 Notice this is still small and specific: a `Set` of listener functions and two functions to read/write one value. It's not a general-purpose state library, and it's only reached for because the cart genuinely has multiple, unrelated subscribers. If you find yourself wanting this pattern for state only one component uses, that's a sign to move the state back onto that one component instead.
 
-## Best practices
+## Do / Don't
 
-- Put setup in `connectedCallback`, teardown in `disconnectedCallback` — never in the constructor.
-- Build from real, working HTML first (`<details>`, `<dialog>`, a real `<button>`), then enhance it. Don't build interactive markup from nothing in JavaScript.
-- Pair every `addEventListener` with a `removeEventListener`, every subscription with an unsubscribe call.
-- Reach for a shared store only when state genuinely has multiple, unrelated subscribers — cart contents, not a single dropdown's open state.
-
-## Common mistakes
-
-- **Querying child elements in the constructor**, before they're guaranteed to exist.
-- **Adding a listener in `connectedCallback` with no matching removal in `disconnectedCallback`**, causing duplicate listeners after a theme-editor reconnect.
-- **Building interactive markup entirely in JavaScript** instead of enhancing real HTML, so a JS failure means a completely broken feature instead of a degraded one.
-- **Reaching for a shared store for state only one component actually uses.**
+| ✅ Do | ❌ Don't |
+|---|---|
+| Put setup in `connectedCallback`, teardown in `disconnectedCallback` — never in the constructor. | **Querying child elements in the constructor**, before they're guaranteed to exist. |
+| Build from real, working HTML first (`<details>`, `<dialog>`, a real `<button>`), then enhance it. Don't build interactive markup from nothing in JavaScript. | **Adding a listener in `connectedCallback` with no matching removal in `disconnectedCallback`**, causing duplicate listeners after a theme-editor reconnect. |
+| Pair every `addEventListener` with a `removeEventListener`, every subscription with an unsubscribe call. | **Building interactive markup entirely in JavaScript** instead of enhancing real HTML, so a JS failure means a completely broken feature instead of a degraded one. |
+| Reach for a shared store only when state genuinely has multiple, unrelated subscribers — cart contents, not a single dropdown's open state. | **Reaching for a shared store for state only one component actually uses.** |
 
 ## Key takeaways
 - Lifecycle: `constructor` (call `super()`, nothing else) → `connectedCallback` (setup, can run more than once) → `disconnectedCallback` (teardown) → `attributeChangedCallback` (reacts to observed attribute changes).

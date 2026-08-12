@@ -87,19 +87,14 @@ Animating `transform` and `opacity` is cheap, the browser can handle both on the
 
 Use `will-change` sparingly, only on elements that are actually about to animate, and remove it once the animation finishes if you're setting it via JavaScript. Applying it broadly and permanently does the opposite of what it's meant for.
 
-## Best practices
+## Do / Don't
 
-- Trust `{% stylesheet %}` subsetting to do critical-CSS-equivalent work automatically. Don't build a separate hand-maintained critical CSS pipeline.
-- Reach for `content-visibility: auto` on genuinely long pages with many off-screen sections, always paired with a `contain-intrinsic-size` estimate.
-- Animate `transform` and `opacity`, not layout-affecting properties like `width`, `top`, or `margin`.
-- Apply `will-change` only while an interaction is actually happening, not permanently on every instance of a component.
-
-## Common mistakes
-
-- **Hand-building a separate critical.css pipeline** in a Shopify theme, duplicating work that disciplined `{% stylesheet %}` scoping already does.
-- **Animating `width`/`top`/`margin`** instead of `transform`, forcing a layout recalculation on every frame.
-- **Applying `will-change` permanently to every instance of a component**, creating unnecessary compositor layers and using more memory than the optimization saves.
-- **Using `content-visibility: auto` without `contain-intrinsic-size`**, causing visible layout shift as content scrolls into view.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Trust `{% stylesheet %}` subsetting to do critical-CSS-equivalent work automatically. Don't build a separate hand-maintained critical CSS pipeline. | **Hand-building a separate critical.css pipeline** in a Shopify theme, duplicating work that disciplined `{% stylesheet %}` scoping already does. |
+| Reach for `content-visibility: auto` on genuinely long pages with many off-screen sections, always paired with a `contain-intrinsic-size` estimate. | **Animating `width`/`top`/`margin`** instead of `transform`, forcing a layout recalculation on every frame. |
+| Animate `transform` and `opacity`, not layout-affecting properties like `width`, `top`, or `margin`. | **Applying `will-change` permanently to every instance of a component**, creating unnecessary compositor layers and using more memory than the optimization saves. |
+| Apply `will-change` only while an interaction is actually happening, not permanently on every instance of a component. | **Using `content-visibility: auto` without `contain-intrinsic-size`**, causing visible layout shift as content scrolls into view. |
 
 ## Key takeaways
 - Stylesheet subsetting already gives you most of critical CSS's benefit. Keep the global stylesheet lean instead of building a separate pipeline.

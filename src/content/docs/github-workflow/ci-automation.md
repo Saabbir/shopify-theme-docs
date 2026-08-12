@@ -93,17 +93,13 @@ CI catches syntax errors and lint-level problems. A linter is a tool that checks
 
 A human reviewer still needs to check all of these. Think of CI as the minimum bar, not a replacement for review.
 
-## Best practices
+## Do / Don't
 
-- Treat a CI failure just as seriously as a Theme Check failure on your own machine. Don't get into the habit of pushing code and "seeing what CI says" instead of checking it locally first.
-- If you disagree with a specific Theme Check rule, talk to the team about it instead of silently turning it off. The rule might exist because of a Theme Store requirement you don't know about.
-- Add new automated checks to this same workflow file bit by bit as the project grows. Don't try to build a big, complicated CI setup all at once.
-
-## Common mistakes
-
-- **Treating a CI failure as less important than a comment from a reviewer.** It's automated, but it's still catching real, specific problems.
-- **Turning off a Theme Check rule with an ignore comment without understanding why it exists.** Several rules exist because they map directly to a Theme Store requirement (see [Theme Store Requirements](/theme-store-requirements/)).
-- **Relying on CI instead of doing manual QA (quality assurance testing).** CI is deliberately narrow. It only checks lint-level issues. Treating a green CI run (meaning all checks passed) as "fully tested" misses everything listed above in "What CI does not replace."
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat a CI failure just as seriously as a Theme Check failure on your own machine. Don't get into the habit of pushing code and "seeing what CI says" instead of checking it locally first. | **Treating a CI failure as less important than a comment from a reviewer.** It's automated, but it's still catching real, specific problems. |
+| If you disagree with a specific Theme Check rule, talk to the team about it instead of silently turning it off. The rule might exist because of a Theme Store requirement you don't know about. | **Turning off a Theme Check rule with an ignore comment without understanding why it exists.** Several rules exist because they map directly to a Theme Store requirement (see [Theme Store Requirements](/theme-store-requirements/)). |
+| Add new automated checks to this same workflow file bit by bit as the project grows. Don't try to build a big, complicated CI setup all at once. | **Relying on CI instead of doing manual QA (quality assurance testing).** CI is deliberately narrow. It only checks lint-level issues. Treating a green CI run (meaning all checks passed) as "fully tested" misses everything listed above in "What CI does not replace." |
 
 ## Key takeaways
 - One file, [`ci.yml`](/templates/github/workflows/ci.yml), runs both checks: `npm run format:check` (Prettier) and `Shopify/theme-check-action` (Theme Check).

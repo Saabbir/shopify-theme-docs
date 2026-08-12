@@ -141,20 +141,15 @@ Resource-based settings (`product`, `page`, `collection`, and similar) need the 
 
 A `liquid`-type setting's value is **not** translatable through Translate & Adapt. See [Managing Locale Files](/internationalization-and-locales/managing-locale-files/) for the full mechanics of the schema-locale side of this table.
 
-## Best practices
+## Do / Don't
 
-- Put `theme_info` first, and get its required-attribute set exactly right — including exactly one of `theme_support_email`/`theme_support_url`, never both.
-- Use flat, shared `t:` namespaces (`t:general.*`, `t:labels.*`) for every group name and setting label, not a deeply nested per-setting path.
-- Check `visible_if`'s supported-type list before relying on it for a given setting type.
-- Always guard a setting reference with a `blank` check, especially for resource-based settings, rather than assuming a value is always present.
-
-## Common mistakes
-
-- **Including both `theme_support_email` and `theme_support_url`** in `theme_info` — this is a hard error, not a style choice.
-- **Writing a deeply nested `t:` path** instead of the flat, shared convention real Shopify themes use.
-- **Assuming `visible_if` works on every setting type.** It's a specific, documented list — check it first.
-- **Rendering a resource-based setting without a `blank` check**, breaking silently if a merchant never selected one or later deleted it.
-- **Confusing schema-label translation (`t:` keys) with merchant-content translation (Translate & Adapt).** They're two entirely different systems for two different kinds of text.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Put `theme_info` first, and get its required-attribute set exactly right — including exactly one of `theme_support_email`/`theme_support_url`, never both. | **Including both `theme_support_email` and `theme_support_url`** in `theme_info` — this is a hard error, not a style choice. |
+| Use flat, shared `t:` namespaces (`t:general.*`, `t:labels.*`) for every group name and setting label, not a deeply nested per-setting path. | **Writing a deeply nested `t:` path** instead of the flat, shared convention real Shopify themes use. |
+| Check `visible_if`'s supported-type list before relying on it for a given setting type. | **Assuming `visible_if` works on every setting type.** It's a specific, documented list — check it first. |
+| Always guard a setting reference with a `blank` check, especially for resource-based settings, rather than assuming a value is always present. | **Rendering a resource-based setting without a `blank` check**, breaking silently if a merchant never selected one or later deleted it. |
+| — | **Confusing schema-label translation (`t:` keys) with merchant-content translation (Translate & Adapt).** They're two entirely different systems for two different kinds of text. |
 
 ## Key takeaways
 - `settings_schema.json`: array of category objects, each requiring `name` and `settings`.

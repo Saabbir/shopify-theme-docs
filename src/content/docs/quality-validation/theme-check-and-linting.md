@@ -64,17 +64,13 @@ Sometimes a rule genuinely doesn't fit a specific, deliberate choice you made. T
 
 If you find yourself turning off the same rule again and again across your codebase, treat that as a signal. Bring it up with your team instead of just quietly suppressing it file by file.
 
-## Best practices
+## Do / Don't
 
-- Install the Shopify Liquid VS Code extension on day one. Getting Theme Check feedback while you type catches issues far earlier than waiting for a CI run.
-- When you hit a Theme Check offense you don't recognize, look up what it actually checks for before you fix or dismiss it. The name alone doesn't always make the problem obvious.
-- Use the Prettier Liquid plugin across the whole project, so formatting differences never show up as noise in a pull request diff (the list of changes shown when you propose a code update).
-
-## Common mistakes
-
-- **Silencing a Theme Check offense without understanding it.** You might be hiding something that maps directly to a real Theme Store requirement.
-- **Only running Theme Check right before opening a PR**, instead of running it continuously during development. This turns a five-second fix into a much bigger cleanup job later.
-- **Letting formatting stay inconsistent across contributors** because Prettier isn't set up project-wide. This creates noisy diffs that hide the actual code change during review.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Install the Shopify Liquid VS Code extension on day one. Getting Theme Check feedback while you type catches issues far earlier than waiting for a CI run. | **Silencing a Theme Check offense without understanding it.** You might be hiding something that maps directly to a real Theme Store requirement. |
+| When you hit a Theme Check offense you don't recognize, look up what it actually checks for before you fix or dismiss it. The name alone doesn't always make the problem obvious. | **Only running Theme Check right before opening a PR**, instead of running it continuously during development. This turns a five-second fix into a much bigger cleanup job later. |
+| Use the Prettier Liquid plugin across the whole project, so formatting differences never show up as noise in a pull request diff (the list of changes shown when you propose a code update). | **Letting formatting stay inconsistent across contributors** because Prettier isn't set up project-wide. This creates noisy diffs that hide the actual code change during review. |
 
 ## Key takeaways
 - `shopify theme check`: run it locally, and it runs again automatically in CI.

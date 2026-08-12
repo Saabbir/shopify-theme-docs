@@ -53,17 +53,13 @@ Once this becomes routine, it only takes about five minutes. It's not a heavy pr
 - [ ] Confirmed no new dependency without justification
 - [ ] Tab-tested keyboard navigation on anything new
 
-## Best practices
+## Do / Don't
 
-- Write your PR description as if the reviewer only knows the ticket title and nothing else. This consistently leads to faster, better reviews.
-- Actually click through the preview link when you review. Don't just read the diff. Most bugs caused by different content stay invisible when you only read code, but become obvious after thirty seconds of clicking around.
-- Mention in your PR description if a section was built with AI help, and what you already checked. That tells the reviewer where to look more closely.
-
-## Common mistakes
-
-- **Writing a one-line PR description** (like "added testimonials") that forces the reviewer to guess your intent just from the diff.
-- **Reviewing only the diff and never opening the live preview.** This is exactly how empty-state bugs (what a section looks like with no content) and long-content bugs slip through.
-- **Approving AI-generated code faster than human-written code**, assuming it's "probably fine." In practice, it needs the same amount of scrutiny, or more, especially for old Dawn-era patterns and extra scope nobody asked for.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Write your PR description as if the reviewer only knows the ticket title and nothing else. This consistently leads to faster, better reviews. | **Writing a one-line PR description** (like "added testimonials") that forces the reviewer to guess your intent just from the diff. |
+| Actually click through the preview link when you review. Don't just read the diff. Most bugs caused by different content stay invisible when you only read code, but become obvious after thirty seconds of clicking around. | **Reviewing only the diff and never opening the live preview.** This is exactly how empty-state bugs (what a section looks like with no content) and long-content bugs slip through. |
+| Mention in your PR description if a section was built with AI help, and what you already checked. That tells the reviewer where to look more closely. | **Approving AI-generated code faster than human-written code**, assuming it's "probably fine." In practice, it needs the same amount of scrutiny, or more, especially for old Dawn-era patterns and extra scope nobody asked for. |
 
 ## Key takeaways
 - PR template lives at `.github/PULL_REQUEST_TEMPLATE.md`.

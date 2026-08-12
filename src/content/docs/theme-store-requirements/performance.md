@@ -61,18 +61,14 @@ The explicit `width` and `height` matter just as much as the lazy loading. Witho
 
 Run a Lighthouse audit against Shopify's benchmark dataset before you submit. Don't wait to find out your score during review. See [Manual QA Checklist](/quality-validation/manual-qa-checklist/) for how this fits into your pre-submission routine.
 
-## Best practices
+## Do / Don't
 
-- Run Lighthouse locally after every non-trivial section you add, not just once before submission. It's much cheaper to catch a regression one section at a time.
-- Budget your JavaScript like a spending limit. Before adding a script, ask what it costs in load time, and whether about 50 lines of plain JavaScript could do the same job.
-- Treat 60/90 as a floor to clear comfortably, not a target to just barely hit. A theme that scores 62/90 on your dev store may drop below that threshold on a merchant's real, larger catalog.
-
-## Common mistakes
-
-- **Testing performance only against your own lightweight demo store data.** A real merchant's larger product catalog or heavier images can drop the score below threshold.
-- **Adding "just one more" third-party script, repeatedly**, until the combined cost quietly pushes performance below 60.
-- **Forgetting `width`/`height` on images.** This causes layout shift, which Lighthouse penalizes even when the image itself loads quickly.
-- **Not re-testing after a late design change.** A last-minute hero video or carousel is a common way a passing score turns into a failing one right before submission.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Run Lighthouse locally after every non-trivial section you add, not just once before submission. It's much cheaper to catch a regression one section at a time. | **Testing performance only against your own lightweight demo store data.** A real merchant's larger product catalog or heavier images can drop the score below threshold. |
+| Budget your JavaScript like a spending limit. Before adding a script, ask what it costs in load time, and whether about 50 lines of plain JavaScript could do the same job. | **Adding "just one more" third-party script, repeatedly**, until the combined cost quietly pushes performance below 60. |
+| Treat 60/90 as a floor to clear comfortably, not a target to just barely hit. A theme that scores 62/90 on your dev store may drop below that threshold on a merchant's real, larger catalog. | **Forgetting `width`/`height` on images.** This causes layout shift, which Lighthouse penalizes even when the image itself loads quickly. |
+| — | **Not re-testing after a late design change.** A last-minute hero video or carousel is a common way a passing score turns into a failing one right before submission. |
 
 ## Key takeaways
 - Performance ≥ 60, Accessibility ≥ 90, averaged across product/collection/home, desktop + mobile.

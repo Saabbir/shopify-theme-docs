@@ -91,19 +91,14 @@ Figma's Variables panel typically has a "Spacing" collection with variables like
 
 Most spacing values stay fixed in CSS rather than becoming merchant-facing settings. See [Spacing in Settings](/spacing/spacing-in-settings/) for when exposing spacing as a setting actually makes sense, and when it doesn't.
 
-## Best practices
+## Do / Don't
 
-- Define a raw spacing scale once, in the global stylesheet, before your first section's CSS. Adding a scale after 20 sections already use one-off values is a much bigger job than starting with it.
-- Add semantic roles on top of the raw scale for any spacing value used repeatedly for the same purpose (section padding, card padding, gaps between related items).
-- Name tokens after their role or scale position, never their current value.
-- Use `clamp()` for spacing that should scale smoothly across viewport widths, the same way you would for fluid type.
-
-## Common mistakes
-
-- **Letting one-off spacing values pile up** outside the defined scale, because a slightly-off padding value doesn't look wrong the way a clashing color does.
-- **Naming a spacing token after its current value** (`--spacing-32px`) instead of its role or scale position.
-- **Skipping the semantic layer** for spacing that's reused for one specific purpose, making a later change to "section spacing" a find-and-replace job instead of a one-line edit.
-- **Writing a separate padding/margin override per breakpoint** instead of one `clamp()` declaration.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Define a raw spacing scale once, in the global stylesheet, before your first section's CSS. Adding a scale after 20 sections already use one-off values is a much bigger job than starting with it. | **Letting one-off spacing values pile up** outside the defined scale, because a slightly-off padding value doesn't look wrong the way a clashing color does. |
+| Add semantic roles on top of the raw scale for any spacing value used repeatedly for the same purpose (section padding, card padding, gaps between related items). | **Naming a spacing token after its current value** (`--spacing-32px`) instead of its role or scale position. |
+| Name tokens after their role or scale position, never their current value. | **Skipping the semantic layer** for spacing that's reused for one specific purpose, making a later change to "section spacing" a find-and-replace job instead of a one-line edit. |
+| Use `clamp()` for spacing that should scale smoothly across viewport widths, the same way you would for fluid type. | **Writing a separate padding/margin override per breakpoint** instead of one `clamp()` declaration. |
 
 ## Key takeaways
 - Define a raw spacing scale (`--space-3xs` through `--space-3xl`, or similar) before writing section CSS.

@@ -58,19 +58,14 @@ Every weight and style `font_modify` derives (see [Typography in Liquid & CSS](/
 
 Without `font_display: 'swap'`, some browsers hide text entirely until the custom font finishes loading (a pattern often called a "flash of invisible text"). `swap` shows the fallback font immediately, then swaps in the real font once it's ready, so text is always visible.
 
-## Best practices
+## Do / Don't
 
-- Keep body text at 16px or larger, with 1.4–1.6 line-height, and cap line length around 65 characters for long-form text.
-- Make sure every heading level is visually distinct from its neighbors, following the type scale.
-- Use `font_picker` and `font_face` instead of a custom web font import. Shopify's own font delivery is already optimized.
-- Generate `@font-face` declarations only for the weights and styles actually used in CSS, and pass `font_display: 'swap'` on each.
-
-## Common mistakes
-
-- **Shipping body text smaller than 16px** to fit more content on screen, at the cost of readability.
-- **Loading a custom web font via `@import` or an external CDN link** instead of using `font_picker`, adding avoidable render-blocking requests.
-- **Generating `font_face` for every possible weight and style** instead of only the ones the theme's CSS actually references.
-- **Omitting `font_display: 'swap'`**, which can leave text invisible during font load on some browsers.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Keep body text at 16px or larger, with 1.4–1.6 line-height, and cap line length around 65 characters for long-form text. | **Shipping body text smaller than 16px** to fit more content on screen, at the cost of readability. |
+| Make sure every heading level is visually distinct from its neighbors, following the type scale. | **Loading a custom web font via `@import` or an external CDN link** instead of using `font_picker`, adding avoidable render-blocking requests. |
+| Use `font_picker` and `font_face` instead of a custom web font import. Shopify's own font delivery is already optimized. | **Generating `font_face` for every possible weight and style** instead of only the ones the theme's CSS actually references. |
+| Generate `@font-face` declarations only for the weights and styles actually used in CSS, and pass `font_display: 'swap'` on each. | **Omitting `font_display: 'swap'`**, which can leave text invisible during font load on some browsers. |
 
 ## Key takeaways
 - Body text: 16px+ minimum, 1.4–1.6 line-height, ~65ch max line length.

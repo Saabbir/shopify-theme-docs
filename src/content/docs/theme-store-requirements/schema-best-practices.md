@@ -117,18 +117,14 @@ Font settings have their own dedicated rules too: always `"type": "font_picker"`
 
 Notice three things in this example. Every string uses a `t:` locale key. The color settings come in a pair: background and foreground. And the `select` options use words like "left" and "center" instead of numbers.
 
-## Best practices
+## Do / Don't
 
-- Write schema labels the way you'd explain the setting out loud to a merchant with no coding background. Then turn that into sentence case, adding a verb where it makes sense.
-- Route every schema string through a locale key from the start. Adding translations to a large schema file later is slow and easy to get wrong.
-- When you add a new color setting, add its matching foreground or text color setting in the same pull request. Don't leave it for later.
-
-## Common mistakes
-
-- **Phrasing settings as questions** ("Show price?") instead of plain statements ("Show price").
-- **Using numbered options** ("Layout 1," "Layout 2") instead of descriptive labels merchants can understand without trial and error.
-- **Adding a background color without a matching foreground color.** This risks text and background combinations that are hard to read.
-- **Hardcoding English text "temporarily" and forgetting to translate it** before submission.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Write schema labels the way you'd explain the setting out loud to a merchant with no coding background. Then turn that into sentence case, adding a verb where it makes sense. | **Phrasing settings as questions** ("Show price?") instead of plain statements ("Show price"). |
+| Route every schema string through a locale key from the start. Adding translations to a large schema file later is slow and easy to get wrong. | **Using numbered options** ("Layout 1," "Layout 2") instead of descriptive labels merchants can understand without trial and error. |
+| When you add a new color setting, add its matching foreground or text color setting in the same pull request. Don't leave it for later. | **Adding a background color without a matching foreground color.** This risks text and background combinations that are hard to read. |
+| — | **Hardcoding English text "temporarily" and forgetting to translate it** before submission. |
 
 ## Key takeaways
 - American English, sentence case, plain statements (not questions), active voice, verbs on buttons.

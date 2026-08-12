@@ -70,15 +70,12 @@ This isn't the project's default setup. Before you add it to a project, read [Ta
 | **Shopify Partner Dashboard** | Theme submissions, dev/client stores, review status |
 | **Shopify Partners program** | Free account required for Theme Store submission |
 
-## Best practices
+## Do / Don't
 
-- Pick the tool made for the job in front of you, not one tool that tries to do everything. Use `theme check` for lint issues, and use Lighthouse for performance and accessibility scores.
-- Check back on this list from time to time. Tooling in this space, especially AI and MCP tools, changes fast. A tool that didn't exist at your last review might be the better choice now.
-
-## Common mistakes
-
-- **Using a browser other than Chrome for `theme dev`, then wondering why hot-reload doesn't work.** This is a known Chrome-only limitation, not a bug.
-- **Skipping axe or manual accessibility checks just because Lighthouse passed.** Lighthouse's accessibility score is automated, so it misses things a real audit would catch (see [Accessibility](/theme-store-requirements/accessibility/)).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Pick the tool made for the job in front of you, not one tool that tries to do everything. Use `theme check` for lint issues, and use Lighthouse for performance and accessibility scores. | **Using a browser other than Chrome for `theme dev`, then wondering why hot-reload doesn't work.** This is a known Chrome-only limitation, not a bug. |
+| Check back on this list from time to time. Tooling in this space, especially AI and MCP tools, changes fast. A tool that didn't exist at your last review might be the better choice now. | **Skipping axe or manual accessibility checks just because Lighthouse passed.** Lighthouse's accessibility score is automated, so it misses things a real audit would catch (see [Accessibility](/theme-store-requirements/accessibility/)). |
 
 ## Key takeaways
 - Local dev: Shopify CLI + Chrome. AI: Claude Code, Cursor, or Copilot, kept in sync with AGENTS.md. Design: Figma + Dev Mode + MCP. Quality checks: Theme Check + Lighthouse + axe. Optional build tools: Vite + Tailwind + Alpine.

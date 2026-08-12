@@ -116,20 +116,15 @@ window.Shopify.loadFeatures([
 
 The `shopify-xr` library scans the DOM for `[data-shopify-xr]` elements and attaches the click handler for you — you don't wire up the AR launch logic by hand. On a supported iOS device, this becomes Apple's "View in Your Space" AR Quick Look experience automatically.
 
-## Best practices
+## Do / Don't
 
-- Default every 3D model to `reveal: 'interaction'`. Treat `reveal: 'auto'` as an exception that needs a specific reason.
-- Always provide a sized, optimized poster image, the same as any other media type.
-- Use a square aspect-ratio container (`aspect-ratio: 1 / 1` or `padding-top: 100%`) since 3D models have no inherent aspect ratio.
-- If AR support matters for the theme's audience, use the `shopify-xr` library rather than a custom-built AR integration — it already handles per-device format selection for you.
-- Prevent a 3D model's rotate/zoom gestures from conflicting with a surrounding carousel's swipe gestures.
-
-## Common mistakes
-
-- **Loading 3D models eagerly (`reveal: 'auto'`) by default**, paying their heavy cost even for customers who never interact with them.
-- **Omitting a poster image**, leaving nothing meaningful to show before (or instead of) the model loading.
-- **Using a fixed 16:9 container for a 3D model**, when a model has no predefined aspect ratio and a square container is the common, correct default.
-- **Building a custom AR integration from scratch** instead of using the `shopify-xr` library, which already handles the iOS/`.usdz` vs. Android/`.glb` device split.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default every 3D model to `reveal: 'interaction'`. Treat `reveal: 'auto'` as an exception that needs a specific reason. | **Loading 3D models eagerly (`reveal: 'auto'`) by default**, paying their heavy cost even for customers who never interact with them. |
+| Always provide a sized, optimized poster image, the same as any other media type. | **Omitting a poster image**, leaving nothing meaningful to show before (or instead of) the model loading. |
+| Use a square aspect-ratio container (`aspect-ratio: 1 / 1` or `padding-top: 100%`) since 3D models have no inherent aspect ratio. | **Using a fixed 16:9 container for a 3D model**, when a model has no predefined aspect ratio and a square container is the common, correct default. |
+| If AR support matters for the theme's audience, use the `shopify-xr` library rather than a custom-built AR integration — it already handles per-device format selection for you. | **Building a custom AR integration from scratch** instead of using the `shopify-xr` library, which already handles the iOS/`.usdz` vs. Android/`.glb` device split. |
+| Prevent a 3D model's rotate/zoom gestures from conflicting with a surrounding carousel's swipe gestures. | — |
 
 ## Key takeaways
 - `model_viewer_tag`: renders a `<model-viewer>` web component with `src`/`alt`/`poster`/`camera-controls` set up automatically.

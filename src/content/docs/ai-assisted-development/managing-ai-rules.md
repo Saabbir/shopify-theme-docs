@@ -76,19 +76,14 @@ This is the same test described in [Setting Up AI Rules](/getting-started/settin
 | Add a vague rule ("write good code," "be performant") | Doesn't change what the model produces. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)'s vague-versus-specific comparison. |
 | Look for a build or regeneration step | There isn't one. `CLAUDE.md` and `.github/copilot-instructions.md` are symlinks, always up to date. |
 
-## Best practices
+## Do / Don't
 
-- Treat the line at `## Custom rules` as absolute. It's what keeps this file comparable against future Shopify scaffolds.
-- Hold yourself to the "Source of truth & certainty requirements" rule while *writing* rules, not just while following them.
-- Test every change against real generated output before calling it done.
-- Write a specific PR description for every `AGENTS.md` change.
-
-## Common mistakes
-
-- **Editing Shopify's generated content directly** because it was convenient, instead of keeping changes inside `## Custom rules`.
-- **Writing a rule from memory or a third-party source** without confirming it against official Shopify documentation first.
-- **Repeating content Shopify's file already covers** instead of checking first and linking out if more context is needed.
-- **Assuming a clearly-written rule works** without testing it against an actual generation task.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat the line at `## Custom rules` as absolute. It's what keeps this file comparable against future Shopify scaffolds. | **Editing Shopify's generated content directly** because it was convenient, instead of keeping changes inside `## Custom rules`. |
+| Hold yourself to the "Source of truth & certainty requirements" rule while *writing* rules, not just while following them. | **Writing a rule from memory or a third-party source** without confirming it against official Shopify documentation first. |
+| Test every change against real generated output before calling it done. | **Repeating content Shopify's file already covers** instead of checking first and linking out if more context is needed. |
+| Write a specific PR description for every `AGENTS.md` change. | **Assuming a clearly-written rule works** without testing it against an actual generation task. |
 
 ## Key takeaways
 - Two authors, one file: Shopify owns everything above `## Custom rules`; we own that section and nothing else.

@@ -115,17 +115,13 @@ No tool reads this file. It's purely for people. A good theme repo README briefl
 | A quick-start (clone, install, `theme dev`) plus links to deeper docs | Duplicating this entire handbook's content inline |
 | Kept current when setup steps change | Written once at project start and never revisited as tooling changes |
 
-## Best practices
+## Do / Don't
 
-- Treat `.shopifyignore` as a file you actively maintain, not an afterthought. Every new dev-tooling file or folder should prompt the question: "does this need to go in `.shopifyignore` too?"
-- Keep `.theme-check.yml`'s ignore list in sync with `.gitignore`'s build-output entries. Theme Check already reads `.gitignore`, but an explicit list still documents your intent for the next developer.
-- Keep `README.md` a quick-start plus links, not a copy of this handbook. A README that tries to cover everything goes stale fast, and nobody keeps two copies of the same information up to date.
-
-## Common mistakes
-
-- **Not knowing `.shopifyignore` exists**, and only discovering at submission time that dev-tooling files ended up in a theme zip.
-- **Mixing up what `.gitignore` and `.shopifyignore` each cover.** Excluding something from Git history doesn't exclude it from a CLI push or package operation, and the other way around isn't true either.
-- **Letting `README.md` and this handbook drift apart.** A stale local README that contradicts the current handbook confuses new developers about which one to trust.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat `.shopifyignore` as a file you actively maintain, not an afterthought. Every new dev-tooling file or folder should prompt the question: "does this need to go in `.shopifyignore` too?" | **Not knowing `.shopifyignore` exists**, and only discovering at submission time that dev-tooling files ended up in a theme zip. |
+| Keep `.theme-check.yml`'s ignore list in sync with `.gitignore`'s build-output entries. Theme Check already reads `.gitignore`, but an explicit list still documents your intent for the next developer. | **Mixing up what `.gitignore` and `.shopifyignore` each cover.** Excluding something from Git history doesn't exclude it from a CLI push or package operation, and the other way around isn't true either. |
+| Keep `README.md` a quick-start plus links, not a copy of this handbook. A README that tries to cover everything goes stale fast, and nobody keeps two copies of the same information up to date. | **Letting `README.md` and this handbook drift apart.** A stale local README that contradicts the current handbook confuses new developers about which one to trust. |
 
 ## Key takeaways
 - `.gitignore` covers Git history. `.shopifyignore` covers CLI push/pull/package operations. They do different jobs, and you need both.

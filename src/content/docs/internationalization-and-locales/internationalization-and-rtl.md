@@ -109,18 +109,14 @@ RTL stands for "right-to-left" — Arabic, Hebrew, and other right-to-left langu
 }
 ```
 
-## Best practices
+## Do / Don't
 
-- Run every piece of text through `t:`/`| t` (Shopify's translation filter) from the start of a section's development. Don't leave it for a cleanup pass, fixing dozens of hardcoded strings later is tedious and easy to get wrong.
-- Use CSS logical properties by default in new code, even before RTL is a concrete requirement. They cost nothing in left-to-right layouts and make RTL support almost free later.
-- Test at least one real RTL locale, not just a mirrored screenshot, before you consider internationalization "done" for a section.
-
-## Common mistakes
-
-- **Hardcoding `lang="en"` early "to get something working," then forgetting to make it dynamic before shipping.**
-- **Using physical CSS properties (`margin-left`) everywhere, then discovering you need a whole separate RTL stylesheet** instead of one that just works automatically.
-- **Forgetting to mirror directional icons.** A "next" chevron pointing the wrong way in RTL is a subtle but very visible bug.
-- **Hardcoding internal links with `/` prefixes.** These quietly break the moment a store adds a second language, because Shopify starts prefixing localized URLs.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Run every piece of text through `t:`/`\| t` (Shopify's translation filter) from the start of a section's development. Don't leave it for a cleanup pass, fixing dozens of hardcoded strings later is tedious and easy to get wrong. | **Hardcoding `lang="en"` early "to get something working," then forgetting to make it dynamic before shipping.** |
+| Use CSS logical properties by default in new code, even before RTL is a concrete requirement. They cost nothing in left-to-right layouts and make RTL support almost free later. | **Using physical CSS properties (`margin-left`) everywhere, then discovering you need a whole separate RTL stylesheet** instead of one that just works automatically. |
+| Test at least one real RTL locale, not just a mirrored screenshot, before you consider internationalization "done" for a section. | **Forgetting to mirror directional icons.** A "next" chevron pointing the wrong way in RTL is a subtle but very visible bug. |
+| — | **Hardcoding internal links with `/` prefixes.** These quietly break the moment a store adds a second language, because Shopify starts prefixing localized URLs. |
 
 ## Key takeaways
 - Required: locale files, dynamic `lang` attribute, language/country selectors (if multi-language/currency), `routes` object for all links.

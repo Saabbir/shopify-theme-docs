@@ -99,19 +99,14 @@ If a future need is more about "apply this knowledge automatically, every time, 
 5. Test it. Describe a task that should trigger it, and confirm Claude actually hands it off instead of doing the work inline. Also test asking for it by name, to confirm that works too.
 6. Commit `.claude/agents/<name>.md` to the repo so the whole team gets it. It's the same idea as commands and `AGENTS.md` itself.
 
-## Best practices
+## Do / Don't
 
-- Limit a subagent's `tools` to exactly what its job needs. The benefit of keeping it separate only pays off if the subagent genuinely can't do more than intended.
-- Write the `description` field the way you'd write a specific `AGENTS.md` rule. Make it concrete enough that Claude reliably matches the right task to it, not a vague summary.
-- Keep a subagent focused on one job, the same discipline as commands. A subagent that tries to do five unrelated things is harder to trust and harder to fix.
-- Commit project subagents (`.claude/agents/`) to the repo. Save `~/.claude/agents/` for genuinely personal habits that apply across projects.
-
-## Common mistakes
-
-- **Writing a subagent for a job that's actually simple and not noisy.** That's what a command (or just asking directly) is for. A subagent's separation is only worth it when there's real noise to keep out of the way.
-- **Leaving `tools` unset when a subagent should be limited.** An unset `tools` field inherits everything your main session can do, which defeats the point of limiting a linting-only subagent to read, edit, and theme-check.
-- **A vague `description`** that Claude can't reliably match against, so it either never hands off the task, or hands off the wrong ones.
-- **Duplicating a command's job as a subagent, or the other way around, without a reason.** Keep both only when the separation and tool-limiting trade-off genuinely matters for that job, as it does for `theme-check-fixer`.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Limit a subagent's `tools` to exactly what its job needs. The benefit of keeping it separate only pays off if the subagent genuinely can't do more than intended. | **Writing a subagent for a job that's actually simple and not noisy.** That's what a command (or just asking directly) is for. A subagent's separation is only worth it when there's real noise to keep out of the way. |
+| Write the `description` field the way you'd write a specific `AGENTS.md` rule. Make it concrete enough that Claude reliably matches the right task to it, not a vague summary. | **Leaving `tools` unset when a subagent should be limited.** An unset `tools` field inherits everything your main session can do, which defeats the point of limiting a linting-only subagent to read, edit, and theme-check. |
+| Keep a subagent focused on one job, the same discipline as commands. A subagent that tries to do five unrelated things is harder to trust and harder to fix. | **A vague `description`** that Claude can't reliably match against, so it either never hands off the task, or hands off the wrong ones. |
+| Commit project subagents (`.claude/agents/`) to the repo. Save `~/.claude/agents/` for genuinely personal habits that apply across projects. | **Duplicating a command's job as a subagent, or the other way around, without a reason.** Keep both only when the separation and tool-limiting trade-off genuinely matters for that job, as it does for `theme-check-fixer`. |
 
 ## Key takeaways
 - Subagent = its own conversation, limited tools, and hands off automatically or by name. Command = same kind of job, runs inline, manual `/trigger`. Skill = Shopify's, automatic, about getting Liquid right.

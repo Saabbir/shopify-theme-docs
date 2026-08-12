@@ -81,19 +81,14 @@ An element with `width: 200px`, `padding: 20px`, and a `1px` border actually tak
 
 This one global rule (part of most themes' CSS reset) is why width math "just works" in practice. Without it, adding padding or a border anywhere forces you to recalculate widths everywhere else.
 
-## Best practices
+## Do / Don't
 
-- Avoid ID selectors for styling entirely. Use classes, so overrides stay simple.
-- Reach for `:where()` when writing low-priority default styles you want other rules to override without a specificity fight.
-- Keep `box-sizing: border-box` in your global reset. Don't reintroduce content-box sizing per-component.
-- When two rules conflict unexpectedly, check specificity and source order before assuming something's broken.
-
-## Common mistakes
-
-- **Reaching for an ID selector "just this once."** It escalates every future override into an ID-or-`!important` fight.
-- **Not realizing `:is()` takes on the specificity of its most specific argument**, while `:where()` always has zero, leading to a surprising override.
-- **Forgetting `box-sizing: border-box`**, especially in a hand-written component that bypasses the global reset, causing size math to be off by the padding/border amount.
-- **Reaching for `!important`** as the first fix for a specificity conflict, instead of fixing the actual selector.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Avoid ID selectors for styling entirely. Use classes, so overrides stay simple. | **Reaching for an ID selector "just this once."** It escalates every future override into an ID-or-`!important` fight. |
+| Reach for `:where()` when writing low-priority default styles you want other rules to override without a specificity fight. | **Not realizing `:is()` takes on the specificity of its most specific argument**, while `:where()` always has zero, leading to a surprising override. |
+| Keep `box-sizing: border-box` in your global reset. Don't reintroduce content-box sizing per-component. | **Forgetting `box-sizing: border-box`**, especially in a hand-written component that bypasses the global reset, causing size math to be off by the padding/border amount. |
+| When two rules conflict unexpectedly, check specificity and source order before assuming something's broken. | **Reaching for `!important`** as the first fix for a specificity conflict, instead of fixing the actual selector. |
 
 ## Key takeaways
 - Cascade order: origin/importance, then specificity, then source order.

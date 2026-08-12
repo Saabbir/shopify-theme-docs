@@ -55,17 +55,13 @@ Theme Store review checks typography as part of its broader design-consistency p
 
 This is a design-consistency rule as much as a technical one. A theme is easy to get technically right (a required `default`, real font library values) while still failing this rule, because the failure is about how many typefaces are actually possible on one page, not whether the settings are configured correctly.
 
-## Best practices
+## Do / Don't
 
-- Give each font *role* (heading, body) its own `font_picker`, and stop there unless there's a real design reason for a third.
-- Always set a real, deliberately-chosen `default`. An empty or placeholder default shows a broken-looking font picker the moment the theme is installed.
-- Only use fonts from [Shopify's available fonts list](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) as a default or in a preset. A custom-uploaded or discontinued font breaks the setting for anyone who doesn't already have it.
-
-## Common mistakes
-
-- **Leaving `default` empty or missing.** This isn't a soft warning, `font_picker` requires it and errors without one.
-- **Adding a `font_picker` per section instead of per role.** This lets a merchant unintentionally combine four unrelated typefaces on one page, and fails Theme Store review's pairing rule.
-- **Defaulting to a font that isn't in the current font library**, which breaks on fresh installs and in presets.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Give each font *role* (heading, body) its own `font_picker`, and stop there unless there's a real design reason for a third. | **Leaving `default` empty or missing.** This isn't a soft warning, `font_picker` requires it and errors without one. |
+| Always set a real, deliberately-chosen `default`. An empty or placeholder default shows a broken-looking font picker the moment the theme is installed. | **Adding a `font_picker` per section instead of per role.** This lets a merchant unintentionally combine four unrelated typefaces on one page, and fails Theme Store review's pairing rule. |
+| Only use fonts from [Shopify's available fonts list](https://shopify.dev/docs/storefronts/themes/architecture/settings/fonts#available-fonts) as a default or in a preset. A custom-uploaded or discontinued font breaks the setting for anyone who doesn't already have it. | **Defaulting to a font that isn't in the current font library**, which breaks on fresh installs and in presets. |
 
 ## Key takeaways
 - `font_picker` returns a `font` object, populated from Shopify's font library (system fonts + curated Google Fonts).

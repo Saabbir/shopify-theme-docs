@@ -89,18 +89,14 @@ Once you allow one exception, the scale stops accurately describing what the the
 | Radii/shadows | CSS custom properties | Rarely merchant-editable, this is usually a fixed brand decision |
 | Colors | CSS custom properties, computed from settings | `color_palette` and/or `color_scheme_group`, see [Colors](/colors/) |
 
-## Best practices
+## Do / Don't
 
-- Structure your tokens in three tiers (raw, semantic, and component), even in a theme that currently feels too small to need it. Adding the semantic tier after 40 sections already use raw values directly is a much bigger job than starting with it from day one.
-- Name every token after its role, never its current appearance or value.
-- Reach for the nearest existing scale step before adding a one-off value. If nothing on the scale fits, talk to design about it instead of quietly adding a one-off.
-
-## Common mistakes
-
-- **Skipping the semantic tier**, so components use raw values directly. This turns a redesign into a search-and-replace job instead of a one-line token change.
-- **Naming a token after its current value** (`--spacing-32px`) instead of its role (`--spacing-section`). This becomes wrong the moment the design changes.
-- **Letting one-off values pile up** outside the defined scale, until the scale no longer describes what the theme actually uses.
-- **Exposing every token as a merchant setting** just "to be flexible." This creates an overwhelming settings panel and a design that's easier to break than to usefully customize.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Structure your tokens in three tiers (raw, semantic, and component), even in a theme that currently feels too small to need it. Adding the semantic tier after 40 sections already use raw values directly is a much bigger job than starting with it from day one. | **Skipping the semantic tier**, so components use raw values directly. This turns a redesign into a search-and-replace job instead of a one-line token change. |
+| Name every token after its role, never its current appearance or value. | **Naming a token after its current value** (`--spacing-32px`) instead of its role (`--spacing-section`). This becomes wrong the moment the design changes. |
+| Reach for the nearest existing scale step before adding a one-off value. If nothing on the scale fits, talk to design about it instead of quietly adding a one-off. | **Letting one-off values pile up** outside the defined scale, until the scale no longer describes what the theme actually uses. |
+| — | **Exposing every token as a merchant setting** just "to be flexible." This creates an overwhelming settings panel and a design that's easier to break than to usefully customize. |
 
 ## Key takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.

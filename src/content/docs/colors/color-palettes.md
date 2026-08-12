@@ -185,20 +185,15 @@ In practice, that means:
 - **For separate `color` settings you've already shipped**, don't rush to migrate them just because this feature exists. See [settings_data.json: Storage & Presets](/config-and-settings/settings-data-json/) to learn why changing or removing a shipped setting `id` (its unique name) is a breaking change. If you migrate, treat it as its own planned change with its own pull request, not something you slip in while touching unrelated code.
 - **For `color_scheme_group` usage**, keep using it wherever you're already modeling truly swappable multi-scheme presets, like light, dark, and high-contrast versions. `color_palette` doesn't replace that use case, though individual scheme fields can still default to palette entries.
 
-## Best practices
+## Do / Don't
 
-- Use `color_palette` by default for any new theme-wide brand color setting, instead of a standalone `color` setting with a hardcoded hex default.
-- Name palette keys after their role, like `primary`, `accent`, or `text`. This is the same naming rule used in [Color Design Tokens](/colors/color-design-tokens/). Never name a key after how it looks or its exact hex value.
-- Point individual `color`/`color_background` defaults at the palette whenever a setting's color should follow the theme's brand colors, instead of locking in a fixed hex value when you write the schema.
-- Double-check this feature's current details against [shopify.dev's own docs](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) before relying on what's written here. It shipped recently, so details may still change.
-
-## Common mistakes
-
-- **Assuming `color_palette` replaces `color_scheme_group`.** They solve different problems, one shared color grid versus several swappable full schemes, and they're meant to be used together, not as alternatives.
-- **Adding a `label`, `info`, or `visible_if` to a `color_palette` setting**, then wondering why it's ignored. None of those attributes work on this setting type.
-- **Using an 8-digit hex value with alpha** in a palette's `default`. Only a 6-digit (or 3-digit) hex code without transparency is supported.
-- **Migrating already-shipped `color` settings to reference the palette as a quick, unplanned change.** Treat this as its own deliberate, reviewed change instead, since it touches shipped setting defaults that merchants may have already customized.
-- **Assuming Skeleton Theme, our scaffold, already includes this.** Check the live repo before assuming. As of this writing, it doesn't.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `color_palette` by default for any new theme-wide brand color setting, instead of a standalone `color` setting with a hardcoded hex default. | **Assuming `color_palette` replaces `color_scheme_group`.** They solve different problems, one shared color grid versus several swappable full schemes, and they're meant to be used together, not as alternatives. |
+| Name palette keys after their role, like `primary`, `accent`, or `text`. This is the same naming rule used in [Color Design Tokens](/colors/color-design-tokens/). Never name a key after how it looks or its exact hex value. | **Adding a `label`, `info`, or `visible_if` to a `color_palette` setting**, then wondering why it's ignored. None of those attributes work on this setting type. |
+| Point individual `color`/`color_background` defaults at the palette whenever a setting's color should follow the theme's brand colors, instead of locking in a fixed hex value when you write the schema. | **Using an 8-digit hex value with alpha** in a palette's `default`. Only a 6-digit (or 3-digit) hex code without transparency is supported. |
+| Double-check this feature's current details against [shopify.dev's own docs](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#color_palette) before relying on what's written here. It shipped recently, so details may still change. | **Migrating already-shipped `color` settings to reference the palette as a quick, unplanned change.** Treat this as its own deliberate, reviewed change instead, since it touches shipped setting defaults that merchants may have already customized. |
+| — | **Assuming Skeleton Theme, our scaffold, already includes this.** Check the live repo before assuming. As of this writing, it doesn't. |
 
 ## Key takeaways
 - One `color_palette` per theme, and it only lives in `settings_schema.json`. Only `id` (required) and `default` (required, 2 to 20 hex-color pairs, no alpha) are supported. No `label`, `info`, or `visible_if`.

@@ -29,22 +29,13 @@ Each layer catches a different kind of problem. None of them can replace the oth
 
 A theme can pass linting and still fail manual QA. It can also pass manual QA on the sections you tested, and still fail the pre-submission checklist. That happens because of requirements that only the checklist covers, like writing documentation or adding a `theme_info` block. Neither linting nor manual QA checks those things, so run all three layers. Don't just run whichever one feels easiest.
 
-## Best practices
+## Do / Don't
 
-- Run linting all the time. It's fast and costs you almost nothing. Run manual QA every time a feature changes. Run the full pre-submission checklist just once, right before you submit.
-- A passing CI run does not mean your QA is done. Look at the table above to see what CI misses.
-- Re-run the pre-submission checklist after any late change, even a tiny one. A last-minute tweak is a common way something that used to pass quietly breaks.
-
-## Common mistakes
-
-- **Treating linting as enough QA.** It's easy to think this way, since linting runs automatically while manual QA takes real effort.
-- **Running manual QA once, early in a section's development, and never again.** This misses bugs that show up later, even from changes that seem unrelated.
-- **Skipping the pre-submission checklist because you think you already checked everything along the way.** Requirements depend on each other. A late change can quietly break something you checked off weeks earlier.
-
-## Key takeaways
-- Linting catches syntax and style mistakes automatically. It can't tell you if a layout breaks with a 200-character title (that's manual QA's job).
-- Manual QA catches layout bugs and content-handling problems. It doesn't guarantee you meet every Theme Store requirement (that's the pre-submission checklist's job).
-- Run all three layers. Each one catches something the others miss.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Run linting all the time. It's fast and costs you almost nothing. Run manual QA every time a feature changes. Run the full pre-submission checklist just once, right before you submit. | **Treating linting as enough QA.** It's easy to think this way, since linting runs automatically while manual QA takes real effort. |
+| A passing CI run does not mean your QA is done. Look at the table above to see what CI misses. | **Running manual QA once, early in a section's development, and never again.** This misses bugs that show up later, even from changes that seem unrelated. |
+| Re-run the pre-submission checklist after any late change, even a tiny one. A last-minute tweak is a common way something that used to pass quietly breaks. | **Skipping the pre-submission checklist because you think you already checked everything along the way.** Requirements depend on each other. A late change can quietly break something you checked off weeks earlier. |
 
 ## Further reading
 

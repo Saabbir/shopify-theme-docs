@@ -130,19 +130,14 @@ The `@property` at-rule lets you register a custom property with an explicit typ
 
 Treat `@property` as progressive enhancement: browsers that don't support it simply treat the custom property as an untyped string, exactly as before, so nothing breaks. Reach for it specifically when you need the browser to smoothly animate a custom-property-driven value.
 
-## Best practices
+## Do / Don't
 
-- Declare shared tokens once, on `:root`, in the global stylesheet. Scope component-specific custom properties to that component's own selector.
-- Always pass a fallback to `var()` for any custom property that's set conditionally or per-instance.
-- One varying property → a custom property. Several varying together as one coherent state → a class.
-- Reach for `@property` only when you specifically need the browser to animate a custom-property value.
-
-## Common mistakes
-
-- **Treating a custom property like a Sass variable**, and being surprised when a value set inline from Liquid actually works dynamically per-instance. That behavior is the whole point, not a bug.
-- **Omitting a fallback value** on a conditionally-set custom property, leaving the declaration silently ignored when the property isn't set.
-- **Exposing five separate custom properties for one coherent layout state**, instead of a single class.
-- **Assuming a custom property is automatically animatable.** Without `@property`, the browser can't interpolate between two arbitrary string values.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Declare shared tokens once, on `:root`, in the global stylesheet. Scope component-specific custom properties to that component's own selector. | **Treating a custom property like a Sass variable**, and being surprised when a value set inline from Liquid actually works dynamically per-instance. That behavior is the whole point, not a bug. |
+| Always pass a fallback to `var()` for any custom property that's set conditionally or per-instance. | **Omitting a fallback value** on a conditionally-set custom property, leaving the declaration silently ignored when the property isn't set. |
+| One varying property → a custom property. Several varying together as one coherent state → a class. | **Exposing five separate custom properties for one coherent layout state**, instead of a single class. |
+| Reach for `@property` only when you specifically need the browser to animate a custom-property value. | **Assuming a custom property is automatically animatable.** Without `@property`, the browser can't interpolate between two arbitrary string values. |
 
 ## Key takeaways
 - Custom properties resolve at render time (unlike Sass variables), so they can be set dynamically, per-instance, from Liquid.

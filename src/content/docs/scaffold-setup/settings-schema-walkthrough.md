@@ -148,17 +148,13 @@ Skeleton Theme's own rules (worth following) draw a clear line between two situa
 
 If you find yourself adding a third or fourth CSS variable to control what's really one visual "mode," that's usually a sign. It means you should combine them into a single `select` setting mapped to a CSS class instead.
 
-## Best practices
+## Do / Don't
 
-- Before you add a new setting, ask yourself: "Does this vary per instance, or is it shared everywhere?" This one quick check prevents most setting-placement mistakes.
-- Add the `t:` prefix to every schema string as you write it, not as a cleanup job later.
-- When a section or block builds up more than 3 to 4 related CSS custom properties that all control one visual mode, consider combining them into a `select` setting with CSS classes instead.
-
-## Common mistakes
-
-- **Defining the same setting (like a brand color) separately in multiple sections** instead of once at the theme level. This creates inconsistency and makes it painful to rebrand the whole store later.
-- **Hardcoding schema label/content strings "temporarily"** and never coming back to add the `t:` prefix.
-- **Overusing CSS custom properties for something that should be a class-based variant setting.** This leads to a tangle of variables that can end up set in combinations that don't make sense together.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Before you add a new setting, ask yourself: "Does this vary per instance, or is it shared everywhere?" This one quick check prevents most setting-placement mistakes. | **Defining the same setting (like a brand color) separately in multiple sections** instead of once at the theme level. This creates inconsistency and makes it painful to rebrand the whole store later. |
+| Add the `t:` prefix to every schema string as you write it, not as a cleanup job later. | **Hardcoding schema label/content strings "temporarily"** and never coming back to add the `t:` prefix. |
+| When a section or block builds up more than 3 to 4 related CSS custom properties that all control one visual mode, consider combining them into a `select` setting with CSS classes instead. | **Overusing CSS custom properties for something that should be a class-based variant setting.** This leads to a tangle of variables that can end up set in combinations that don't make sense together. |
 
 ## Key takeaways
 - Theme-wide settings go in `config/settings_schema.json`. Per-instance settings go in the section or block's own schema.

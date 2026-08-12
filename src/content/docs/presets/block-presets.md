@@ -163,20 +163,15 @@ An "Icon with text" block used inside multiple sections (a features row, a trust
 
 A merchant building a trust-badge row now picks "Free shipping," "Easy returns," or "Real support" by name, grouped under one collapsible "Trust signals" category, instead of adding three identical empty blocks and guessing what to type into each one. That's the concrete usefulness of a block preset: it turns a reusable, generic block into a set of named, ready-to-use building blocks for the specific things merchants actually want to say.
 
-## Best practices
+## Do / Don't
 
-- Give every dynamic block at least one preset with realistic content, treat this as required, not optional, since a preset-less dynamic block is invisible to merchants.
-- Use `category` once a block offers three or more presets, so they're grouped instead of listed flat.
-- Reach for nested block presets when a block's most common real use includes specific children, not just its own settings.
-- Use `"static": true` with a matching `id` only to override a static block's default settings, never to control whether it renders, static rendering is controlled entirely by the `content_for "block"` tag's placement.
-- Localize every preset `name` and `category` with a `t:` key.
-
-## Common mistakes
-
-- **Shipping a dynamic block with no `"presets"` entry**, which makes it invisible in the editor's block picker, the single most common "why isn't my block showing up" bug.
-- **Adding a preset for every minor variation** instead of using a setting, this inflates the number of presets you maintain for things that should just be merchant-configurable.
-- **Assuming a static block needs a preset entry to render.** It doesn't; static blocks render from their `content_for "block"` placement in Liquid regardless of the preset.
-- **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset instead of realistic example content a merchant can actually evaluate.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Give every dynamic block at least one preset with realistic content, treat this as required, not optional, since a preset-less dynamic block is invisible to merchants. | **Shipping a dynamic block with no `"presets"` entry**, which makes it invisible in the editor's block picker, the single most common "why isn't my block showing up" bug. |
+| Use `category` once a block offers three or more presets, so they're grouped instead of listed flat. | **Adding a preset for every minor variation** instead of using a setting, this inflates the number of presets you maintain for things that should just be merchant-configurable. |
+| Reach for nested block presets when a block's most common real use includes specific children, not just its own settings. | **Assuming a static block needs a preset entry to render.** It doesn't; static blocks render from their `content_for "block"` placement in Liquid regardless of the preset. |
+| Use `"static": true` with a matching `id` only to override a static block's default settings, never to control whether it renders, static rendering is controlled entirely by the `content_for "block"` tag's placement. | **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset instead of realistic example content a merchant can actually evaluate. |
+| Localize every preset `name` and `category` with a `t:` key. | — |
 
 ## Key takeaways
 - Block presets live in a theme block's own `{% schema %}` → `"presets"` array.

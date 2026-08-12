@@ -15,9 +15,7 @@ The good news is that problem is mostly solved now. With a current version of th
 
 Run `shopify theme init` and say yes to AI agent support, and the CLI creates a file called `AGENTS.md` at the root of your project. Think of this as the master notebook. It already covers a lot of ground: how a theme's folders should be organized, the rules for writing a good `{% schema %}` block, a full reference for Liquid (every delimiter, operator, filter, object, and tag), how translation and localization should work, and complete worked examples of a snippet, a block, and a section.
 
-Then the CLI does something clever. It creates two more files, `CLAUDE.md` and `.github/copilot-instructions.md`, but not as copies. It creates them as name tags (the technical word for this is "symlinks") pointing at that same `AGENTS.md` file. Nothing gets duplicated. There's exactly one notebook, wearing three name tags.
-
-Here's why that matters in practice: Cursor, Claude Code, and Copilot all end up reading the exact same words, every single time, with nothing for a human to keep in sync. For two of the three tools, there's literally nothing to sync, because their "file" is just another name for the one real file. Cursor doesn't even need a name tag, current versions read `AGENTS.md` straight from the project root.
+Then the CLI does something clever. It creates two more files, `CLAUDE.md` and `.github/copilot-instructions.md`, but not as copies. It creates them as name tags (the technical word for this is "symlinks") pointing at that same `AGENTS.md` file. Nothing gets duplicated. Cursor, Claude Code, and Copilot all end up reading the exact same words, every single time, with nothing for a human to keep in sync. Cursor doesn't even need a name tag, current versions read `AGENTS.md` straight from the project root.
 
 ## What's actually inside Shopify's generated AGENTS.md
 
@@ -42,7 +40,7 @@ Our team's own rules, things like which base theme we scaffold from, our no-Sass
 
 ## Setting it up
 
-**Starting a brand new theme?** Run `shopify theme init` and choose AI agent support when it asks. `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (as name tags pointing at `AGENTS.md`) all get created for you automatically, like a hotel room that's already made up when you check in. All you do is paste our `## Custom rules` content (from [the template above](/templates/AGENTS.md)) into the `## Custom rules` section the CLI already created. **You don't need `scripts/generate-ai-rules.mjs` for this.** The CLI already did that script's whole job. Don't run it, and don't even commit it to the repo unless one of the two situations below applies to you.
+**Starting a brand new theme?** Run `shopify theme init` and choose AI agent support when it asks. `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (as name tags pointing at `AGENTS.md`) all get created for you automatically. All you do is paste our `## Custom rules` content (from [the template above](/templates/AGENTS.md)) into the `## Custom rules` section the CLI already created. **You don't need `scripts/generate-ai-rules.mjs` for this.** The CLI already did that script's whole job. Don't run it, and don't even commit it to the repo unless one of the two situations below applies to you.
 
 **Adding this to an older theme repo that wasn't scaffolded with AI agent support?** Maybe it's an older Solis project, or a theme built before AI agent support existed. Here's the walkthrough:
 
@@ -114,19 +112,14 @@ A rule nobody has ever checked against real output is just wishful thinking writ
 2. See what actually comes back. Did it use the current pattern (blocks living in `/blocks`, targeted with `@theme`), or did it quietly fall back to the old habit?
 3. If it fell back to the old pattern, that's your answer: the relevant rule in `## Custom rules` needs to be more specific, not longer.
 
-## Best practices
+## Do / Don't
 
-- Let `shopify theme init` generate the base file whenever you start a new theme. Don't hand-write what the CLI already gets right.
-- Only ever edit `## Custom rules`. Treat everything above it as Shopify's property, not ours.
-- Trust the name tags. There's no regeneration step to remember, which quietly removes an entire category of "oops, forgot to sync that" bugs the old three-separate-files approach used to cause.
-- Re-test your rules from time to time against a known "wrong pattern" case, instead of just assuming they still work as the tool and the codebase both keep changing.
-
-## Common mistakes
-
-- **Hand-editing Shopify's generated content** instead of keeping changes inside `## Custom rules`. This drifts away from what a fresh scaffold produces, with no real benefit to show for it.
-- **Looking for a "regenerate" step that doesn't exist anymore.** Editing `AGENTS.md` is the entire workflow now, there's nothing left to run afterward.
-- **Assuming `.cursor/rules/*.mdc` is still the main approach.** It's optional and old fashioned now that Cursor reads `AGENTS.md` directly. Only bring it back for a specific, deliberate reason.
-- **Writing rules that are technically true but useless**, like "be accessible" or "write clean code." These almost never change what the model actually produces.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Let `shopify theme init` generate the base file whenever you start a new theme. Don't hand-write what the CLI already gets right. | **Hand-editing Shopify's generated content** instead of keeping changes inside `## Custom rules`. This drifts away from what a fresh scaffold produces, with no real benefit to show for it. |
+| Only ever edit `## Custom rules`. Treat everything above it as Shopify's property, not ours. | **Looking for a "regenerate" step that doesn't exist anymore.** Editing `AGENTS.md` is the entire workflow now, there's nothing left to run afterward. |
+| Trust the name tags. There's no regeneration step to remember, which quietly removes an entire category of "oops, forgot to sync that" bugs the old three-separate-files approach used to cause. | **Assuming `.cursor/rules/*.mdc` is still the main approach.** It's optional and old fashioned now that Cursor reads `AGENTS.md` directly. Only bring it back for a specific, deliberate reason. |
+| Re-test your rules from time to time against a known "wrong pattern" case, instead of just assuming they still work as the tool and the codebase both keep changing. | **Writing rules that are technically true but useless**, like "be accessible" or "write clean code." These almost never change what the model actually produces. |
 
 ## Key takeaways
 - `shopify theme init` with AI agent support turned on generates `AGENTS.md`, plus `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at it. Cursor reads `AGENTS.md` directly, no extra file needed.

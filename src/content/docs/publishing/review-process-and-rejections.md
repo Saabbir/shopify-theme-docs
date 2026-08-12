@@ -54,17 +54,13 @@ Say your rejection email lists two problems: the main product section doesn't ac
 
 The review team mainly works EST business hours, Monday through Friday. If a change is time-sensitive, submit early in the week and early in the day.
 
-## Best practices
+## Do / Don't
 
-- Treat rejection feedback as pointing at a pattern, not just the specific example given. Search for the same issue elsewhere in the codebase before resubmitting.
-- Re-run your full pre-submission checklist before every resubmission, not just a check of the items mentioned.
-- If feedback is genuinely unclear, ask by replying to the review email instead of guessing. That's exactly what that channel is for.
-
-## Common mistakes
-
-- **Fixing only the exact examples listed in a rejection email** and missing the same underlying issue elsewhere in the theme.
-- **Resubmitting right after the first fix**, without doing a fresh full QA pass, risking a second rejection for something unrelated that never actually got re-checked.
-- **Guessing at unclear feedback instead of asking.** The reply channel exists specifically for clarifying questions.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat rejection feedback as pointing at a pattern, not just the specific example given. Search for the same issue elsewhere in the codebase before resubmitting. | **Fixing only the exact examples listed in a rejection email** and missing the same underlying issue elsewhere in the theme. |
+| Re-run your full pre-submission checklist before every resubmission, not just a check of the items mentioned. | **Resubmitting right after the first fix**, without doing a fresh full QA pass, risking a second rejection for something unrelated that never actually got re-checked. |
+| If feedback is genuinely unclear, ask by replying to the review email instead of guessing. That's exactly what that channel is for. | **Guessing at unclear feedback instead of asking.** The reply channel exists specifically for clarifying questions. |
 
 ## Key takeaways
 - 5 sequential stages: Features/OS 2.0 → Lighthouse → Technical → Design/UX → Pre-launch.

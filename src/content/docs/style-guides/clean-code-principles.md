@@ -166,17 +166,13 @@ document.querySelectorAll('.card').forEach(function(c) {
 
 Notice that the clean version isn't cleverer than the messy one. If anything, it's a bit longer in places, like the explicit empty-state branch and the doc comments. That's fine. Clean code aims for how fast the next person can understand it, not for how few lines it takes.
 
-## Best practices
+## Do / Don't
 
-- When reviewing a section, check it against this page's table the same way you'd check it against [Theme Store Requirements](/theme-store-requirements/). Readability and modularity are things you review for, not just personal taste.
-- Pull code out into a snippet the moment the same markup is used a second time in a truly identical way. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) for the "third occurrence" rule on when to go further and generalize it.
-- Prefer a few extra lines of explicit, guarded code (an empty-state branch, a nil check) over fewer lines that just assume everything always goes right.
-
-## Common mistakes
-
-- **Optimizing for fewer lines instead of faster understanding.** Clean code is judged by how quickly the next person gets it, not by how few characters it uses.
-- **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS. This makes a section's visual behavior harder to find, override, or make responsive.
-- **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/) both warn about.
+| ✅ Do | ❌ Don't |
+|---|---|
+| When reviewing a section, check it against this page's table the same way you'd check it against [Theme Store Requirements](/theme-store-requirements/). Readability and modularity are things you review for, not just personal taste. | **Optimizing for fewer lines instead of faster understanding.** Clean code is judged by how quickly the next person gets it, not by how few characters it uses. |
+| Pull code out into a snippet the moment the same markup is used a second time in a truly identical way. See [Writing Maintainable Code at Scale](/learning-articles/writing-maintainable-code-at-scale/) for the "third occurrence" rule on when to go further and generalize it. | **Reaching for inline `style=` attributes** instead of scoped `{% stylesheet %}` CSS. This makes a section's visual behavior harder to find, override, or make responsive. |
+| Prefer a few extra lines of explicit, guarded code (an empty-state branch, a nil check) over fewer lines that just assume everything always goes right. | **Skipping the empty or nil-check branch** because your test data never triggers it. This is exactly the kind of bug that [Liquid Style Guide](/style-guides/liquid/) and [Accessibility Deep Dive](/accessibility/accessibility-deep-dive/) both warn about. |
 
 ## Key takeaways
 - Readable over clever, modular over monolithic, named for meaning, consistent, and guarded: five principles you can actually check for, not just a vague feeling.

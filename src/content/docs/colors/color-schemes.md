@@ -131,19 +131,14 @@ Whether you're using `color_scheme_group`, plain `color` settings, or both, Them
 
 A `color_scheme_group` naturally satisfies the "paired" part of this rule, since a well-designed scheme always defines `background` alongside `text`, and `primary` alongside `primary_text`. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/) for why that pairing matters for more than just this checklist item.
 
-## Best practices
+## Do / Don't
 
-- Design the group's `definition` once, up front, with every role a section will realistically need (`background`, `text`, `primary`, `primary_text`, at minimum). Adding a new role later means every existing scheme preset needs it backfilled.
-- Always pair a background role with its own text/foreground role in the definition. Never ship a background color with no corresponding text color.
-- Keep CSS custom property names consistent across every scheme's class, so components never need scheme-specific logic. See [Color Design Tokens](/colors/color-design-tokens/).
-- If a `color_palette` also exists, point individual scheme fields at palette entries for your actual brand colors, instead of hardcoding the same hex value in every scheme's preset.
-
-## Common mistakes
-
-- **Defining a background color role with no matching text color role.** This risks a scheme where a merchant picks colors that are unreadable together, and it fails Theme Store review's color-settings check.
-- **Adding a new role to the group's `definition` without updating every existing scheme preset in `settings_data.json`.** A scheme missing a role falls back to nothing meaningful for that field.
-- **Giving each scheme's CSS class different custom property names** instead of a consistent set. This forces components to branch on which scheme is active, defeating the point of the shared shape.
-- **Assuming `color_scheme_group` and `color_palette` are alternatives.** They solve different problems and are commonly used together.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Design the group's `definition` once, up front, with every role a section will realistically need (`background`, `text`, `primary`, `primary_text`, at minimum). Adding a new role later means every existing scheme preset needs it backfilled. | **Defining a background color role with no matching text color role.** This risks a scheme where a merchant picks colors that are unreadable together, and it fails Theme Store review's color-settings check. |
+| Always pair a background role with its own text/foreground role in the definition. Never ship a background color with no corresponding text color. | **Adding a new role to the group's `definition` without updating every existing scheme preset in `settings_data.json`.** A scheme missing a role falls back to nothing meaningful for that field. |
+| Keep CSS custom property names consistent across every scheme's class, so components never need scheme-specific logic. See [Color Design Tokens](/colors/color-design-tokens/). | **Giving each scheme's CSS class different custom property names** instead of a consistent set. This forces components to branch on which scheme is active, defeating the point of the shared shape. |
+| If a `color_palette` also exists, point individual scheme fields at palette entries for your actual brand colors, instead of hardcoding the same hex value in every scheme's preset. | **Assuming `color_scheme_group` and `color_palette` are alternatives.** They solve different problems and are commonly used together. |
 
 ## Key takeaways
 - `color_scheme_group` (in `settings_schema.json`) defines the *shape* every scheme follows. Actual scheme presets and their color values live in `settings_data.json`.

@@ -164,17 +164,13 @@ Test in an actual webview, not just the desktop version of the same browser engi
 | Reply to merchant support requests within 2 business days | Multi-day or multi-week response times |
 | Fix critical bugs immediately | Letting a critical bug sit through your normal release cadence |
 
-## Best practices
+## Do / Don't
 
-- Build the full per-page checklist into your section development process from day one. Adding a missing feature (like unit pricing) across an already-built product/collection/cart/customer flow later is expensive.
-- Test every page type with genuinely awkward data early on: a sold-out variant, an empty cart, a zero-result search, a collection with mixed image aspect ratios.
-- Treat browser and webview testing as part of your regular QA loop, not a one-time check before submission. It's much cheaper to catch a regression right when it happens.
-
-## Common mistakes
-
-- **Building the "happy path" for each page and skipping the edge-case states** (empty cart, no search results, sold-out variant) until QA finds them later.
-- **Testing only in desktop Chrome**, and only finding webview-specific bugs (autoplay, viewport quirks) during review.
-- **Treating documentation and support setup as a launch-day task** instead of having it ready ahead of time.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build the full per-page checklist into your section development process from day one. Adding a missing feature (like unit pricing) across an already-built product/collection/cart/customer flow later is expensive. | **Building the "happy path" for each page and skipping the edge-case states** (empty cart, no search results, sold-out variant) until QA finds them later. |
+| Test every page type with genuinely awkward data early on: a sold-out variant, an empty cart, a zero-result search, a collection with mixed image aspect ratios. | **Testing only in desktop Chrome**, and only finding webview-specific bugs (autoplay, viewport quirks) during review. |
+| Treat browser and webview testing as part of your regular QA loop, not a one-time check before submission. It's much cheaper to catch a regression right when it happens. | **Treating documentation and support setup as a launch-day task** instead of having it ready ahead of time. |
 
 ## Key takeaways
 - 14 required templates, see the table above.

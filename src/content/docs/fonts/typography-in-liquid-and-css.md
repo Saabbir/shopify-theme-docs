@@ -97,18 +97,14 @@ Not every font family ships every weight and style. If `font_modify` can't find 
 
 Always pair `font_modify` with `default` (falling back to a variant you already know exists, or the base font itself), or check for `nil` explicitly before using the result. A theme that assumes every font has a 900 weight breaks the moment a merchant picks a font that only ships 400 and 700.
 
-## Best practices
+## Do / Don't
 
-- Check `system?` before deciding whether a font needs a `font_face` declaration. Don't unconditionally generate one for every font.
-- Pass `font_display: 'swap'` on `font_face` calls so fallback text shows immediately instead of invisible text during load.
-- Always pair `font_modify` with a `default` fallback (or an explicit `nil` check). Never assume a requested weight or style exists.
-- Read `family` and `fallback_families` together when building a `font-family` CSS value, don't drop the fallback stack.
-
-## Common mistakes
-
-- **Generating `font_face` for every font unconditionally**, including system fonts that don't need it and already exist on the visitor's device.
-- **Assuming every font family has a bold and italic variant.** `font_modify` returns `nil` for a variant that doesn't exist, and an un-handled `nil` produces broken CSS.
-- **Treating the `font` object like a plain string.** It's an object with `family`, `weight`, `style`, and other properties, not a CSS-ready value on its own.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Check `system?` before deciding whether a font needs a `font_face` declaration. Don't unconditionally generate one for every font. | **Generating `font_face` for every font unconditionally**, including system fonts that don't need it and already exist on the visitor's device. |
+| Pass `font_display: 'swap'` on `font_face` calls so fallback text shows immediately instead of invisible text during load. | **Assuming every font family has a bold and italic variant.** `font_modify` returns `nil` for a variant that doesn't exist, and an un-handled `nil` produces broken CSS. |
+| Always pair `font_modify` with a `default` fallback (or an explicit `nil` check). Never assume a requested weight or style exists. | **Treating the `font` object like a plain string.** It's an object with `family`, `weight`, `style`, and other properties, not a CSS-ready value on its own. |
+| Read `family` and `fallback_families` together when building a `font-family` CSS value, don't drop the fallback stack. | — |
 
 ## Key takeaways
 - `font_picker` returns a `font` object: `family`, `fallback_families`, `weight`, `style`, `system?`, `variants`, `baseline_ratio`.

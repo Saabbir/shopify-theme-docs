@@ -88,19 +88,14 @@ A pattern that was correct when it was written can become wrong later. This does
 
 The discipline here isn't "review everything on a schedule." That's unrealistic once a codebase gets big. It's about noticing when a *specific* change touches a pattern's original assumption, and treating that as your cue to revisit the pattern, instead of just patching around the now-outdated assumption.
 
-## Best practices
+## Do / Don't
 
-- Treat every inconsistency as compounding, not isolated. Fix the first instance of a wrong pattern rather than letting it become "how we sometimes do it here."
-- Extract an abstraction from the third real occurrence, not from a second guess at one.
-- Comment the *why* behind non-obvious logic, not the *what* the code already says.
-- Convert anything relying on memory into a mechanical check, like a lint rule, a CI check, or a checklist, as soon as more than one person needs to remember it.
-
-## Common mistakes
-
-- **Building a generic, flexible abstraction from a single use case**, guessing at options nobody has actually needed yet, which produces something more complex than the duplication it replaced.
-- **Naming things after their current appearance** instead of their role, so the name becomes misleading the first time the design changes.
-- **Relying on memory for anything more than one person needs to remember.** This is exactly where a checklist, a lint rule, or a CI check pays for itself.
-- **Letting a first wrong-pattern instance stand** "just this once," which becomes the template the next developer copies.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat every inconsistency as compounding, not isolated. Fix the first instance of a wrong pattern rather than letting it become "how we sometimes do it here." | **Building a generic, flexible abstraction from a single use case**, guessing at options nobody has actually needed yet, which produces something more complex than the duplication it replaced. |
+| Extract an abstraction from the third real occurrence, not from a second guess at one. | **Naming things after their current appearance** instead of their role, so the name becomes misleading the first time the design changes. |
+| Comment the *why* behind non-obvious logic, not the *what* the code already says. | **Relying on memory for anything more than one person needs to remember.** This is exactly where a checklist, a lint rule, or a CI check pays for itself. |
+| Convert anything relying on memory into a mechanical check, like a lint rule, a CI check, or a checklist, as soon as more than one person needs to remember it. | **Letting a first wrong-pattern instance stand** "just this once," which becomes the template the next developer copies. |
 
 ## Key takeaways
 - Consistency compounds, and so does inconsistency. Fix the first wrong instance, don't let it become precedent.

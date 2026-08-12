@@ -308,19 +308,14 @@ See [Config & Global Settings](/config-and-settings/) for the full difference be
 | Section-level setting vs. theme setting | Section (`heading`, `layout`, `gap`); theme (`type_heading_font`) | Scoped to this section vs. shared sitewide |
 | Locale key structure | Nested (`en.default.json`) vs. flat (`en.default.schema.json`) | Storefront content vs. editor labels (verified against real Horizon/Skeleton source) |
 
-## Best practices
+## Do / Don't
 
-- Build a snippet first, if the rendering logic might get reused outside the block or section that first needed it. Turning inline markup into a snippet later takes more work than just starting with one.
-- Use a specific block type, like `{ "type": "quote" }`, by default. Save `@theme` for containers that are genuinely meant to hold anything.
-- Keep your schema locale keys in the shared, flat groups (`settings.*`, `options.*`, `names.*`, `categories.*`). Before you add a new label, check whether a close match already exists.
-- Always add at least one preset to a block. Without one, it just never shows up in the editor's picker, and nothing tells you it's missing.
-
-## Common mistakes
-
-- **Writing rendering logic straight into a block file** instead of a snippet, then later discovering it's needed elsewhere and copying it instead of reusing it.
-- **Nesting schema locale keys per component** (like `sections.testimonials.settings.heading`) instead of using the shared, flat structure. This creates near-duplicate strings scattered across a real theme's dozens of schemas.
-- **Forgetting the block's `presets` array.** The block still works fine if it's manually added through `@theme`, but it never appears in the picker on its own.
-- **Putting a sitewide choice in one section's own schema** instead of `config/settings_schema.json`. That forces a merchant to set the same value on every section, one by one.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build a snippet first, if the rendering logic might get reused outside the block or section that first needed it. Turning inline markup into a snippet later takes more work than just starting with one. | **Writing rendering logic straight into a block file** instead of a snippet, then later discovering it's needed elsewhere and copying it instead of reusing it. |
+| Use a specific block type, like `{ "type": "quote" }`, by default. Save `@theme` for containers that are genuinely meant to hold anything. | **Nesting schema locale keys per component** (like `sections.testimonials.settings.heading`) instead of using the shared, flat structure. This creates near-duplicate strings scattered across a real theme's dozens of schemas. |
+| Keep your schema locale keys in the shared, flat groups (`settings.*`, `options.*`, `names.*`, `categories.*`). Before you add a new label, check whether a close match already exists. | **Forgetting the block's `presets` array.** The block still works fine if it's manually added through `@theme`, but it never appears in the picker on its own. |
+| Always add at least one preset to a block. Without one, it just never shows up in the editor's picker, and nothing tells you it's missing. | **Putting a sitewide choice in one section's own schema** instead of `config/settings_schema.json`. That forces a merchant to set the same value on every section, one by one. |
 
 ## Key takeaways
 - Snippet: reusable rendering with clear, named parameters. Block: editable by merchants, and can be added, removed, and reordered. A block wraps a snippet when the rendering itself is shared.

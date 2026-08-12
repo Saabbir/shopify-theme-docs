@@ -130,20 +130,15 @@ None of the three replaces another. `AGENTS.md`'s Liquid reference is thorough b
 
 The toolkit's search and validation scripts send usage data to Shopify (`shopify.dev/mcp/usage`) by default. This includes the search query, the validation result, and some client or session identifiers. This is disclosed directly in the toolkit's own documentation. If this matters for a given project or client engagement, you can turn it off by setting the environment variable `OPT_OUT_INSTRUMENTATION=true`. Check your team's or client's data-handling policy before installing on a project where this matters.
 
-## Best practices
+## Do / Don't
 
-- Install the AI Toolkit (plugin method) on every theme project. It's what actually runs the `shopify-liquid` skill's search-and-validate loop for Liquid work, whether or not the `learn_shopify_api` line is fully applicable yet.
-- Let the toolkit's search-and-validate loop actually finish rather than interrupting it. The whole point is that it catches wrong Liquid before you see it, not after.
-- Check `OPT_OUT_INSTRUMENTATION` against your project's or client's data-handling requirements before installing, not after.
-- Don't treat this page's install commands as permanently correct. Confirm against [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit) before running them. That's the same "check against the live source" habit this whole handbook asks for elsewhere.
-
-## Common mistakes
-
-- **Assuming the Dev MCP server's theme coverage is permanently settled.** It's expanded before (Liquid and `validate_theme` weren't there in earlier versions of this page) and can change again. Confirm against the live docs rather than trusting either this page or your memory of an older version of it.
-- **Installing only the Dev MCP server and assuming that's "the toolkit."** It's one of three install methods, and by itself it doesn't give you the `shopify-liquid` skill. Install the plugin (or the skill directly) for theme work.
-- **Not realizing the toolkit sends telemetry by default.** Check this before installing on a client project with strict data-handling requirements.
-- **Assuming the toolkit knows Solis-specific rules** (Skeleton Theme base, our naming rules). It only knows Shopify's platform facts; those project decisions live in `## Custom rules`.
-- **Mixing up skills, our custom commands, and Claude Code subagents.** They're three different things with three different owners (see the table above).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Install the AI Toolkit (plugin method) on every theme project. It's what actually runs the `shopify-liquid` skill's search-and-validate loop for Liquid work, whether or not the `learn_shopify_api` line is fully applicable yet. | **Assuming the Dev MCP server's theme coverage is permanently settled.** It's expanded before (Liquid and `validate_theme` weren't there in earlier versions of this page) and can change again. Confirm against the live docs rather than trusting either this page or your memory of an older version of it. |
+| Let the toolkit's search-and-validate loop actually finish rather than interrupting it. The whole point is that it catches wrong Liquid before you see it, not after. | **Installing only the Dev MCP server and assuming that's "the toolkit."** It's one of three install methods, and by itself it doesn't give you the `shopify-liquid` skill. Install the plugin (or the skill directly) for theme work. |
+| Check `OPT_OUT_INSTRUMENTATION` against your project's or client's data-handling requirements before installing, not after. | **Not realizing the toolkit sends telemetry by default.** Check this before installing on a client project with strict data-handling requirements. |
+| Don't treat this page's install commands as permanently correct. Confirm against [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit) before running them. That's the same "check against the live source" habit this whole handbook asks for elsewhere. | **Assuming the toolkit knows Solis-specific rules** (Skeleton Theme base, our naming rules). It only knows Shopify's platform facts; those project decisions live in `## Custom rules`. |
+| — | **Mixing up skills, our custom commands, and Claude Code subagents.** They're three different things with three different owners (see the table above). |
 
 ## Key takeaways
 - Three install methods: plugin (recommended, updates itself, per-person), agent skills (`npx skills add Shopify/shopify-ai-toolkit`, manual updates, per-person), Dev MCP server (`claude mcp add --scope project ...`, provides `learn_shopify_api` plus `validate_theme`, committable via [`.mcp.json`](/templates/mcp.json)). Full current commands: [shopify.dev/docs/apps/build/ai-toolkit](https://shopify.dev/docs/apps/build/ai-toolkit).

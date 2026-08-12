@@ -86,18 +86,14 @@ Run an automated check (axe DevTools or Lighthouse) and a manual keyboard-only c
 
 If any answer is "no," that's a real accessibility bug, not an edge case.
 
-## Best practices
+## Do / Don't
 
-- Use real semantic HTML elements (`<button>`, `<nav>`, `<label>`) before reaching for ARIA. A native element gives you correct keyboard behavior and screen reader support automatically, so you don't have to build it yourself.
-- Test with your keyboard as part of your normal QA process (see [Manual QA Checklist](/quality-validation/manual-qa-checklist/)). Don't save it for one separate accessibility-only pass at the end.
-- When you customize focus styles, test with `:focus-visible`. That way mouse users don't see a focus ring when they click, but keyboard users still see one.
-
-## Common mistakes
-
-- **Removing `outline: none` without adding a visible replacement.** This is the most common accessibility bug, and it usually happens when someone tries to "clean up" a default browser style.
-- **Using a `<div>` or `<span>` with a click handler instead of a real `<button>`.** It looks the same visually, but it fails completely for keyboard and screen reader users.
-- **Writing alt text that describes nothing useful** (`alt="image1.jpg"`, `alt="photo"`). This technically has an alt attribute, but it misses the point of the requirement.
-- **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use real semantic HTML elements (`<button>`, `<nav>`, `<label>`) before reaching for ARIA. A native element gives you correct keyboard behavior and screen reader support automatically, so you don't have to build it yourself. | **Removing `outline: none` without adding a visible replacement.** This is the most common accessibility bug, and it usually happens when someone tries to "clean up" a default browser style. |
+| Test with your keyboard as part of your normal QA process (see [Manual QA Checklist](/quality-validation/manual-qa-checklist/)). Don't save it for one separate accessibility-only pass at the end. | **Using a `<div>` or `<span>` with a click handler instead of a real `<button>`.** It looks the same visually, but it fails completely for keyboard and screen reader users. |
+| When you customize focus styles, test with `:focus-visible`. That way mouse users don't see a focus ring when they click, but keyboard users still see one. | **Writing alt text that describes nothing useful** (`alt="image1.jpg"`, `alt="photo"`). This technically has an alt attribute, but it misses the point of the requirement. |
+| — | **Testing contrast only in light mode.** If your theme supports a dark color scheme, check contrast in every color scheme a merchant can pick, not just the default one. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/). |
 
 ## Key takeaways
 - 9 concrete, testable rules, see the checklist above.

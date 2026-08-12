@@ -172,21 +172,15 @@ Reach for Shadow DOM only when you specifically need style or DOM isolation stro
 - **Set `aria-expanded`, `aria-live`, `hidden`/`aria-hidden` as real DOM state** (see [JavaScript Architecture: state](/javascript/javascript-architecture-state-and-events/#state-the-dom-is-the-source-of-truth)), not just implied visually by a CSS class, so assistive tech gets the same information sighted users do.
 - **A component that updates content on its own,** like a price after a variant change or a cart count, should update through a live region (`aria-live="polite"`) if the change isn't already inside something the user just interacted with directly. Otherwise, a screen reader user gets no sign that anything changed.
 
-## Best practices
+## Do / Don't
 
-- Default to the simple pattern. Only adopt the advanced `Component`/`refs`/`on:*` pattern once repeated code across several components makes a shared setup worth the cost.
-- Whichever pattern you use, stay consistent across the theme. Mixing both patterns across different components makes the codebase harder to read, not more flexible.
-- Use light DOM by default. Reach for Shadow DOM only when you genuinely need isolation.
-- Guard every `customElements.define` call against double registration.
-- Wrap real semantic HTML (`<button>`, `<dialog>`, `<details>`) inside a custom element. The element adds behavior, it doesn't replace the need for accessible markup underneath.
-
-## Common mistakes
-
-- **Building the advanced `Component` base class for a theme with only a handful of simple components.** It's pure overhead until the repetition it solves actually exists.
-- **Mixing `ref`/`on:*` attributes into a component that extends plain `HTMLElement`** with no base class reading them. The attributes silently do nothing, since nothing is looking for them.
-- **A `<div on:click>` or `<span on:click>` with no real interactive element underneath.** It's unreachable by keyboard and invisible to a screen reader as something you can act on.
-- **Attaching Shadow DOM out of habit,** thinking "that's what real Web Components do," when light DOM would have kept global styles and accessibility tools working with zero extra effort.
-- **Forgetting the `customElements.get` guard,** which causes an "already defined" error the first time a component's module happens to run twice.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to the simple pattern. Only adopt the advanced `Component`/`refs`/`on:*` pattern once repeated code across several components makes a shared setup worth the cost. | **Building the advanced `Component` base class for a theme with only a handful of simple components.** It's pure overhead until the repetition it solves actually exists. |
+| Whichever pattern you use, stay consistent across the theme. Mixing both patterns across different components makes the codebase harder to read, not more flexible. | **Mixing `ref`/`on:*` attributes into a component that extends plain `HTMLElement`** with no base class reading them. The attributes silently do nothing, since nothing is looking for them. |
+| Use light DOM by default. Reach for Shadow DOM only when you genuinely need isolation. | **A `<div on:click>` or `<span on:click>` with no real interactive element underneath.** It's unreachable by keyboard and invisible to a screen reader as something you can act on. |
+| Guard every `customElements.define` call against double registration. | **Attaching Shadow DOM out of habit,** thinking "that's what real Web Components do," when light DOM would have kept global styles and accessibility tools working with zero extra effort. |
+| Wrap real semantic HTML (`<button>`, `<dialog>`, `<details>`) inside a custom element. The element adds behavior, it doesn't replace the need for accessible markup underneath. | **Forgetting the `customElements.get` guard,** which causes an "already defined" error the first time a component's module happens to run twice. |
 
 ## Key takeaways
 - Two valid patterns: simple (`HTMLElement`, manual `querySelector`/`addEventListener`) and advanced (shared `Component` base class, `ref` attributes, declarative `on:*` event binding). Pick based on how much repeated code the theme actually has, not by default.

@@ -165,21 +165,19 @@ Don't just check that each tool installed on its own. Confirm the whole chain wo
 
 If any single item above fails, resolve it before opening your first PR. Trace it back to the specific setup step it depends on, instead of just working around it.
 
-## Best practices
+## Do / Don't
 
-- Give each developer their own development store. Don't share one dev store across the whole team, since conflicting local previews on a shared store cause confusing bugs that are hard to reproduce.
-- Keep Shopify CLI and your AI tool up to date (`npm install -g @shopify/cli@latest`, and Claude Code's native installer updates itself automatically). Theme features, Theme Check rules, and AI tools all change over time, and an outdated version can silently miss new checks or features.
-- Set up two-factor authentication (2FA) on your Partner account right away. Partner accounts have billing and submission access, so losing one to a hacked account is a genuinely bad day.
-- Run the full pre-flight checklist even if you're an experienced Shopify developer joining this project. The AI tooling and `AGENTS.md` steps are specific to this project, not generic Shopify knowledge you'd already have.
-
-## Common mistakes
-
-- **Trying to preview in Safari or Firefox and assuming something is broken.** `shopify theme dev`'s hot-reload preview only works in Chrome, by design. This is a known limitation, not a bug in your setup.
-- **Skipping the dev store and testing directly against a live or production store.** Development themes are free and disposable. A live store is not the place to find out a section breaks with real data.
-- **Installing Shopify CLI without Node, or with a very old version of Node.** Check that your Node version is a current LTS version before you spend time troubleshooting a CLI install issue that's actually a Node version issue in disguise.
-- **Confusing the Shopify Liquid *editor extension* with the Shopify AI Toolkit.** The extension gives you syntax highlighting and Theme Check linting as you type. The toolkit is what makes sure an AI tool's *generated* code is based on real docs, not guesses. Installing one doesn't give you the other. See the checklist above.
-- **Copy-pasting an MCP config between VS Code and Cursor/Claude Code without changing the root key.** VS Code uses `servers`. Cursor and Claude Code use `mcpServers`. This is the most common reason a pasted MCP config silently does nothing.
-- **Assuming Cursor's Extensions panel has every VS Code extension.** It doesn't always have everything the full Marketplace has. Confirm the Shopify Liquid extension is actually active in a `.liquid` file instead of assuming the install worked.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Give each developer their own development store | Share one dev store across the team — conflicting local previews cause confusing, hard-to-reproduce bugs |
+| Keep Shopify CLI and your AI tool up to date (`npm install -g @shopify/cli@latest`; Claude Code's native installer auto-updates) | Run an outdated version and silently miss new Theme Check rules or features |
+| Set up two-factor authentication on your Partner account right away | Leave a billing- and submission-capable account without 2FA |
+| Test the preview in Chrome | Try Safari or Firefox and assume something's broken — hot reload is Chrome-only by design |
+| Confirm your Node version is current LTS before troubleshooting a CLI issue | Assume a CLI install problem isn't actually a Node version problem in disguise |
+| Install both the Shopify Liquid extension *and* the AI Toolkit — they do different jobs (syntax/linting vs. real-docs-backed generation) | Assume one covers the other |
+| Use the right MCP config root key per tool: `servers` (VS Code) vs. `mcpServers` (Cursor, Claude Code) | Copy-paste an MCP config between tools without changing the root key — the most common reason a pasted config silently does nothing |
+| Confirm the Shopify Liquid extension is actually active in a `.liquid` file | Assume Cursor's Extensions panel has everything the VS Code Marketplace has |
+| Run the full pre-flight checklist even as an experienced Shopify developer | Skip it — the AI tooling and `AGENTS.md` steps are specific to this project, not generic Shopify knowledge |
 
 ## Key takeaways
 - You need: a Partner account, a dev store, Shopify CLI, Node, Git, Chrome, and one AI-assisted editor (Claude Code, Cursor, and/or VS Code + Copilot).
@@ -187,7 +185,6 @@ If any single item above fails, resolve it before opening your first PR. Trace i
 - Cursor: agent mode built in, reads `AGENTS.md` natively, Shopify Liquid extension may need manual VSIX install. MCP config: project-level `.cursor/mcp.json` (committed, key `mcpServers`) for team-shared servers, and global `~/.cursor/mcp.json` only for personal, non-project servers. Never commit literal secrets, use env vars instead.
 - Claude Code: `curl -fsSL https://claude.ai/install.sh | bash`, then `claude plugin install shopify-ai-toolkit@claude-plugins-official`.
 - `shopify theme dev` preview only works in Chrome.
-- Run the full [pre-flight checklist](#the-pre-flight-checklist) before your first real task. Verify the whole chain works, not just each tool in isolation.
 
 ## Further reading
 

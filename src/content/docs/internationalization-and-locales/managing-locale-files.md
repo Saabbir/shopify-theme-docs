@@ -355,27 +355,18 @@ A theme can support one language across many countries, each with its own curren
 
 Don't assume a country implies a language, or the other way around. A Canadian storefront might need both English and French. A single-language storefront might still need country-specific price and shipping formatting. Base anything locale-dependent, like showing a shipping estimate, on `localization.country`. Base text translation on `localization.language`. A merchant configures these two settings independently, so your theme's logic should treat them independently too.
 
-## Best practices
+## Do / Don't
 
-- Use `snake_case` for every locale key segment, and structure keys as category → group → description, matching Shopify's own documented convention.
-- Group locale keys by feature, not by page. It makes life easier for both translators and developers as the file grows.
-- Never concatenate translated fragments into a sentence. Always interpolate variables into one complete, translatable string.
-- Use the right CLDR plural keys for each language, not just `one`/`other`. Never splice a hardcoded count into a fixed string.
-- Only add the `_html` suffix to a key that genuinely needs markup in its value. Leave escaping on everywhere else.
-- Test a new language by actually previewing it, not just by checking that the JSON is valid. You can only spot text overflow and RTL layout issues by looking at the page.
-- Keep `.schema.json` translation up to date even though it's editor-only. Merchants configuring the theme in a non-English language see it directly.
-- When you add a setting to `settings_schema.json`, add its `t:` key's counterpart to `en.default.schema.json` in the same change, not as a follow-up. A missing entry renders the raw key as text, silently.
-
-## Common mistakes
-
-- **Using camelCase or kebab-case for locale keys.** `snake_case` is the convention. It's not enforced by JSON syntax, but it's what every other key in the theme uses.
-- **Concatenating strings around a variable** ("Showing" + count + "of" + total) instead of using one interpolated sentence. This breaks translatability for any language with a different word order.
-- **Hardcoding a count into a string** instead of using the right CLDR plural keys, which produces "1 items" and worse problems in other languages.
-- **Adding `_html` to a key "just in case."** Escaping is the safe default. Only turn it off on a key that actually contains markup.
-- **Forgetting `.schema.json` when adding a language.** The storefront gets translated, but the theme editor still shows English labels to a non-English-speaking merchant.
-- **Assuming a flat, ungrouped locale file will stay manageable.** Grouping keys early is much cheaper than reorganizing a 500-key flat file later.
-- **Assuming the storefront's active language also controls what a merchant sees in the theme editor.** They're two independent settings, shopper language vs. merchant admin language, backed by two separate files.
-- **Adding a `t:` key to `settings_schema.json` without a matching entry in `en.default.schema.json`, or using `t:` on a property that isn't actually translatable.** Both fail silently, the editor just shows raw text or the literal key instead of erroring.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `snake_case` for every locale key segment, and structure keys as category → group → description, matching Shopify's own documented convention. | **Using camelCase or kebab-case for locale keys.** `snake_case` is the convention. It's not enforced by JSON syntax, but it's what every other key in the theme uses. |
+| Group locale keys by feature, not by page. It makes life easier for both translators and developers as the file grows. | **Concatenating strings around a variable** ("Showing" + count + "of" + total) instead of using one interpolated sentence. This breaks translatability for any language with a different word order. |
+| Never concatenate translated fragments into a sentence. Always interpolate variables into one complete, translatable string. | **Hardcoding a count into a string** instead of using the right CLDR plural keys, which produces "1 items" and worse problems in other languages. |
+| Use the right CLDR plural keys for each language, not just `one`/`other`. Never splice a hardcoded count into a fixed string. | **Adding `_html` to a key "just in case."** Escaping is the safe default. Only turn it off on a key that actually contains markup. |
+| Only add the `_html` suffix to a key that genuinely needs markup in its value. Leave escaping on everywhere else. | **Forgetting `.schema.json` when adding a language.** The storefront gets translated, but the theme editor still shows English labels to a non-English-speaking merchant. |
+| Test a new language by actually previewing it, not just by checking that the JSON is valid. You can only spot text overflow and RTL layout issues by looking at the page. | **Assuming a flat, ungrouped locale file will stay manageable.** Grouping keys early is much cheaper than reorganizing a 500-key flat file later. |
+| Keep `.schema.json` translation up to date even though it's editor-only. Merchants configuring the theme in a non-English language see it directly. | **Assuming the storefront's active language also controls what a merchant sees in the theme editor.** They're two independent settings, shopper language vs. merchant admin language, backed by two separate files. |
+| When you add a setting to `settings_schema.json`, add its `t:` key's counterpart to `en.default.schema.json` in the same change, not as a follow-up. A missing entry renders the raw key as text, silently. | **Adding a `t:` key to `settings_schema.json` without a matching entry in `en.default.schema.json`, or using `t:` on a property that isn't actually translatable.** Both fail silently, the editor just shows raw text or the literal key instead of erroring. |
 
 ## Key takeaways
 - Two file types: `<lang>.json` (storefront) and `<lang>.schema.json` (theme editor). Both need translating.

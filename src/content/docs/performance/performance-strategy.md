@@ -105,19 +105,14 @@ If you're improving the performance of a theme that already exists, instead of b
 3. Fix the highest-impact items first, and re-measure your score after each one. This confirms the fix actually worked, and it stops you from wasting effort on something that mattered less than you thought.
 4. Once you're comfortably above the threshold, not just barely passing, make ongoing performance checks part of your per-section habit, as described in [Performance](/performance/). Don't treat this as a one-time cleanup.
 
-## Best practices
+## Do / Don't
 
-- Set a performance budget at project kickoff, not as a reaction after a failing Lighthouse score.
-- Reserve `preload` for the actual LCP candidate: one or two hints per page, not a hint per resource.
-- Never lazy-load above-the-fold content, especially the LCP candidate image.
-- Run Lighthouse against realistic content at every major milestone, not just once before submission.
-
-## Common mistakes
-
-- **Lazy-loading the hero image**, directly delaying the LCP metric that Lighthouse's performance score depends on most.
-- **Preloading everything**, which competes with the resource that actually matters for bandwidth and defeats the whole purpose of preloading.
-- **Discovering performance problems only at the pre-submission Lighthouse run**, when a per-milestone audit habit would have caught each regression while it was still a one-section fix.
-- **Building a separate hand-maintained "critical.css" file** that drifts from the actual above-the-fold content, instead of relying on disciplined `{% stylesheet %}` scoping.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Set a performance budget at project kickoff, not as a reaction after a failing Lighthouse score. | **Lazy-loading the hero image**, directly delaying the LCP metric that Lighthouse's performance score depends on most. |
+| Reserve `preload` for the actual LCP candidate: one or two hints per page, not a hint per resource. | **Preloading everything**, which competes with the resource that actually matters for bandwidth and defeats the whole purpose of preloading. |
+| Never lazy-load above-the-fold content, especially the LCP candidate image. | **Discovering performance problems only at the pre-submission Lighthouse run**, when a per-milestone audit habit would have caught each regression while it was still a one-section fix. |
+| Run Lighthouse against realistic content at every major milestone, not just once before submission. | **Building a separate hand-maintained "critical.css" file** that drifts from the actual above-the-fold content, instead of relying on disciplined `{% stylesheet %}` scoping. |
 
 ## Key takeaways
 - Plan performance in phases: budget → per-section discipline → milestone audits → pre-submission audit → post-launch monitoring.

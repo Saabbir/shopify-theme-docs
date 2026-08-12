@@ -36,21 +36,15 @@ Strip the `t:` prefix and what's left is a literal dot-path into that file: `t:l
 - Confirm every `t:` key used in a schema label or group name has a matching entry in `locales/en.default.schema.json`. See [Managing Locale Files](/internationalization-and-locales/managing-locale-files/).
 - Run `shopify theme check`. It catches several kinds of settings and schema mismatches for you automatically.
 
-## Best practices
+## Do / Don't
 
-- Treat a setting's `id` as permanent once it ships. Plan a real migration if it must change. Don't just silently rename it.
-- When you add a setting, update every preset in `settings_data.json`, not just the one you're actively testing.
-- Remember that a schema default change only affects fresh installs. It won't update existing merchants' stores.
-- Use flat, shared `t:` namespaces consistently across every schema file in the theme, not just the ones you personally wrote.
-- Run `shopify theme check` after any schema change, and look specifically for settings and schema mismatch warnings.
-
-## Common mistakes
-
-- **Renaming a setting `id`** without a migration plan. This silently throws away merchant customizations tied to the old `id`.
-- **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs.
-- **Adding a new setting but forgetting to add its default to every preset** in `settings_data.json`. This leaves non-default presets with a missing or inconsistent value.
-- **Referencing a setting `id` in Liquid that doesn't exist in the schema** (usually a typo). It renders blank silently instead of throwing an error, so it's easy to miss without testing.
-- **Adding a `t:` key to a setting without adding its counterpart to `en.default.schema.json`.** The theme editor shows the raw key text instead of a real label, with nothing flagging the mismatch.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Treat a setting's `id` as permanent once it ships. Plan a real migration if it must change. Don't just silently rename it. | **Renaming a setting `id`** without a migration plan. This silently throws away merchant customizations tied to the old `id`. |
+| When you add a setting, update every preset in `settings_data.json`, not just the one you're actively testing. | **Assuming a changed schema default reaches already-installed merchants.** It only affects fresh installs. |
+| Remember that a schema default change only affects fresh installs. It won't update existing merchants' stores. | **Adding a new setting but forgetting to add its default to every preset** in `settings_data.json`. This leaves non-default presets with a missing or inconsistent value. |
+| Use flat, shared `t:` namespaces consistently across every schema file in the theme, not just the ones you personally wrote. | **Referencing a setting `id` in Liquid that doesn't exist in the schema** (usually a typo). It renders blank silently instead of throwing an error, so it's easy to miss without testing. |
+| Run `shopify theme check` after any schema change, and look specifically for settings and schema mismatch warnings. | **Adding a `t:` key to a setting without adding its counterpart to `en.default.schema.json`.** The theme editor shows the raw key text instead of a real label, with nothing flagging the mismatch. |
 
 ## Key takeaways
 - Every `t:` string in `settings_schema.json` resolves against `locales/en.default.schema.json`, not the storefront's `en.default.json`.

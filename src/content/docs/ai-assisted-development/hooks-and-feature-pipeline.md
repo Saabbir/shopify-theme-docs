@@ -167,21 +167,15 @@ Verifying this setup surfaced two real gaps between what this pipeline assumes a
 
 None of `.sol-workflow/`'s content, plan files, QA reports, or state, is theme code. It should never reach a submission zip, the same as `.claude/` itself.
 
-## Best practices
+## Do / Don't
 
-- Commit all six pieces (`.claude/commands/figma-to-feature.md`, `.claude/agents/sol-builder.md`, both hooks, `settings.json`, `plan-template.md`) so the whole team gets the same gated pipeline, not just whoever built it.
-- Keep `sol-builder.md`'s "repo ground truth" section current. Treat it with the same discipline as `AGENTS.md` — see [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/).
-- Reach for `/figma-to-feature` when you specifically want the hard pre-code gate and built-in QA. Default to the lighter `/figma-to-liquid` for ordinary section/block/snippet work — see the comparison table above.
-- Add `.sol-workflow/ACTIVE` and `.sol-workflow/.index-backup.json` to `.gitignore`, but commit `.sol-workflow/{handle}/plan.md` and `qa-report.md` as build records.
-- Add `.sol-workflow/` to `.shopifyignore` too. It's dev tooling, not theme code.
-
-## Common mistakes
-
-- **Treating a `PreToolUse` hook's block as a bug and working around it**, instead of writing the plan and getting it approved. The hook is doing exactly its job — see [`require-plan.sh`](#require-plansh--the-actual-enforcement) above.
-- **Letting `sol-builder.md`'s "repo ground truth" section go stale.** A specific, dated fact about the codebase that's since been fixed actively misleads the builder, worse than having no such section at all.
-- **Assuming this pipeline is a strict upgrade over `/figma-to-liquid` for every job.** It's heavier for a reason. A one-off snippet doesn't need a gated, multi-phase build with a written QA report.
-- **Copying the original command file's Figma tool names without checking your own install method.** `mcp__plugin_figma_figma__*` only works if Figma MCP was installed via the plugin route. See the reconciliation section above.
-- **Forgetting `.sol-workflow/` in `.shopifyignore`.** It's easy to overlook a directory this handbook didn't previously ask you to exclude.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Commit all six pieces (`.claude/commands/figma-to-feature.md`, `.claude/agents/sol-builder.md`, both hooks, `settings.json`, `plan-template.md`) so the whole team gets the same gated pipeline, not just whoever built it. | **Treating a `PreToolUse` hook's block as a bug and working around it**, instead of writing the plan and getting it approved. The hook is doing exactly its job — see [`require-plan.sh`](#require-plansh--the-actual-enforcement) above. |
+| Keep `sol-builder.md`'s "repo ground truth" section current. Treat it with the same discipline as `AGENTS.md` — see [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/). | **Letting `sol-builder.md`'s "repo ground truth" section go stale.** A specific, dated fact about the codebase that's since been fixed actively misleads the builder, worse than having no such section at all. |
+| Reach for `/figma-to-feature` when you specifically want the hard pre-code gate and built-in QA. Default to the lighter `/figma-to-liquid` for ordinary section/block/snippet work — see the comparison table above. | **Assuming this pipeline is a strict upgrade over `/figma-to-liquid` for every job.** It's heavier for a reason. A one-off snippet doesn't need a gated, multi-phase build with a written QA report. |
+| Add `.sol-workflow/ACTIVE` and `.sol-workflow/.index-backup.json` to `.gitignore`, but commit `.sol-workflow/{handle}/plan.md` and `qa-report.md` as build records. | **Copying the original command file's Figma tool names without checking your own install method.** `mcp__plugin_figma_figma__*` only works if Figma MCP was installed via the plugin route. See the reconciliation section above. |
+| Add `.sol-workflow/` to `.shopifyignore` too. It's dev tooling, not theme code. | **Forgetting `.sol-workflow/` in `.shopifyignore`.** It's easy to overlook a directory this handbook didn't previously ask you to exclude. |
 
 ## Key takeaways
 - `/figma-to-feature` = coordinator command + `sol-builder` subagent + two hooks + a plan template + `.sol-workflow/` state. Heavier than `/figma-to-liquid`, worth it when you want a hard pre-code gate and integrated QA.

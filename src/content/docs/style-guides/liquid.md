@@ -165,19 +165,14 @@ If you calculate the same value over and over inside a loop, you're wasting time
 
 Also, always paginate large collections with `{% paginate collection.products by 24 %}` instead of rendering every product on one page. This isn't just a style choice. It's also a real performance requirement for passing Lighthouse checks. See [Performance & Lighthouse](/theme-store-requirements/performance/) for more on that.
 
-## Best practices
+## Do / Don't
 
-- Use `{%-`/`-%}` on logic tags by default. Only skip it where the spacing of visible content actually depends on that whitespace.
-- Guard every nested object access that might be missing, like a variant's media, a metafield, or an optional block setting, instead of assuming it's there.
-- Write a `{%- doc -%}` block on every snippet. Treat a snippet without documented parameters as unfinished.
-- Use `{% render %}`, never `{% include %}`. The scope leakage in `{% include %}` causes real bugs as a codebase grows.
-
-## Common mistakes
-
-- **Leaving out whitespace control.** This fills the rendered HTML with blank lines. It won't break your page, but it makes the actual page source harder to read while you're debugging.
-- **Assuming a nested object exists,** like a variant's featured image or an optional metafield, and letting Liquid silently render nothing instead of checking for it explicitly.
-- **Formatting currency or building URLs by hand** instead of using `money`, `url`, or `routes`. This breaks the moment the store's currency format or URL structure turns out to be different from what you assumed.
-- **Using `{% include %}`** out of habit from an older codebase. It's deprecated, and it leaks scope in a way `{% render %}` deliberately avoids.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `{%-`/`-%}` on logic tags by default. Only skip it where the spacing of visible content actually depends on that whitespace. | **Leaving out whitespace control.** This fills the rendered HTML with blank lines. It won't break your page, but it makes the actual page source harder to read while you're debugging. |
+| Guard every nested object access that might be missing, like a variant's media, a metafield, or an optional block setting, instead of assuming it's there. | **Assuming a nested object exists,** like a variant's featured image or an optional metafield, and letting Liquid silently render nothing instead of checking for it explicitly. |
+| Write a `{%- doc -%}` block on every snippet. Treat a snippet without documented parameters as unfinished. | **Formatting currency or building URLs by hand** instead of using `money`, `url`, or `routes`. This breaks the moment the store's currency format or URL structure turns out to be different from what you assumed. |
+| Use `{% render %}`, never `{% include %}`. The scope leakage in `{% include %}` causes real bugs as a codebase grows. | **Using `{% include %}`** out of habit from an older codebase. It's deprecated, and it leaks scope in a way `{% render %}` deliberately avoids. |
 
 ## Key takeaways
 - Use whitespace control (`{%-`/`-%}`) on logic tags by default.

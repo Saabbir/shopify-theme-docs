@@ -98,17 +98,13 @@ Don't try to run the whole list above for every single PR. If you do, the checkl
 - Run a specific feature group (Local pickup, Unit pricing, Rich media, Selling plans) only when your change actually touches that feature.
 - Run the **full list**, top to bottom, as part of the [Pre-Submission Checklist](/quality-validation/pre-submission-checklist/) before shipping.
 
-## Best practices
+## Do / Don't
 
-- Build a small set of "torture test" data in your dev store once. A torture test just means data designed to try to break things, like a product with a 250-character title, an empty collection, a sold-out variant, and a product with 20 variants. Reuse this same data for every QA pass instead of making up new test data each time.
-- Make the general "Sections" checklist a habit on every PR that touches a section, even one that looks minor. Regressions are the most common kind here, and the cheapest to catch right away.
-- Treat a failed manual QA check the same as a failed CI check. Don't merge your change and plan to "fix it later."
-
-## Common mistakes
-
-- **Only testing with your demo store's clean, curated data.** The bugs that reviewers catch are almost always the ones that only show up with messy, real-world data.
-- **Skipping the general "Sections" checklist because a change "is small."** Small changes are exactly where an overlooked edge case, like a missing blank check or a broken empty state, tends to slip through.
-- **Treating feature-specific checks (unit pricing, selling plans) as a one-time setup check**, instead of re-running them whenever the surrounding code changes, even if that feature wasn't the target of the change.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build a small set of "torture test" data in your dev store once. A torture test just means data designed to try to break things, like a product with a 250-character title, an empty collection, a sold-out variant, and a product with 20 variants. Reuse this same data for every QA pass instead of making up new test data each time. | **Only testing with your demo store's clean, curated data.** The bugs that reviewers catch are almost always the ones that only show up with messy, real-world data. |
+| Make the general "Sections" checklist a habit on every PR that touches a section, even one that looks minor. Regressions are the most common kind here, and the cheapest to catch right away. | **Skipping the general "Sections" checklist because a change "is small."** Small changes are exactly where an overlooked edge case, like a missing blank check or a broken empty state, tends to slip through. |
+| Treat a failed manual QA check the same as a failed CI check. Don't merge your change and plan to "fix it later." | **Treating feature-specific checks (unit pricing, selling plans) as a one-time setup check**, instead of re-running them whenever the surrounding code changes, even if that feature wasn't the target of the change. |
 
 ## Key takeaways
 - Test every section with zero, one, and many blocks, and with unusually long text. This is the single most common thing that breaks, and it usually gets caught late.

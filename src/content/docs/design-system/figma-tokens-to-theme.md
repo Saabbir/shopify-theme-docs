@@ -58,16 +58,13 @@ Design tokens can drift out of sync with your code. This happens the moment some
 - If your team maintains **Figma Code Connect** (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/)), link components that use tokens back to their Figma source. This lets an AI tool or a developer trace a component back to Figma quickly.
 - When a design review changes a token's actual value, not just a component's local styling, update the setting's *default* in `settings_data.json`'s preset definitions too (see [Theme Presets](/presets/theme-presets/)). Updating only the schema default isn't enough on its own, since that only affects fresh installs.
 
-## Best practices
+## Do / Don't
 
-- Pull tokens from Figma's Variables panel specifically, not by guessing values off the design canvas. The Variables panel is where design has already decided "this is a reusable value."
-- Decide merchant-editable vs. fixed for each token on purpose, using Step 3's table as your guide, not as a blanket "expose everything" or "expose nothing" policy.
-- Each domain has its own derivation and settings rules: colors derive shades with Liquid color filters, fonts derive weights/styles with `font_modify`, spacing rarely becomes a setting at all. See [Colors](/colors/), [Fonts](/fonts/), and [Spacing](/spacing/).
-
-## Common mistakes
-
-- **Turning a value that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
-- **Naming a setting after Figma's current value** instead of its role, so the name becomes misleading the moment the design changes.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Pull tokens from Figma's Variables panel specifically, not by guessing values off the design canvas. The Variables panel is where design has already decided "this is a reusable value." | **Turning a value that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options. |
+| Decide merchant-editable vs. fixed for each token on purpose, using Step 3's table as your guide, not as a blanket "expose everything" or "expose nothing" policy. | **Naming a setting after Figma's current value** instead of its role, so the name becomes misleading the moment the design changes. |
+| Each domain has its own derivation and settings rules: colors derive shades with Liquid color filters, fonts derive weights/styles with `font_modify`, spacing rarely becomes a setting at all. See [Colors](/colors/), [Fonts](/fonts/), and [Spacing](/spacing/). | — |
 
 ## Key takeaways
 - Tokens come from Figma's Variables panel, not the design canvas. That's where the "reusable decision" has already been made.

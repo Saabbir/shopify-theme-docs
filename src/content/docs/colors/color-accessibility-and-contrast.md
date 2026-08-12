@@ -78,19 +78,14 @@ button:focus-visible { outline: 2px solid var(--color-focus); }
 
 [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule) covers the Theme Store review rule that every background color setting needs a paired text/foreground color setting. That rule exists specifically to make contrast checking possible in the first place. Without a defined pairing, there's no way to know which two colors are even meant to sit on top of each other.
 
-## Best practices
+## Do / Don't
 
-- Test contrast against every color scheme a merchant can select, not just the default. Re-test whenever a scheme's colors change.
-- Run automated contrast checks (axe/Lighthouse) in CI, and do a manual spot-check with a contrast tool for any pairing CI doesn't render.
-- Derive focus outline colors per color scheme, so a focus ring stays visible against every background a merchant can choose.
-- Verify actual contrast ratios with a real contrast checker. Don't treat `color_brightness` as proof a pairing passes.
-
-## Common mistakes
-
-- **Testing contrast once, on the default scheme, and assuming every other scheme is fine.** This is the most common color accessibility bug in themes that support multiple schemes.
-- **Hardcoding one focus outline color** that works on a light scheme but disappears against a dark one.
-- **Treating `color_brightness`'s 0–255 output as a WCAG contrast ratio.** It's a different number, measuring a different thing.
-- **Shipping a background color setting with no paired text color setting**, which makes contrast impossible to check or guarantee. See [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Test contrast against every color scheme a merchant can select, not just the default. Re-test whenever a scheme's colors change. | **Testing contrast once, on the default scheme, and assuming every other scheme is fine.** This is the most common color accessibility bug in themes that support multiple schemes. |
+| Run automated contrast checks (axe/Lighthouse) in CI, and do a manual spot-check with a contrast tool for any pairing CI doesn't render. | **Hardcoding one focus outline color** that works on a light scheme but disappears against a dark one. |
+| Derive focus outline colors per color scheme, so a focus ring stays visible against every background a merchant can choose. | **Treating `color_brightness`'s 0–255 output as a WCAG contrast ratio.** It's a different number, measuring a different thing. |
+| Verify actual contrast ratios with a real contrast checker. Don't treat `color_brightness` as proof a pairing passes. | **Shipping a background color setting with no paired text color setting**, which makes contrast impossible to check or guarantee. See [Color Schemes](/colors/color-schemes/#the-theme-stores-minimum-color-settings-rule). |
 
 ## Key takeaways
 - 4.5:1 for body text, 3:1 for large text (18pt+/14pt+ bold), icons, and UI borders.

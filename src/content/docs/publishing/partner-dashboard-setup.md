@@ -40,17 +40,13 @@ Shopify's review team emails whatever address is in your theme's **Theme submiss
 
 Here's a common, avoidable delay: a theme sits in "changes requested" status for two extra weeks because the notification email landed in a spam folder nobody checked. Meanwhile, the team just assumes review is running slow. Whitelisting Shopify's sender addresses, and checking the Partner Dashboard status directly instead of just waiting for an email, avoids this problem entirely.
 
-## Best practices
+## Do / Don't
 
-- Set up two-factor authentication (2FA) on your Partner account right away. This account has billing and submission access, so if someone else gets into it, that's a serious problem.
-- Confirm which team member's email is the submission contact before you submit, not after. Make sure that person actually checks their email regularly during the review window.
-- Check the Partner Dashboard status directly on a regular basis during review, instead of relying only on email notifications showing up on time.
-
-## Common mistakes
-
-- **Discovering account verification takes longer than expected** because setup was left until submission week.
-- **Turning on developer previews on the store meant to become your demo store**, then finding out it can't be transferred like you need it to be.
-- **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is just slow instead of checking the dashboard directly.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Set up two-factor authentication (2FA) on your Partner account right away. This account has billing and submission access, so if someone else gets into it, that's a serious problem. | **Discovering account verification takes longer than expected** because setup was left until submission week. |
+| Confirm which team member's email is the submission contact before you submit, not after. Make sure that person actually checks their email regularly during the review window. | **Turning on developer previews on the store meant to become your demo store**, then finding out it can't be transferred like you need it to be. |
+| Check the Partner Dashboard status directly on a regular basis during review, instead of relying only on email notifications showing up on time. | **Missing a rejection or changes-requested email** because Shopify's sender addresses weren't whitelisted, and assuming review is just slow instead of checking the dashboard directly. |
 
 ## Key takeaways
 - Partner account (free) + a dev store + a Client transfer store for your demo.

@@ -54,17 +54,13 @@ Let's say you're building a Solis feature that shows a "recently viewed products
 </div>
 ```
 
-## Best practices
+## Do / Don't
 
-- If you're not sure whether something should be a section, block, or snippet, walk through the decision table above instead of just guessing.
-- Keep `assets/` organized by type as your theme grows. For example, use a clear naming pattern for CSS files, JS files, and images. A flat `assets/` folder with everything mixed together gets hard to navigate once you pass a few dozen files.
-- Treat `config/settings_schema.json` as truly global. If you notice you're adding a setting there that only one section actually uses, move it into that section's own schema instead.
-
-## Common mistakes
-
-- **Putting content that should be a block directly in `snippets/`**, just because it's reusable, without stopping to ask whether merchants need to control its settings visually. If they do, it should be a block, not a snippet.
-- **Overloading `config/settings_schema.json`** with settings that really belong to just one section. This clutters the global theme settings panel and confuses merchants.
-- **Creating extra top-level folders** on your own, like `components/` or `styles/`. Only the 8 folders listed above are supported. Shopify silently ignores anything else.
+| ✅ Do | ❌ Don't |
+|---|---|
+| If you're not sure whether something should be a section, block, or snippet, walk through the decision table above instead of just guessing. | **Putting content that should be a block directly in `snippets/`**, just because it's reusable, without stopping to ask whether merchants need to control its settings visually. If they do, it should be a block, not a snippet. |
+| Keep `assets/` organized by type as your theme grows. For example, use a clear naming pattern for CSS files, JS files, and images. A flat `assets/` folder with everything mixed together gets hard to navigate once you pass a few dozen files. | **Overloading `config/settings_schema.json`** with settings that really belong to just one section. This clutters the global theme settings panel and confuses merchants. |
+| Treat `config/settings_schema.json` as truly global. If you notice you're adding a setting there that only one section actually uses, move it into that section's own schema instead. | **Creating extra top-level folders** on your own, like `components/` or `styles/`. Only the 8 folders listed above are supported. Shopify silently ignores anything else. |
 
 ## Key takeaways
 - 8 top-level folders, no others allowed: `assets`, `blocks`, `config`, `layout`, `locales`, `sections`, `snippets`, `templates`.

@@ -95,29 +95,20 @@ Admin edits create real commits. That means the Git history on a connected branc
 - When you look at the recent history to understand what changed, expect to see both human commits and `shopify`-bot commits. Check both, not just your own.
 - Sometimes a merchant or designer's theme editor changes will conflict with the work on your branch. When that happens, fix it like you would fix any other Git conflict. Shopify's own docs point out that the code editor doesn't warn you about conflicts, so it's up to you to notice them and fix them.
 
-## Best practices
+## Do / Don't
 
-- Name every branch `namespace/branch-name/collaborator-id` right from the start. Renaming a branch later to fit this pattern takes much more work than starting with it.
-- Use your real GitHub username as the collaborator ID, not initials. Initials can clash as the team grows, but usernames don't.
-- Write commit messages that would make sense to someone with no context, six months from now. A message like "fix bug" tells a future reader nothing.
-- Treat `shopify`-authored commits as real history, not noise to ignore. They reflect actual changes made to the live theme.
-- Avoid rewriting history (using interactive rebase or force-push) on branches connected to a theme. Shopify's sync needs a steady, unchanged commit history to line up admin-side changes correctly.
-
-## Common mistakes
-
-- **Creating a branch with no namespace or collaborator id** (just "quote-block", for example). It's hard to tell at a glance who owns the branch or what kind of change it is, especially once several branches are open at once.
-- **Using mixed case or underscores in the `branch-name` part** instead of lowercase with hyphens. This doesn't match the naming style used everywhere else in this handbook (see [Snippets & Naming Conventions](/codebase-structure/snippets-and-naming/)).
-- **Writing vague commit messages** like "fix," "updates," or "wip." These make `git log` useless when you're trying to understand the history later.
-- **Force-pushing or rebasing a connected branch** without thinking about whether Shopify's sync depends on the existing commit history.
-- **Assuming a branch picks up the same theme after you disconnect and reconnect it.** It doesn't. It creates a new theme instead, which can be a confusing surprise in the middle of a project.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Name every branch `namespace/branch-name/collaborator-id` right from the start. Renaming a branch later to fit this pattern takes much more work than starting with it. | **Force-pushing or rebasing a connected branch** without thinking about whether Shopify's sync depends on the existing commit history. |
+| Use your real GitHub username as the collaborator ID, not initials. Initials can clash as the team grows, but usernames don't. | **Assuming a branch picks up the same theme after you disconnect and reconnect it.** It doesn't. It creates a new theme instead, which can be a confusing surprise in the middle of a project. |
+| Write commit messages that would make sense to someone with no context, six months from now. A message like "fix bug" tells a future reader nothing. | — |
+| Treat `shopify`-authored commits as real history, not noise to ignore. They reflect actual changes made to the live theme. | — |
+| Avoid rewriting history (using interactive rebase or force-push) on branches connected to a theme. Shopify's sync needs a steady, unchanged commit history to line up admin-side changes correctly. | — |
 
 ## Key takeaways
-- Branch names follow `namespace/branch-name/collaborator-id`, for example `feat/testimonials-section/jsmith`. Use the same `namespace` values as commit types, lowercase kebab-case for `branch-name`, and your GitHub username as the id.
-- A branch and a theme stay in a two-way sync. Admin edits create commits automatically.
 - Only a repo with the standard [theme folder structure](/codebase-structure/folder-structure/) can be connected. Other folders are ignored.
-- Once disconnected, a branch can't reconnect to the same theme.
-- Commits follow Conventional Commits: `type(scope): summary`.
-- Avoid rewriting history on a theme-connected branch.
+- Once disconnected, a branch can't reconnect to the same theme — reconnecting always creates a new one.
+- Avoid rewriting history (rebase, force-push) on a theme-connected branch. Shopify's sync depends on it staying intact.
 
 ## Further reading
 

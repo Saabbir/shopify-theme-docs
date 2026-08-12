@@ -128,20 +128,15 @@ Viewport units size relative to the browser window itself, not the font or the r
 
 Viewport units are rarely the right choice for font sizes on their own (a heading that's purely `5vw` shrinks illegibly small on a narrow phone), which is why `clamp()` combining a `rem` floor, a `vw` component, and a `rem` ceiling is the standard pattern instead, see [Type Scale & Typography Tokens](/fonts/type-scale-and-typography-tokens/#fluid-type-clamp-over-fixed-breakpoint-overrides) and [Spacing Scale & Tokens](/spacing/spacing-scale-and-tokens/#fluid-spacing-clamp-for-the-same-reason-as-fluid-type).
 
-## Best practices
+## Do / Don't
 
-- Default to `rem` for font sizes, spacing, widths, and radii. It's predictable regardless of nesting depth.
-- Reach for `em` only when a value should scale with a specific element's own font size, most often internal component padding.
-- Use `px` for things that shouldn't scale with text at all: hairline borders, shadow offsets, fine details.
-- If using the 62.5% technique, always set a real `rem`-based font size on `body` immediately after, so default text isn't tiny.
-- Use `dvh`/`svh` over plain `vh` for full-height mobile layouts, to account for browser chrome.
-
-## Common mistakes
-
-- **Setting `:root { font-size: 10px; }` directly** instead of `62.5%`, which overrides a visitor's browser font-size preference and defeats accessibility.
-- **Setting `62.5%` on `:root` and forgetting to reset `body`'s font size**, leaving default text rendering at a tiny 10px.
-- **Using `em` for everything**, which compounds unpredictably through nested components and becomes hard to reason about.
-- **Using plain `vh` for full-height mobile sections**, which can be taller than what's actually visible once mobile browser chrome is accounted for.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to `rem` for font sizes, spacing, widths, and radii. It's predictable regardless of nesting depth. | **Setting `:root { font-size: 10px; }` directly** instead of `62.5%`, which overrides a visitor's browser font-size preference and defeats accessibility. |
+| Reach for `em` only when a value should scale with a specific element's own font size, most often internal component padding. | **Setting `62.5%` on `:root` and forgetting to reset `body`'s font size**, leaving default text rendering at a tiny 10px. |
+| Use `px` for things that shouldn't scale with text at all: hairline borders, shadow offsets, fine details. | **Using `em` for everything**, which compounds unpredictably through nested components and becomes hard to reason about. |
+| If using the 62.5% technique, always set a real `rem`-based font size on `body` immediately after, so default text isn't tiny. | **Using plain `vh` for full-height mobile sections**, which can be taller than what's actually visible once mobile browser chrome is accounted for. |
+| Use `dvh`/`svh` over plain `vh` for full-height mobile layouts, to account for browser chrome. | — |
 
 ## Key takeaways
 - `rem`: relative to root, predictable, the default choice for most sizing.

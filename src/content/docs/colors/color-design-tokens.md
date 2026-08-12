@@ -150,19 +150,14 @@ Not every color in a Figma file is a token. A token is a value that's reused on 
 
 Brand colors (primary, secondary, accent) are typically merchant-editable, since merchants reasonably want to adjust them without needing a developer. Semantic colors like "error" or "sale-price" are sometimes fixed instead, to stay consistent with platform conventions, for example a red "sold out" badge that merchants shouldn't be able to accidentally turn green.
 
-## Best practices
+## Do / Don't
 
-- Structure your color tokens in three tiers (raw, semantic, and component), even in a theme that currently feels too small to need it. Adding the semantic tier after 40 sections already use raw values directly is a much bigger job than starting with it from day one.
-- Name every color token after its role, never its current appearance or hex value.
-- Pull color tokens from Figma's Variables panel specifically, not by eyeballing the design canvas. The Variables panel is where a designer has already decided "this is a reusable value."
-- Keep the same semantic role names across every `color_scheme_group` scheme and every place a `color_palette` key is referenced, so components never need scheme- or palette-specific logic.
-
-## Common mistakes
-
-- **Skipping the semantic tier**, so components reference raw color values directly. This turns a rebrand into a search-and-replace job instead of a one-line token change.
-- **Naming a color token after its appearance** (`--color-green`) instead of its role (`--color-primary`). This becomes wrong the moment the design changes.
-- **Turning a color that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options.
-- **Using different semantic role names in different schemes or components** instead of one consistent set, which forces scheme-specific branching everywhere a color is used.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Structure your color tokens in three tiers (raw, semantic, and component), even in a theme that currently feels too small to need it. Adding the semantic tier after 40 sections already use raw values directly is a much bigger job than starting with it from day one. | **Skipping the semantic tier**, so components reference raw color values directly. This turns a rebrand into a search-and-replace job instead of a one-line token change. |
+| Name every color token after its role, never its current appearance or hex value. | **Naming a color token after its appearance** (`--color-green`) instead of its role (`--color-primary`). This becomes wrong the moment the design changes. |
+| Pull color tokens from Figma's Variables panel specifically, not by eyeballing the design canvas. The Variables panel is where a designer has already decided "this is a reusable value." | **Turning a color that just happens to repeat into a token**, even though it wasn't a deliberate design decision. This fills the settings schema with meaningless options. |
+| Keep the same semantic role names across every `color_scheme_group` scheme and every place a `color_palette` key is referenced, so components never need scheme- or palette-specific logic. | **Using different semantic role names in different schemes or components** instead of one consistent set, which forces scheme-specific branching everywhere a color is used. |
 
 ## Key takeaways
 - Three tiers: raw values, then semantic roles, then component usage. Components use semantic roles, never raw values.

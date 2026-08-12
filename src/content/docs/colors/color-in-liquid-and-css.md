@@ -91,19 +91,14 @@ Use these conversion filters when you need to match a specific format called for
 
 This is a runtime brightness check for picking between two fixed text colors, not a substitute for verifying real WCAG contrast ratios during development. See [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/) for the actual contrast ratio requirements and how to test them.
 
-## Best practices
+## Do / Don't
 
-- Derive hover, active, and tint variants from one stored color with a filter, instead of adding a separate setting for each variant.
-- Build derived CSS custom properties once, in a single place like `theme.liquid` or a shared snippet, rather than recalculating the same `color_darken` call in every section file that needs it.
-- Only convert color formats (`color_to_oklch`, `color_to_hsl`, and so on) when a specific format is actually required. Leave colors in their stored format otherwise.
-- Use `color_brightness` only for the light-text-vs-dark-text runtime decision it's suited for. Verify actual contrast ratios separately; see [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/).
-
-## Common mistakes
-
-- **Adding a separate setting for every derived shade** (a "hover" setting, a "tint" setting) instead of deriving them from one base color. This creates settings that can silently drift out of sync.
-- **Hardcoding a hover or tint color as a literal hex value** in CSS, instead of deriving it from the merchant's chosen base color. This breaks the moment the merchant changes their brand color.
-- **Recalculating the same derived value in multiple files** instead of computing it once into a shared CSS custom property.
-- **Treating `color_brightness` as a WCAG contrast checker.** It returns a raw brightness number, not a contrast ratio against a specific background.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Derive hover, active, and tint variants from one stored color with a filter, instead of adding a separate setting for each variant. | **Adding a separate setting for every derived shade** (a "hover" setting, a "tint" setting) instead of deriving them from one base color. This creates settings that can silently drift out of sync. |
+| Build derived CSS custom properties once, in a single place like `theme.liquid` or a shared snippet, rather than recalculating the same `color_darken` call in every section file that needs it. | **Hardcoding a hover or tint color as a literal hex value** in CSS, instead of deriving it from the merchant's chosen base color. This breaks the moment the merchant changes their brand color. |
+| Only convert color formats (`color_to_oklch`, `color_to_hsl`, and so on) when a specific format is actually required. Leave colors in their stored format otherwise. | **Recalculating the same derived value in multiple files** instead of computing it once into a shared CSS custom property. |
+| Use `color_brightness` only for the light-text-vs-dark-text runtime decision it's suited for. Verify actual contrast ratios separately; see [Color Accessibility & Contrast](/colors/color-accessibility-and-contrast/). | **Treating `color_brightness` as a WCAG contrast checker.** It returns a raw brightness number, not a contrast ratio against a specific background. |
 
 ## Key takeaways
 - Derive shades, tints, and translucent variants from one stored color with `color_darken`, `color_lighten`, `color_mix`, and `color_modify`, instead of adding separate settings.

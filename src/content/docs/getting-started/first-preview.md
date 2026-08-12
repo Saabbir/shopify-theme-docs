@@ -63,23 +63,14 @@ You should see the Skeleton Theme running against your dev store's real product 
 
 If you make a change and nothing happens, don't assume you broke something. Restart the dev server first. That's the most common fix.
 
-## Best practices
+## Do / Don't
 
-- Keep `shopify theme dev` running in its own terminal tab for your whole session. Don't start and stop it for every change, since restarting loses your preview URL and forces a browser refresh.
-- If your preview looks stale after a schema change, restart the dev server before you start debugging your code. A stale dev server is a much more common cause than an actual bug.
-- Use the shareable preview link, not a screenshot, when asking a teammate to look at work in progress. That way they can click around in it, not just look at it.
-
-## Common mistakes
-
-- **Assuming a broken preview means broken code.** Check "what hot reload doesn't cover" above before you start debugging Liquid you haven't touched.
-- **Running `shopify theme dev` against a live or published theme by accident.** Always confirm the `--store` flag points at your personal dev store, not a shared or production store.
-- **Opening the preview in a browser other than Chrome and reporting it as broken.** This is expected. Hot reload previews only work in Chrome.
-
-## Key takeaways
-- `shopify theme init`: clone the scaffold (new project only, use `git clone` for an existing one).
-- `shopify theme dev --store <store>`: local preview with hot reload (Chrome only).
-- Schema and file-structure changes sometimes need a dev server restart. Try that before debugging.
-- Nothing here touches the store's live theme.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Keep `shopify theme dev` running in one terminal tab for your whole session | Restart it for every small change — you lose the preview URL for nothing |
+| Restart the dev server first if a preview looks stale after a schema change | Start debugging your Liquid before ruling out a stale dev server |
+| Double-check `--store` points at your own personal dev store | Run `shopify theme dev` against a live or shared production store |
+| Test in Chrome, and share the printed preview link for feedback | Report a broken preview in Safari/Firefox — hot reload is Chrome-only by design |
 
 ## Further reading
 

@@ -84,18 +84,14 @@ class TestimonialCarousel extends HTMLElement {
 }
 ```
 
-## Best practices
+## Do / Don't
 
-- Default to `{% javascript %}` for section/block/snippet-specific behavior; reserve asset scripts for genuinely global code.
-- Keep exactly one `{% javascript %}` tag per file. If it's getting long, consider whether some of the logic belongs in an imported module instead of inline.
-- Pass data from Liquid to JS through `data-*` attributes, never by expecting Liquid to render inside `{% javascript %}`.
-- Store instance-specific state on the element (property or DOM attribute), not in a module-level variable, since the compiled script runs once for all instances of a component on a page.
-
-## Common mistakes
-
-- **Writing a second `{% javascript %}` tag in the same file,** which is a syntax error, not a second block that gets merged.
-- **Expecting `{{ liquid_variable }}` to interpolate inside `{% javascript %}`.** It doesn't render — pass data through a `data-*` attribute instead.
-- **Using a module-level variable for state that should be per-instance,** which breaks the moment a section or block renders more than once on the same page.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to `{% javascript %}` for section/block/snippet-specific behavior; reserve asset scripts for genuinely global code. | **Writing a second `{% javascript %}` tag in the same file,** which is a syntax error, not a second block that gets merged. |
+| Keep exactly one `{% javascript %}` tag per file. If it's getting long, consider whether some of the logic belongs in an imported module instead of inline. | **Expecting `{{ liquid_variable }}` to interpolate inside `{% javascript %}`.** It doesn't render — pass data through a `data-*` attribute instead. |
+| Pass data from Liquid to JS through `data-*` attributes, never by expecting Liquid to render inside `{% javascript %}`. | **Using a module-level variable for state that should be per-instance,** which breaks the moment a section or block renders more than once on the same page. |
+| Store instance-specific state on the element (property or DOM attribute), not in a module-level variable, since the compiled script runs once for all instances of a component on a page. | — |
 
 ## Key takeaways
 - One `{% javascript %}` tag per file, concatenated by file type (`scripts.js` / `block-scripts.js` / `snippet-scripts.js`), injected via `content_for_header`, loaded with `<script defer>`.

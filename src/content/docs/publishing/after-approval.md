@@ -91,17 +91,13 @@ Shopify blocks submissions that do any of the following: reduce a section's inst
 
 You must wait at least **4 weeks** between updates. The one exception is your first two months, when you can update every 2 weeks instead. This rule exists to prevent merchant "update fatigue." Don't plan a fast, rapid-fire release schedule after launch assuming you can ship whenever you want.
 
-## Best practices
+## Do / Don't
 
-- Classify every change by its real impact (major, minor, or patch) as you build it, not after the fact at release time. It's easier to batch breaking changes on purpose when you've been tracking them as you go.
-- Write release notes from the merchant's point of view as you make each change, instead of trying to piece together "what changed" from Git history right before a release.
-- Plan your update schedule around the 4-week minimum (or 2-week, early on) from the start. Don't find out about this rule only when you want to ship an urgent fix on day 10.
-
-## Common mistakes
-
-- **Shipping several small breaking changes across several releases** instead of batching them together, forcing merchants through repeated manual-update reviews.
-- **Writing release notes in developer language**, like "refactored the cart total calculation," instead of describing the impact for merchants, like "fixed an issue where the cart total didn't update immediately."
-- **Reducing a section or block limit** in an update, without realizing this alone will get the update rejected.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Classify every change by its real impact (major, minor, or patch) as you build it, not after the fact at release time. It's easier to batch breaking changes on purpose when you've been tracking them as you go. | **Shipping several small breaking changes across several releases** instead of batching them together, forcing merchants through repeated manual-update reviews. |
+| Write release notes from the merchant's point of view as you make each change, instead of trying to piece together "what changed" from Git history right before a release. | **Writing release notes in developer language**, like "refactored the cart total calculation," instead of describing the impact for merchants, like "fixed an issue where the cart total didn't update immediately." |
+| Plan your update schedule around the 4-week minimum (or 2-week, early on) from the start. Don't find out about this rule only when you want to ship an urgent fix on day 10. | **Reducing a section or block limit** in an update, without realizing this alone will get the update rejected. |
 
 ## Key takeaways
 - Semantic versioning uses `X.Y.Z`: major (breaking change), minor (compatible addition), patch (fix). The highest-impact change in a release sets the version bump.

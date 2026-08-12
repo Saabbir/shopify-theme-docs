@@ -65,17 +65,13 @@ Before you zip anything, take one more look for a few mistakes that are easy to 
 
 You can upload a revised ZIP (using **Upload new zip**) any time before Shopify's review team actually starts reviewing it. Once they start, you can't make changes until they respond.
 
-## Best practices
+## Do / Don't
 
-- Run through the pre-zip sanity pass above as an actual checklist, not just a quick mental scan. Items like a leftover `markets.json` file or a demo-specific resource default are easy to miss, and they cause rejections that are completely avoidable.
-- Test your ZIP on a completely fresh dev store before submitting. This catches any assumption your code makes that only holds true on your demo store.
-- Keep the submission ZIP as a build artifact, not something you commit to your main Git history. That way you have an exact record of what you actually submitted, separate from your ongoing development.
-
-## Common mistakes
-
-- **Including a `config/markets.json` file**, which Shopify explicitly asks you not to submit.
-- **Setting a resource default (a product ID, a metaobject reference) that only exists on the demo store.** This breaks that setting on every fresh install.
-- **Copying every template file into every preset folder** instead of only including overrides. This bloats the ZIP and makes it harder for reviewers, and future you, to see what's actually preset-specific.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Run through the pre-zip sanity pass above as an actual checklist, not just a quick mental scan. Items like a leftover `markets.json` file or a demo-specific resource default are easy to miss, and they cause rejections that are completely avoidable. | **Including a `config/markets.json` file**, which Shopify explicitly asks you not to submit. |
+| Test your ZIP on a completely fresh dev store before submitting. This catches any assumption your code makes that only holds true on your demo store. | **Setting a resource default (a product ID, a metaobject reference) that only exists on the demo store.** This breaks that setting on every fresh install. |
+| Keep the submission ZIP as a build artifact, not something you commit to your main Git history. That way you have an exact record of what you actually submitted, separate from your ongoing development. | **Copying every template file into every preset folder** instead of only including overrides. This bloats the ZIP and makes it harder for reviewers, and future you, to see what's actually preset-specific. |
 
 ## Key takeaways
 - One preset → plain structure. Multiple presets → `/listings/<preset-name>/` overrides.

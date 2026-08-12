@@ -65,19 +65,15 @@ Only install apps on a demo store if they're incidental to showing off the theme
 - [ ] Main and footer navigation menus are populated realistically, matching the theme's default `link_list` handles.
 - [ ] No apps installed that fake functionality the theme doesn't actually provide.
 
-## Best practices
+## Do / Don't
 
-- Build demo store content alongside the theme, not as a rushed final step. See the note in [Store & Design Requirements](/theme-store-requirements/store-and-design/) on why this also helps you find real layout bugs earlier.
-- Re-push the theme to every demo store right before each submission, instead of assuming an earlier push is still current.
-- Walk through the pre-submission store checklist above as an actual checklist, not just a quick mental scan. Several of these items are easy to forget precisely because they were "already done" weeks earlier and then quietly drifted out of date, like a live payment method that got turned back on, or a theme version that went stale.
-
-## Common mistakes
-
-- **Demoing a preset with content that doesn't match its stated industry/catalog size.**
-- **Showing only the easy-case catalog**: no sale, no sold-out items, no multi-variant products. This leaves no evidence the theme handles real variability.
-- **Using different or missing storefront passwords across your presets' demo stores**, which creates avoidable friction during review.
-- **Submitting against a stale demo store** that doesn't reflect the actual version under review.
-- **Leaving policy pages as placeholder text**, which undermines the "realistic store" impression the whole requirement is about.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Build demo store content alongside the theme, not as a rushed final step. See the note in [Store & Design Requirements](/theme-store-requirements/store-and-design/) on why this also helps you find real layout bugs earlier. | **Demoing a preset with content that doesn't match its stated industry/catalog size.** |
+| Re-push the theme to every demo store right before each submission, instead of assuming an earlier push is still current. | **Showing only the easy-case catalog**: no sale, no sold-out items, no multi-variant products. This leaves no evidence the theme handles real variability. |
+| Walk through the pre-submission store checklist above as an actual checklist, not just a quick mental scan. Several of these items are easy to forget precisely because they were "already done" weeks earlier and then quietly drifted out of date, like a live payment method that got turned back on, or a theme version that went stale. | **Using different or missing storefront passwords across your presets' demo stores**, which creates avoidable friction during review. |
+| — | **Submitting against a stale demo store** that doesn't reflect the actual version under review. |
+| — | **Leaving policy pages as placeholder text**, which undermines the "realistic store" impression the whole requirement is about. |
 
 ## Key takeaways
 - One demo store per preset, matching its positioning; same storefront password across all of them.

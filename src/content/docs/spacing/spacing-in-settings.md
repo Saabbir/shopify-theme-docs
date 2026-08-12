@@ -72,19 +72,14 @@ The test that matters: could a merchant drag this setting to its minimum or maxi
 
 Setting `step` to match your spacing scale's own increments (say, multiples of 8) keeps a merchant-adjusted value visually consistent with the rest of the theme, even though it's not literally reading from a fixed token.
 
-## Best practices
+## Do / Don't
 
-- Default to fixed CSS spacing. Only add a `range` setting when there's a genuine, low-risk reason a merchant would want to adjust that specific value.
-- Bound any spacing `range` tightly enough that every value in it still looks like a reasonably designed page, not just the default.
-- Set `step` to align with your spacing scale's own increments, so merchant-adjusted values stay visually consistent.
-- Always provide a CSS fallback (`var(--custom-prop, var(--fallback-token))`) so a missing or unset value doesn't collapse to zero spacing.
-
-## Common mistakes
-
-- **Exposing every spacing value as a setting** "to be flexible," which produces an overwhelming settings panel and layouts a merchant can accidentally break.
-- **Setting an unbounded or overly wide `min`/`max`**, so much of the slider's range produces a broken-looking result.
-- **Forgetting the `default` attribute**, which is required and errors without one.
-- **Not providing a CSS fallback** for a spacing custom property, so a missing value silently collapses to `0` instead of the intended default.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to fixed CSS spacing. Only add a `range` setting when there's a genuine, low-risk reason a merchant would want to adjust that specific value. | **Exposing every spacing value as a setting** "to be flexible," which produces an overwhelming settings panel and layouts a merchant can accidentally break. |
+| Bound any spacing `range` tightly enough that every value in it still looks like a reasonably designed page, not just the default. | **Setting an unbounded or overly wide `min`/`max`**, so much of the slider's range produces a broken-looking result. |
+| Set `step` to align with your spacing scale's own increments, so merchant-adjusted values stay visually consistent. | **Forgetting the `default` attribute**, which is required and errors without one. |
+| Always provide a CSS fallback (`var(--custom-prop, var(--fallback-token))`) so a missing or unset value doesn't collapse to zero spacing. | **Not providing a CSS fallback** for a spacing custom property, so a missing value silently collapses to `0` instead of the intended default. |
 
 ## Key takeaways
 - `range` needs `min`, `max`, and `default`. `step` defaults to `1`, `unit` is display-only.

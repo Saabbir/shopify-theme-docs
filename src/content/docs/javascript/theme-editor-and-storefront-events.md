@@ -133,17 +133,13 @@ if (Shopify.inspectMode) {
 | Force-expand a collapsed element so a merchant sees real content while browsing presets | `request.visual_preview_mode` |
 | Skip an animation/autoplay that would be distracting while editing | `request.design_mode` / `Shopify.designMode` |
 
-## Best practices
+## Do / Don't
 
-- Prefer a Web Component's own lifecycle (`connectedCallback`/`disconnectedCallback`) over a manual `shopify:section:load`/`unload` listener where you can. It handles the same re-render case automatically, with less code for you to keep in sync.
-- Always pair a `shopify:section:load` listener that sets something up with a `shopify:section:unload` listener that tears it down again, even if things "seem fine" without it during casual testing.
-- Test every interactive section by actually editing it repeatedly in the theme editor, not just by loading the page once. That's the only way to catch a missing re-initialization or a slow leak building up over time.
-
-## Common mistakes
-
-- **Initializing interactive JS only on page load,** so it quietly stops working the moment a merchant edits that section in the theme editor without a full page reload.
-- **Setting up a listener, observer, or interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup.** This causes duplicates to pile up across repeated edits in one editor session.
-- **Forgetting to keep a selected section or block scrolled into view,** leaving merchants editing something they can't actually see on screen.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Prefer a Web Component's own lifecycle (`connectedCallback`/`disconnectedCallback`) over a manual `shopify:section:load`/`unload` listener where you can. It handles the same re-render case automatically, with less code for you to keep in sync. | **Initializing interactive JS only on page load,** so it quietly stops working the moment a merchant edits that section in the theme editor without a full page reload. |
+| Always pair a `shopify:section:load` listener that sets something up with a `shopify:section:unload` listener that tears it down again, even if things "seem fine" without it during casual testing. | **Setting up a listener, observer, or interval on `shopify:section:load` with no matching `shopify:section:unload` cleanup.** This causes duplicates to pile up across repeated edits in one editor session. |
+| Test every interactive section by actually editing it repeatedly in the theme editor, not just by loading the page once. That's the only way to catch a missing re-initialization or a slow leak building up over time. | **Forgetting to keep a selected section or block scrolled into view,** leaving merchants editing something they can't actually see on screen. |
 
 ## Key takeaways
 - `shopify:section:load`/`unload`: set up/clean up JS when a section re-renders.

@@ -87,21 +87,15 @@ A theme's media footprint tends to grow in one direction, additively, unless som
 - **Re-check `reveal: 'interaction'` and lazy-loading defaults after a redesign.** A section that moves from below the fold to above it (or vice versa) needs its loading behavior re-verified, not left on whatever default it happened to load with originally.
 - **Run Lighthouse after adding any new media-heavy section**, not just at the pre-submission audit. A single unsized image or a missed `reveal: 'interaction'` default is a much smaller fix caught immediately than it is three sections later. See [Performance Strategy: phase by phase](/performance/performance-strategy/#a-performance-plan-phase-by-phase) for the full milestone-audit habit this applies to media specifically.
 
-## Best practices
+## Do / Don't
 
-- Reserve space for every media element, using explicit dimensions or `aspect-ratio`, before it loads — no matter the media type.
-- Host static theme assets on Shopify's own CDN via `assets/`, not an external host.
-- Preload at most one or two resources per template, and only your genuine LCP candidate.
-- Keep asset naming consistent (`icon-*` for icon snippets, descriptive kebab-case for static images) so the codebase stays navigable as it grows.
-- Audit for unused icons, orphaned static assets, and stale loading defaults periodically, not only once at project launch.
-
-## Common mistakes
-
-- **Linking to an externally-hosted image, font, or texture** instead of committing it to `assets/` and serving it from Shopify's own CDN.
-- **Preloading more than one or two resources per template**, which competes with the resource that actually matters for bandwidth.
-- **Letting unused icon snippets and orphaned static assets accumulate** without ever being pruned.
-- **Never re-checking a media element's loading defaults after a redesign moves it above or below the fold.**
-- **Treating a media-heavy section's performance impact as something to check only at the pre-submission Lighthouse run**, instead of at the milestone it was actually added.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Reserve space for every media element, using explicit dimensions or `aspect-ratio`, before it loads — no matter the media type. | **Linking to an externally-hosted image, font, or texture** instead of committing it to `assets/` and serving it from Shopify's own CDN. |
+| Host static theme assets on Shopify's own CDN via `assets/`, not an external host. | **Preloading more than one or two resources per template**, which competes with the resource that actually matters for bandwidth. |
+| Preload at most one or two resources per template, and only your genuine LCP candidate. | **Letting unused icon snippets and orphaned static assets accumulate** without ever being pruned. |
+| Keep asset naming consistent (`icon-*` for icon snippets, descriptive kebab-case for static images) so the codebase stays navigable as it grows. | **Never re-checking a media element's loading defaults after a redesign moves it above or below the fold.** |
+| Audit for unused icons, orphaned static assets, and stale loading defaults periodically, not only once at project launch. | **Treating a media-heavy section's performance impact as something to check only at the pre-submission Lighthouse run**, instead of at the milestone it was actually added. |
 
 ## Key takeaways
 - Reserve space for every media type before it loads: explicit dimensions or `aspect-ratio`.

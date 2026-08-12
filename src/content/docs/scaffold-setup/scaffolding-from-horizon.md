@@ -72,17 +72,13 @@ It's genuinely useful to look at Horizon's public source code to see how it's bu
 
 Here's a useful gut check. Put a piece of Solis code side by side with the Horizon file it was "inspired by." Would a reviewer call it a close copy? If there's any doubt, write it from scratch instead.
 
-## Best practices
+## Do / Don't
 
-- Read a Horizon section's source to understand the pattern, then close the tab and write Solis's version in a new, blank file. Don't keep it open and adapt it line by line.
-- If your AI tool suggests code that looks a lot like a well-known Horizon or Dawn pattern, don't just accept it. Ask it to try a different approach instead.
-- If you're ever unsure whether something counts as "inspiration" or "copying," treat it as copying and rewrite it from scratch. Getting this wrong can mean a full Theme Store rejection.
-
-## Common mistakes
-
-- **Cloning Horizon or Dawn directly "just to get started faster," planning to replace it later.** In practice, "later" often doesn't fully happen, and leftover patterns end up in the final submission.
-- **Copying a specific Horizon section's code and modifying it**, instead of using it purely as a reference for ideas.
-- **Assuming AI-generated code is automatically safe from this problem.** AI tools are often trained on public theme source code and can reproduce patterns from Horizon or Dawn that a reviewer would recognize. Keep this risk in mind when you review AI output (see [AI-Assisted Development](/ai-assisted-development/)).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Read a Horizon section's source to understand the pattern, then close the tab and write Solis's version in a new, blank file. Don't keep it open and adapt it line by line. | **Cloning Horizon or Dawn directly "just to get started faster," planning to replace it later.** In practice, "later" often doesn't fully happen, and leftover patterns end up in the final submission. |
+| If your AI tool suggests code that looks a lot like a well-known Horizon or Dawn pattern, don't just accept it. Ask it to try a different approach instead. | **Copying a specific Horizon section's code and modifying it**, instead of using it purely as a reference for ideas. |
+| If you're ever unsure whether something counts as "inspiration" or "copying," treat it as copying and rewrite it from scratch. Getting this wrong can mean a full Theme Store rejection. | **Assuming AI-generated code is automatically safe from this problem.** AI tools are often trained on public theme source code and can reproduce patterns from Horizon or Dawn that a reviewer would recognize. Keep this risk in mind when you review AI output (see [AI-Assisted Development](/ai-assisted-development/)). |
 
 ## Key takeaways
 - Reference for patterns: Horizon (look at it, never clone it).

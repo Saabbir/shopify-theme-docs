@@ -123,20 +123,15 @@ A theme's "Icon list" section that highlights shipping, returns, and support ben
 
 A merchant who only cares about one trust signal gets the single-banner preset without hand-deleting two blocks; a merchant who wants the full set gets it pre-filled with realistic, on-brand copy instead of three empty blocks they have to write from scratch. That's the actual benefit a section preset buys you: it turns "configure this from nothing" into "adjust this from something reasonable."
 
-## Best practices
+## Do / Don't
 
-- Use `category` to group presets once a section has more than two or three, so the picker stays scannable.
-- Only add a second preset for a genuinely distinct starting configuration, not a minor variation, that's what settings are for.
-- Give every preset realistic example content, matching the rule for [Store & Design Requirements](/theme-store-requirements/store-and-design/), not placeholder text.
-- Use `"default"` instead of `"presets"` for any section that's statically rendered.
-- Localize every preset `name` and `category` with a `t:` key, the same as every other schema string (see [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/#setting-groups-the-t-convention)).
-
-## Common mistakes
-
-- **Adding a preset for every minor settings variation** instead of using a setting, this inflates the preset list for no real benefit.
-- **Forgetting `category` on a section with many presets**, leaving merchants to scroll through a long flat list.
-- **Shipping a `"presets"` array on a statically rendered section**, where it's simply never used, instead of `"default"`.
-- **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset's blocks instead of realistic example copy.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `category` to group presets once a section has more than two or three, so the picker stays scannable. | **Adding a preset for every minor settings variation** instead of using a setting, this inflates the preset list for no real benefit. |
+| Only add a second preset for a genuinely distinct starting configuration, not a minor variation, that's what settings are for. | **Forgetting `category` on a section with many presets**, leaving merchants to scroll through a long flat list. |
+| Give every preset realistic example content, matching the rule for [Store & Design Requirements](/theme-store-requirements/store-and-design/), not placeholder text. | **Shipping a `"presets"` array on a statically rendered section**, where it's simply never used, instead of `"default"`. |
+| Use `"default"` instead of `"presets"` for any section that's statically rendered. | **Shipping placeholder content** ("Lorem ipsum," "Heading here") in a preset's blocks instead of realistic example copy. |
+| Localize every preset `name` and `category` with a `t:` key, the same as every other schema string (see [settings_schema.json: Rules & Conventions](/config-and-settings/settings-schema-json/#setting-groups-the-t-convention)). | — |
 
 ## Key takeaways
 - Section presets live in a section's own `{% schema %}` → `"presets"` array, not in `config/`.

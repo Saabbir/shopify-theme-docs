@@ -87,22 +87,16 @@ Only include the files a given preset actually *overrides* in its `/listings/<pr
 
 On the Theme submission form, you enter listing information for the theme *and* for every preset you're publishing. If you add a new preset after your theme is already live, it isn't automatically visible on the Theme Store — you have to edit your theme's listing in the Partner Dashboard and submit the new preset's marketing information (photography, description, industry, catalog size) before it appears to merchants.
 
-## Best practices
+## Do / Don't
 
-- Finish and thoroughly test the first preset before building additional presets as variations of it.
-- Plan around the hard 5-preset ceiling from the start, not as a late discovery.
-- Only make a preset's section/block arrangement genuinely different when it meaningfully differs — a preset that's identical except for one color isn't worth the extra upkeep.
-- Walk every template (not just the homepage) for consistency before calling a new preset done.
-- Test every theme preset on a genuinely fresh store install before submission, not just whichever preset happens to be active in your dev environment.
-
-## Common mistakes
-
-- **Assuming switching a preset changes everything**, including content like text and images — it only changes presentational settings unless you also edit `"sections"` data directly.
-- **Building a sixth preset** and discovering the 5-preset platform limit only when a submission fails.
-- **Building and testing a second theme preset only in a dev environment** that already has the first preset's resources. A fresh install immediately reveals demo-store assumptions you didn't notice.
-- **Copying every template file into every preset's `/listings` folder** instead of only what that preset actually overrides.
-- **Polishing only the index template** for a new preset's screenshots, and shipping an inconsistent cart or search page underneath it.
-- **Forgetting to submit a new preset's listing information** after adding it post-launch, so it never actually appears on the Theme Store despite being in the code.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Finish and thoroughly test the first preset before building additional presets as variations of it. | **Assuming switching a preset changes everything**, including content like text and images — it only changes presentational settings unless you also edit `"sections"` data directly. |
+| Plan around the hard 5-preset ceiling from the start, not as a late discovery. | **Building a sixth preset** and discovering the 5-preset platform limit only when a submission fails. |
+| Only make a preset's section/block arrangement genuinely different when it meaningfully differs — a preset that's identical except for one color isn't worth the extra upkeep. | **Building and testing a second theme preset only in a dev environment** that already has the first preset's resources. A fresh install immediately reveals demo-store assumptions you didn't notice. |
+| Walk every template (not just the homepage) for consistency before calling a new preset done. | **Copying every template file into every preset's `/listings` folder** instead of only what that preset actually overrides. |
+| Test every theme preset on a genuinely fresh store install before submission, not just whichever preset happens to be active in your dev environment. | **Polishing only the index template** for a new preset's screenshots, and shipping an inconsistent cart or search page underneath it. |
+| — | **Forgetting to submit a new preset's listing information** after adding it post-launch, so it never actually appears on the Theme Store despite being in the code. |
 
 ## Key takeaways
 - Theme presets live in `settings_data.json`'s `"presets"` object; `"current"` tracks which is active (or a merchant's custom edits).

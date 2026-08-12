@@ -115,18 +115,14 @@ Shopify draws a firm line here. Your theme must let merchant apps plug in, but y
 
 A merchant who installs a reviews app can now drag its app block in below the description, right in the theme editor. No code change is needed, and Solis works fine whether or not that app is installed.
 
-## Best practices
+## Do / Don't
 
-- Design every major section with an `@app` slot from the start. Don't add it later, only after a merchant complains it's missing.
-- If a feature idea sounds like "an app would normally do this," treat that as a sign it belongs in a Custom Liquid slot or an app integration, not in your theme code.
-- Test your theme's core flow (browse to product to cart to checkout) with zero apps installed. Everything should work completely, even if it's less feature-rich than with an app installed.
-
-## Common mistakes
-
-- **Restricting a section's `blocks` array to only your own types and forgetting `@app`.** This silently blocks every third-party app from working with that section.
-- **Building a feature that "just needs" one specific app to fully work.** Shopify treats this as an app dependency, and it gets rejected no matter how good the feature is.
-- **Assuming the Custom Liquid section alone satisfies the requirement.** The Custom Liquid *block* is a separate, additional requirement, you need both.
-- **Forgetting to test with zero apps installed.** A feature that silently breaks without a specific app is exactly the problem this requirement exists to prevent.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Design every major section with an `@app` slot from the start. Don't add it later, only after a merchant complains it's missing. | **Restricting a section's `blocks` array to only your own types and forgetting `@app`.** This silently blocks every third-party app from working with that section. |
+| If a feature idea sounds like "an app would normally do this," treat that as a sign it belongs in a Custom Liquid slot or an app integration, not in your theme code. | **Building a feature that "just needs" one specific app to fully work.** Shopify treats this as an app dependency, and it gets rejected no matter how good the feature is. |
+| Test your theme's core flow (browse to product to cart to checkout) with zero apps installed. Everything should work completely, even if it's less feature-rich than with an app installed. | **Assuming the Custom Liquid section alone satisfies the requirement.** The Custom Liquid *block* is a separate, additional requirement, you need both. |
+| — | **Forgetting to test with zero apps installed.** A feature that silently breaks without a specific app is exactly the problem this requirement exists to prevent. |
 
 ## Key takeaways
 - `@app` blocks required in the main product section and featured product section.

@@ -7,7 +7,7 @@ description: What this handbook is, who it's for, and how to use it.
 
 This handbook is the one place our team goes to learn how to build a Shopify theme from scratch. It also covers how to get that theme approved on the [Shopify Theme Store](https://themes.shopify.com/). It walks you through everything, from your first day on the project to the day you submit the finished theme for review.
 
-This handbook is written for developers who've already worked on a Shopify theme: you know Liquid, you've built sections, snippets, and blocks, and you're comfortable in the Shopify admin. It's not a Shopify or Liquid tutorial. It's the specific conventions, stricter Theme Store bar, and AI-assisted workflow this team uses. See [What This Handbook Covers](/getting-started/how-to-use-this-handbook/) for the full picture of who this is (and isn't) for. The examples use **Solis**, our current Theme Store project, but everything here applies to any Shopify theme we build in the future. This handbook won't get retired once Solis ships.
+This handbook assumes you've already worked on a Shopify theme before. See [What This Handbook Covers](/getting-started/how-to-use-this-handbook/) for exactly who this is (and isn't) written for. The examples use **Solis**, our current Theme Store project, but everything here applies to any Shopify theme we build in the future. This handbook won't get retired once Solis ships.
 
 ## What you'll build
 
@@ -61,25 +61,14 @@ If you're joining the Solis project without any background on it, here's roughly
 | 4 | Pair on a real ticket with a more senior teammate if one's available. Skim [AI-Assisted Development](/ai-assisted-development/) for how we use AI tools day to day. |
 | 5 | Open your first real PR against a real ticket. Expect review comments. That's the process working, not a sign that you did something wrong. |
 
-## Best practices
+## Do / Don't
 
-- Finish section 1's setup before you write any code, even if you're eager to jump in. Working without your editor, Prettier, AI rules, and Git set up correctly costs you more time later than it saves now.
-- Set up your AI tool's rule files on day one, as part of section 1 (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). Don't wait until you've already written a dozen files the "wrong" way that now need fixing.
-- Ask in the team channel before you guess on anything Shopify-specific. A five-minute question beats a half-day detour built on a wrong assumption.
-- Keep this handbook open in a tab while you work. It's meant to be checked often, not read once and forgotten.
-
-## Common mistakes
-
-- **Skipping straight to coding.** The way we build things here (theme blocks, section groups) is different enough from a typical web project that skipping the reading leads to code you'll have to rework later.
-- **Learning Shopify themes from random blog posts instead of this handbook or shopify.dev.** Many public tutorials, even ones that look recent, still teach Dawn's older, section-only patterns. Follow them, and you'll pick up patterns we don't use.
-- **Assuming "it works on my dev store" means "it's done."** A change that works with your test data can still fail Theme Store review the moment it hits an empty collection or a 200-character title. Check [Theme Store Requirements](/theme-store-requirements/) before you call anything finished.
-- **Not asking when you're uncertain.** If a requirement or pattern in this handbook seems to conflict with what you're being asked to build, flag it. Don't quietly guess and hope it's fine.
-
-## Key takeaways
-- This handbook follows **Horizon's way of building things**, but we scaffold from **Skeleton Theme**, never Dawn, and never Horizon directly.
-- Written for developers who already know Liquid, sections/snippets/blocks, and the Shopify admin. This handbook covers our project-specific conventions and stricter Theme Store bar, not Shopify or Liquid fundamentals.
-- Section 1 is setup, do it first. Sections 2–4 are read-once onboarding after that. Everything from section 5 onward is a reference you come back to as needed.
-- Examples use "Solis" as the working theme name, but this handbook applies to any theme project.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Finish section 1's setup before you write any code, even if you're eager to jump in. Working without your editor, Prettier, AI rules, and Git set up correctly costs you more time later than it saves now. | **Skipping straight to coding.** The way we build things here (theme blocks, section groups) is different enough from a typical web project that skipping the reading leads to code you'll have to rework later. |
+| Set up your AI tool's rule files on day one, as part of section 1 (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). Don't wait until you've already written a dozen files the "wrong" way that now need fixing. | **Learning Shopify themes from random blog posts instead of this handbook or shopify.dev.** Many public tutorials, even ones that look recent, still teach Dawn's older, section-only patterns. Follow them, and you'll pick up patterns we don't use. |
+| Ask in the team channel before you guess on anything Shopify-specific. A five-minute question beats a half-day detour built on a wrong assumption. | **Assuming "it works on my dev store" means "it's done."** A change that works with your test data can still fail Theme Store review the moment it hits an empty collection or a 200-character title. Check [Theme Store Requirements](/theme-store-requirements/) before you call anything finished. |
+| Keep this handbook open in a tab while you work. It's meant to be checked often, not read once and forgotten. | **Not asking when you're uncertain.** If a requirement or pattern in this handbook seems to conflict with what you're being asked to build, flag it. Don't quietly guess and hope it's fine. |
 
 ## Further reading
 

@@ -114,21 +114,15 @@ This works identically whether the underlying media is an image, a video, or a 3
 
 `image_tag` already defaults `alt` to the media's own alt text, or the resource's title (a product's title, for example) when no alt text is set. Only override it when you have a genuinely better, more specific description for that context, or when the image is purely decorative — in which case use `alt: ''`, not an empty default. See [Theme Store Requirements: Accessibility](/theme-store-requirements/accessibility/) for the compliance bar this supports.
 
-## Best practices
+## Do / Don't
 
-- Always request `width` close to the image's actual largest rendered size — never the largest size the CDN allows "just in case."
-- Provide a `sizes` value whenever you provide a custom `widths` list, so the browser's `srcset` selection matches your real layout.
-- Don't set `format` unless you specifically need a lossy conversion — Shopify already serves WebP/AVIF automatically based on the visitor's browser.
-- Trust `image_tag`'s automatic lazy-loading default for below-the-fold images; only override `loading` explicitly for your LCP candidate or when the default doesn't fit your layout.
-- Always supply real, specific alt text, or an explicit `alt: ''` for decorative images — never a generic placeholder.
-
-## Common mistakes
-
-- **Requesting a much larger image than what's actually rendered**, wasting bandwidth for no visual gain.
-- **Setting `loading: 'lazy'` on an above-the-fold hero image** (or forgetting to override the default for one), directly delaying your LCP metric.
-- **Hand-writing `format: 'auto'`**, which isn't a real parameter — automatic format selection already happens without any `format` value at all.
-- **Providing a custom `widths` list with no matching `sizes` value**, leaving the browser to guess how large the image actually renders.
-- **A generic `alt="image"` or `alt="photo"` placeholder**, which tells a screen reader nothing useful.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Always request `width` close to the image's actual largest rendered size — never the largest size the CDN allows "just in case." | **Requesting a much larger image than what's actually rendered**, wasting bandwidth for no visual gain. |
+| Provide a `sizes` value whenever you provide a custom `widths` list, so the browser's `srcset` selection matches your real layout. | **Setting `loading: 'lazy'` on an above-the-fold hero image** (or forgetting to override the default for one), directly delaying your LCP metric. |
+| Don't set `format` unless you specifically need a lossy conversion — Shopify already serves WebP/AVIF automatically based on the visitor's browser. | **Hand-writing `format: 'auto'`**, which isn't a real parameter — automatic format selection already happens without any `format` value at all. |
+| Trust `image_tag`'s automatic lazy-loading default for below-the-fold images; only override `loading` explicitly for your LCP candidate or when the default doesn't fit your layout. | **Providing a custom `widths` list with no matching `sizes` value**, leaving the browser to guess how large the image actually renders. |
+| Always supply real, specific alt text, or an explicit `alt: ''` for decorative images — never a generic placeholder. | **A generic `alt="image"` or `alt="photo"` placeholder**, which tells a screen reader nothing useful. |
 
 ## Key takeaways
 - `image_url`: needs `width` and/or `height`; max 5760px; never upscales; `crop` (`top`/`center`/`bottom`/`left`/`right`/`region`); `pad_color` for padding instead of cropping; `format` only for explicit `jpg`/`pjpg` conversion (auto WebP/AVIF needs no parameter).

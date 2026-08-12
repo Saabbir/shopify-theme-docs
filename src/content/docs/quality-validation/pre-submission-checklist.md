@@ -64,17 +64,13 @@ A checklist this long is easy to skim past under deadline pressure. Here's a mor
 2. **Work top to bottom, in one sitting,** instead of checking off items over several days. When you check things partially, an item can quietly get marked "done" without actually being re-tested after a later change.
 3. **Re-run it after any change you make following your first full pass,** even something that feels unrelated. A late CSS tweak or copy change is a common way a previously-passing item breaks again.
 
-## Best practices
+## Do / Don't
 
-- Run this checklist on a fresh theme install on a brand-new dev store, not just your main working store. This is the closest you can get to what an actual merchant will see when they install your theme.
-- Keep a copy of your results (screenshots, Lighthouse scores) for your own records. If Shopify's review flags something you thought you'd already checked, you'll want proof of what you tested and when.
-- Set aside real time for this pass. If you treat it as a quick final glance, items get checked off without actually being re-tested.
-
-## Common mistakes
-
-- **Checking items off from memory,** telling yourself "we handled accessibility earlier," instead of actually re-testing them against the current, final code.
-- **Running this checklist only once, early on**, and assuming later changes don't affect what you already checked.
-- **Having the same person who built a feature be the only one who checks it off here.** Self-review misses the same blind spots that let the issue into the code in the first place.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Run this checklist on a fresh theme install on a brand-new dev store, not just your main working store. This is the closest you can get to what an actual merchant will see when they install your theme. | **Checking items off from memory,** telling yourself "we handled accessibility earlier," instead of actually re-testing them against the current, final code. |
+| Keep a copy of your results (screenshots, Lighthouse scores) for your own records. If Shopify's review flags something you thought you'd already checked, you'll want proof of what you tested and when. | **Running this checklist only once, early on**, and assuming later changes don't affect what you already checked. |
+| Set aside real time for this pass. If you treat it as a quick final glance, items get checked off without actually being re-tested. | **Having the same person who built a feature be the only one who checks it off here.** Self-review misses the same blind spots that let the issue into the code in the first place. |
 
 ## Key takeaways
 - This is the last gate, not the first pass. Everything here should already be true well before submission day. You're just confirming it one more time.

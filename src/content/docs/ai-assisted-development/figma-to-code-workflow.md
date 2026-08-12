@@ -129,17 +129,13 @@ Treat AI-generated Liquid, CSS, or JS exactly like a human's first draft. See [A
 - Missing checks for blank optional content
 - Code that looks suspiciously close to a public Horizon or Dawn section (see [Scaffolding From Horizon](/scaffold-setup/scaffolding-from-horizon/))
 
-## Best practices
+## Do / Don't
 
-- Do the breakdown from Step 1 on paper or in a doc before you open your AI tool at all. Jumping straight to a prompt almost always produces a worse first draft than five minutes of upfront thinking would.
-- Pull out design values once per design system update, not once per section. A section that hardcodes a value "just this once" is how values drift apart over time.
-- Keep a short list of your team's 3 to 4 most common stress tests (empty state, long text, many blocks, zero blocks) somewhere visible, and run all of them on every new AI-generated section, no exceptions.
-
-## Common mistakes
-
-- **Prompting from a screenshot alone**, skipping the breakdown step, then spending more time fixing the result than the breakdown would have taken.
-- **Accepting a section that looks pixel-perfect without testing how it handles different content.** It often looks done because the demo data happens to fit well, not because the section actually handles variation.
-- **Not pulling out design values**, which leads to the same spacing or color value hardcoded in several places. Over time, one gets tweaked and the others don't, and they drift apart.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Do the breakdown from Step 1 on paper or in a doc before you open your AI tool at all. Jumping straight to a prompt almost always produces a worse first draft than five minutes of upfront thinking would. | **Prompting from a screenshot alone**, skipping the breakdown step, then spending more time fixing the result than the breakdown would have taken. |
+| Pull out design values once per design system update, not once per section. A section that hardcodes a value "just this once" is how values drift apart over time. | **Accepting a section that looks pixel-perfect without testing how it handles different content.** It often looks done because the demo data happens to fit well, not because the section actually handles variation. |
+| Keep a short list of your team's 3 to 4 most common stress tests (empty state, long text, many blocks, zero blocks) somewhere visible, and run all of them on every new AI-generated section, no exceptions. | **Not pulling out design values**, which leads to the same spacing or color value hardcoded in several places. Over time, one gets tweaked and the others don't, and they drift apart. |
 
 ## Key takeaways
 - The loop, every time: **plan, build, check, fix (handed off), document, report.** See the table at the top of this page.

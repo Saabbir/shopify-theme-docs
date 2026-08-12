@@ -36,22 +36,13 @@ If your prior theme experience is Dawn-era, the one structural shift to internal
 - [Modern Shopify Features to Utilize](/codebase-structure/modern-shopify-features/): newer Shopify features worth using beyond the basics.
 - [Complete Worked Example](/codebase-structure/complete-worked-example/): a full example, with a snippet, block, section, schema, locale files, and presets, ready to copy, with the code explained step by step.
 
-## Best practices
+## Do / Don't
 
-- Before you add a new file, check the rendering chain above first. Work out which layer it belongs to. Getting this wrong early (like building a snippet when you actually needed a block) is easy to fix. Fixing it later, once other code depends on it, is much harder.
-- If your change isn't showing up on the page, check which layer you actually edited. Don't assume something is broken. This one check solves most early confusion.
-- Read this whole page once before you build your first Solis section. The nested-block model is the one part of this that's genuinely new, even if you've built Dawn-era themes before.
-
-## Common mistakes
-
-- **Mixing up a block edit with a section edit** (or the other way around), then getting confused when your changes don't show up where you expected.
-- **Treating `snippets/` as a catch-all for anything reusable**, when some of that content should really be a theme block with settings a merchant can edit.
-- **Assuming old Dawn-theme patterns still apply.** The biggest change here (blocks nested inside other blocks) changes how you should build new code, not just what's technically possible.
-
-## Key takeaways
-- Rendering order: layout → template → sections → blocks → nested blocks.
-- The big change from Dawn-era themes: blocks can now contain other blocks, several levels deep.
-- Merchants edit sections and blocks visually, so the schema (the settings they see) matters just as much as the markup.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Before you add a new file, check the rendering chain above first. Work out which layer it belongs to. Getting this wrong early (like building a snippet when you actually needed a block) is easy to fix. Fixing it later, once other code depends on it, is much harder. | **Mixing up a block edit with a section edit** (or the other way around), then getting confused when your changes don't show up where you expected. |
+| If your change isn't showing up on the page, check which layer you actually edited. Don't assume something is broken. This one check solves most early confusion. | **Treating `snippets/` as a catch-all for anything reusable**, when some of that content should really be a theme block with settings a merchant can edit. |
+| Read this whole page once before you build your first Solis section. The nested-block model is the one part of this that's genuinely new, even if you've built Dawn-era themes before. | **Assuming old Dawn-theme patterns still apply.** The biggest change here (blocks nested inside other blocks) changes how you should build new code, not just what's technically possible. |
 
 ## Further reading
 

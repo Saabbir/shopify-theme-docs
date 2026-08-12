@@ -90,19 +90,14 @@ The MCP connection solves the *accuracy* problem. You get exact values instead o
 
 You still need the breakdown step from [Figma to Code Workflow](/ai-assisted-development/figma-to-code-workflow/). Figma MCP makes step 2, pulling out design values, far more accurate. But it doesn't replace step 1, which is deciding what's a setting and what's fixed structure.
 
-## Best practices
+## Do / Don't
 
-- Commit the project-level MCP config on day one of a new project, the same way `.vscode/settings.json` is committed for formatting. It's the difference between everyone setting this up by hand and everyone already having it the moment they clone the repo.
-- Default to a Figma link or live selection over a screenshot whenever you have Figma access. The accuracy difference is real, not minor.
-- Check for a Code Connect match before generating new code for something that might already exist as a component.
-- Still write the structured prompt (settings, blocks, and unusual-content behavior). Figma MCP gives you accurate design data, not your team's judgment about what merchants should control.
-
-## Common mistakes
-
-- **Leaving Figma MCP as a manual, per-person setup step** instead of committing the project config, so every new teammate re-does the same "MCP: Add Server" flow that a committed file would have handled for them.
-- **Pasting a screenshot when a Figma link was available.** You lose exact values and component identity for no reason.
-- **Assuming the MCP connection alone tells the AI tool what should be a setting.** It doesn't. That's still on you, in the prompt.
-- **Not keeping Code Connect up to date**, so the AI tool has no way to know a component already exists, and ends up regenerating near-duplicates.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Commit the project-level MCP config on day one of a new project, the same way `.vscode/settings.json` is committed for formatting. It's the difference between everyone setting this up by hand and everyone already having it the moment they clone the repo. | **Leaving Figma MCP as a manual, per-person setup step** instead of committing the project config, so every new teammate re-does the same "MCP: Add Server" flow that a committed file would have handled for them. |
+| Default to a Figma link or live selection over a screenshot whenever you have Figma access. The accuracy difference is real, not minor. | **Pasting a screenshot when a Figma link was available.** You lose exact values and component identity for no reason. |
+| Check for a Code Connect match before generating new code for something that might already exist as a component. | **Assuming the MCP connection alone tells the AI tool what should be a setting.** It doesn't. That's still on you, in the prompt. |
+| Still write the structured prompt (settings, blocks, and unusual-content behavior). Figma MCP gives you accurate design data, not your team's judgment about what merchants should control. | **Not keeping Code Connect up to date**, so the AI tool has no way to know a component already exists, and ends up regenerating near-duplicates. |
 
 ## Key takeaways
 - Dev Mode = design inspector for people. MCP server = design data for AI tools. Related, but not the same thing.

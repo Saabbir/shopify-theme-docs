@@ -111,20 +111,15 @@ Here's a trap a lot of teams fall into. On any team, saying "everyone is respons
 
 If a change removes a focus style, breaks a modal's focus trap, or removes an `alt` attribute, treat it as seriously as a change that breaks `theme check` or fails a test. Don't file it away as a "nice to fix eventually" note. This is as much about team culture as it is about code: a codebase only stays accessible if the whole team treats these regressions as real bugs, not small cosmetic issues.
 
-## Best practices
+## Do / Don't
 
-- Use semantic HTML before ARIA, every time. It's not just cleaner code, it's correct behavior you get for free instead of building it by hand and risking a mistake.
-- Write keyboard interaction at the same time as mouse interaction. Never save it for a follow-up "accessibility pass."
-- Check color contrast against every color scheme a merchant can pick, not just the default one.
-- Automate what you can in CI (missing labels, contrast checks). Keep keyboard and focus-trap testing as a manual, per-section step.
-- Treat an accessibility regression as seriously as a broken build.
-
-## Common mistakes
-
-- **Building the mouse interaction first and planning to add keyboard support later.** That later pass often doesn't happen, or it happens as a rushed fix.
-- **Testing contrast only against the default color scheme** when the theme offers others.
-- **Relying entirely on automated tools,** which don't catch broken tab order, keyboard traps, or content that reads confusingly out loud.
-- **Treating accessibility as "everyone's responsibility" without naming an owner** for the manual checks that don't happen automatically. In practice, this means nobody runs them.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use semantic HTML before ARIA, every time. It's not just cleaner code, it's correct behavior you get for free instead of building it by hand and risking a mistake. | **Building the mouse interaction first and planning to add keyboard support later.** That later pass often doesn't happen, or it happens as a rushed fix. |
+| Write keyboard interaction at the same time as mouse interaction. Never save it for a follow-up "accessibility pass." | **Testing contrast only against the default color scheme** when the theme offers others. |
+| Check color contrast against every color scheme a merchant can pick, not just the default one. | **Relying entirely on automated tools,** which don't catch broken tab order, keyboard traps, or content that reads confusingly out loud. |
+| Automate what you can in CI (missing labels, contrast checks). Keep keyboard and focus-trap testing as a manual, per-section step. | **Treating accessibility as "everyone's responsibility" without naming an owner** for the manual checks that don't happen automatically. In practice, this means nobody runs them. |
+| Treat an accessibility regression as seriously as a broken build. | — |
 
 ## Key takeaways
 - Semantic HTML first, ARIA only when no native element fits.

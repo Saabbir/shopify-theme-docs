@@ -167,17 +167,13 @@ Here's one more way to handle that case: hide the whole section when there are n
 {%- endif -%}
 ```
 
-## Best practices
+## Do / Don't
 
-- Test every new section with zero, one, and many items, not just the example here. Make this a normal part of your workflow. It catches most of the layout bugs that Theme Store review would otherwise flag.
-- Add a blank-value guard (`{% if x != blank %}`) around any markup that only shows up sometimes. Add it by default while you write the code, not later after you spot an empty tag on the page.
-- Use `"blocks": [{ "type": "quote" }, { "type": "@app" }]` instead of `@theme` whenever a section has one specific job. This stops merchants from accidentally dropping in unrelated blocks that break the layout you designed.
-
-## Common mistakes
-
-- **Only testing the happy path.** This means testing with a handful of nicely sized quotes, and never testing what happens with zero, one, or many blocks.
-- **Forgetting blank checks around optional settings.** This leaves empty tags in the final HTML, which a real accessibility or HTML validator would flag as a problem.
-- **Using `@theme` on a purpose-built section "just in case."** It's better to limit the section to the exact block types it's actually designed for.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Test every new section with zero, one, and many items, not just the example here. Make this a normal part of your workflow. It catches most of the layout bugs that Theme Store review would otherwise flag. | **Only testing the happy path.** This means testing with a handful of nicely sized quotes, and never testing what happens with zero, one, or many blocks. |
+| Add a blank-value guard (`{% if x != blank %}`) around any markup that only shows up sometimes. Add it by default while you write the code, not later after you spot an empty tag on the page. | **Forgetting blank checks around optional settings.** This leaves empty tags in the final HTML, which a real accessibility or HTML validator would flag as a problem. |
+| Use `"blocks": [{ "type": "quote" }, { "type": "@app" }]` instead of `@theme` whenever a section has one specific job. This stops merchants from accidentally dropping in unrelated blocks that break the layout you designed. | **Using `@theme` on a purpose-built section "just in case."** It's better to limit the section to the exact block types it's actually designed for. |
 
 ## Key takeaways
 - Block file → `{% schema %}` with settings + presets → done.

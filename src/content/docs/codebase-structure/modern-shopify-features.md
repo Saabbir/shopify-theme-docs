@@ -81,15 +81,12 @@ Not every new Shopify feature is automatically worth using in every theme. Here'
 | Does it require a fallback for meaningfully-used older browsers, and do we have one? | Adopt, with the fallback in place |
 | Is it primarily "new" rather than "actually solves a problem we have"? | Worth knowing about, not necessarily worth reaching for on the next section you build |
 
-## Best practices
+## Do / Don't
 
-- Use generic settings that work with dynamic sources (`text`, `richtext`, `image_picker`) instead of a hardcoded metaobject reference, whenever a block's content is really just generic structured data.
-- Check for browser support before using the View Transitions API, and always provide a working fallback. Don't assume every browser supports it.
-
-## Common mistakes
-
-- **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code.
-- **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use generic settings that work with dynamic sources (`text`, `richtext`, `image_picker`) instead of a hardcoded metaobject reference, whenever a block's content is really just generic structured data. | **Hardcoding a metaobject reference** when a generic, dynamic-source-compatible setting would let merchants connect any compatible metaobject without extra code. |
+| Check for browser support before using the View Transitions API, and always provide a working fallback. Don't assume every browser supports it. | **Using the View Transitions API with no fallback.** In browsers that don't support it, this breaks the experience instead of simply skipping the animation. |
 
 ## Key takeaways
 - Metaobjects and dynamic sources: write generic settings, and let merchants connect any compatible metaobject field in the editor.

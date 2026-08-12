@@ -68,19 +68,14 @@ Predictable naming also keeps [CSS subsetting](/css/css-in-shopify/#how-subsetti
 
 Test new sections with `dir="rtl"` in your browser's dev tools regularly, not just right before Theme Store submission. Logical-property mistakes are cheap to catch early, but easy to miss if you never actually look. See [Spacing in Liquid & CSS](/spacing/spacing-in-liquid-and-css/) for the spacing-specific version of this rule, including `gap` over margin hacks.
 
-## Best practices
+## Do / Don't
 
-- Keep component CSS in `{% stylesheet %}`, next to the component, unless a value is genuinely shared elsewhere. This lets you read a component's whole behavior, markup, styling, and JS, in one file.
-- Turn any reusable value into a custom property in the global stylesheet before it gets used a second time.
-- Name classes in a BEM-ish, kebab-case shape (`block__element--modifier`), and tie the block name to the component's file where practical.
-- Use logical properties by default, everywhere. Treat a physical property in new CSS as something to double-check, not your default choice.
-
-## Common mistakes
-
-- **Putting every section's CSS in one global file.** This loses the benefit of colocation, and every page ends up loading CSS it doesn't use.
-- **Hardcoding a color or spacing value that already exists as a token.** It drifts out of sync the next time the token changes, because this one spot wasn't using it.
-- **Using physical properties (`margin-left`) out of habit.** This passes review fine in English, then breaks silently the first time the theme runs in a right-to-left market.
-- **Giving a component's root element a generic class** (`.wrapper`, `.container`) with no relation to what it actually is.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Keep component CSS in `{% stylesheet %}`, next to the component, unless a value is genuinely shared elsewhere. This lets you read a component's whole behavior, markup, styling, and JS, in one file. | **Putting every section's CSS in one global file.** This loses the benefit of colocation, and every page ends up loading CSS it doesn't use. |
+| Turn any reusable value into a custom property in the global stylesheet before it gets used a second time. | **Hardcoding a color or spacing value that already exists as a token.** It drifts out of sync the next time the token changes, because this one spot wasn't using it. |
+| Name classes in a BEM-ish, kebab-case shape (`block__element--modifier`), and tie the block name to the component's file where practical. | **Using physical properties (`margin-left`) out of habit.** This passes review fine in English, then breaks silently the first time the theme runs in a right-to-left market. |
+| Use logical properties by default, everywhere. Treat a physical property in new CSS as something to double-check, not your default choice. | **Giving a component's root element a generic class** (`.wrapper`, `.container`) with no relation to what it actually is. |
 
 ## Key takeaways
 - Global tokens (custom properties) live in `assets/base.css`. Component CSS lives in `{% stylesheet %}`, next to its markup.

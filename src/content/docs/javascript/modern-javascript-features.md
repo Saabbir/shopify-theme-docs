@@ -120,19 +120,14 @@ document.getElementById('size-guide').showModal();
 
 See [Third-Party Libraries](/style-guides/third-party-libraries/#the-default-answer-is-no) for the full list of native-first swaps like this one.
 
-## Best practices
+## Do / Don't
 
-- Use `IntersectionObserver`/`ResizeObserver` instead of `scroll`/`resize` listeners with manual math, and always disconnect them in `disconnectedCallback`.
-- Use one `AbortController` per component to cancel fetches and remove listeners together, instead of tracking each cleanup separately.
-- Use `structuredClone` for deep copies instead of the `JSON.parse(JSON.stringify())` workaround.
-- Reach for `<dialog>`/`showModal()` and the `popover` attribute before a modal or dropdown library.
-
-## Common mistakes
-
-- **A `scroll` listener doing visibility math by hand** where `IntersectionObserver` would do it natively, and more efficiently.
-- **`JSON.parse(JSON.stringify())` for a deep clone**, silently dropping `undefined` values and breaking on `Date` objects or circular references.
-- **Building a custom modal from a styled `<div>`** instead of `<dialog>`, and having to hand-roll focus trapping and Escape-to-close as a result.
-- **Tracking multiple cleanup functions separately** when a single shared `AbortController` and `signal` would cancel all of them together.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use `IntersectionObserver`/`ResizeObserver` instead of `scroll`/`resize` listeners with manual math, and always disconnect them in `disconnectedCallback`. | **A `scroll` listener doing visibility math by hand** where `IntersectionObserver` would do it natively, and more efficiently. |
+| Use one `AbortController` per component to cancel fetches and remove listeners together, instead of tracking each cleanup separately. | **`JSON.parse(JSON.stringify())` for a deep clone**, silently dropping `undefined` values and breaking on `Date` objects or circular references. |
+| Use `structuredClone` for deep copies instead of the `JSON.parse(JSON.stringify())` workaround. | **Building a custom modal from a styled `<div>`** instead of `<dialog>`, and having to hand-roll focus trapping and Escape-to-close as a result. |
+| Reach for `<dialog>`/`showModal()` and the `popover` attribute before a modal or dropdown library. | **Tracking multiple cleanup functions separately** when a single shared `AbortController` and `signal` would cancel all of them together. |
 
 ## Key takeaways
 - `IntersectionObserver` for visibility changes, `ResizeObserver` for size changes — not `scroll`/`resize` listeners.

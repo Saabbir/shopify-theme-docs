@@ -72,17 +72,13 @@ Say Solis wants to show a product's material (cotton, leather, and so on) on the
 
 If you genuinely want to pull from Shopify's own **standard** product metafields (not a custom namespace), that's fine. The restriction is specifically about *custom or app-owned* definitions, not metafields in general.
 
-## Best practices
+## Do / Don't
 
-- Default to a plain theme setting for merchant-facing custom data. Only reach for a standard metaobject reference when Shopify already ships the exact standard type you need.
-- Check every `settings_data.json` default before submission. A reference to a resource that only exists in your demo store is one of the more common reasons themes get rejected late.
-- If you're not sure whether a metaobject type counts as "standard," check [Shopify's standard metaobject definitions](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) instead of guessing.
-
-## Common mistakes
-
-- **Defining a custom metaobject type for your own demo store, then referencing it directly in schema.** This works fine on your store, then breaks on every merchant's fresh install.
-- **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store.** Same failure, just on a different setting type.
-- **Assuming any use of metafields is off-limits.** The restriction only covers custom or app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings, standard metafields elsewhere are fine.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Default to a plain theme setting for merchant-facing custom data. Only reach for a standard metaobject reference when Shopify already ships the exact standard type you need. | **Defining a custom metaobject type for your own demo store, then referencing it directly in schema.** This works fine on your store, then breaks on every merchant's fresh install. |
+| Check every `settings_data.json` default before submission. A reference to a resource that only exists in your demo store is one of the more common reasons themes get rejected late. | **Defaulting a `product`/`page`/`metaobject` setting to a specific resource ID from your demo store.** Same failure, just on a different setting type. |
+| If you're not sure whether a metaobject type counts as "standard," check [Shopify's standard metaobject definitions](https://shopify.dev/docs/storefronts/themes/architecture/settings/input-settings#metaobject) instead of guessing. | **Assuming any use of metafields is off-limits.** The restriction only covers custom or app-owned `metaobject_type` values in `metaobject`/`metaobject_list` settings, standard metafields elsewhere are fine. |
 
 ## Key takeaways
 - `metaobject`/`metaobject_list` settings: standard definitions only, never custom or app-owned ones.

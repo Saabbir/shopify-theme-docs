@@ -74,19 +74,14 @@ Figma organizes type into a **collection** (often "Type" or "Typography"), with 
 
 Most themes expose the font *family* as a setting (via `font_picker`) but keep the *scale* (sizes, line-heights) fixed in CSS. This keeps the scale internally consistent. A merchant picking one wildly large body size on a whim can break a layout in ways a font choice alone can't.
 
-## Best practices
+## Do / Don't
 
-- Reach for the nearest existing scale step before adding a one-off value. If nothing fits, that's a signal to talk to design about adding a real step to the scale, not to quietly add an exception.
-- Name every size and line-height token after its role, never its current value.
-- Use `clamp()` for fluid type instead of stacking breakpoint-specific overrides.
-- Keep the type scale fixed in CSS by default. Only expose individual sizes as settings when there's a specific, deliberate reason to.
-
-## Common mistakes
-
-- **Letting one-off font sizes pile up** outside the defined scale, until "the type scale" no longer describes what the theme actually uses.
-- **Naming a size token after its current value** (`--font-size-28px`) instead of its role (`--font-size-heading-lg`).
-- **Writing a separate font-size override per breakpoint** instead of one `clamp()` declaration.
-- **Exposing every individual size in the scale as its own setting**, which lets a merchant break the scale's internal consistency one field at a time.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Reach for the nearest existing scale step before adding a one-off value. If nothing fits, that's a signal to talk to design about adding a real step to the scale, not to quietly add an exception. | **Letting one-off font sizes pile up** outside the defined scale, until "the type scale" no longer describes what the theme actually uses. |
+| Name every size and line-height token after its role, never its current value. | **Naming a size token after its current value** (`--font-size-28px`) instead of its role (`--font-size-heading-lg`). |
+| Use `clamp()` for fluid type instead of stacking breakpoint-specific overrides. | **Writing a separate font-size override per breakpoint** instead of one `clamp()` declaration. |
+| Keep the type scale fixed in CSS by default. Only expose individual sizes as settings when there's a specific, deliberate reason to. | **Exposing every individual size in the scale as its own setting**, which lets a merchant break the scale's internal consistency one field at a time. |
 
 ## Key takeaways
 - Use a defined scale (`--font-size-xs` through `--font-size-2xl`, or similar), not one-off values.

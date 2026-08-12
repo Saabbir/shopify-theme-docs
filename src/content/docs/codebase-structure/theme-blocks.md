@@ -187,19 +187,14 @@ Horizon supports several levels of nesting, but "supported" doesn't mean "a good
 
 Deeply nested structures are harder for merchants to navigate in the theme editor sidebar, and harder for you to work through when you're debugging. Nest blocks because the design genuinely needs a flexible container, not just because you can.
 
-## Best practices
+## Do / Don't
 
-- Always include at least one `presets` entry on every theme block. A block with no preset just silently fails to appear. There's no error message, which makes it easy to miss during testing.
-- Restrict a section's `blocks` array to specific types when the section has one clear purpose. Save `@theme` for containers that are genuinely general-purpose.
-- Keep nesting to 1-2 levels for most content. Treat 3+ levels as a sign to reconsider the design, not just a technical option you're free to use.
-- Always include `@app` alongside `@theme` (or alongside your specific block types) in any section where merchants might reasonably want to add a block from a third-party app.
-
-## Common mistakes
-
-- **Forgetting `presets` on a new theme block**, then wondering why it doesn't show up anywhere in the editor.
-- **Using `@theme` everywhere by default** instead of restricting sections to the specific blocks they're designed for. This lets merchants accidentally break layouts.
-- **Trying to pass a variable into a block like you would a snippet**, thinking in terms of `{% render_block %}`. Blocks only ever see `block` and `section`, never any data you pass in directly.
-- **Defining blocks inline in a section's schema "because it's simpler for now."** This is the old Dawn-era pattern, and it locks that block to one section instead of letting you reuse it.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Always include at least one `presets` entry on every theme block. A block with no preset just silently fails to appear. There's no error message, which makes it easy to miss during testing. | **Forgetting `presets` on a new theme block**, then wondering why it doesn't show up anywhere in the editor. |
+| Restrict a section's `blocks` array to specific types when the section has one clear purpose. Save `@theme` for containers that are genuinely general-purpose. | **Using `@theme` everywhere by default** instead of restricting sections to the specific blocks they're designed for. This lets merchants accidentally break layouts. |
+| Keep nesting to 1-2 levels for most content. Treat 3+ levels as a sign to reconsider the design, not just a technical option you're free to use. | **Trying to pass a variable into a block like you would a snippet**, thinking in terms of `{% render_block %}`. Blocks only ever see `block` and `section`, never any data you pass in directly. |
+| Always include `@app` alongside `@theme` (or alongside your specific block types) in any section where merchants might reasonably want to add a block from a third-party app. | **Defining blocks inline in a section's schema "because it's simpler for now."** This is the old Dawn-era pattern, and it locks that block to one section instead of letting you reuse it. |
 
 ## Key takeaways
 - Blocks live in `/blocks`, are reusable across sections, and can nest inside each other.

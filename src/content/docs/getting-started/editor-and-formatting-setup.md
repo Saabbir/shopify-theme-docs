@@ -144,18 +144,14 @@ Use `format:check` in two places:
 
 CI is the one check here that's actually unconditional. It doesn't depend on anyone's local editor settings, whether format-on-save is on, or whether a human or an AI tool wrote the code.
 
-## Best practices
+## Do / Don't
 
-- Commit `.prettierrc.json`, `.vscode/settings.json`, and `.vscode/extensions.json` on day one of a new project, not after formatting drift is already a problem in PR diffs.
-- Treat `format:check` in CI as the actual source of truth. Format-on-save and editor settings are conveniences that reduce how often CI catches something, not a replacement for CI catching it.
-- When an AI tool generates or edits Liquid, CSS, or JS, run `npm run format` (or trust the pre-commit hook) before opening a PR. Agent-written file edits never go through "save in an open editor tab," so they need this step explicitly.
-
-## Common mistakes
-
-- **Installing the Prettier extension without installing `@shopify/prettier-plugin-liquid` locally.** The extension will format everything except `.liquid` files correctly, and `.liquid` files will silently get formatted as plain HTML instead.
-- **Relying only on format-on-save, with no `format:check` step in CI.** This works fine until someone has it off, a new teammate never sets it up, or an AI tool writes a file directly — all of which bypass format-on-save entirely.
-- **Leaving both the Shopify Liquid extension and the Prettier extension registered as formatters for `.liquid` without the `[liquid]` override.** Different teammates get prompted to pick a formatter and don't all pick the same one.
-- **Gitignoring all of `.vscode/` instead of allow-listing the two files that should be shared.** This is the single change that turns "we have a formatting convention" into "everyone actually has the same settings."
+| ✅ Do | ❌ Don't |
+|---|---|
+| Commit `.prettierrc.json`, `.vscode/settings.json`, and `.vscode/extensions.json` on day one of a new project, not after formatting drift is already a problem in PR diffs. | **Installing the Prettier extension without installing `@shopify/prettier-plugin-liquid` locally.** The extension will format everything except `.liquid` files correctly, and `.liquid` files will silently get formatted as plain HTML instead. |
+| Treat `format:check` in CI as the actual source of truth. Format-on-save and editor settings are conveniences that reduce how often CI catches something, not a replacement for CI catching it. | **Relying only on format-on-save, with no `format:check` step in CI.** This works fine until someone has it off, a new teammate never sets it up, or an AI tool writes a file directly — all of which bypass format-on-save entirely. |
+| When an AI tool generates or edits Liquid, CSS, or JS, run `npm run format` (or trust the pre-commit hook) before opening a PR. Agent-written file edits never go through "save in an open editor tab," so they need this step explicitly. | **Leaving both the Shopify Liquid extension and the Prettier extension registered as formatters for `.liquid` without the `[liquid]` override.** Different teammates get prompted to pick a formatter and don't all pick the same one. |
+| — | **Gitignoring all of `.vscode/` instead of allow-listing the two files that should be shared.** This is the single change that turns "we have a formatting convention" into "everyone actually has the same settings." |
 
 ## Key takeaways
 - `.prettierrc.json`: [download it](/templates/prettierrc.json). Must declare `"plugins": ["@shopify/prettier-plugin-liquid"]` — Prettier 3+ won't infer it.

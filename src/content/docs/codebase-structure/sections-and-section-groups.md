@@ -101,17 +101,13 @@ Let's say Solis's footer needs three things: a newsletter signup, a multi-column
 
 Each of those three pieces is its own section file (`sections/footer-menu.liquid`, and so on). Each one can be added, removed, or reordered on its own through the group. Compare that to cramming all three into one giant `footer.liquid` section. That single file is technically simpler to write, but merchants lose the ability to remove just the newsletter signup without losing the whole footer.
 
-## Best practices
+## Do / Don't
 
-- Use section groups for the header and footer from your very first commit. Adding this later, after `theme.liquid` has already grown on its own, is a much bigger job than starting correctly.
-- Split a "kitchen sink" section (one file doing three unrelated jobs) into several smaller sections inside a section group, whenever merchants would reasonably want to control each piece on its own.
-- Keep the `order` array in a section group JSON file matching the actual visual order. A mismatch is a subtle bug that's easy to miss during review.
-
-## Common mistakes
-
-- **Hardcoding the header or footer directly into `theme.liquid`** because it feels simpler early on. This is an explicit reason for Theme Store rejection, not just a style preference.
-- **Building one large section that does several jobs** (menu, newsletter, and social all in one file) instead of letting merchants control each piece on its own through a section group.
-- **Forgetting to update the `order` array** when you add a new section to an existing group. The new section still renders, just not where you expect it to.
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use section groups for the header and footer from your very first commit. Adding this later, after `theme.liquid` has already grown on its own, is a much bigger job than starting correctly. | **Hardcoding the header or footer directly into `theme.liquid`** because it feels simpler early on. This is an explicit reason for Theme Store rejection, not just a style preference. |
+| Split a "kitchen sink" section (one file doing three unrelated jobs) into several smaller sections inside a section group, whenever merchants would reasonably want to control each piece on its own. | **Building one large section that does several jobs** (menu, newsletter, and social all in one file) instead of letting merchants control each piece on its own through a section group. |
+| Keep the `order` array in a section group JSON file matching the actual visual order. A mismatch is a subtle bug that's easy to miss during review. | **Forgetting to update the `order` array** when you add a new section to an existing group. The new section still renders, just not where you expect it to. |
 
 ## Key takeaways
 - A section is the basic unit of page content. A section group manages sections within the header or footer.

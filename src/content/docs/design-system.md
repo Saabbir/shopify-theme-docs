@@ -28,18 +28,12 @@ Here's why it matters. A theme with 40 or more sections only works well if you p
 
 Read this section fully before your theme grows past a handful of sections. Adding a token system to 20 sections that already hardcode their own values (write fixed values straight into the code instead of using a shared token) is a much bigger job than starting with a token system from day one.
 
-## Best practices
+## Do / Don't
 
-- Design your token system before you write your first section's CSS. Don't wait until your third section has different, hardcoded values that don't match.
-- Treat every setting `id` you expose as a promise to merchants. See [Config & Global Settings](/config-and-settings/) to learn what happens if you break that promise.
-
-## Common mistakes
-
-- **Building sections before you settle on a token system.** You end up adding tokens later, on top of a growing pile of hardcoded values.
-
-## Key takeaways
-- [Figma Tokens → Theme Settings](/design-system/figma-tokens-to-theme/) · [Design Tokens: The Three-Tier Model](/design-system/design-tokens-color-type-system/)
-- For color, fonts, spacing, assets, or settings_schema.json/presets specifically: see [Colors](/colors/), [Fonts](/fonts/), [Spacing](/spacing/), [Assets Management](/assets/), [Config & Global Settings](/config-and-settings/).
+| ✅ Do | ❌ Don't |
+|---|---|
+| Design your token system before you write your first section's CSS. Don't wait until your third section has different, hardcoded values that don't match. | **Building sections before you settle on a token system.** You end up adding tokens later, on top of a growing pile of hardcoded values. |
+| Treat every setting `id` you expose as a promise to merchants. See [Config & Global Settings](/config-and-settings/) to learn what happens if you break that promise. | — |
 
 ## Further reading
 
