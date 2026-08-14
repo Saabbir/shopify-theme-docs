@@ -143,3 +143,43 @@
 .sl-markdown-content th {
   overflow-wrap: break-word;
 }
+
+/* Let the Do/Don't table (present on most pages) grow wider than the
+   normal ~45rem prose column on large screens, since each row is two long
+   sentences read side by side rather than top-to-bottom, and the extra
+   width makes that easier to scan.
+
+   This can't just be a fixed "make it 1000px" rule. Starlight's layout, on
+   any page with a right-hand table of contents (basically every page
+   here), pushes the content column flush against that TOC with zero gap,
+   with all the spare width on wide screens collecting on the *left* side
+   instead, between the content and the left nav. Push right and this
+   table would overlap the TOC; push left by more than that gap actually
+   allows and it would overlap the left nav. So --do-dont-outset below is
+   computed from Starlight's own layout variables (sidebar width, content
+   width, content padding), the same way Starlight computes that gap
+   internally, then capped at 15rem and floored at 0 so it can never be
+   negative. A fixed 2rem safety margin is subtracted to absorb scrollbar
+   width and rounding.
+
+   Net effect: on a typical laptop-width browser window there's no gap yet,
+   so this does nothing and the table matches the prose column like normal.
+   On a wide monitor (roughly 1500px+ browser width) it grows, up to about
+   960px at 15rem. Targeted via the auto-generated heading id (`## Do /
+   Don't` slugifies to `do--dont` — verified with github-slugger) so it
+   applies everywhere that heading is used, with no markdown changes. */
+@media (min-width: 72rem) {
+  html[data-has-sidebar][data-has-toc] .sl-markdown-content h2#do--dont + table {
+    --do-dont-gap: max(
+      0px,
+      calc(
+        (100vw - (2 * var(--sl-sidebar-width)) - var(--sl-content-width)) / 2 -
+          (2 * var(--sl-content-pad-x)) - 2rem
+      )
+    );
+    --do-dont-outset: min(15rem, var(--do-dont-gap));
+    width: calc(100% + var(--do-dont-outset));
+    max-width: calc(var(--sl-content-width) + var(--do-dont-outset));
+    margin-inline-start: calc(-1 * var(--do-dont-outset));
+  }
+}

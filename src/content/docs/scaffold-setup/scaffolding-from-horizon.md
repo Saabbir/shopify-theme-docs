@@ -27,7 +27,9 @@ Horizon is Shopify's own flagship theme, plus nine sibling presets. Dawn, Shopif
 | Study Horizon's public source for architecture patterns (how it structures a section, how it uses `@theme`/`@app`) | Copy Horizon's actual markup, CSS, or design wholesale into Solis |
 | Build Solis's visual identity entirely from scratch | Assume "inspired by Horizon" is different enough from "derived from Horizon." Shopify's review treats close derivation as ineligible no matter what you intended. |
 
-## Setting up
+## How this actually happened for Solis
+
+Solis was already scaffolded this way, you don't run this yourself when joining the project (see [Your First Preview](/getting-started/first-preview/) for the actual `git clone` step you use). This is what created it in the first place, and it's the same command you'd reach for if you were ever starting a second, unrelated theme from zero:
 
 ```bash
 # Clone Skeleton Theme via Shopify CLI (this is what shopify theme init does)
@@ -36,7 +38,7 @@ shopify theme init
 cd solis
 ```
 
-Skeleton Theme's own folder layout shows it uses the same modern structure:
+Skeleton Theme's own folder layout shows it uses the same modern structure, and it's the same layout you'll find in Solis today:
 
 ```
 .
@@ -82,7 +84,7 @@ Here's a useful gut check. Put a piece of Solis code side by side with the Horiz
 
 ## Key takeaways
 - Reference for patterns: Horizon (look at it, never clone it).
-- Actual scaffold: Skeleton Theme, via `shopify theme init`.
+- Actual scaffold: Skeleton Theme, via `shopify theme init`. Solis was already scaffolded this way, you `git clone` the existing repo instead (see [Your First Preview](/getting-started/first-preview/)).
 - Skeleton Theme gives you structure, not design. The design work is still 100% ours.
 - Learn from Horizon's patterns; never copy its markup, CSS, or specific design decisions.
 

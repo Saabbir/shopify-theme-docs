@@ -7,6 +7,8 @@ description: Theme-level settings vs. section/block settings, and when to use wh
 
 Shopify has three separate places where settings can live. Mixing them up is a common mistake even for experienced theme developers moving between projects, so here's how we draw the line on Solis.
 
+Solis's own `config/settings_schema.json` already has real content in it, `theme_info` and several settings groups. Open it and read through what's there before adding anything new, the examples below are illustrative, not a from-scratch starting point.
+
 ## The three levels
 
 | Level | File | Scope | Example |

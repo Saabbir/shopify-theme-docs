@@ -5,25 +5,30 @@ description: Get a theme running locally in under ten minutes.
 
 **TL;DR:** Get a theme running locally in under ten minutes.
 
-This page walks you through cloning our scaffold (a starter template we build every theme from) and seeing it live in your browser. It doesn't teach you how everything is built yet. That part comes in [Section 3](/codebase-structure/) and [Section 4](/scaffold-setup/). For now, this page is just about checking that your setup works.
+This page walks you through cloning the Solis repository and seeing it live in your browser. It doesn't teach you how everything is built yet. That part comes in [Section 3](/codebase-structure/) and [Section 4](/scaffold-setup/). For now, this page is just about checking that your setup works.
 
-## 1. Clone the scaffold
+## 1. Clone the repo
 
-We scaffold from Shopify's official Skeleton Theme (see [why, here](/scaffold-setup/scaffolding-from-horizon/)):
-
-```bash
-shopify theme init
-```
-
-You'll be prompted for a folder name. Use `solis` (or whatever the current project name is). This copies the Skeleton Theme into that folder on your computer.
+Solis already exists as a real repository, with sections, blocks, and config already built. You're not scaffolding a new theme, you're joining an existing one:
 
 ```bash
+git clone https://github.com/EchoLogyx-Ltd/shopify-theme-solis.git solis
 cd solis
 ```
 
-:::tip[Cloning an existing project instead]
-If Solis already has code and you're joining a project that's already in progress, skip `shopify theme init`. Just `git clone` the existing Solis repository, the same way you would for any other project. `shopify theme init` is only for starting a brand-new theme from the scaffold.
+That's it. `AGENTS.md`, `.prettierrc.json`, `.vscode/` settings, and the GitHub Actions CI workflow all come with the clone, nothing left to generate.
+
+:::note[Where `shopify theme init` fits in]
+`shopify theme init` is how Solis originally got started, cloning Shopify's official Skeleton Theme as a base (see [why, here](/scaffold-setup/scaffolding-from-horizon/)). You'd only run it yourself if you were starting an unrelated, brand-new theme from zero. For Solis, `git clone` above is the whole story.
 :::
+
+Install the Node tooling (Prettier and its Liquid plugin) before you do anything else:
+
+```bash
+npm install
+```
+
+This doesn't affect the theme itself, it's dev-only tooling. See [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) for what it installs and why.
 
 ## 2. Start the dev server
 
@@ -45,7 +50,7 @@ In **Google Chrome** (the only browser the hot-reload preview supports), go to:
 http://127.0.0.1:9292
 ```
 
-You should see the Skeleton Theme running against your dev store's real product and collection data.
+You should see Solis running against your dev store's real product and collection data.
 
 :::tip
 `shopify theme dev` also prints a shareable preview link and a link straight into the theme editor. These are useful for sending a work-in-progress to a teammate or designer without pushing anything live.

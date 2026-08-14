@@ -11,11 +11,13 @@ That was the old reality for AI coding tools. Cursor, Claude Code, and GitHub Co
 
 The good news is that problem is mostly solved now. With a current version of the Shopify CLI, you barely have to think about it. Cursor doesn't need its own file at all anymore, it just reads the shared file directly. Claude Code and Copilot still have their own file names sitting in your project, but those files aren't separate notebooks anymore. Think of them as name tags stuck onto the exact same notebook. Write in the real notebook, and every name tag "shows" the update instantly, because there was only ever one notebook to begin with.
 
+Solis already has this in place: `AGENTS.md` at the repo root, with `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at it. You don't generate or set up any of it, it arrives the moment you clone. What follows explains how it got there and what's in it, so you understand the file you're about to read, not because you need to build it.
+
 ## Shopify's own tooling builds it for you
 
-Run `shopify theme init` and say yes to AI agent support, and the CLI creates a file called `AGENTS.md` at the root of your project. Think of this as the master notebook. It already covers a lot of ground: how a theme's folders should be organized, the rules for writing a good `{% schema %}` block, a full reference for Liquid (every delimiter, operator, filter, object, and tag), how translation and localization should work, and complete worked examples of a snippet, a block, and a section.
+Running `shopify theme init` and saying yes to AI agent support is what created `AGENTS.md` in the first place (this already happened for Solis; you'd only do this yourself if you were starting a brand-new theme, see [Setting it up](#setting-it-up) below). Think of the result as the master notebook. It already covers a lot of ground: how a theme's folders should be organized, the rules for writing a good `{% schema %}` block, a full reference for Liquid (every delimiter, operator, filter, object, and tag), how translation and localization should work, and complete worked examples of a snippet, a block, and a section.
 
-Then the CLI does something clever. It creates two more files, `CLAUDE.md` and `.github/copilot-instructions.md`, but not as copies. It creates them as name tags (the technical word for this is "symlinks") pointing at that same `AGENTS.md` file. Nothing gets duplicated. Cursor, Claude Code, and Copilot all end up reading the exact same words, every single time, with nothing for a human to keep in sync. Cursor doesn't even need a name tag, current versions read `AGENTS.md` straight from the project root.
+The CLI also does something clever: it creates two more files, `CLAUDE.md` and `.github/copilot-instructions.md`, but not as copies. It creates them as name tags (the technical word for this is "symlinks") pointing at that same `AGENTS.md` file. Nothing gets duplicated. Cursor, Claude Code, and Copilot all end up reading the exact same words, every single time, with nothing for a human to keep in sync. Cursor doesn't even need a name tag, current versions read `AGENTS.md` straight from the project root. You can confirm both name tags are real (not broken) by running `ls -la CLAUDE.md .github/copilot-instructions.md` from the repo root and checking that each shows an `->` pointing at `AGENTS.md`.
 
 ## What's actually inside Shopify's generated AGENTS.md
 
@@ -30,56 +32,67 @@ It's worth reading the whole thing at least once. It's thorough, and it covers g
 
 Because Shopify's file already explains all of this clearly and correctly, this handbook's own [Liquid Style Guide](/style-guides/liquid/), [CSS](/css/), and [Reference](/reference/) pages don't try to repeat it. Instead, they add the extra, day to day judgment calls on top.
 
-## The one rule for changing it: everything custom goes under "## Custom rules"
+## The one rule for changing it: everything custom goes under "## Project conventions"
 
-Shopify's generated `AGENTS.md` ends with one empty heading: `## Custom rules`. Think of it as a blank sticky note left at the back of a textbook, put there on purpose for you to fill in. **That sticky note is the only part of the file you should ever write on.** Everything above it came straight from Shopify's generator, and it's identical to what any Shopify theme starts with, not just ours.
+Shopify's generated `AGENTS.md` ends with one empty heading: `## Project conventions`. Think of it as a blank sticky note left at the back of a textbook, put there on purpose for you to fill in. **That sticky note is the only part of the file you should ever write on.** Everything above it came straight from Shopify's generator, and it's identical to what any Shopify theme starts with, not just ours.
 
 If you scribble notes directly onto Shopify's part of the textbook instead of the sticky note, two things can go wrong. Your changes might get lost the next time the book gets reprinted (a future re-scaffold), and none of it was really about our project to begin with, since it's true of every Shopify theme.
 
-Our team's own rules, things like which base theme we scaffold from, our no-Sass and no-framework rule, our Figma-to-code workflow, and our insistence on checking facts instead of guessing, all live on that sticky note, under `## Custom rules`, at the very bottom of the file. [Download our current `## Custom rules` content](/templates/AGENTS.md) to see exactly what Solis adds on top of Shopify's baseline. Scroll to the bottom of that file, everything above `## Custom rules` is Shopify's own generated content, kept there on purpose so the download works as a drop-in replacement.
+Our team's own rules, things like which base theme we scaffold from, our no-Sass and no-framework rule, our Figma-to-code workflow, and our insistence on checking facts instead of guessing, all live on that sticky note, under `## Project conventions`, at the very bottom of the file. [Download our current `## Project conventions` content](/templates/AGENTS.md) to see exactly what Solis adds on top of Shopify's baseline. Scroll to the bottom of that file, everything above `## Project conventions` is Shopify's own generated content, kept there on purpose so the download works as a drop-in replacement.
 
 ## Setting it up
 
-**Starting a brand new theme?** Run `shopify theme init` and choose AI agent support when it asks. `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (as name tags pointing at `AGENTS.md`) all get created for you automatically. All you do is paste our `## Custom rules` content (from [the template above](/templates/AGENTS.md)) into the `## Custom rules` section the CLI already created. **You don't need `scripts/generate-ai-rules.mjs` for this.** The CLI already did that script's whole job. Don't run it, and don't even commit it to the repo unless one of the two situations below applies to you.
+**Joining Solis as a contributor?** There's nothing to set up. `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` all arrive the moment you `git clone` the repo. Read `AGENTS.md` once, top to bottom (see [What's actually inside](#whats-actually-inside-shopifys-generated-agentsmd) above), and confirm the two name tags are real, not broken (`ls -la CLAUDE.md .github/copilot-instructions.md`, checking for an `->` pointing at `AGENTS.md`). That's the entire process for you.
 
-**Adding this to an older theme repo that wasn't scaffolded with AI agent support?** Maybe it's an older Solis project, or a theme built before AI agent support existed. Here's the walkthrough:
+The sections below are for two situations that don't apply to a normal Solis clone, kept here for reference, not as something you need to act on:
 
-1. [Download `AGENTS.md`](/templates/AGENTS.md), a drop-in copy of what `shopify theme init` would generate, with our `## Custom rules` section already filled in.
+**Starting a brand new theme?** Run `shopify theme init` and choose AI agent support when it asks. `AGENTS.md`, `CLAUDE.md`, and `.github/copilot-instructions.md` (as name tags pointing at `AGENTS.md`) all get created automatically. Paste our `## Project conventions` content (from [the template](/templates/AGENTS.md)) into the `## Project conventions` section the CLI already created.
+
+**Adding this to an older theme repo that wasn't scaffolded with AI agent support?** Maybe it's a theme built before AI agent support existed. Here's the walkthrough:
+
+1. [Download `AGENTS.md`](/templates/AGENTS.md), a drop-in copy of what `shopify theme init` would generate, with our `## Project conventions` section already filled in.
 2. Put it at the root of your repo.
-3. [Download `scripts/generate-ai-rules.mjs`](/templates/scripts/generate-ai-rules.mjs) into a `scripts/` folder, and run it once:
+3. Create `CLAUDE.md` and `.github/copilot-instructions.md` as name tags (symlinks) pointing at `AGENTS.md`, matching what Shopify's own CLI does:
 
 ```bash
-node scripts/generate-ai-rules.mjs
+ln -s AGENTS.md CLAUDE.md
+mkdir -p .github && ln -s ../AGENTS.md .github/copilot-instructions.md
 ```
 
-This script's whole job is to create `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at `AGENTS.md`, matching exactly what Shopify's own CLI does. Cursor needs nothing extra, it reads `AGENTS.md` on its own.
+Cursor needs nothing extra, it reads `AGENTS.md` on its own.
 
-4. Commit `AGENTS.md` and the two name tag files. Git tracks these natively, so you commit them just like any other file.
+4. Commit `AGENTS.md` and the two name tag files. Git tracks symlinks natively, so you commit them just like any other file.
 
-### Do we still need `scripts/generate-ai-rules.mjs` once a theme already has AI agent support?
+:::note[About `scripts/generate-ai-rules.mjs`]
+Earlier versions of this page pointed at a `scripts/generate-ai-rules.mjs` helper to create these two name tags for you. Solis doesn't have that script committed, the two `ln -s` commands above do the same job directly and don't need a dependency. If a name tag ever breaks (see below), re-run those same two commands after deleting the stale file.
+:::
 
-No. In the normal case, a theme scaffolded with `shopify theme init` and AI agent support turned on, the script has nothing left to do, the CLI already created real name tags for you. Running it again won't break anything (it's "idempotent," a fancy way of saying running it twice has the exact same effect as running it once), but it's not part of your regular workflow.
+### If a name tag breaks
 
-Still, keep the script in the repo. Two specific situations come up where it's the only fix:
+Some tools, like "Save As" in certain editors, a zip extract, or a Windows checkout with Git's `core.symlinks` setting turned off, can quietly replace a name tag with a real, separate, frozen-in-time file. When that happens, `CLAUDE.md` stops reflecting new edits to `AGENTS.md`, the same way a broken shortcut icon stops opening the real file.
 
-- **A repo built before AI agent support existed**, or one where it just wasn't selected. That's the walkthrough above.
-- **A broken name tag.** Some tools, like "Save As" in certain editors, a zip extract, or a Windows checkout with Git's `core.symlinks` setting turned off, can quietly replace a name tag with a real, separate, frozen-in-time file. When that happens, `CLAUDE.md` stops reflecting new edits to `AGENTS.md`, the same way a broken shortcut icon stops opening the real file. Running `node scripts/generate-ai-rules.mjs` deletes the stale file and reconnects the name tag. If you're on Windows, check that `git config core.symlinks` is set to `true`, and that Developer Mode (or "Run as Administrator") is turned on for your clone. Otherwise, Git might check out `CLAUDE.md` and `.github/copilot-instructions.md` as plain text files that just contain the target's file path written out as text, instead of a real, working name tag.
+Fix it by deleting the stale file and recreating the symlink:
 
-If neither of those two situations applies to you, there's genuinely nothing to run.
+```bash
+rm CLAUDE.md && ln -s AGENTS.md CLAUDE.md
+rm .github/copilot-instructions.md && ln -s ../AGENTS.md .github/copilot-instructions.md
+```
+
+If you're on Windows, also check that `git config core.symlinks` is set to `true`, and that Developer Mode (or "Run as Administrator") is turned on for your clone. Otherwise, Git might check out `CLAUDE.md` and `.github/copilot-instructions.md` as plain text files that just contain the target's file path written out as text, instead of a real, working name tag.
 
 ## Updating a rule (the whole process)
 
-Because `CLAUDE.md` and `.github/copilot-instructions.md` are name tags, not separate copies, there's no "regenerate" step to remember. Edit the `## Custom rules` section of `AGENTS.md`, and every tool sees the change immediately, the same way relabeling the one real notebook instantly updates what every name tag "shows."
+Because `CLAUDE.md` and `.github/copilot-instructions.md` are name tags, not separate copies, there's no "regenerate" step to remember. Edit the `## Project conventions` section of `AGENTS.md`, and every tool sees the change immediately, the same way relabeling the one real notebook instantly updates what every name tag "shows."
 
-1. Edit the `## Custom rules` section of `AGENTS.md`. Never touch the Shopify-generated part above it.
+1. Edit the `## Project conventions` section of `AGENTS.md`. Never touch the Shopify-generated part above it.
 2. Commit. That's genuinely the whole process. No build step, no script to re-run, nothing to keep in sync, because there was only ever one real file.
 3. Mention the rule change in your pull request description, the same way you'd describe any other change in behavior. See [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/) for the fuller guide on doing this well.
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Edit only the `## Custom rules` section | Hand-edit Shopify's generated content above it. It will drift from what a fresh `shopify theme init` produces, and it was never specific to our project anyway |
+| Edit only the `## Project conventions` section | Hand-edit Shopify's generated content above it. It will drift from what a fresh `shopify theme init` produces, and it was never specific to our project anyway |
 | Trust the name tags to stay in sync automatically | Go looking for a "regenerate" command. It doesn't exist anymore, editing `AGENTS.md` is the entire workflow |
-| Only re-run `scripts/generate-ai-rules.mjs` if a name tag actually breaks (say, `CLAUDE.md` got replaced with a real file by some tool) | Assume a broken name tag will somehow fix itself |
+| Only recreate a name tag (`rm` + `ln -s`) if it actually breaks (say, `CLAUDE.md` got replaced with a real file by some tool) | Assume a broken name tag will somehow fix itself |
 
 ## The optional, legacy Cursor `.mdc` approach
 
@@ -94,7 +107,7 @@ Stick with plain `AGENTS.md` (which current Cursor reads directly, no setup need
 
 ## What good rules actually look like
 
-Whether it's inside Shopify's generated content or in our own `## Custom rules` section, the same test applies: a good rule is specific enough to check, not just something that sounds nice.
+Whether it's inside Shopify's generated content or in our own `## Project conventions` section, the same test applies: a good rule is specific enough to check, not just something that sounds nice.
 
 | ❌ A vague, low-value rule | ✅ A specific, checkable rule |
 |---|---|
@@ -110,26 +123,26 @@ A rule nobody has ever checked against real output is just wishful thinking writ
 
 1. Ask your AI tool to build something the "wrong," old fashioned way on purpose (Dawn-era, meaning the older pattern this handbook has moved on from), like a section with blocks written inline instead of as separate theme blocks.
 2. See what actually comes back. Did it use the current pattern (blocks living in `/blocks`, targeted with `@theme`), or did it quietly fall back to the old habit?
-3. If it fell back to the old pattern, that's your answer: the relevant rule in `## Custom rules` needs to be more specific, not longer.
+3. If it fell back to the old pattern, that's your answer: the relevant rule in `## Project conventions` needs to be more specific, not longer.
 
 ## Do / Don't
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Let `shopify theme init` generate the base file whenever you start a new theme. Don't hand-write what the CLI already gets right. | **Hand-editing Shopify's generated content** instead of keeping changes inside `## Custom rules`. This drifts away from what a fresh scaffold produces, with no real benefit to show for it. |
-| Only ever edit `## Custom rules`. Treat everything above it as Shopify's property, not ours. | **Looking for a "regenerate" step that doesn't exist anymore.** Editing `AGENTS.md` is the entire workflow now, there's nothing left to run afterward. |
-| Trust the name tags. There's no regeneration step to remember, which quietly removes an entire category of "oops, forgot to sync that" bugs the old three-separate-files approach used to cause. | **Assuming `.cursor/rules/*.mdc` is still the main approach.** It's optional and old fashioned now that Cursor reads `AGENTS.md` directly. Only bring it back for a specific, deliberate reason. |
+On Solis, treat `AGENTS.md` as something you read and extend, not something you generate. (Only run `shopify theme init` yourself if you're starting an actual new theme from zero.) | **Hand-editing Shopify's generated content** instead of keeping changes inside `## Project conventions`. This drifts away from what a fresh scaffold produces, with no real benefit to show for it. |
+| Only ever edit `## Project conventions`. Treat everything above it as Shopify's property, not ours. | **Looking for a "regenerate" step that doesn't exist anymore.** Editing `AGENTS.md` is the entire workflow now, there's nothing left to run afterward. |
+| Trust the name tags. There's no regeneration step to remember, which quietly removes an entire category of "oops, forgot to sync that" bugs the old three-separate-files approach used to cause. If one ever breaks, `rm` and re-`ln -s` it. | **Assuming `.cursor/rules/*.mdc` is still the main approach.** It's optional and old fashioned now that Cursor reads `AGENTS.md` directly. Only bring it back for a specific, deliberate reason. |
 | Re-test your rules from time to time against a known "wrong pattern" case, instead of just assuming they still work as the tool and the codebase both keep changing. | **Writing rules that are technically true but useless**, like "be accessible" or "write clean code." These almost never change what the model actually produces. |
 
 ## Key takeaways
-- `shopify theme init` with AI agent support turned on generates `AGENTS.md`, plus `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at it. Cursor reads `AGENTS.md` directly, no extra file needed.
-- Only edit the `## Custom rules` section at the bottom of `AGENTS.md`. Everything above it belongs to Shopify's generator.
-- There's no regeneration step. The name tags always reflect whatever the real file currently says.
-- `.cursor/rules/*.mdc` is optional and old fashioned, meant for teams that specifically want rules to load only for certain file types.
+- Solis already has `AGENTS.md`, plus `CLAUDE.md` and `.github/copilot-instructions.md` as name tags pointing at it. It arrives with the clone; you read it, you don't generate it. Cursor reads `AGENTS.md` directly, no extra file needed.
+- Only edit the `## Project conventions` section at the bottom of `AGENTS.md`. Everything above it belongs to Shopify's generator.
+- There's no regeneration step. The name tags always reflect whatever the real file currently says. If one breaks, `rm` and re-`ln -s` it, no script needed.
+- `.cursor/rules/*.mdc` is optional and old fashioned, meant for teams that specifically want rules to load only for certain file types. Solis doesn't use it.
 
 ## Further reading
 
-- [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/), the guide for changing `## Custom rules` well
+- [Managing & Amending AI Rules](/ai-assisted-development/managing-ai-rules/), the guide for changing `## Project conventions` well
 - [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/), the `learn_shopify_api` instruction and what it connects to
 - [theme-liquid-docs](https://github.com/Shopify/theme-liquid-docs) (GitHub), the source data behind Liquid/schema autocomplete and validation
 - [AGENTS.md](https://agents.md), the open specification

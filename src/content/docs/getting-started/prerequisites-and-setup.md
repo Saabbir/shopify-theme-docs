@@ -5,9 +5,9 @@ description: Everything you need installed, connected, and verified (accounts, e
 
 **TL;DR:** Everything you need installed, connected, and verified (accounts, editor, and AI tooling) before writing a single line of code.
 
-This page is your full setup checklist. It covers accounts, core software, your editor (VS Code and/or Cursor), and the AI tools this handbook assumes you have (Claude Code, the Shopify AI Toolkit, and MCP).
+Solis already has a working setup: Prettier config, editor settings, `AGENTS.md`, CI, all committed and waiting in the repo the moment you clone it. This page isn't about building any of that. It's your personal checklist, the accounts, software, editor, and AI tools that live on *your machine*, and that nobody else can install or authenticate for you.
 
-Work through this page from top to bottom, once. Then run the [pre-flight checklist](#the-pre-flight-checklist) at the end. That confirms everything actually works together, not just that each piece installed on its own.
+Work through this page from top to bottom, once. Then run the [pre-flight checklist](#the-pre-flight-checklist) at the end. That confirms everything actually works together, not just that each piece installed on its own. If anything here doesn't match what you find in the repo, check with **the project maintainer** rather than guessing or working around it.
 
 ## Accounts you need
 
@@ -51,11 +51,13 @@ If any of the terms below (MCP, skill, plugin, subagent) are new to you, read [A
 | **Claude Code** | `anthropic.claude-code` | Anthropic's official extension. It adds a native panel for Claude Code inside VS Code, if that's your primary AI tool. It requires the Claude Code CLI itself to also be installed (see below). |
 | **GitHub Copilot** + **Copilot Chat** | `GitHub.copilot`, `GitHub.copilot-chat` | Only if Copilot is your team's AI tool instead of Claude Code/Cursor. Agent mode (not just inline suggestions) is what reads `AGENTS.md` and calls MCP tools. |
 
-Turn on format-on-save (`editor.formatOnSave: true` in VS Code settings). That way Prettier runs automatically instead of being a manual step people forget. Don't configure this by hand, though — [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) has a `.vscode/settings.json` and `.prettierrc.json` to download and commit, so the whole team gets the same setup automatically instead of everyone configuring it individually.
+Format-on-save should already be on the moment you open this project: `.vscode/settings.json` and `.prettierrc.json` are already committed at the repo root, so the whole team shares one config instead of everyone configuring it by hand. Don't recreate or override either file yourself. See [Editor & Formatting Setup](/getting-started/editor-and-formatting-setup/) for exactly what's in them and why. Your job is just to open the folder and install whatever VS Code prompts you to install.
 
 **MCP servers in VS Code** live in a `.vscode/mcp.json` file at the repo root, under a `servers` key. This is different from Cursor and Claude Code, which both use a `mcpServers` key instead. Copying a Cursor config without changing this key is the single most common MCP setup mistake, so watch out for it.
 
 The easiest path is: Command Palette → **MCP: Add Server** → follow the guided flow, which writes the file for you. See [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/) and [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/) for the exact servers and install commands this handbook uses. Don't write server configs from memory, check those pages first.
+
+Solis doesn't have a `.vscode/mcp.json` committed yet, so this is currently a per-person setup step, not something that arrives with the clone. If you think it's worth committing one for the whole team, raise it with **the project maintainer** rather than deciding on your own.
 
 ### Setting up Cursor
 
@@ -80,6 +82,8 @@ Cursor's agent mode is built in, so you don't need a separate extension for the 
 Project config takes precedence over global config for a server with the same name.
 
 **Use project-level `.cursor/mcp.json` for this project, and commit it to the repo.** That way every teammate gets the same MCP servers (Shopify Dev MCP, Figma MCP) the moment they clone the repo. There's no manual setup per person, and no drift between machines. Save `~/.cursor/mcp.json` (global) for servers that are truly personal and not related to this project, not for anything the whole team needs.
+
+As of now, Solis doesn't have a `.cursor/mcp.json` committed, so treat the servers below as something you set up personally (project- or global-level, your call) until **the project maintainer** commits a shared one.
 
 :::caution[Don't commit literal secrets]
 If a server needs an API key or token, don't type it directly into the committed `env` block above. Point it at your shell environment, or at a local `.env` file (add that file to `.gitignore`), instead. That way the config *structure* is shared across the team, but everyone's actual credentials stay on their own machine and out of Git history.
@@ -123,7 +127,7 @@ If you'll be pulling design details from Figma, also install Figma's plugin: `cl
 
 Once your editor and AI tool are installed, the last piece is project context: a file called `AGENTS.md` at the repo root. Claude Code, Cursor, and Copilot all read this file. (Cursor and Claude Code read it directly. Copilot reads it through a symlinked `.github/copilot-instructions.md`.)
 
-`AGENTS.md` is generated automatically by `shopify theme init`, and our project-specific rules live in its `## Custom rules` section. Full setup steps (for a new theme or an existing repo) are in [Setting Up AI Rules](/getting-started/setting-up-ai-rules/). Do that now if you haven't, since several checklist items below depend on it being in place.
+`AGENTS.md` already exists in Solis and arrives the moment you clone the repo, there's nothing for you to generate or set up. It has two parts: Shopify's own generated content, and our project-specific rules underneath a `## Project conventions` heading at the bottom. See [Setting Up AI Rules](/getting-started/setting-up-ai-rules/) for what's actually in it and how it's kept up to date. Read it now if you haven't, since several checklist items below assume you have.
 
 ## The pre-flight checklist
 
@@ -154,7 +158,7 @@ Don't just check that each tool installed on its own. Confirm the whole chain wo
 
 - [ ] Primary AI tool installed and authenticated (`claude --version` succeeds and you're logged in, and/or Cursor's agent mode responds to a prompt, and/or Copilot Chat responds in VS Code)
 - [ ] Shopify AI Toolkit installed (plugin, skill, or Dev MCP, per [Shopify's Official AI Toolkit](/ai-assisted-development/shopify-ai-toolkit/)). It's easy to skip this, since the editor extension above already gives you syntax highlighting. But the toolkit is what makes sure *generated code* is based on real docs, not guesses.
-- [ ] `AGENTS.md` present at the repo root with our `## Custom rules` section filled in (not just Shopify's generated default)
+- [ ] `AGENTS.md` present at the repo root with our `## Project conventions` section filled in (it will be, since it comes with the clone, but confirm you can actually see it)
 - [ ] Figma MCP connected, if you'll be converting Figma designs to code (see [Figma MCP & Dev Mode](/ai-assisted-development/figma-mcp-and-dev-mode/))
 
 **End-to-end smoke test**

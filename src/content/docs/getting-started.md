@@ -31,7 +31,7 @@ Be careful with older Shopify tutorials or blog posts you find online. Many of t
 
 | # | Section | What it answers |
 |---|---|---|
-| 1 | Getting Started | You're here. Everything you need to set up before you write any code: editor, Prettier, AI rules, Git. |
+| 1 | Getting Started | You're here. Everything you need installed on your machine, and everything already set up in the repo, before you write any code: editor, Prettier, AI rules, Git conventions. |
 | 2 | [Theme Store Requirements](/theme-store-requirements/) | What Shopify requires before they'll list your theme. Bookmark this one, you'll come back to it constantly. |
 | 3 | [Codebase Structure](/codebase-structure/) | How a theme's files and folders fit together. |
 | 4 | [Scaffold Setup Guide](/scaffold-setup/) | Step-by-step: build your first section and block by hand. |
@@ -64,8 +64,8 @@ If you're joining the Solis project without any background on it, here's roughly
 
 | Day | What you should be doing |
 |---|---|
-| 1 | Read section 1 in full and complete its setup: Partner account, dev store, Shopify CLI, editor & Prettier, AI rule files, Git basics (see [Prerequisites & Setup](/getting-started/prerequisites-and-setup/) onward). |
-| 2 | Read section 2. Clone the scaffold, get `shopify theme dev` running, poke around the existing codebase (if Solis already has code) or Skeleton Theme (if starting fresh). |
+| 1 | Read section 1 in full: get your Partner account, dev store, and Shopify CLI in place, install your editor and its extensions, and read through what's already configured for you (Prettier, AI rules, Git conventions) (see [Prerequisites & Setup](/getting-started/prerequisites-and-setup/) onward). |
+| 2 | Read section 2. Clone the Solis repo, get `shopify theme dev` running, and spend real time in the existing codebase, sections, blocks, config, before you write anything of your own. |
 | 3 | Read section 3, then section 4. Build one small, low-risk section end to end (see [Your First Section & Block](/scaffold-setup/first-section-and-block/)) to try out the whole loop: code, then preview, then PR. |
 | 4 | Pair on a real ticket with a more senior teammate if one's available. Skim [AI-Assisted Development](/ai-assisted-development/) for how we use AI tools day to day. |
 | 5 | Open your first real PR against a real ticket. Expect review comments. That's the process working, not a sign that you did something wrong. |
@@ -74,8 +74,8 @@ If you're joining the Solis project without any background on it, here's roughly
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Finish section 1's setup before you write any code, even if you're eager to jump in. Working without your editor, Prettier, AI rules, and Git set up correctly costs you more time later than it saves now. | **Skipping straight to coding.** The way we build things here (theme blocks, section groups) is different enough from a typical web project that skipping the reading leads to code you'll have to rework later. |
-| Set up your AI tool's rule files on day one, as part of section 1 (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). Don't wait until you've already written a dozen files the "wrong" way that now need fixing. | **Learning Shopify themes from random blog posts instead of this handbook or shopify.dev.** Many public tutorials, even ones that look recent, still teach Dawn's older, section-only patterns. Follow them, and you'll pick up patterns we don't use. |
+| Work through section 1 in full before you write any code, even if you're eager to jump in. Confirming your editor, tools, and understanding of our AI rules and Git conventions actually work costs you far less time now than discovering a gap mid-PR. | **Skipping straight to coding.** The way we build things here (theme blocks, section groups) is different enough from a typical web project that skipping the reading leads to code you'll have to rework later. |
+| Read `AGENTS.md` on day one, as part of section 1 (see [Setting Up AI Rules](/getting-started/setting-up-ai-rules/)). It's already in the repo and already governs how your AI tool behaves the moment you clone. Don't wait until you've already written a dozen files the "wrong" way that now need fixing. | **Learning Shopify themes from random blog posts instead of this handbook or shopify.dev.** Many public tutorials, even ones that look recent, still teach Dawn's older, section-only patterns. Follow them, and you'll pick up patterns we don't use. |
 | Ask in the team channel before you guess on anything Shopify-specific. A five-minute question beats a half-day detour built on a wrong assumption. | **Assuming "it works on my dev store" means "it's done."** A change that works with your test data can still fail Theme Store review the moment it hits an empty collection or a 200-character title. Check [Theme Store Requirements](/theme-store-requirements/) before you call anything finished. |
 | Keep this handbook open in a tab while you work. It's meant to be checked often, not read once and forgotten. | **Not asking when you're uncertain.** If a requirement or pattern in this handbook seems to conflict with what you're being asked to build, flag it. Don't quietly guess and hope it's fine. |
 

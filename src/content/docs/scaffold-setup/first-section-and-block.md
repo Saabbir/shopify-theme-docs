@@ -5,7 +5,7 @@ description: A worked example of a testimonial section with a nestable quote blo
 
 **TL;DR:** A worked example of a testimonial section with a nestable quote block.
 
-In this guide, you'll build something real: a "Testimonials" section that merchants can add to any page of their store, with "Quote" blocks merchants can add, remove, and reorder.
+Solis already has real sections and blocks in `sections/` and `blocks/`, this isn't where you'd add your first genuine feature. It's a practice run: a "Testimonials" section that merchants can add to any page of their store, with "Quote" blocks merchants can add, remove, and reorder, built from nothing so you feel the whole loop (code, schema, preview, PR) once before you touch a real ticket.
 
 Let's build the block first, then the section that holds it.
 
